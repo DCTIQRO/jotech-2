@@ -68,6 +68,9 @@ class Clientes extends CI_Controller {
 		$data['datos']=$this->clientes_model->info_cliente($id);
 		$data['clasificacion']=$this->clientes_model->info_clasificacion($id);
 		$data['clasificaciones']=$this->clientes_model->ver_clasificaciones();
+		$data['tab']="detalles";
+		$data['titulo']="Información del Cliente";
+		$data['id_cliente']=$id;
 		$this->load->view('main',$data);
 	}
 	

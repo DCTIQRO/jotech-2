@@ -1,20 +1,6 @@
 <div class="row">
 	<div class="block">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="block-section">
-					<h4 class="sub-header">Información del Cliente</h4>
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="javascript:void(0)">Detalles</a></li>
-						<li><a href="javascript:void(0)">Nuevo Proyecto</a></li>
-						<li><a href="javascript:void(0)">Proyectos y Tareas</a></li>
-						<li><a href="javascript:void(0)">Contacto</a></li>
-						<li><a href="javascript:void(0)">Bitacora</a></li>
-						<li><a href="javascript:void(0)">Permisos</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<?php $this->load->view('basic/tabs_cliente') ?>
 		<div class="row">
 			<div class="col-xs-12">
 				<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('clientes/actualizar/'.$datos->id) ?>" >
