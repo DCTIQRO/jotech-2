@@ -4,6 +4,7 @@
 	<?php $this->load->view('basic/tabs_cliente') ?>
 	<div class="row">
 		<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('proyectos/guardar_proyecto') ?>">
+			<input type="hidden" id="id_cliente" name="id_cliente" value="<?= $id_cliente ?>" />
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
 				<div class="col-md-6">

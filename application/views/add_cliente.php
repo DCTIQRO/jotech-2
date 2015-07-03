@@ -114,18 +114,20 @@
 					</div>
 				</div>
 			</div>
-			
+			<div id="Clonar" name="Clonar">
 			<div class="form-group">
 				<label class="col-md-4 control-label"  for="clasificacion">Clasificación</label>
 				<div class="col-md-6">
 					<div class="input-group">
-						<select id="clasificacion" name="clasificacion" class="select-chosen form-control" onchange="checar_clasificacion();">
+						<select id="clasificacion" name="clasificacion" class="select-chosen form-control clasifi" onchange="checar_clasificacion('');">
 							<option value="a">Seleccione una Clasificación</option>
 							<?php 
+								$options="";
 								foreach($clasificaciones as $tipo)
 								{
-									echo '<option value="'.$tipo->clasificacion.'">'.$tipo->clasificacion.'</option>';
+									$options.= '<option value="'.$tipo->clasificacion.'">'.$tipo->clasificacion.'</option>';
 								}
+								echo $options;
 							?>
 							<option value="0">Otra Clasificación</option>
 						</select>
@@ -137,7 +139,7 @@
 				<label class="col-md-4 control-label" for="new_clas">Nueva Clasificación</label>
 				<div class="col-md-6">
 					<div class="input-group">
-						<input type="text" id="new_clas" name="new_clas" class="form-control" placeholder="Escriba la nueva clasificación..">
+						<input type="text" id="new_clas" name="new_clas" class="form-control new_clasifi" placeholder="Escriba la nueva clasificación..">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
@@ -146,7 +148,7 @@
 				<label class="col-md-4 control-label"  for="prioridad">Prioridad</label>
 				<div class="col-md-6">
 					<div class="input-group">
-						<select id="prioridad" name="prioridad" class="select-chosen form-control">
+						<select id="prioridad" name="prioridad" class="select-chosen form-control prioridades">
 							<option value="">Seleccione una Prioridad</option>
 							<option value="1">Prioridad 1</option>
 							<option value="2">Prioridad 2</option>
@@ -157,6 +159,12 @@
 					</div>
 				</div>			 
 			</div>
+			</div>
+			<div id="new_clasif" name="new_clasif">
+				<!--Aqui se pondran las nuevas clasificaciones-->
+			</div>
+			<input type="hidden" name="numero_clas" id="numero_clas" value="0" />
+			<div class="form-group text-center"><a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a></div>
 			<div class="form-group text-center">
 					<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Guardar</button>
 					<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
@@ -167,21 +175,61 @@
 </div>
 </div>
 <script>
-
-    $('#div_nueva_clasificacion').hide();
-    
-    function checar_clasificacion(){
-    
-        if(document.getElementById('clasificacion').value=='0'){
-         $('#div_nueva_clasificacion').show();
-        }
-        else{
-         $('#div_nueva_clasificacion').hide();
-        }
-        
-        
-    }
-
+$('#div_nueva_clasificacion').hide();  
+function checar_clasificacion(num){
+	if(document.getElementById('clasificacion'+num).value=='0'){
+		$('#div_nueva_clasificacion'+num).show();
+	}
+	else{
+		$('#div_nueva_clasificacion'+num).hide();
+	}
+}
+var i=1;
+function agregarClasif ()
+{
+	x=	'<div class="form-group">'+
+			'<label class="col-md-4 control-label"  for="clasificacion">Clasificación '+i+'</label>'+
+			'<div class="col-md-6">'+
+				'<div class="input-group">'+
+					'<select id="clasificacion'+i+'" name="clasificacion'+i+'" class="select-chosen form-control clasifi" onchange="checar_clasificacion('+i+');">'+
+						'<option value="a">Seleccione una Clasificación</option>'+
+						'<?= $options;?>'+
+						'<option value="0">Otra Clasificación</option>'+
+					'</select>'+
+					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
+				'</div>'+
+			'</div>'+			 
+		'</div>'+
+		'<div class="form-group" id="div_nueva_clasificacion'+i+'">'+
+			'<label class="col-md-4 control-label" for="new_clas'+i+'">Nueva Clasificación '+i+'</label>'+
+			'<div class="col-md-6">'+
+				'<div class="input-group">'+
+					'<input type="text" id="new_clas'+i+'" name="new_clas'+i+'" class="form-control new_clasifi" placeholder="Escriba la nueva clasificación..">'+
+					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
+				'</div>'+
+			'</div>'+
+		'</div>'+
+		'<div class="form-group">'+
+				'<label class="col-md-4 control-label"  for="prioridad'+i+'">Prioridad '+i+'</label>'+
+				'<div class="col-md-6">'+
+					'<div class="input-group">'+
+						'<select id="prioridad'+i+'" name="prioridad'+i+'" class="select-chosen form-control prioridades">'+
+							'<option value="">Seleccione una Prioridad</option>'+
+							'<option value="1">Prioridad 1</option>'+
+							'<option value="2">Prioridad 2</option>'+
+							'<option value="3">Prioridad 3</option>'+
+							'<option value="4">Prioridad 4</option>'+
+						'</select>'+
+						'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
+					'</div>'+
+				'</div>'+		 
+			'</div>';
+	$("#new_clasif").append( x );
+	$('.select-chosen').chosen();
+	$('#div_nueva_clasificacion'+i).hide();
+	$('#numero_clas').val(i);
+	i++;
+}
 </script>
 
 <script src="<?= asset_url('js/pages/nuevocliente.js') ?>"></script>

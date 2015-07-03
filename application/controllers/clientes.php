@@ -49,27 +49,45 @@ class Clientes extends CI_Controller {
 		
 		if($id_cliente>0)
 		{
+			$clasi=$this->input->post('clasificacion');
+			echo "class-".$clasi."<br>";
 			if($this->input->post('clasificacion') == 0){$clasi=$this->input->post('new_clas');}
-			else{$clasi=$this->input->post('clasificacion');}
+			echo "class1-".$clasi."<br>";
 			$form_clasificacion=array(
 				'clasificacion' => $clasi,
 				'prioridad' 	=> $this->input->post('prioridad'),
 				'id_cliente_fk' => $id_cliente,
 			);
 			$this->clientes_model->guardar_clasificacion($form_clasificacion);
+			
+			$num=$this->input->post('numero_clas');
+			for($i=1;$i<=$num;$i++)
+			{
+				$clasi=$this->input->post('clasificacion'.$i);
+				echo "class-".$clasi."<br>";
+				if($this->input->post('clasificacion'.$i) == 0){$clasi=$this->input->post('new_clas'.$i);}
+				echo "class1-".$clasi."<br>";
+				$form_clasificacion=array(
+					'clasificacion' => $clasi,
+					'prioridad' 	=> $this->input->post('prioridad'.$i),
+					'id_cliente_fk' => $id_cliente,
+				);
+				$this->clientes_model->guardar_clasificacion($form_clasificacion);
+			}
 		}
 		
 		redirect('clientes');
 	}
 	
 	function ver($id)
-	{			
+	{
+		$cliente=$this->clientes_model->ver_cliente($id);
 		$data['v']="ver_cliente";
 		$data['datos']=$this->clientes_model->info_cliente($id);
 		$data['clasificacion']=$this->clientes_model->info_clasificacion($id);
 		$data['clasificaciones']=$this->clientes_model->ver_clasificaciones();
 		$data['tab']="detalles";
-		$data['titulo']="Información del Cliente";
+		$data['titulo']="Información del Cliente ".$cliente->nombre;
 		$data['id_cliente']=$id;
 		$this->load->view('main',$data);
 	}
@@ -104,6 +122,17 @@ class Clientes extends CI_Controller {
 		print_r($form_clasificacion);
 		$this->clientes_model->actualizar_clasificacion($id,$form_clasificacion);
 		redirect('clientes/ver/'.$id);
+	}
+	
+	function contacto($id)
+	{
+		$cliente=$this->clientes_model->ver_cliente($id);
+		$data['v']="contacto";
+		$data['tab']="contacto";
+		$data['titulo']="Contactos de ".$cliente->nombre;
+		$data['id_cliente']=$id;
+		$data['contactos']=$this->clientes_model->ver_contactos($id);
+		$this->load->view('main',$data);
 	}
 }
 ?>

@@ -30,5 +30,33 @@ class Proyectos_model extends CI_Model {
 		$results = $this->db->get('clientes')->row();
 		return $results;
 	}
+	
+	function guardar_proyecto($form_data)
+	{
+		$this->db->insert('proyectos', $form_data); 
+		$insert_id = $this->db->insert_id();
+		return  $insert_id;
+	}
+	
+	function guardar_etiquetas($form_data)
+	{
+		$this->db->insert_batch('proyectos_etiquetas', $form_data); 
+	}
+	
+	function ver_proyectos($id)
+	{
+		$this->db->select('id,nombre,fecha_inicio,progreso');
+		$this->db->where('id_cliente_fk',$id);
+		$results = $this->db->get('proyectos')->result();
+		return $results;
+	}
+	
+	function ver_tareas($id)
+	{
+		$this->db->select('id,nombre,fecha_fin,estatus');
+		$this->db->where('id_cliente_fk',$id);
+		$results = $this->db->get('clientes_tareas')->result();
+		return $results;
+	}
 }
 ?>

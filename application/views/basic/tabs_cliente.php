@@ -7,10 +7,12 @@
 				<li class="<?= $activo ?>"><a href="<?= site_url('clientes/ver/'.$id_cliente) ?>">Detalles</a></li>
 				<?php $activo=""; if($tab == 'new_proyect'){$activo="active";} ?>
 				<li class="<?= $activo ?>"><a href="<?= site_url('proyectos/nuevo_proyecto/'.$id_cliente) ?>">Nuevo Proyecto</a></li>
+				<?php $activo=""; if($tab == 'new_tarea'){$activo="active";} ?>
+				<li class="<?= $activo ?>"><a href="<?= site_url('tareas/nueva_tarea/'.$id_cliente) ?>">Nueva Tarea Cliente</a></li>
 				<?php $activo=""; if($tab == 'proyec_tarea'){$activo="active";} ?>
-				<li class="<?= $activo ?>"><a href="javascript:void(0)">Proyectos y Tareas</a></li>
+				<li class="<?= $activo ?>"><a href="<?= site_url('proyectos/proyectos_tareas/'.$id_cliente) ?>">Proyectos y Tareas</a></li>
 				<?php $activo=""; if($tab == 'contacto'){$activo="active";} ?>
-				<li class="<?= $activo ?>"><a href="javascript:void(0)">Contacto</a></li>
+				<li class="<?= $activo ?>"><a href="<?= site_url('clientes/contacto/'.$id_cliente) ?>">Contacto</a></li>
 				<?php $activo=""; if($tab == 'bitacora'){$activo="active";} ?>
 				<li class="<?= $activo ?>"><a href="javascript:void(0)">Bitacora</a></li>
 				<?php $activo=""; if($tab == 'Permisos'){$activo="active";} ?>

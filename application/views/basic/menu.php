@@ -56,13 +56,10 @@
 							<a href="javascript:void(0)" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Usuarios</span></a>
 							<ul>
 								<li>
-									<a href="javascript:void(0)">Todos los usuarios</a>
+									<a href="<?= site_url('auth/ver_usuarios') ?>">Todos los usuarios</a>
 								</li>
 								<li>
-									<a href="javascript:void(0)">Agregar Usuario</a>
-								</li>
-								<li>
-									<a href="javascript:void(0)">Cambiar Contraseña</a>
+									<a href="<?= site_url('auth/create_user') ?>">Agregar Usuario</a>
 								</li>
 							</ul>
                         </li>

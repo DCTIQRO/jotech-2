@@ -15,6 +15,14 @@ class Clientes_model extends CI_Model {
 		return $results;
 	}
 	
+	function ver_cliente($id)
+	{
+		$this->db->select('nombre');
+		$this->db->where('id',$id);
+		$results = $this->db->get('clientes')->row();
+		return $results;
+	}
+	
 	function ver_clasificaciones()
 	{
 		$this->db->distinct();
@@ -62,6 +70,14 @@ class Clientes_model extends CI_Model {
 	{
 		$this->db->where('id_cliente_fk',$id);
 		$this->db->update('clientes_clasificaciones',$form_data);
+	}
+	
+	function ver_contactos($id)
+	{
+		$this->db->select('id,nombre,telefono,correo,puesto,newsletter,postal');
+		$this->db->where('id',$id);
+		$results = $this->db->get('miembros')->result();
+		return $results;
 	}
 }
 ?>

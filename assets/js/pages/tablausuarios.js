@@ -12,8 +12,8 @@ var TablesDatatables = function() {
             App.datatables();
 
             /* Initialize Datatables */
-            $('#tabla_clientes').dataTable({
-                columnDefs: [ { orderable: false, targets: [] } ],
+            $('#tabla_usuarios').dataTable({
+                columnDefs: [ { orderable: false, targets: [5] } ],
                 pageLength: 10,
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
 				language:{
