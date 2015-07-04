@@ -50,9 +50,7 @@ class Clientes extends CI_Controller {
 		if($id_cliente>0)
 		{
 			$clasi=$this->input->post('clasificacion');
-			echo "class-".$clasi."<br>";
-			if($this->input->post('clasificacion') == 0){$clasi=$this->input->post('new_clas');}
-			echo "class1-".$clasi."<br>";
+			if($this->input->post('clasificacion') == '0'){$clasi=$this->input->post('new_clas');}
 			$form_clasificacion=array(
 				'clasificacion' => $clasi,
 				'prioridad' 	=> $this->input->post('prioridad'),
@@ -64,9 +62,7 @@ class Clientes extends CI_Controller {
 			for($i=1;$i<=$num;$i++)
 			{
 				$clasi=$this->input->post('clasificacion'.$i);
-				echo "class-".$clasi."<br>";
-				if($this->input->post('clasificacion'.$i) == 0){$clasi=$this->input->post('new_clas'.$i);}
-				echo "class1-".$clasi."<br>";
+				if($this->input->post('clasificacion'.$i) == '0'){$clasi=$this->input->post('new_clas'.$i);}
 				$form_clasificacion=array(
 					'clasificacion' => $clasi,
 					'prioridad' 	=> $this->input->post('prioridad'.$i),

@@ -166,8 +166,10 @@
 			<input type="hidden" name="numero_clas" id="numero_clas" value="0" />
 			<div class="form-group text-center"><a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a></div>
 			<div class="form-group text-center">
-					<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Guardar</button>
-					<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+				<br><br><br>
+				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Guardar</button>
+				<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+				<br><br><br>
 			</div>			
 		</form>
 	</div>
