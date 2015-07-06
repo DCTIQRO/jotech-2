@@ -23,6 +23,7 @@ class Proyectos extends CI_Controller {
 		$data['clasificaciones']=$this->proyectos_model->ver_clasificaciones();
 		$data['tipos']=$this->proyectos_model->ver_tipos();
 		$data['titulo']="Crear proyecto de ".$cliente->nombre;
+		$data['usuarios']=$this->proyectos_model->ver_usuarios();
 		$data['id_cliente']=$id;
 		$this->load->view('main',$data);
 	}
@@ -53,8 +54,44 @@ class Proyectos extends CI_Controller {
 			);
 		}
 		$this->proyectos_model->guardar_etiquetas($form_etiqueta);
-		print_r($form_data);
-		print_r($form_etiqueta);
+		
+		$clasi=$this->input->post('clasificacion');
+		if($clasi != '0'){
+			$form_clasificacion=array(
+				'id_clasificacion' => $clasi,
+				'prioridad' 	=> $this->input->post('prioridad'),
+				'id_proyecto_fk' => $id_proyecto,
+			);
+			$this->proyectos_model->guardar_clasificacion($form_clasificacion);
+		}
+		
+		$num=$this->input->post('numero_clas');
+		
+		for($i=1;$i<=$num;$i++)
+		{
+			$clasi=$this->input->post('clasificacion'.$i);
+			if($clasi != '0'){
+				$form_clasificacion=array(
+					'id_clasificacion' => $clasi,
+					'prioridad' 	=> $this->input->post('prioridad'.$i),
+					'id_proyecto_fk' => $id_proyecto,
+				);
+				$this->proyectos_model->guardar_clasificacion($form_clasificacion);
+			}
+		}
+			
+		$usuarios=$this->input->post('usuarios');
+		
+		for($i=0;$i<count($usuarios);$i++)
+		{
+			$form_usuarios[]=array(
+				'id_usuario_fk'		=>	$usuarios[$i],
+				'id_proyecto_fk'	=>	$id_proyecto,
+				'fecha_insercion'	=>	date('Y-m-d H:i:s'),
+				'permiso'			=>	'1'
+			);
+		}
+		$this->proyectos_model->guardar_usuarios($form_usuarios);
 		redirect('proyectos/proyectos_tareas/'.$this->input->post('id_cliente'));
 	}
 	

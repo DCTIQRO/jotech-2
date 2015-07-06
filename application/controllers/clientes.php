@@ -83,7 +83,7 @@ class Clientes extends CI_Controller {
 		$cliente=$this->clientes_model->ver_cliente($id);
 		$data['v']="ver_cliente";
 		$data['datos']=$this->clientes_model->info_cliente($id);
-		$data['clasificacion']=$this->clientes_model->info_clasificacion($id);
+		$data['clasificaciones_cliente']=$this->clientes_model->info_clasificacion($id);
 		$data['clasificaciones']=$this->clientes_model->ver_clasificaciones();
 		$data['tab']="detalles";
 		$data['titulo']="Información del Cliente ".$cliente->nombre;
@@ -110,16 +110,24 @@ class Clientes extends CI_Controller {
 		);
 		
 		$this->clientes_model->actualizar_cliente($id,$form_data);
-		$cl=$this->input->post('clasificacion');
-		echo $cl;
-		if($cl == '0'){$cl=$this->input->post('new_clas');}
 		
-		$form_clasificacion=array(
-				'clasificacion' => $cl,
-				'prioridad' 	=> $this->input->post('prioridad'),
-		);
-		print_r($form_clasificacion);
-		$this->clientes_model->actualizar_clasificacion($id,$form_clasificacion);
+		$num=$this->input->post('numero_clas');
+		
+		$this->clientes_model->borrar_clasificacion($id);
+			
+		for($i=1;$i<=$num;$i++)
+		{
+			$clasi=$this->input->post('clasificacion'.$i);
+			if($clasi != '0'){
+				$form_clasificacion=array(
+					'clasificacion' => $clasi,
+					'prioridad' 	=> $this->input->post('prioridad'.$i),
+					'id_cliente_fk' => $id,
+				);
+				$this->clientes_model->guardar_clasificacion($form_clasificacion);
+			}
+		}
+		
 		redirect('clientes/ver/'.$id);
 	}
 	

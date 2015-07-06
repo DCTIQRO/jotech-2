@@ -54,7 +54,7 @@ class Clientes_model extends CI_Model {
 	{
 		$this->db->select('clasificacion,prioridad');
 		$this->db->where('id_cliente_fk',$id);
-		$results = $this->db->get('clientes_clasificaciones')->row();
+		$results = $this->db->get('clientes_clasificaciones')->result();
 		return $results;
 	}
 	
@@ -64,10 +64,10 @@ class Clientes_model extends CI_Model {
 		$this->db->update('clientes',$form_data);
 	}
 	
-	function actualizar_clasificacion($id,$form_data)
+	function borrar_clasificacion($id)
 	{
 		$this->db->where('id_cliente_fk',$id);
-		$this->db->update('clientes_clasificaciones',$form_data);
+		$this->db->delete('clientes_clasificaciones');
 	}
 	
 	function ver_contactos($id)

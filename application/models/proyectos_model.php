@@ -9,10 +9,8 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_clasificaciones()
 	{
-		$this->db->distinct();
-		$this->db->select('clasificacion');
-		$this->db->order_by("clasificacion", "asc");
-		$results = $this->db->get('clientes_clasificaciones')->result();
+		$this->db->select('id_clasificacion,nombre');
+		$results = $this->db->get('clasificacion_proyectos')->result();
 		return $results;
 	}
 	
@@ -31,6 +29,14 @@ class Proyectos_model extends CI_Model {
 		return $results;
 	}
 	
+	function ver_usuarios()
+	{
+		$this->db->select('id,first_name,last_name');
+		$this->db->order_by("first_name", "asc");
+		$results = $this->db->get('users')->result();
+		return $results;
+	}
+	
 	function guardar_proyecto($form_data)
 	{
 		$this->db->insert('proyectos', $form_data); 
@@ -41,6 +47,16 @@ class Proyectos_model extends CI_Model {
 	function guardar_etiquetas($form_data)
 	{
 		$this->db->insert_batch('proyectos_etiquetas', $form_data); 
+	}
+	
+	function guardar_clasificacion($form_data)
+	{
+		$this->db->insert('proyectos_clasificaciones', $form_data);
+	}
+	
+	function guardar_usuarios($form_data)
+	{
+		$this->db->insert_batch('proyectos_usuarios', $form_data);
 	}
 	
 	function ver_proyectos($id)
