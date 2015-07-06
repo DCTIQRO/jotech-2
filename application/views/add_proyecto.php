@@ -1,7 +1,13 @@
 <div class="row">
 <div class="col-xs-12" >
 <div class="block">
-	<?php $this->load->view('basic/tabs_cliente') ?>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="block-section">
+				<h4 class="sub-header"><?= $titulo ?></h4>
+			</div>
+		</div>
+	</div>
 	<div class="row">
 		<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('proyectos/guardar_proyecto') ?>">
 			<input type="hidden" id="id_cliente" name="id_cliente" value="<?= $id_cliente ?>" />
@@ -43,24 +49,6 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-md-4 control-label"  for="tipo">Tipo de Proyecto</label>
-				<div class="col-md-6">
-					<div class="input-group">
-						<select id="tipo" name="tipo" class="select-chosen form-control" >
-							<option value="">Seleccione una Tipo</option>
-							<?php 
-								foreach($tipos as $tipo)
-								{
-									echo '<option value="'.$tipo->id.'">'.$tipo->tipo.'</option>';
-								}
-							?>
-						</select>
-						<span class="input-group-addon"><i class="gi gi-user"></i></span>
-					</div>
-				</div>			 
 			</div>
 			
 			<div class="form-group">

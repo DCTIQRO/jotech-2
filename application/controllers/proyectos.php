@@ -22,7 +22,6 @@ class Proyectos extends CI_Controller {
 		$cliente=$this->proyectos_model->ver_cliente($id);
 		$data['clasificaciones']=$this->proyectos_model->ver_clasificaciones();
 		$data['tipos']=$this->proyectos_model->ver_tipos();
-		$data['tab']="new_proyect";
 		$data['titulo']="Crear proyecto de ".$cliente->nombre;
 		$data['id_cliente']=$id;
 		$this->load->view('main',$data);
@@ -38,7 +37,6 @@ class Proyectos extends CI_Controller {
 			'estatus' => $this->input->post('1'),
 			'fecha_inicio' => $año."-".$mes."-".$dia,
 			'descripcion_corta' => $this->input->post('descripcion_corta'),
-			'tipo' => $this->input->post('tipo'),
 			'id_cliente_fk' => $this->input->post('id_cliente'),
 			'progreso' => $this->input->post('0'),
 			'fecha_insercion' => date('Y-m-d H:i:s'),

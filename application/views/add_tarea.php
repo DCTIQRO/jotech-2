@@ -1,7 +1,13 @@
 <div class="row">
 <div class="col-xs-12" >
 <div class="block">
-	<?php $this->load->view('basic/tabs_cliente') ?>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="block-section">
+				<h4 class="sub-header"><?= $titulo ?></h4>
+			</div>
+		</div>
+	</div>
 	<div class="row">
 		<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('tareas/guardar_tarea') ?>">
 			<input type="hidden" id="id_cliente" name="id_cliente" value="<?= $id_cliente ?>" />

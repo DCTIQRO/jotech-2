@@ -37,7 +37,10 @@
                             <a href="<?= site_url('clientes') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Todos los clientes</span></a>
 						</li>
                         <li>
-                            <a href="<?= site_url('clientes/nuevo_cliente') ?>"><i class="gi gi-clock sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Nuevo Cliente</span></a>
+                            <a href="<?= site_url('clientes/nuevo_cliente') ?>"><i class="fa fa-user-plus sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Nuevo Cliente</span></a>
+                        </li>
+						<li>
+                            <a href="<?= site_url('clasificaciones_clientes') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clasificación Cliente</span></a>
                         </li>
                         
 						<!-- Modulo Proyectos -->
@@ -45,7 +48,7 @@
                             <span class="sidebar-header-title">Proyectos</span>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"><i class="gi gi-charts sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Listar Proyectos</span></a>
+                            <a href="javascript:void(0)"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Listar Proyectos</span></a>
                         </li>
 						
 						<!-- Modulo Proyectos -->

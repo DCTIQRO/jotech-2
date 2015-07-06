@@ -25,10 +25,8 @@ class Clientes_model extends CI_Model {
 	
 	function ver_clasificaciones()
 	{
-		$this->db->distinct();
-		$this->db->select('clasificacion');
-		$this->db->order_by("clasificacion", "asc");
-		$results = $this->db->get('clientes_clasificaciones')->result();
+		$this->db->select('id,nombre');
+		$results = $this->db->get('clasificacion_clientes')->result();
 		return $results;
 	}
 	

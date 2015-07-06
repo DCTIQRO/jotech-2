@@ -50,25 +50,28 @@ class Clientes extends CI_Controller {
 		if($id_cliente>0)
 		{
 			$clasi=$this->input->post('clasificacion');
-			if($this->input->post('clasificacion') == '0'){$clasi=$this->input->post('new_clas');}
-			$form_clasificacion=array(
-				'clasificacion' => $clasi,
-				'prioridad' 	=> $this->input->post('prioridad'),
-				'id_cliente_fk' => $id_cliente,
-			);
-			$this->clientes_model->guardar_clasificacion($form_clasificacion);
-			
-			$num=$this->input->post('numero_clas');
-			for($i=1;$i<=$num;$i++)
-			{
-				$clasi=$this->input->post('clasificacion'.$i);
-				if($this->input->post('clasificacion'.$i) == '0'){$clasi=$this->input->post('new_clas'.$i);}
+			if($clasi != '0'){
 				$form_clasificacion=array(
 					'clasificacion' => $clasi,
-					'prioridad' 	=> $this->input->post('prioridad'.$i),
+					'prioridad' 	=> $this->input->post('prioridad'),
 					'id_cliente_fk' => $id_cliente,
 				);
 				$this->clientes_model->guardar_clasificacion($form_clasificacion);
+			}
+			
+			$num=$this->input->post('numero_clas');
+			
+			for($i=1;$i<=$num;$i++)
+			{
+				$clasi=$this->input->post('clasificacion'.$i);
+				if($clasi != '0'){
+					$form_clasificacion=array(
+						'clasificacion' => $clasi,
+						'prioridad' 	=> $this->input->post('prioridad'.$i),
+						'id_cliente_fk' => $id_cliente,
+					);
+					$this->clientes_model->guardar_clasificacion($form_clasificacion);
+				}
 			}
 		}
 		

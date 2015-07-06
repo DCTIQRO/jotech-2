@@ -61,6 +61,8 @@
 					<td class="text-center hidden"><?= $cliente->fecha_registro ?></td>
 					<td class="text-center">
 						<a href="<?= site_url('clientes/ver/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Ver Cliente" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+						<a href="<?= site_url('proyectos/nuevo_proyecto/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Nuevo Proyecto" class="btn btn-xs btn-default"><i class="fa fa-briefcase"></i></a>
+						<a href="<?= site_url('tareas/nueva_tarea/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Nueva Tarea Cliente" class="btn btn-xs btn-default"><i class="fa fa-check-square-o"></i></a>
 					</td>
 				</tr>
 				<?php

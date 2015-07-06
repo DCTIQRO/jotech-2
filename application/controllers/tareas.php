@@ -20,7 +20,6 @@ class Tareas extends CI_Controller {
 	{			
 		$cliente=$this->tareas_model->ver_cliente($id);
 		$data['v']="add_tarea";
-		$data['tab']="new_tarea";
 		$data['titulo']="Crear Tarea de ".$cliente->nombre;
 		$data['id_cliente']=$id;
 		$data['usuarios']=$this->tareas_model->ver_usuarios();
