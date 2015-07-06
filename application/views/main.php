@@ -15,7 +15,7 @@
 		
 		<?php
 
-			$cssface=array('css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css');
+			$cssface=array('css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css');
 			foreach($cssface as $url)
 
 			{
@@ -28,7 +28,7 @@
 
     </head>
 	<?php 
-		$jsface=array('js/vendor/jquery-1.11.2.min.js','js/vendor/bootstrap.min.js','js/plugins.js','js/app.js','js/pages/index.js','js/readmore.min.js');
+		$jsface=array('js/vendor/jquery-1.11.2.min.js','js/vendor/bootstrap.min.js','js/plugins.js','js/app.js','js/pages/index.js','js/readmore.min.js','fancy/source/jquery.fancybox.js');
 		foreach($jsface as $url)
 		{
 			echo '<script src="'.asset_url($url).'"></script>';
