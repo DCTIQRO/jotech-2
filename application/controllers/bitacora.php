@@ -45,10 +45,5 @@ class Bitacora extends CI_Controller {
 				redirect('bitacora/cliente/'.$id);
 		}
 	}
-	
-	function guardar_cliente()
-	{
-	
-	}
 }
 ?>

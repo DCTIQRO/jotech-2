@@ -4,7 +4,7 @@
 	<?php $this->load->view('basic/tabs_cliente') ?>
 	<div class="row" Style="margin-bottom:10px">
 		<div class="col-xs-12">
-			<a href="<?= site_url('clientes/nuevo_contacto/'.$id_cliente) ?>" class="btn-sm btn-success">Nuevo Contacto</a>
+			<a href="<?= site_url('clientes/nuevo_contacto/'.$id_cliente) ?>" class="btn-sm btn-info">Nuevo Contacto</a>
 		</div>
 	</div>
 	<div class="row">

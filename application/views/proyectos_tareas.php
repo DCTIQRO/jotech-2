@@ -40,7 +40,7 @@
 										</div>
 									</td>
 									<td class="text-center">
-										<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+										<a href="<?= site_url('proyectos/ver_proyecto/'.$proyecto->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 									</td>
 								</tr>
 								<?php

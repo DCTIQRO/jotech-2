@@ -6,6 +6,7 @@ class Proyectos extends CI_Controller {
 	{
  		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
@@ -113,8 +114,55 @@ class Proyectos extends CI_Controller {
 	
 	function ver_proyecto($id)
 	{
-		
+		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		$data['v']="ver_proyecto";
+		$data['tab']="proyectos";
+		$data['id_proyecto']=$id;
+		$data['titulo']="Proyecto ".$proyecto->nombre;
+		$data['descripcion']="Proyecto ".$proyecto->descripcion;
+		$data['bitacoras']=$this->proyectos_model->bitacora_proyecto($id);
+		$data['usuarios']=$this->proyectos_model->ver_usuarios_proyectos($id);
+		$data['asignados']=$this->proyectos_model->ver_usuarios_asignados($id);
+		$data['tareas']=$this->proyectos_model->ver_tareas_proyecto($id);
+		$this->load->view('main',$data);
 	}
+	
+	function guardar_bitacora()
+	{
+		date_default_timezone_set('America/Mexico_City');
+		
+		$form_data=array(
+			'comentario'	=>	$this->input->post('comentario'),
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+			'id_proyecto_fk'	=>	$this->input->post('id_proyecto')
+		);
+		
+		$this->proyectos_model->guardar_bitacora_proyecto($form_data);
+		redirect('proyectos/ver_proyecto/'.$this->input->post('id_proyecto'));
+	}
+	
+	function asignar_usuario()
+	{
+		date_default_timezone_set('America/Mexico_City');
+		
+		$form_usuarios[]=array(
+				'id_usuario_fk'		=>	$this->input->post('usuario'),
+				'id_proyecto_fk'	=>	$this->input->post('id_proyecto'),
+				'fecha_insercion'	=>	date('Y-m-d H:i:s'),
+				'permiso'			=>	'1'
+		);
+		
+		$this->proyectos_model->guardar_usuarios($form_usuarios);
+	}
+	
+	function desasignar_usuario($id,$id_proyecto)
+	{
+		$this->proyectos_model->desasignar_usuario($id,$id_proyecto);
+		redirect('proyectos/ver_proyecto/'.$id_proyecto);
+	}
+	
+	
 	
 }
 ?>

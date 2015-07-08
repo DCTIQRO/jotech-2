@@ -82,5 +82,63 @@ class Proyectos_model extends CI_Model {
 		$results = $this->db->get('proyectos p')->result();
 		return $results;
 	}
+	
+	function ver_proyecto($id)
+	{
+		$this->db->select('nombre,descripcion');
+		$this->db->where('id',$id);
+		$results = $this->db->get('proyectos')->row();
+		return $results;
+	}
+	
+	function bitacora_proyecto($id)
+	{
+		$this->db->select('pc.comentario,pc.fecha,p.nombre, u.first_name, u.last_name');
+		$this->db->where('pc.id_proyecto_fk',$id);
+		$this->db->join('proyectos p','p.id=pc.id_proyecto_fk');
+		$this->db->join('users u','u.id=pc.id_usuario_fk');
+		$this->db->order_by('pc.fecha','asc');
+		$results = $this->db->get('proyectos_comentarios pc')->result();
+		return $results;
+	}
+	
+	function guardar_bitacora_proyecto($form_data)
+	{
+		$this->db->insert('proyectos_comentarios',$form_data);
+	}
+	
+	function ver_usuarios_proyectos($id)
+	{
+		$this->db->select('id,first_name,last_name');
+		$this->db->where('id NOT IN (SELECT id_usuario_fk FROM proyectos_usuarios where id_proyecto_fk='.$id.')',NULL,FALSE);
+		$results = $this->db->get('users')->result();
+		return $results;
+	}
+	
+	function ver_usuarios_asignados($id)
+	{
+		$this->db->select('u.id,u.first_name,u.last_name');
+		$this->db->where('pu.id_proyecto_fk',$id);
+		$this->db->join('users u','u.id=pu.id_usuario_fk');
+		$this->db->order_by("first_name", "asc");
+		$results = $this->db->get('proyectos_usuarios pu')->result();
+		return $results;
+	}
+	
+	function ver_tareas_proyecto($id)
+	{
+		$this->db->select('id,nombre');
+		$this->db->where('id_proyecto_fk',$id);
+		$this->db->order_by("fecha_fin", "desc");
+		$results = $this->db->get('proyectos_tareas')->result();
+		return $results;
+	}
+	
+	function desasignar_usuario($id,$proyecto)
+	{
+		$this->db->where('id_proyecto_fk',$proyecto);
+		$this->db->where('id_usuario_fk',$id);
+		$this->db->delete('proyectos_usuarios');
+	}
 }
 ?>
