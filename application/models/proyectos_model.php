@@ -140,5 +140,17 @@ class Proyectos_model extends CI_Model {
 		$this->db->where('id_usuario_fk',$id);
 		$this->db->delete('proyectos_usuarios');
 	}
+	
+	function crear_tarea_proyecto($form_data)
+	{
+		$this->db->insert('proyectos_tareas', $form_data); 
+		$insert_id = $this->db->insert_id();
+		return  $insert_id;
+	}
+	
+	function asignar_tareas($form_data)
+	{
+		$this->db->insert_batch('proyectos_tareas_usuarios', $form_data); 
+	}
 }
 ?>

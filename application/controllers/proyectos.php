@@ -162,6 +162,36 @@ class Proyectos extends CI_Controller {
 		redirect('proyectos/ver_proyecto/'.$id_proyecto);
 	}
 	
+	function crear_tarea_proyecto()
+	{
+		list($dia,$mes,$año)=explode('-',$this->input->post('fecha_inicio'));
+		list($dia2,$mes2,$año2)=explode('-',$this->input->post('fecha_fin'));
+		
+		$form_data=array(
+			'nombre'			=>	$this->input->post('nombre_tarea'),
+			'descripcion'		=>	$this->input->post('descripcion_tarea'),
+			'id_proyecto_fk'	=>	$this->input->post('proyecto'),
+			'fecha_inicio'		=>	$año."-".$mes."-".$dia,
+			'fecha_fin'			=>	$año2."-".$mes2."-".$dia2,
+			'estatus'			=>	'0'
+		);
+		$id_tarea=$this->proyectos_model->crear_tarea_proyecto($form_data);
+		$usuarios=$this->input->post('usuarios_tarea');
+		if($id_tarea > 0)
+		{
+			for($i=0;$i<count($usuarios);$i++)
+			{
+				$form_usuarios[]=array(
+					'id_usuario_fk'		=>	$usuarios[$i],
+					'id_tarea_fk'		=>	$id_tarea,
+				);
+			}
+			$this->proyectos_model->asignar_tareas($form_usuarios);
+			redirect('proyectos/ver_proyecto/'.$this->input->post('proyecto'));
+		}
+		
+	}
+	
 	
 	
 }
