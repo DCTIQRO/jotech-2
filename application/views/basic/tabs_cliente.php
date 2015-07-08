@@ -10,7 +10,7 @@
 				<?php $activo=""; if($tab == 'contacto'){$activo="active";} ?>
 				<li class="<?= $activo ?>"><a href="<?= site_url('clientes/contacto/'.$id_cliente) ?>">Contacto</a></li>
 				<?php $activo=""; if($tab == 'bitacora'){$activo="active";} ?>
-				<li class="<?= $activo ?>"><a href="javascript:void(0)">Bitacora</a></li>
+				<li class="<?= $activo ?>"><a href="<?= site_url('bitacora/cliente/'.$id_cliente) ?>">Bitacora</a></li>
 				<?php $activo=""; if($tab == 'Permisos'){$activo="active";} ?>
 				<li class="<?= $activo ?>"><a href="javascript:void(0)">Permisos</a></li>
 			</ul>

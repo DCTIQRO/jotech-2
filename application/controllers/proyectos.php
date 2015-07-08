@@ -13,7 +13,11 @@ class Proyectos extends CI_Controller {
 	}	
 	function index()
 	{			
-		
+		$data['v']="proyectos_view";
+		$data['tab']="proyectos";
+		$data['titulo']="Listado de Proyectos";
+		$data['proyectos']=$this->proyectos_model->todos_proyectos();
+		$this->load->view('main',$data);
 	}
 	
 	function nuevo_proyecto($id)
@@ -107,6 +111,10 @@ class Proyectos extends CI_Controller {
 		$this->load->view('main',$data);
 	}
 	
+	function ver_proyecto($id)
+	{
+		
+	}
 	
 }
 ?>

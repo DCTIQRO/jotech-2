@@ -12,9 +12,10 @@ var TablesDatatables = function() {
             App.datatables();
 
             /* Initialize Datatables */
-            $('#tabla_contacto').dataTable({
-                columnDefs: [ { orderable: false, targets: [6] } ],
+            $('#tabla_bitacora_cliente').dataTable({
+                columnDefs: [ { orderable: false, targets: [] } ],
                 pageLength: 10,
+				aaSorting: [[ 0, 'desc' ]], 
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
 				language:{
 					"sProcessing":     "Procesando...",

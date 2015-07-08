@@ -2,6 +2,11 @@
 <div class="col-xs-12" >
 <div class="block">
 	<?php $this->load->view('basic/tabs_cliente') ?>
+	<div class="row" Style="margin-bottom:10px">
+		<div class="col-xs-12">
+			<a href="<?= site_url('clientes/nuevo_contacto/'.$id_cliente) ?>" class="btn-sm btn-success">Nuevo Contacto</a>
+		</div>
+	</div>
 	<div class="row">
 		<div class="table-responsive">
 			<table id="tabla_contacto" class="table table-vcenter table-condensed table-bordered">
@@ -12,8 +17,7 @@
 						<th class="text-center">Puesto</th>
 						<th class="text-center">Teléfono</th>
 						<th class="text-center">Correo</th>
-						<th class="text-center">Newsletter</th>
-						<th class="text-center">Postal</th>
+						<th class="text-center">Clasificación</th>
 						<th class="text-center">Acciones</th>
 					</tr>
 				</thead>
@@ -28,8 +32,7 @@
 						<td class="text-center"><?= $contacto->puesto ?></td>
 						<td class="text-center"><?= $contacto->telefono ?></td>
 						<td class="text-center"><?= $contacto->correo ?></td>
-						<td class="text-center"><?php if($contacto->newsletter){echo '<i class="fa fa-check fa-2x text-success"></i>';} ?></td>
-						<td class="text-center"><?php if($contacto->postal){echo '<i class="fa fa-check fa-2x text-success"></i>';} ?></td>
+						<td class="text-center"><?= $contacto->clasiff ?></td>
 						<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Ver Contacto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 						</td>

@@ -74,5 +74,13 @@ class Proyectos_model extends CI_Model {
 		$results = $this->db->get('clientes_tareas')->result();
 		return $results;
 	}
+	 
+	function todos_proyectos()
+	{
+		$this->db->select('p.id,p.nombre,p.descripcion_corta,p.estatus,p.descripcion,p.progreso,p.fecha_inicio,p.progreso,c.nombre cliente');
+		$this->db->join('clientes c','c.id=p.id_cliente_fk');
+		$results = $this->db->get('proyectos p')->result();
+		return $results;
+	}
 }
 ?>

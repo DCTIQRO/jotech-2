@@ -72,10 +72,26 @@ class Clientes_model extends CI_Model {
 	
 	function ver_contactos($id)
 	{
-		$this->db->select('id,nombre,telefono,correo,puesto,newsletter,postal');
-		$this->db->where('id',$id);
-		$results = $this->db->get('miembros')->result();
+		$this->db->select('m.id,m.nombre,m.telefono,m.correo,m.puesto,m.id_clasificacion,clas.nombre clasiff');
+		$this->db->join('clasificacion_clientes clas','clas.id=m.id_clasificacion', 'left');
+		$this->db->where('id_cliente_fk',$id);
+		$results = $this->db->get('miembros m')->result();
 		return $results;
+	}
+	
+	function clasificacion_cliente($id)
+	{
+		$this->db->distinct();
+		$this->db->where('cc.id_cliente_fk',$id);
+		$this->db->select('clas.id,cc.clasificacion,clas.nombre');
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
+		$results = $this->db->get('clientes_clasificaciones cc')->result();
+		return $results;
+	}
+	
+	function guardar_contacto($form_data)
+	{
+		$this->db->insert('miembros', $form_data);
 	}
 }
 ?>

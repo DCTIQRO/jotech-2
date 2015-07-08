@@ -141,5 +141,33 @@ class Clientes extends CI_Controller {
 		$data['contactos']=$this->clientes_model->ver_contactos($id);
 		$this->load->view('main',$data);
 	}
+	
+	function nuevo_contacto($id)
+	{
+		$cliente=$this->clientes_model->ver_cliente($id);
+		$data['v']="new_contacto";
+		$data['tab']="contacto";
+		$data['titulo']="Nuevo Contacto de ".$cliente->nombre;
+		$data['id_cliente']=$id;
+		$data['clasificaciones']=$this->clientes_model->clasificacion_cliente($id);
+		$this->load->view('main',$data);
+	}
+	
+	function guardar_contacto()
+	{
+		date_default_timezone_set('America/Mexico_City');
+		$form_data=array(
+			'nombre'			=>	$this->input->post('nombre'),
+			'puesto'			=>	$this->input->post('puesto'),
+			'telefono'			=>	$this->input->post('telefono'),
+			'correo'			=>	$this->input->post('correo'),
+			'id_cliente_fk'		=>	$this->input->post('id_cliente'),
+			'fecha_registro'	=>	date('Y-m-d'),
+			'id_clasificacion'		=>	$this->input->post('clasificacion')
+		);
+		
+		$this->clientes_model->guardar_contacto($form_data);
+		redirect('clientes/contacto/'.$this->input->post('id_cliente'));
+	}
 }
 ?>
