@@ -15,7 +15,7 @@
 				<label class="col-md-4 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
 				<div class="col-md-6">
 					<div class="input-group">
-						<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del cliente..">
+						<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la tarea..">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
