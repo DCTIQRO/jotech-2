@@ -76,7 +76,7 @@
 										<?php if($tarea->estatus == "1"){echo "<label class='btn-xs btn-success' >Terminado</label>";} ?>
 									</td>
 									<td class="text-center">
-										<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+										<a href="<?= site_url('tareas/ver_tarea/'.$tarea->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 									</td>
 								</tr>
 								<?php

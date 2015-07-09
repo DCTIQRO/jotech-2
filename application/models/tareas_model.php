@@ -34,5 +34,67 @@ class Tareas_model extends CI_Model {
 	{
 		$this->db->insert_batch('tareas_usuarios', $form_data); 
 	}
+	
+	function ver_tarea($id)
+	{
+		$this->db->select('nombre,descripcion');
+		$this->db->where('id',$id);
+		$results = $this->db->get('clientes_tareas')->row();
+		return $results;
+	}
+	
+	function bitacora_tareas_cliente($id)
+	{
+		$this->db->select('ctc.comentario,ctc.fecha,ct.nombre, u.first_name, u.last_name');
+		$this->db->where('ctc.id_cliente_tarea',$id);
+		$this->db->join('clientes_tareas ct','ct.id=ctc.id_cliente_tarea');
+		$this->db->join('users u','u.id=ctc.id_usuario');
+		$this->db->order_by('ctc.fecha','asc');
+		$results = $this->db->get('clientes_tareas_comentarios ctc')->result();
+		return $results;
+	}
+	
+	function guardar_bitacora_tarea($form_data)
+	{
+		$this->db->insert('clientes_tareas_comentarios', $form_data); 
+	}
+	
+	function agregar_archivo($form_data)
+	{
+		$this->db->insert('clientes_tareas_archivos', $form_data);
+	}
+	
+	function ver_usuarios_tarea($id)
+	{
+		$this->db->select('id,first_name,last_name');
+		$this->db->where('id NOT IN (SELECT id_usuario_fk FROM tareas_usuarios where id_tarea_fk='.$id.')',NULL,FALSE);
+		$results = $this->db->get('users')->result();
+		return $results;
+	}
+	
+	function ver_usuarios_asignados($id)
+	{
+		$this->db->select('u.id,u.first_name,u.last_name');
+		$this->db->where('tu.id_tarea_fk',$id);
+		$this->db->join('users u','u.id=tu.id_usuario_fk');
+		$this->db->order_by("first_name", "asc");
+		$results = $this->db->get('tareas_usuarios tu')->result();
+		return $results;
+	}
+	
+	function desasignar_usuario($id,$tarea)
+	{
+		$this->db->where('id_tarea_fk',$tarea);
+		$this->db->where('id_usuario_fk',$id);
+		$this->db->delete('tareas_usuarios');
+	}
+	
+	function ver_archivos($id)
+	{
+		$this->db->select('archivo,url');
+		$this->db->where('id_tarea_fk',$id);
+		$results = $this->db->get('clientes_tareas_archivos')->result();
+		return $results;
+	}
 }
 ?>

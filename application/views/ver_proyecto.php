@@ -27,7 +27,7 @@
 					<div class="form-group">
 						<label class="label-control col-xs-3 col-sm-2" for="comentario">Comentario</label>
 						<div class="col-xs-6 col-sm-7">
-							<textarea class="form-control" rows="3" id="comentario" name="comentario" placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+							<textarea class="form-control" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
 						</div>
 						<div class="col-xs-3 col-sm-2 text-center">
 							<input type="submit" class="btn-sm btn-success" value="Guardar"/>
@@ -119,7 +119,7 @@
 				<div class="form-group">
 					<div class="col-xs-12 ">
 						<div class="input-group">
-							<input type="text" id="nombre_tarea" name="nombre_tarea" class="form-control" placeholder="Nombre de la Tarea">
+							<input type="text" id="nombre_tarea" name="nombre_tarea" required class="form-control" placeholder="Nombre de la Tarea">
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 				<div class="form-group">
 					<div class="col-xs-12 ">
 						<div class="input-group">
-							<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="Fecha Inicio">
+							<input type="text" id="fecha_inicio" name="fecha_inicio" required class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="Fecha Inicio">
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
@@ -143,7 +143,7 @@
 				<div class="form-group">
 					<div class="col-xs-12 ">
 						<div class="input-group">
-							<input type="text" id="fecha_fin" name="fecha_fin" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="Fecha Fin">
+							<input type="text" id="fecha_fin" name="fecha_fin" required class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="Fecha Fin">
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
@@ -181,7 +181,7 @@
 					foreach($tareas as $tarea){
 				?>
 						<div class="form-group text-center">
-							<a href="<?= site_url('tareas_proyecto/ver/'.$tarea->id) ?>"><label class="label-control"><?= $tarea->nombre ?></label></a>
+							<a href="<?= site_url('tareas_proyectos/ver_tarea/'.$tarea->id) ?>"><label class="label-control"><?= $tarea->nombre ?></label></a>
 							
 						</div>
 				<?php	
