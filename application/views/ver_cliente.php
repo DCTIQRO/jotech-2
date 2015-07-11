@@ -3,7 +3,7 @@
 		<?php $this->load->view('basic/tabs_cliente') ?>
 		<div class="row">
 			<div class="col-xs-12">
-				<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('clientes/actualizar/'.$datos->id) ?>" >
+				<form class="" id="new_cliente" method="post" action="<?= site_url('clientes/actualizar/'.$datos->id) ?>" >
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
 						<div class="col-md-4">
@@ -100,10 +100,16 @@
 							</div>
 						</div>
 					</div>
+					<?php 
+						foreach($clasificaciones as $tipo)
+						{
+							$options='<option value="'.$tipo->id.'" >'.$tipo->nombre.'</option>';
+						}
+					?>
 					<?php
 					$i=1;
-					foreach($clasificaciones_cliente as $clasificacion_cliente){ ?>
-					<div class="form-group">
+					foreach($clasificaciones_cliente as $clasificacion_cliente){?>
+					<div class="form-group" id="grupo<?= $i ?>">
 						<label class="col-md-2 control-label"  for="clasificacion<?= $i ?>">Clasificación <?= $i ?></label>
 						<div class="col-md-4">
 							<div class="input-group">
@@ -145,9 +151,15 @@
 						<!--Aqui se pondran las nuevas clasificaciones-->
 					</div>
 					<input type="hidden" name="numero_clas" id="numero_clas" value="<?= $i ?>" />
-					<div class="form-group text-center"><a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a></div>
 					<div class="form-group text-center">
-							<button type="submit" class="btn btn-sm btn-info"><i class="fa fa-arrow-right"></i> Actualizar Cambios</button>
+						<hr Style="border-color:#FFF ; width: 100%;">
+					</div>
+					<div class="form-group text-center">
+						<a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a>
+						<a href="javascript:void(0)" class="btn-sm btn-danger" onClick="quitarClasif()">Remover Ultima Clasificación</a>
+					</div>
+					<div class="form-group text-center">
+							<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-arrow-right"></i> Actualizar Cambios</button>
 					</div>			
 				</form>
 			</div>
@@ -159,7 +171,7 @@
 var i=$('#numero_clas').val();
 function agregarClasif ()
 {
-	x=	'<div class="form-group">'+
+	x=	'<div class="form-group" id="grupo'+i+'">'+
 			'<label class="col-sm-2 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
 			'<div class="col-sm-4">'+
 				'<div class="input-group">'+
@@ -189,6 +201,15 @@ function agregarClasif ()
 	$('#div_nueva_clasificacion'+i).hide();
 	$('#numero_clas').val(i);
 	i++;
+}
+
+function quitarClasif ()
+{
+	if(i>1){
+		i--;
+		$('#grupo'+i).remove();
+		$('#numero_clas').val(i-1);
+	}
 }
 </script>
 

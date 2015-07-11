@@ -5,7 +5,7 @@
 		<h2>Agregar <strong>Cliente</strong></h2>
 	</div>
 	<div class="row">
-		<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('clientes/guardar_cliente') ?>">
+		<form class="" id="new_cliente" method="post" action="<?= site_url('clientes/guardar_cliente') ?>">
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
 				<div class="col-sm-4 ">
@@ -23,14 +23,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="correo">Correo <span class="text-danger">*</span></label>
+				<label class="col-sm-2 control-label" for="correo">Correo</label>
 				<div class="col-sm-4">
 					<div class="input-group">
 						<input type="text" id="correo" name="correo" class="form-control" placeholder="Correo del cliente..">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-				<label class="col-sm-2 control-label" for="telefono">Teléfono <span class="text-danger">*</span></label>
+				<label class="col-sm-2 control-label" for="telefono">Teléfono</label>
 				<div class="col-sm-4">
 					<div class="input-group">
 						<input type="text" id="telefono" name="telefono" class="form-control" placeholder="Teléfono del cliente..">
@@ -139,8 +139,14 @@
 			<div id="new_clasif" name="new_clasif">
 				<!--Aqui se pondran las nuevas clasificaciones-->
 			</div>
+			<div class="form-group text-center">
+				<hr Style="border-color:#FFF ; width: 100%;">
+			</div>
 			<input type="hidden" name="numero_clas" id="numero_clas" value="0" />
-			<div class="form-group text-center"><a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a></div>
+			<div class="form-group text-center">
+				<a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a>
+				<a href="javascript:void(0)" class="btn-sm btn-danger" onClick="quitarClasif()">Remover Ultima Clasificación</a>
+			</div>
 			<div class="form-group text-center">
 				<br><br><br>
 				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Guardar</button>
@@ -156,7 +162,7 @@
 var i=1;
 function agregarClasif ()
 {
-	x=	'<div class="form-group">'+
+	x=	'<div class="form-group" id="grupo'+i+'">'+
 			'<label class="col-sm-2 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
 			'<div class="col-sm-4">'+
 				'<div class="input-group">'+
@@ -186,6 +192,15 @@ function agregarClasif ()
 	$('#div_nueva_clasificacion'+i).hide();
 	$('#numero_clas').val(i);
 	i++;
+}
+
+function quitarClasif ()
+{
+	if(i>1){
+		i--;
+		$('#grupo'+i).remove();
+		$('#numero_clas').val(i-1);
+	}
 }
 </script>
 

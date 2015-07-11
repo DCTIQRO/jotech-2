@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('proyectos/guardar_proyecto') ?>">
+		<form class="" id="new_cliente" method="post" action="<?= site_url('proyectos/guardar_proyecto') ?>">
 			<input type="hidden" id="id_cliente" name="id_cliente" value="<?= $id_cliente ?>" />
 			<div class="form-group">
 				<label class="col-md-2 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
@@ -19,7 +19,7 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-				<label class="col-md-2 control-label" for="descripcion">Descripción <span class="text-danger">*</span></label>
+				<label class="col-md-2 control-label" for="descripcion">Descripción</label>
 				<div class="col-md-4">
 					<div class="input-group">
 						<input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Descripcion ..">
@@ -30,14 +30,14 @@
 
 			
 			<div class="form-group">
-				<label class="col-md-2 control-label" for="descripcion_corta">Descripción Corta <span class="text-danger">*</span></label>
+				<label class="col-md-2 control-label" for="descripcion_corta">Descripción Corta</label>
 				<div class="col-md-4">
 					<div class="input-group">
 						<input type="text" id="descripcion_corta" name="descripcion_corta" class="form-control" placeholder="Descripcion_corta..">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-				<label class="col-md-2 control-label" for="fecha_inicio">Fecha Inicio <span class="text-danger">*</span></label>
+				<label class="col-md-2 control-label" for="fecha_inicio">Fecha Inicio</label>
 				<div class="col-md-4">
 					<div class="input-group">
 						<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-YYYY..">
@@ -94,10 +94,9 @@
 					<div class="input-group">
 						<select id="prioridad" name="prioridad" class="select-chosen form-control prioridades">
 							<option value="">Seleccione una Prioridad</option>
-							<option value="1">Prioridad 1</option>
-							<option value="2">Prioridad 2</option>
-							<option value="3">Prioridad 3</option>
-							<option value="4">Prioridad 4</option>
+							<option value="1">Baja</option>
+							<option value="2">Mediana</option>
+							<option value="3">Alta</option>
 						</select>
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
@@ -108,7 +107,13 @@
 				<!--Aqui se pondran las nuevas clasificaciones-->
 			</div>
 			<input type="hidden" name="numero_clas" id="numero_clas" value="0" />
-			<div class="form-group text-center"><a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a></div>
+			<div class="form-group text-center">
+				<hr Style="border-color:#FFF ; width: 100%;">
+			</div>
+			<div class="form-group text-center">
+				<a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a>
+				<a href="javascript:void(0)" class="btn-sm btn-danger" onClick="quitarClasif()">Remover Ultima Clasificación</a>
+			</div>
 			<div class="form-group text-center">
 					<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Guardar</button>
 					<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
@@ -122,7 +127,7 @@
 var i=1;
 function agregarClasif ()
 {
-	x=	'<div class="form-group">'+
+	x=	'<div class="form-group" id="grupo'+i+'">'+
 			'<label class="col-sm-2 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
 			'<div class="col-sm-4">'+
 				'<div class="input-group">'+
@@ -152,6 +157,15 @@ function agregarClasif ()
 	$('#div_nueva_clasificacion'+i).hide();
 	$('#numero_clas').val(i);
 	i++;
+}
+
+function quitarClasif ()
+{
+	if(i>1){
+		i--;
+		$('#grupo'+i).remove();
+		$('#numero_clas').val(i-1);
+	}
 }
 </script>
 

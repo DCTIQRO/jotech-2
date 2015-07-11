@@ -47,9 +47,9 @@
 				foreach($clientes as $cliente)
 				{
 				?>
-				<tr>
+				<tr onClick="irCliente('<?= $cliente->id ?>')">
 					<td class="text-center"><?= $cliente->id ?></td>
-					<td class="text-center"><a href="javascript:void(0)"><?= $cliente->nombre ?></a></td>
+					<td class="text-center"><a href="<?= site_url('clientes/ver/'.$cliente->id) ?>"><?= $cliente->nombre ?></a></td>
 					<td class="text-center hidden"><?= $cliente->website ?></td>
 					<td class="text-center"><?= $cliente->correo ?></td>
 					<td class="text-center"><?= $cliente->telefono ?></td>
@@ -85,7 +85,15 @@ $( document ).ready(function() {
     });
 
     $('article').readmore({speed: 500});
+	
+	
 });
+
+function irCliente(id)
+{
+var pagina="<?= site_url('clientes/ver') ?>"+"/"+id;
+location.href=pagina;   
+}
 </script>
 <script src="<?= asset_url('js/pages/tablaclientes.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
