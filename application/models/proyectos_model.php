@@ -9,8 +9,8 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_clasificaciones()
 	{
-		$this->db->select('id_clasificacion,nombre');
-		$results = $this->db->get('clasificacion_proyectos')->result();
+		$this->db->select('id,nombre');
+		$results = $this->db->get('clasificacion_clientes')->result();
 		return $results;
 	}
 	

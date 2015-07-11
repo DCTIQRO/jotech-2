@@ -81,7 +81,7 @@
 								$options="";
 								foreach($clasificaciones as $tipo)
 								{
-									$options.= '<option value="'.$tipo->id_clasificacion.'">'.$tipo->nombre.'</option>';
+									$options.= '<option value="'.$tipo->id.'">'.$tipo->nombre.'</option>';
 								}
 								echo $options;
 							?>
