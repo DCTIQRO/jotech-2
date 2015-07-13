@@ -27,7 +27,7 @@
                                         <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
                         <li>
-                            <a href="<?= site_url('clientes') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inicio</span></a>
+                            <a href="<?= site_url('tareas') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mis Tareas</span></a>
                         </li>
 						<!-- Modulo Clientes -->
                         <li class="sidebar-header">

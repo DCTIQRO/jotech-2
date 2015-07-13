@@ -52,15 +52,24 @@
 								<select id="clasificacion" name="clasificacion" class="select-chosen form-control clasifi" onchange="checar_clasificacion('');">
 									<option value="0">Seleccione una Clasificación</option>
 									<?php 
+										$options="";
 										foreach($clasificaciones as $clasificacion)
 										{
-											echo '<option value="'.$clasificacion->id.'">'.$clasificacion->nombre.'</option>';
+											$options.='<option value="'.$clasificacion->id.'">'.$clasificacion->nombre.'</option>';
+											echo $options;
 										}
 									?>
 								</select>
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
+					</div>
+					<div id="new_clasificacion">
+					</div>
+					<input type="hidden" name="numero_clas" id="numero_clas" value="0" />
+					<div class="form-group text-center">
+						<a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a>
+						<a href="javascript:void(0)" class="btn-sm btn-danger" onClick="quitarClasif()">Remover Ultima Clasificación</a>
 					</div>
 					<input type="hidden" name="id_cliente" id="id_cliente" value="<?= $id_cliente ?>" />
 						
@@ -74,3 +83,36 @@
 		</div>
 	</div>
 </div>
+
+<script>
+var i=1;
+function agregarClasif ()
+{
+	x=	'<div class="form-group" id="grupo'+i+'">'+
+			'<label class="col-sm-2 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
+			'<div class="col-sm-4">'+
+				'<div class="input-group">'+
+					'<select id="clasificacion'+i+'" name="clasificacion'+i+'" class="select-chosen form-control clasifi">'+
+						'<option value="0">Seleccione una Clasificación</option>'+
+						'<?= $options ?>'+
+					'</select>'+
+					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
+				'</div>'+
+			'</div>'+
+		'</div>';
+	$("#new_clasificacion").append( x );
+	$('.select-chosen').chosen();
+	$('#div_nueva_clasificacion'+i).hide();
+	$('#numero_clas').val(i);
+	i++;
+}
+
+function quitarClasif ()
+{
+	if(i>1){
+		i--;
+		$('#grupo'+i).remove();
+		$('#numero_clas').val(i-1);
+	}
+}
+</script>

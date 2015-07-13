@@ -163,10 +163,33 @@ class Clientes extends CI_Controller {
 			'correo'			=>	$this->input->post('correo'),
 			'id_cliente_fk'		=>	$this->input->post('id_cliente'),
 			'fecha_registro'	=>	date('Y-m-d'),
-			'id_clasificacion'		=>	$this->input->post('clasificacion')
 		);
-		
-		$this->clientes_model->guardar_contacto($form_data);
+		$id_contacto=$this->clientes_model->guardar_contacto($form_data);
+		if($id_contacto>0)
+		{
+			$clasi=$this->input->post('clasificacion');
+			if($clasi != '0'){
+				$form_clasificacion=array(
+					'clasificacion' => $clasi,
+					'id_miembro_fk' => $id_contacto,
+				);
+				$this->clientes_model->guardar_clasificacion_contacto($form_clasificacion);
+			}
+			
+			$num=$this->input->post('numero_clas');
+			
+			for($i=1;$i<=$num;$i++)
+			{
+				$clasi=$this->input->post('clasificacion'.$i);
+				if($clasi != '0'){
+					$form_clasificacion=array(
+						'clasificacion' => $clasi,
+						'id_miembro_fk' => $id_contacto,
+					);
+					$this->clientes_model->guardar_clasificacion_contacto($form_clasificacion);
+				}
+			}
+		}
 		redirect('clientes/contacto/'.$this->input->post('id_cliente'));
 	}
 }

@@ -15,7 +15,13 @@ class Tareas extends CI_Controller {
 	}	
 	function index()
 	{			
-		
+		$usuario=$this->tareas_model->ver_usuario($this->session->userdata('user_id'));
+		$data['v']="tareas_view";
+		$data['titulo']="Ver Tareas de ".($usuario->first_name)." ".$usuario->last_name;
+		$data['usuario']=$this->session->userdata('user_id');
+		$data['tareas_proyectos']=$this->tareas_model->ver_tarea_proyectos($this->session->userdata('user_id'));
+		$data['tareas_clientes']=$this->tareas_model->ver_tarea_cliente($this->session->userdata('user_id'));
+		$this->load->view('main',$data);
 	}
 	
 	function nueva_tarea($id)

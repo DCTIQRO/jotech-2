@@ -92,6 +92,13 @@ class Clientes_model extends CI_Model {
 	function guardar_contacto($form_data)
 	{
 		$this->db->insert('miembros', $form_data);
+		$insert_id = $this->db->insert_id();
+		return  $insert_id;
+	}
+	
+	function guardar_clasificacion_contacto($form_data)
+	{
+		$this->db->insert('miembros_clasificaciones', $form_data);
 	}
 }
 ?>
