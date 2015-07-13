@@ -120,7 +120,7 @@ class Tareas_model extends CI_Model {
 		$this->db->select('t.id,t.nombre,t.descripcion,c.nombre cliente,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
 		$this->db->where('u.id_usuario_fk',$id);
 		$this->db->join('clientes c','c.id=t.id_cliente_fk');
-		$this->db->join('proyectos_tareas_usuarios u','u.id_tarea_fk=t.id');
+		$this->db->join('tareas_usuarios u','u.id_tarea_fk=t.id');
 		$results = $this->db->get('clientes_tareas t')->result();
 		return $results;
 	}

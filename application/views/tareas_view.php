@@ -6,7 +6,7 @@
 				<i class="fa fa-suitcase sidebar-nav-icon"></i>
 			</a>
 			<h1 class="widget-content text-letf animation-pullDown">
-				<strong>Mis Tareas</strong>
+				<strong>Mis Tareas</strong><small><?= $titulo ?></small>
 			</h1>
 			</div>
 		</div>
