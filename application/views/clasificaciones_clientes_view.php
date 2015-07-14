@@ -59,8 +59,8 @@
 						<td class="text-center"><a href="javascript:void(0)"><?= $clasificacion->nombre ?></a></td>
 						<td class="text-center"><?= $clasificacion->descripcion ?></td>
 						<td class="text-center">
-							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+							<a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+							<a href="<?= site_url('clasificaciones_clientes/eliminar_clasificacion/'.$clasificacion->id) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
 						</td>
 					</tr>
 					<?php
@@ -74,3 +74,19 @@
 
 <script src="<?= asset_url('js/pages/tablaclientes.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			maxWidth	: 800,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '100%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});
+</script>

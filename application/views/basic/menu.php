@@ -50,9 +50,9 @@
                         <li>
                             <a href="<?= site_url('proyectos') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Listar Proyectos</span></a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="<?= site_url('clasificaciones_proyectos') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clasificación Proyecto</span></a>
-                        </li>
+                        </li>-->
 						
 						<!-- Modulo Proyectos -->
 						<li class="sidebar-header">
