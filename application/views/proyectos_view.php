@@ -33,7 +33,7 @@
 								<th class="text-center">Descripción Corta</th>
 								<th class="text-center">Cliente</th>
 								<th class="text-center">Inicio</th>
-								<th class="text-center">Progreso</th>
+								<th class="text-center">Status</th>
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
@@ -50,9 +50,10 @@
 								<td class="text-center"><?= $proyecto->cliente ?></td>
 								<td class="text-center"><?= $proyecto->fecha_inicio ?></td>
 								<td class="text-center">
-									<div class="progress progress-striped active">
-										<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?= $proyecto->progreso ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $proyecto->progreso ?>%"><?= $proyecto->progreso ?>%</div>
-									</div>
+								<?php
+								if($proyecto->estatus == '0'){echo '<label class="btn btn-sm btn-danger">Cerrado</label>';}
+								if($proyecto->estatus == '1'){echo '<label class="btn btn-sm btn-success">Abierto</label>';}
+								?>
 								</td>
 								<td class="text-center">
 									<a href="<?= site_url('proyectos/ver_proyecto/'.$proyecto->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
