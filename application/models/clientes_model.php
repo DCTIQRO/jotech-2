@@ -9,7 +9,7 @@ class Clientes_model extends CI_Model {
 
 	function ver_clientes()
 	{
-		$this->db->select('id,nombre,website,correo,telefono,pais,calle,numero,entre_calles,colonia,ciudad,estado,detalles,fecha_registro ');
+		$this->db->select('id,nombre,website,correo,telefono,pais,calle,comentarios,entre_calles,colonia,ciudad,estado,detalles,fecha_registro ');
 		$this->db->where('status','1');
 		$results = $this->db->get('clientes')->result();
 		return $results;
@@ -44,7 +44,7 @@ class Clientes_model extends CI_Model {
 	
 	function info_cliente($id)
 	{
-		$this->db->select('id,nombre,website,correo,telefono,pais,calle,numero,entre_calles,colonia,ciudad,estado,detalles,fecha_registro ');
+		$this->db->select('id,nombre,website,correo,telefono,pais,calle,comentarios,entre_calles,colonia,ciudad,estado,detalles,fecha_registro ');
 		$this->db->where('id',$id);
 		$results = $this->db->get('clientes')->row();
 		return $results;

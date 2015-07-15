@@ -39,22 +39,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="telefono">Calle</label>
+				<label class="col-sm-2 control-label" for="telefono">Dirección</label>
 				<div class="col-sm-4">
 					<div class="input-group">
 						<input type="text" id="calle" name="calle" class="form-control" placeholder="Calle de ubicación..">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-				<label class="col-sm-2 control-label" for="numero">Numero</label>
-				<div class="col-sm-4">
-					<div class="input-group">
-						<input type="text" id="numero" name="numero" class="form-control" placeholder="Numero de ubicación..">
-						<span class="input-group-addon"><i class="gi gi-user"></i></span>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-sm-2 control-label" for="colonia">Colonia</label>
 				<div class="col-sm-4">
 					<div class="input-group">
@@ -62,6 +53,8 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label" for="referencia">Referencia</label>
 				<div class="col-sm-4">
 					<div class="input-group">
@@ -69,8 +62,6 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-sm-2 control-label" for="ciudad">Ciudad</label>
 				<div class="col-sm-4">
 					<div class="input-group">
@@ -78,6 +69,8 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label" for="estado">Estado</label>
 				<div class="col-sm-4">
 					<div class="input-group">
@@ -85,12 +78,19 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-sm-2 control-label" for="pais">País</label>
 				<div class="col-sm-4">
 					<div class="input-group">
 						<input type="text" id="pais" name="pais" class="form-control" placeholder="País..">
+						<span class="input-group-addon"><i class="gi gi-user"></i></span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="comentario">Comentarios</label>
+				<div class="col-sm-4">
+					<div class="input-group">
+						<textarea id="comentario" name="comentario" class="form-control" rows="2" placeholder="Comentarios del Cliente.."></textarea>
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 			<div id="Clonar" name="Clonar">
-			<div class="form-group">
+			<div class="form-group" id="grupo0">
 				<label class="col-sm-2 control-label"  for="clasificacion">Clasificación</label>
 				<div class="col-sm-4">
 					<div class="input-group">
@@ -122,7 +122,7 @@
 					</div>
 				</div>
 				<label class="col-sm-2 control-label"  for="prioridad">Prioridad</label>
-				<div class="col-sm-4">
+				<div class="col-sm-3">
 					<div class="input-group">
 						<select id="prioridad" name="prioridad" class="select-chosen form-control prioridades">
 							<option value="">Seleccione una Prioridad</option>
@@ -133,7 +133,10 @@
 						</select>
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
-				</div>	
+				</div>
+				<div class="col-sm-1"  Style="padding-top:10px">
+					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
+				</div>
 			</div>
 			</div>
 			<div id="new_clasif" name="new_clasif">
@@ -145,7 +148,6 @@
 			<input type="hidden" name="numero_clas" id="numero_clas" value="0" />
 			<div class="form-group text-center">
 				<a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a>
-				<a href="javascript:void(0)" class="btn-sm btn-danger" onClick="quitarClasif()">Remover Ultima Clasificación</a>
 			</div>
 			<div class="form-group text-center">
 				<br><br><br>
@@ -174,7 +176,7 @@ function agregarClasif ()
 				'</div>'+
 			'</div>'+
 			'<label class="col-sm-2 control-label"  for="prioridad'+i+'">Prioridad '+i+'</label>'+
-			'<div class="col-sm-4">'+
+			'<div class="col-sm-3">'+
 				'<div class="input-group">'+
 					'<select id="prioridad'+i+'" name="prioridad'+i+'" class="select-chosen form-control prioridades">'+
 						'<option value="">Seleccione una Prioridad</option>'+
@@ -186,6 +188,9 @@ function agregarClasif ()
 					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
 				'</div>'+
 			'</div>'+
+			'<div class="col-sm-1"  Style="padding-top:10px">'+
+				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
+			'</div><br><br>'+
 		'</div>';
 	$("#new_clasif").append( x );
 	$('.select-chosen').chosen();
@@ -194,13 +199,10 @@ function agregarClasif ()
 	i++;
 }
 
-function quitarClasif ()
+function quitarClasif (num)
 {
-	if(i>1){
-		i--;
-		$('#grupo'+i).remove();
-		$('#numero_clas').val(i-1);
-	}
+
+		$('#grupo'+num).remove();
 }
 </script>
 
