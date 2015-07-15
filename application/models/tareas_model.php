@@ -130,5 +130,10 @@ class Tareas_model extends CI_Model {
 		$this->db->where('id',$id);
 		$this->db->update('clientes_tareas',$form_data);
 	}
+	
+	function guardar_bitacora_cliente($form_data)
+	{
+		$this->db->insert('clientes_comentarios',$form_data);
+	}
 }
 ?>

@@ -17,6 +17,8 @@
 						<th class="text-center">Puesto</th>
 						<th class="text-center">Teléfono</th>
 						<th class="text-center">Correo</th>
+						<th class="text-center">Status</th>
+						<th class="text-center">Comentarios</th>
 						<th class="text-center">Clasificación</th>
 						<th class="text-center">Acciones</th>
 					</tr>
@@ -32,6 +34,12 @@
 						<td class="text-center"><?= $contacto->puesto ?></td>
 						<td class="text-center"><?= $contacto->telefono ?></td>
 						<td class="text-center"><?= $contacto->correo ?></td>
+						<td class="text-center">
+						<?php
+							if($contacto->activo == 0){echo '<label class="btn btn-sm btn-danger">Inactivo</label>';}
+							if($contacto->activo == 1){echo '<label class="btn btn-sm btn-success">Activo</label>';}
+						?></td>
+						<td class="text-center"><?= $contacto->comentarios ?></td>
 						<td class="text-center">
 						<?php
 						foreach($clasificaciones as $clasificacion)

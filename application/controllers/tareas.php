@@ -145,19 +145,48 @@ class Tareas extends CI_Controller {
 	
 	function cerrar_tarea($id)
 	{
+		date_default_timezone_set('America/Mexico_City');
+		
 		$form_data=array(
 			'estatus'	=>	'1'
 		);
 		$this->tareas_model->cerrar_tarea($form_data,$id);
+		
+		$tarea=$this->tareas_model->ver_tarea($id);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se ha cerrado la tarea '.$tarea->nombre,
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente'	=>	$tarea->id_cliente_fk,
+			'status'		=>	'1',
+			'tipo'			=>	'2'
+		);
+		$this->tareas_model->guardar_bitacora_cliente($form_bitacora);
+		
 		redirect('tareas/ver_tarea/'.$id);
 	}
 	
 	function abrir_tarea($id)
 	{
+		date_default_timezone_set('America/Mexico_City');
 		$form_data=array(
 			'estatus'	=>	'0'
 		);
 		$this->tareas_model->cerrar_tarea($form_data,$id);
+		
+		$tarea=$this->tareas_model->ver_tarea($id);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se ha abierto la tarea '.$tarea->nombre,
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente'	=>	$tarea->id_cliente_fk,
+			'status'		=>	'1',
+			'tipo'			=>	'2'
+		);
+		$this->tareas_model->guardar_bitacora_cliente($form_bitacora);
+		
 		redirect('tareas/ver_tarea/'.$id);
 	}
 }

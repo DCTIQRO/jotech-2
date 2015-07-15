@@ -84,7 +84,7 @@ class Clientes_model extends CI_Model {
 	
 	function ver_contactos($id)
 	{
-		$this->db->select('m.id,m.nombre,m.telefono,m.correo,m.puesto');
+		$this->db->select('m.id,m.nombre,m.telefono,m.correo,m.puesto,m.activo,m.comentarios');
 		$this->db->where('id_cliente_fk',$id);
 		$this->db->where('m.status','1');
 		$results = $this->db->get('miembros m')->result();
