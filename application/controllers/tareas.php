@@ -73,6 +73,8 @@ class Tareas extends CI_Controller {
 		$data['titulo']="Tarea ".$tarea->nombre;
 		$data['descripcion']=$tarea->descripcion;
 		$data['id_tarea']=$id;
+		$data['status']=$tarea->estatus;
+		$data['cliente']=$tarea->id_cliente_fk;
 		$data['bitacoras']=$this->tareas_model->bitacora_tareas_cliente($id);
 		$data['usuarios']=$this->tareas_model->ver_usuarios_tarea($id);
 		$data['asignados']=$this->tareas_model->ver_usuarios_asignados($id);
@@ -139,6 +141,24 @@ class Tareas extends CI_Controller {
 		$datos = file_get_contents("assets/upload/".$url); // Leer el contenido del archivo
 
 		force_download($archivo, $datos);
+	}
+	
+	function cerrar_tarea($id)
+	{
+		$form_data=array(
+			'estatus'	=>	'1'
+		);
+		$this->tareas_model->cerrar_tarea($form_data,$id);
+		redirect('tareas/ver_tarea/'.$id);
+	}
+	
+	function abrir_tarea($id)
+	{
+		$form_data=array(
+			'estatus'	=>	'0'
+		);
+		$this->tareas_model->cerrar_tarea($form_data,$id);
+		redirect('tareas/ver_tarea/'.$id);
 	}
 }
 ?>

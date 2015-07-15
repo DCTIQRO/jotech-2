@@ -21,7 +21,7 @@
 									<th class="text-center">ID</th>
 									<th class="text-center">Proyecto</th>
 									<th class="text-center">Inicio</th>
-									<th class="text-center">Progreso</th>
+									<th class="text-center">Estatus</th>
 									<th class="text-center">Acciones</th>
 								</tr>
 							</thead>
@@ -35,9 +35,13 @@
 									<td class="text-center"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
 									<td class="text-center"><?= $proyecto->fecha_inicio ?></td>
 									<td class="text-center">
-										<div class="progress progress-striped active">
+									<?php
+										if($proyecto->estatus == 0){echo '<label class="btn-sm btn-danger">Cerrado</label>';}
+										if($proyecto->estatus == 1){echo '<label class="btn-sm btn-success">Abierto</label>';}
+									?>
+										<!--<div class="progress progress-striped active">
 											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?= $proyecto->progreso ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $proyecto->progreso ?>%"><?= $proyecto->progreso ?>%</div>
-										</div>
+										</div>-->
 									</td>
 									<td class="text-center">
 										<a href="<?= site_url('proyectos/ver_proyecto/'.$proyecto->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
@@ -72,8 +76,8 @@
 									<td class="text-center"><a href="javascript:void(0)"><?= $tarea->nombre ?></a></td>
 									<td class="text-center"><?= $tarea->fecha_fin ?></td>
 									<td class="text-center">
-										<?php if($tarea->estatus == "0"){echo "<label class='btn-xs btn-info' >En Proceso</label>";} ?>
-										<?php if($tarea->estatus == "1"){echo "<label class='btn-xs btn-success' >Terminado</label>";} ?>
+										<?php if($tarea->estatus == "0"){echo "<label class='btn-xs btn-success' >Abierto</label>";} ?>
+										<?php if($tarea->estatus == "1"){echo "<label class='btn-xs btn-danger' >Cerrado</label>";} ?>
 									</td>
 									<td class="text-center">
 										<a href="<?= site_url('tareas/ver_tarea/'.$tarea->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>

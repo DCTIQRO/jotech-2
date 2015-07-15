@@ -61,7 +61,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_proyectos($id)
 	{
-		$this->db->select('id,nombre,fecha_inicio,progreso');
+		$this->db->select('id,nombre,fecha_inicio,progreso,estatus');
 		$this->db->where('id_cliente_fk',$id);
 		$results = $this->db->get('proyectos')->result();
 		return $results;
@@ -72,6 +72,14 @@ class Proyectos_model extends CI_Model {
 		$this->db->select('id,nombre,fecha_fin,estatus');
 		$this->db->where('id_cliente_fk',$id);
 		$results = $this->db->get('clientes_tareas')->result();
+		return $results;
+	}
+	
+	function ver_tarea($id)
+	{
+		$this->db->select('id,estatus');
+		$this->db->where('id',$id);
+		$results = $this->db->get('proyectos_tareas')->row();
 		return $results;
 	}
 	 
@@ -85,7 +93,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_proyecto($id)
 	{
-		$this->db->select('nombre,descripcion');
+		$this->db->select('nombre,descripcion,estatus,id_cliente_fk');
 		$this->db->where('id',$id);
 		$results = $this->db->get('proyectos')->row();
 		return $results;
@@ -127,7 +135,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_tareas_proyecto($id)
 	{
-		$this->db->select('id,nombre');
+		$this->db->select('id,nombre,estatus');
 		$this->db->where('id_proyecto_fk',$id);
 		$this->db->order_by("fecha_fin", "desc");
 		$results = $this->db->get('proyectos_tareas')->result();
@@ -151,6 +159,18 @@ class Proyectos_model extends CI_Model {
 	function asignar_tareas($form_data)
 	{
 		$this->db->insert_batch('proyectos_tareas_usuarios', $form_data); 
+	}
+	
+	function cerrar_proyecto($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('proyectos',$form_data);
+	}
+	
+	function cambiar_estado_tarea($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('proyectos_tareas',$form_data);
 	}
 }
 ?>

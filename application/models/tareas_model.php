@@ -45,7 +45,7 @@ class Tareas_model extends CI_Model {
 	
 	function ver_tarea($id)
 	{
-		$this->db->select('nombre,descripcion');
+		$this->db->select('nombre,descripcion,estatus,id_cliente_fk');
 		$this->db->where('id',$id);
 		$results = $this->db->get('clientes_tareas')->row();
 		return $results;
@@ -123,6 +123,12 @@ class Tareas_model extends CI_Model {
 		$this->db->join('tareas_usuarios u','u.id_tarea_fk=t.id');
 		$results = $this->db->get('clientes_tareas t')->result();
 		return $results;
+	}
+	
+	function cerrar_tarea($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('clientes_tareas',$form_data);
 	}
 }
 ?>

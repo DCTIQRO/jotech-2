@@ -69,6 +69,32 @@
 	<div class="col-sm-4">
 		<div class="block full">
 			<div class="block-title">
+				<h2>Acciones del <strong><?= $titulo ?></strong></h2>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<?php
+					if($status == 1){
+					?>
+					<a href="<?= site_url('proyectos/cerrar_proyecto/'.$id_proyecto); ?>" class="btn-sm btn-danger">Cerrar Proyecto</a>
+					<?php 
+					}
+					else
+					{
+					?>
+					<a href="<?= site_url('proyectos/abrir_proyecto/'.$id_proyecto); ?>" class="btn-sm btn-success">Abrir Proyecto</a>
+					<?php	
+					}
+					?>
+					<br><br>
+					<a href="<?= site_url('proyectos/proyectos_tareas/'.$cliente); ?>" class="btn-sm btn-info">Proyectos del Cliente</a>
+					<br><br>
+					<a href="<?= site_url('proyectos'); ?>" class="btn-sm btn-primary">Todos los Proyectos</a>
+				</div>
+			</div>
+		</div>
+		<div class="block full">
+			<div class="block-title">
 				<h2>Usuarios del <strong><?= $titulo ?></strong></h2>
 			</div>
 			<form action="<?= site_url('proyectos/asignar_usuario') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
@@ -178,13 +204,27 @@
 				</div>	
 				<?php
 				if(!empty($tareas)){
+					$i=0;
 					foreach($tareas as $tarea){
+						$check="";
+						if($tarea->estatus == 1){$check="checked";}
 				?>
 						<div class="form-group text-center">
-							<a href="<?= site_url('tareas_proyectos/ver_tarea/'.$tarea->id) ?>"><label class="label-control"><?= $tarea->nombre ?></label></a>
-							
+							<div class="col-xs-6">
+								<a href="<?= site_url('tareas_proyectos/ver_tarea/'.$tarea->id) ?>"><label class="label-control"><?= $tarea->nombre ?></label></a>
+							</div>
+							<div class="col-xs-6">
+								<section>  
+								  <!-- Squared TWO -->
+								  <div class="squaredTwo">
+									<input type="checkbox" value="None" id="squaredTwo<?= $i ?>" name="check<?= $i ?>" <?= $check ?> onChange="estado(<?= $tarea->id ?>)" />
+									  <label for="squaredTwo<?= $i ?>"></label>
+								  </div>
+								</section>
+							</div>
 						</div>
-				<?php	
+				<?php
+					$i++;
 					}
 				}
 				?>
@@ -217,5 +257,12 @@ function agregar_tarea()
 {
 	$('#nueva_tarea').removeClass('hidden');
 	$('#boton-tarea').addClass('hidden');
+}
+
+function estado(tarea)
+{
+	$.post("<?= site_url('proyectos/cambiar_estado_tarea') ?>"+"/"+tarea, {id_proyecto:<?= $id_proyecto ?>}, function(result){
+        console.log(result);
+    });
 }
 </script>

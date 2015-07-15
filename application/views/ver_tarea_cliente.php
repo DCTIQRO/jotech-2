@@ -69,6 +69,30 @@
 	<div class="col-sm-4">
 		<div class="block full">
 			<div class="block-title">
+				<h2>Acciones del <strong><?= $titulo ?></strong></h2>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<?php
+					if($status == 0){
+					?>
+					<a href="<?= site_url('tareas/cerrar_tarea/'.$id_tarea); ?>" class="btn-sm btn-danger">Cerrar Tarea Cliente</a>
+					<?php 
+					}
+					else
+					{
+					?>
+					<a href="<?= site_url('tareas/abrir_tarea/'.$id_tarea); ?>" class="btn-sm btn-success">Abrir Tarea Cliente</a>
+					<?php	
+					}
+					?>
+					<br><br>
+					<a href="<?= site_url('proyectos/proyectos_tareas/'.$cliente); ?>" class="btn-sm btn-info">Tareas del Cliente</a>
+				</div>
+			</div>
+		</div>
+		<div class="block full">
+			<div class="block-title">
 				<h2>Usuarios de la <strong><?= $titulo ?></strong></h2>
 			</div>
 			<form action="<?= site_url('tareas/asignar_usuario') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >

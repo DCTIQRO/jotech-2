@@ -119,6 +119,8 @@ class Proyectos extends CI_Controller {
 		$data['tab']="proyectos";
 		$data['id_proyecto']=$id;
 		$data['titulo']="Proyecto ".$proyecto->nombre;
+		$data['status']=$proyecto->estatus;
+		$data['cliente']=$proyecto->id_cliente_fk;
 		$data['descripcion']="Proyecto ".$proyecto->descripcion;
 		$data['bitacoras']=$this->proyectos_model->bitacora_proyecto($id);
 		$data['usuarios']=$this->proyectos_model->ver_usuarios_proyectos($id);
@@ -192,7 +194,42 @@ class Proyectos extends CI_Controller {
 		
 	}
 	
+	function cerrar_proyecto($id)
+	{
+		$form_data=array(
+			'estatus'	=>	'0'
+		);
+		$this->proyectos_model->cerrar_proyecto($form_data,$id);
+		redirect('proyectos/ver_proyecto/'.$id);
+	}
 	
+	function abrir_proyecto($id)
+	{
+		$form_data=array(
+			'estatus'	=>	'1'
+		);
+		$this->proyectos_model->cerrar_proyecto($form_data,$id);
+		redirect('proyectos/ver_proyecto/'.$id);
+	}
 	
+	function cambiar_estado_tarea($id)
+	{
+		$tarea=$this->proyectos_model->ver_tarea($id);
+		$estado=$tarea->estatus;
+		
+		if($estado == '0')
+		{
+			$form_data=array(
+				'estatus'	=>	'1'
+			);
+		}
+		else
+		{
+			$form_data=array(
+				'estatus'	=>	'0'
+			);
+		}
+		$this->proyectos_model->cambiar_estado_tarea($form_data,$id);
+	}
 }
 ?>
