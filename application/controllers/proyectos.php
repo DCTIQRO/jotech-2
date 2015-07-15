@@ -137,7 +137,9 @@ class Proyectos extends CI_Controller {
 			'comentario'	=>	$this->input->post('comentario'),
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
-			'id_proyecto_fk'	=>	$this->input->post('id_proyecto')
+			'id_proyecto_fk'	=>	$this->input->post('id_proyecto'),
+			'status'		=> '1',
+			'tipo'			=> '1'
 		);
 		
 		$this->proyectos_model->guardar_bitacora_proyecto($form_data);
@@ -241,6 +243,7 @@ class Proyectos extends CI_Controller {
 	
 	function cambiar_estado_tarea($id)
 	{
+		date_default_timezone_set('America/Mexico_City');
 		$tarea=$this->proyectos_model->ver_tarea($id);
 		$estado=$tarea->estatus;
 		
@@ -249,14 +252,33 @@ class Proyectos extends CI_Controller {
 			$form_data=array(
 				'estatus'	=>	'1'
 			);
+		
+			$form_bitacora=array(
+				'comentario'	=>	"Se ha cerrado la Tarea".$tarea->nombre,
+				'fecha'			=>	date('Y-m-d H:i:s'),
+				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+				'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
+				'status'		=> '1',
+				'tipo'			=> '2'
+			);
+			
 		}
 		else
 		{
 			$form_data=array(
 				'estatus'	=>	'0'
 			);
+			$form_bitacora=array(
+				'comentario'	=>	"Se ha abierto la Tarea".$tarea->nombre,
+				'fecha'			=>	date('Y-m-d H:i:s'),
+				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+				'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
+				'status'		=> '1',
+				'tipo'			=> '2'
+			);
 		}
 		$this->proyectos_model->cambiar_estado_tarea($form_data,$id);
+		$this->proyectos_model->guardar_bitacora_proyecto($form_bitacora);
 	}
 	
 	function editar_bitacora_proyecto($id)

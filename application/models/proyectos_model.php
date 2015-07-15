@@ -77,7 +77,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_tarea($id)
 	{
-		$this->db->select('id,estatus');
+		$this->db->select('id,estatus,id_proyecto_fk,nombre');
 		$this->db->where('id',$id);
 		$results = $this->db->get('proyectos_tareas')->row();
 		return $results;
