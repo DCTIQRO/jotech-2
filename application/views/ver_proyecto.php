@@ -59,7 +59,7 @@
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 								<td class="text-center">
 									<?php
-									if($this->session->userdata('user_id') == $bitacora->id_usuario){
+									if($this->session->userdata('user_id') == $bitacora->id_usuario && $bitacora->tipo != 2){
 									?>
 									<a href="<?= site_url('proyectos/editar_bitacora_proyecto/'.$bitacora->id_comentario) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
 									<a href="<?= site_url('proyectos/eliminar_bitacora_proyecto/'.$bitacora->id_comentario."/".$id_proyecto) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
