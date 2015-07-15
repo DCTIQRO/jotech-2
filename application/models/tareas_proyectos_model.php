@@ -14,7 +14,7 @@ class tareas_proyectos_model extends CI_Model {
 	
 	function ver_tarea($id)
 	{
-		$this->db->select('nombre,descripcion');
+		$this->db->select('nombre,descripcion,id_proyecto_fk,estatus');
 		$this->db->where('id',$id);
 		$results = $this->db->get('proyectos_tareas')->row();
 		return $results;
@@ -88,6 +88,12 @@ class tareas_proyectos_model extends CI_Model {
 		$this->db->where('id',$id);
 		$results = $this->db->get('proyectos_tareas_comentarios')->row();
 		return $results;
+	}
+	
+	function cerrar_tarea($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('proyectos_tareas',$form_data);
 	}
 }
 ?>

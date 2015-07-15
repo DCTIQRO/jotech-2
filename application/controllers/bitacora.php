@@ -39,7 +39,8 @@ class Bitacora extends CI_Controller {
 					'fecha'			=>	date('Y-m-d H:i:s'),
 					'id_usuario'	=>	$this->session->userdata('user_id'),
 					'id_cliente'	=>	$this->input->post('id_cliente'),
-					'status'		=>	'1'
+					'status'		=>	'1',
+					'tipo'			=>	'1'
 				);
 				
 				$this->bitacora_model->guardar_bitacora_cliente($form_data);

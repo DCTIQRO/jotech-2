@@ -66,10 +66,10 @@
 	$(document).ready(function() {
 		$(".fancybox").fancybox({
 			maxWidth	: 1100,
-			maxHeight	: 600,
+			maxHeight	: 800,
 			fitToView	: false,
 			width		: '100%',
-			height		: '70%',
+			height		: '85%',
 			autoSize	: false,
 			closeClick	: false,
 			openEffect	: 'none',

@@ -196,19 +196,46 @@ class Proyectos extends CI_Controller {
 	
 	function cerrar_proyecto($id)
 	{
+		date_default_timezone_set('America/Mexico_City');
 		$form_data=array(
 			'estatus'	=>	'0'
 		);
 		$this->proyectos_model->cerrar_proyecto($form_data,$id);
+		
+		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se ha cerrado el proyecto '.$proyecto->nombre,
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente'	=>	$proyecto->id_cliente_fk,
+			'status'		=>	'1',
+			'tipo'			=>	'2'
+		);
+		$this->proyectos_model->guardar_bitacora_cliente($form_bitacora);
 		redirect('proyectos/ver_proyecto/'.$id);
 	}
 	
 	function abrir_proyecto($id)
 	{
+		date_default_timezone_set('America/Mexico_City');
 		$form_data=array(
 			'estatus'	=>	'1'
 		);
 		$this->proyectos_model->cerrar_proyecto($form_data,$id);
+		
+		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se ha abierto el proyecto '.$proyecto->nombre,
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente'	=>	$proyecto->id_cliente_fk,
+			'status'		=>	'1',
+			'tipo'			=>	'2'
+		);
+		$this->proyectos_model->guardar_bitacora_cliente($form_bitacora);
+		
 		redirect('proyectos/ver_proyecto/'.$id);
 	}
 	

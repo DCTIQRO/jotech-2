@@ -25,6 +25,8 @@ class Tareas_proyectos extends CI_Controller {
 		$data['titulo']="Tarea ".$tarea->nombre;
 		$data['descripcion']=$tarea->descripcion;
 		$data['id_tarea']=$id;
+		$data['id_proyecto']=$tarea->id_proyecto_fk;
+		$data['status']=$tarea->estatus;
 		$data['bitacoras']=$this->tareas_proyectos_model->bitacora_tareas_proyecto($id);
 		$data['usuarios']=$this->tareas_proyectos_model->ver_usuarios_tarea($id);
 		$data['asignados']=$this->tareas_proyectos_model->ver_usuarios_asignados($id);
@@ -115,6 +117,24 @@ class Tareas_proyectos extends CI_Controller {
 		);
 		$this->tareas_proyectos_model->editar_bitacora_tarea_proyecto($form_data,$id);
 		redirect('proyectos/ver_proyecto/'.$id_proyecto);
+	}
+	
+	function cerrar_tarea($id)
+	{
+		$form_data=array(
+			'estatus'	=>	'1'
+		);
+		$this->tareas_proyectos_model->cerrar_tarea($form_data,$id);
+		redirect('tareas_proyectos/ver_tarea/'.$id);
+	}
+	
+	function abrir_tarea($id)
+	{
+		$form_data=array(
+			'estatus'	=>	'0'
+		);
+		$this->tareas_proyectos_model->cerrar_tarea($form_data,$id);
+		redirect('tareas_proyectos/ver_tarea/'.$id);
 	}
 }
 ?>

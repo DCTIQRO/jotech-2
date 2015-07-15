@@ -84,8 +84,7 @@ class Clientes_model extends CI_Model {
 	
 	function ver_contactos($id)
 	{
-		$this->db->select('m.id,m.nombre,m.telefono,m.correo,m.puesto,m.id_clasificacion,clas.nombre clasiff');
-		$this->db->join('clasificacion_clientes clas','clas.id=m.id_clasificacion', 'left');
+		$this->db->select('m.id,m.nombre,m.telefono,m.correo,m.puesto');
 		$this->db->where('id_cliente_fk',$id);
 		$this->db->where('m.status','1');
 		$results = $this->db->get('miembros m')->result();
@@ -94,7 +93,7 @@ class Clientes_model extends CI_Model {
 	
 	function info_contacto($id)
 	{
-		$this->db->select('id,nombre,telefono,correo,puesto,direccion');
+		$this->db->select('id,nombre,telefono,correo,puesto,direccion,activo,comentarios');
 		$this->db->where('id',$id);
 		$results = $this->db->get('miembros')->row();
 		return $results;

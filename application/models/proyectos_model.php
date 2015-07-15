@@ -187,5 +187,10 @@ class Proyectos_model extends CI_Model {
 		$results = $this->db->get('proyectos_comentarios')->row();
 		return $results;
 	}
+	
+	function guardar_bitacora_cliente($form_data)
+	{
+		$this->db->insert('clientes_comentarios',$form_data);
+	}
 }
 ?>

@@ -67,6 +67,27 @@
 						</div>
 					</div>
 				</div>
+				<div class="form-group">
+						<label class="col-sm-2 control-label" for="activo">Status</label>
+						<div class="col-sm-4 ">
+							<div class="input-group">
+								<select id="activo" name="activo" class="select-chosen form-control" data-placeholder="Selecciona un status.." >
+									<?php $select=""; if($datos->activo == '0'){$select="selected";} ?>
+									<option value="0" <?= $select ?> >Inactivo</option>
+									<?php $select=""; if($datos->activo == '1'){$select="selected";} ?>
+									<option value="1" <?= $select ?> >Activo</option>
+								</select>
+								<span class="input-group-addon"><i class="gi gi-user"></i></span>
+							</div>
+						</div>
+						<label class="col-sm-2 control-label" for="comentario">Comentarios </label>
+						<div class="col-sm-4 ">
+							<div class="input-group">
+								<textarea id="comentario" name="comentario" rows="2" class="form-control" placeholder="Comentarios.."><?= $datos->comentarios ?></textarea>
+								<span class="input-group-addon"><i class="gi gi-user"></i></span>
+							</div>
+						</div>
+					</div>
 				<input type="hidden" name="id_contacto" id="id_contacto" value="<?= $datos->id ?>" />
 					
 				<div class="form-group text-center">
