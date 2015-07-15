@@ -38,12 +38,38 @@ class Bitacora extends CI_Controller {
 					'comentario'	=>	set_value('comentario'),
 					'fecha'			=>	date('Y-m-d H:i:s'),
 					'id_usuario'	=>	$this->session->userdata('user_id'),
-					'id_cliente'	=>	$this->input->post('id_cliente')
+					'id_cliente'	=>	$this->input->post('id_cliente'),
+					'status'		=>	'1'
 				);
 				
 				$this->bitacora_model->guardar_bitacora_cliente($form_data);
 				redirect('bitacora/cliente/'.$id);
 		}
+	}
+	
+	function eliminar($id,$id_cliente)
+	{
+		$form_data=array(
+			'status'	=>	'0'
+		);
+		$this->bitacora_model->editar_bitacora_cliente($form_data,$id);
+		redirect('bitacora/cliente/'.$id_cliente);
+	}
+	
+	function editar($id)
+	{
+		$data['v']="editar_bitacora_cliente";
+		$data['datos']=$this->bitacora_model->info_bitacora($id);
+		$this->load->view('main_modal',$data);
+	}
+	
+	function guardar_edicion()
+	{
+		$form_data=array(
+			'comentario'	=>	$this->input->post('comentario'),
+		);
+		$this->bitacora_model->editar_bitacora_cliente($form_data,$this->input->post('id_bitacora'));
+		$this->load->view('cerrar_facybox');
 	}
 }
 ?>

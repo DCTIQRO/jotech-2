@@ -141,6 +141,7 @@ class Clientes extends CI_Controller {
 		$data['titulo']="Contactos de ".$cliente->nombre;
 		$data['id_cliente']=$id;
 		$data['contactos']=$this->clientes_model->ver_contactos($id);
+		$data['clasificaciones']=$this->clientes_model->ver_clasificaciones_contactos();
 		$this->load->view('main',$data);
 	}
 	
@@ -170,26 +171,14 @@ class Clientes extends CI_Controller {
 		if($id_contacto>0)
 		{
 			$clasi=$this->input->post('clasificacion');
-			if($clasi != '0'){
-				$form_clasificacion=array(
-					'clasificacion' => $clasi,
-					'id_miembro_fk' => $id_contacto,
-				);
-				$this->clientes_model->guardar_clasificacion_contacto($form_clasificacion);
-			}
 			
-			$num=$this->input->post('numero_clas');
-			
-			for($i=1;$i<=$num;$i++)
+			for($i=0;$i<count($clasi);$i++)
 			{
-				$clasi=$this->input->post('clasificacion'.$i);
-				if($clasi != '0'){
 					$form_clasificacion=array(
-						'clasificacion' => $clasi,
+						'clasificacion' => $clasi[$i],
 						'id_miembro_fk' => $id_contacto,
 					);
 					$this->clientes_model->guardar_clasificacion_contacto($form_clasificacion);
-				}
 			}
 		}
 		redirect('clientes/contacto/'.$this->input->post('id_cliente'));

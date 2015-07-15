@@ -26,6 +26,7 @@ class Clientes_model extends CI_Model {
 	function ver_clasificaciones()
 	{
 		$this->db->select('id,nombre');
+		$this->db->where('status','1');
 		$results = $this->db->get('clasificacion_clientes')->result();
 		return $results;
 	}
@@ -52,9 +53,20 @@ class Clientes_model extends CI_Model {
 	
 	function info_clasificacion($id)
 	{
-		$this->db->select('clasificacion,prioridad');
-		$this->db->where('id_cliente_fk',$id);
-		$results = $this->db->get('clientes_clasificaciones')->result();
+		$this->db->select('cc.clasificacion,cc.prioridad');
+		$this->db->where('clas.status','1');
+		$this->db->where('cc.id_cliente_fk',$id);
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
+		$results = $this->db->get('clientes_clasificaciones cc')->result();
+		return $results;
+	}
+	
+	function ver_clasificaciones_contactos()
+	{
+		$this->db->select('clas.nombre,cc.id_miembro_fk');
+		$this->db->where('clas.status','1');
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
+		$results = $this->db->get('miembros_clasificaciones cc')->result();
 		return $results;
 	}
 	
@@ -81,8 +93,8 @@ class Clientes_model extends CI_Model {
 	
 	function clasificacion_cliente($id)
 	{
-		$this->db->distinct();
 		$this->db->where('cc.id_cliente_fk',$id);
+		$this->db->where('clas.status','1');
 		$this->db->select('clas.id,cc.clasificacion,clas.nombre');
 		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
 		$results = $this->db->get('clientes_clasificaciones cc')->result();

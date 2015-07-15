@@ -32,7 +32,16 @@
 						<td class="text-center"><?= $contacto->puesto ?></td>
 						<td class="text-center"><?= $contacto->telefono ?></td>
 						<td class="text-center"><?= $contacto->correo ?></td>
-						<td class="text-center"><?= $contacto->clasiff ?></td>
+						<td class="text-center">
+						<?php
+						foreach($clasificaciones as $clasificacion)
+						{
+							if($clasificacion->id_miembro_fk == $contacto->id){
+								echo "<label class='btn-sm btn-default'>".$clasificacion->nombre."</label><br>";
+							}
+						}
+						?>
+						</td>
 						<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Ver Contacto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 						</td>
