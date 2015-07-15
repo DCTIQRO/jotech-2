@@ -231,5 +231,30 @@ class Proyectos extends CI_Controller {
 		}
 		$this->proyectos_model->cambiar_estado_tarea($form_data,$id);
 	}
+	
+	function editar_bitacora_proyecto($id)
+	{
+		$data['v']="editar_bitacora_proyecto";
+		$data['datos']=$this->proyectos_model->info_bitacora_proyecto($id);
+		$this->load->view('main_modal',$data);
+	}
+
+	function guardar_edicion_bitacora_proyecto()
+	{
+		$form_data=array(
+			'comentario'	=>	$this->input->post('comentario'),
+		);
+		$this->proyectos_model->editar_bitacora_proyecto($form_data,$this->input->post('id_bitacora'));
+		$this->load->view('cerrar_facybox');
+	}
+	
+	function eliminar_bitacora_proyecto($id,$id_proyecto)
+	{
+		$form_data=array(
+			'status'	=>	'0'
+		);
+		$this->proyectos_model->editar_bitacora_proyecto($form_data,$id);
+		redirect('proyectos/ver_proyecto/'.$id_proyecto);
+	}
 }
 ?>

@@ -101,8 +101,9 @@ class Proyectos_model extends CI_Model {
 	
 	function bitacora_proyecto($id)
 	{
-		$this->db->select('pc.comentario,pc.fecha,p.nombre, u.first_name, u.last_name');
+		$this->db->select('pc.id id_comentario,pc.comentario,pc.fecha,p.nombre,u.id id_usuario, u.first_name, u.last_name');
 		$this->db->where('pc.id_proyecto_fk',$id);
+		$this->db->where('pc.status','1');
 		$this->db->join('proyectos p','p.id=pc.id_proyecto_fk');
 		$this->db->join('users u','u.id=pc.id_usuario_fk');
 		$this->db->order_by('pc.fecha','asc');
@@ -171,6 +172,20 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->where('id',$id);
 		$this->db->update('proyectos_tareas',$form_data);
+	}
+	
+	function editar_bitacora_proyecto($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('proyectos_comentarios',$form_data);
+	}
+	
+	function info_bitacora_proyecto($id)
+	{
+		$this->db->select('id,comentario,id_proyecto_fk');
+		$this->db->where('id',$id);
+		$results = $this->db->get('proyectos_comentarios')->row();
+		return $results;
 	}
 }
 ?>

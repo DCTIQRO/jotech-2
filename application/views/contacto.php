@@ -44,6 +44,8 @@
 						</td>
 						<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Ver Contacto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+							<a href="<?= site_url('clientes/editar_contacto/'.$contacto->id."/".$id_cliente) ?>" class="fancybox fancybox.iframe btn btn-xs btn-default" data-toggle="tooltip" data-original-title="Editar" ><i class="fa fa-pencil"></i></a>
+							<a href="<?= site_url('clientes/eliminar_contacto/'.$contacto->id."/".$id_cliente) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
 						</td>
 					</tr>
 					<?php
@@ -59,3 +61,19 @@
 
 <script src="<?= asset_url('js/pages/contactoclientes.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			maxWidth	: 1100,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '100%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});
+</script>

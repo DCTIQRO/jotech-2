@@ -163,6 +163,7 @@ class Clientes extends CI_Controller {
 			'nombre'			=>	$this->input->post('nombre'),
 			'puesto'			=>	$this->input->post('puesto'),
 			'telefono'			=>	$this->input->post('telefono'),
+			'direccion'			=>	$this->input->post('direccion'),
 			'correo'			=>	$this->input->post('correo'),
 			'id_cliente_fk'		=>	$this->input->post('id_cliente'),
 			'fecha_registro'	=>	date('Y-m-d'),
@@ -182,6 +183,51 @@ class Clientes extends CI_Controller {
 			}
 		}
 		redirect('clientes/contacto/'.$this->input->post('id_cliente'));
+	}
+	
+	function editar_contacto($id,$id_cliente)
+	{
+		$data['v']="editar_contacto";
+		$data['datos']=$this->clientes_model->info_contacto($id);
+		$data['clasificaciones']=$this->clientes_model->clasificacion_cliente($id_cliente);
+		$data['clasificaciones_contacto']=$this->clientes_model->info_clasificaciones_contacto($id);
+		$this->load->view('main_modal',$data);
+	}
+	
+	function guardar_edicion_contacto()
+	{
+		$form_data=array(
+			'nombre'			=>	$this->input->post('nombre'),
+			'puesto'			=>	$this->input->post('puesto'),
+			'telefono'			=>	$this->input->post('telefono'),
+			'direccion'			=>	$this->input->post('direccion'),
+			'correo'			=>	$this->input->post('correo'),
+		);
+		
+		$id_contacto=$this->input->post('id_contacto');
+		$this->clientes_model->editar_contacto($form_data,$id_contacto);
+		$this->clientes_model->borrar_clasificacion_contacto($id_contacto);
+		
+		$clasi=$this->input->post('clasificacion');
+		
+		for($i=0;$i<count($clasi);$i++)
+		{
+				$form_clasificacion=array(
+					'clasificacion' => $clasi[$i],
+					'id_miembro_fk' => $id_contacto,
+				);
+				$this->clientes_model->guardar_clasificacion_contacto($form_clasificacion);
+		}
+		$this->load->view('cerrar_facybox');
+	}
+	
+	function eliminar_contacto($id,$id_cliente)
+	{
+		$form_data=array(
+			'status'	=>	'0',
+		);
+		$this->clientes_model->editar_contacto($form_data,$id);
+		redirect('clientes/contacto/'.$id_cliente);
 	}
 }
 ?>

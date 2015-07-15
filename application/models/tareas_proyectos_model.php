@@ -22,8 +22,9 @@ class tareas_proyectos_model extends CI_Model {
 	
 	function bitacora_tareas_proyecto($id)
 	{
-		$this->db->select('ptc.comentario,ptc.fecha,pt.nombre, u.first_name, u.last_name');
+		$this->db->select('ptc.id id_comentario,ptc.comentario,ptc.fecha,pt.nombre,u.id id_usuario, u.first_name, u.last_name');
 		$this->db->where('ptc.id_proyecto_tarea_fk',$id);
+		$this->db->where('ptc.status','1');
 		$this->db->join('proyectos_tareas pt','pt.id=ptc.id_proyecto_tarea_fk');
 		$this->db->join('users u','u.id=ptc.id_usuario');
 		$this->db->order_by('ptc.fecha','asc');
@@ -71,6 +72,21 @@ class tareas_proyectos_model extends CI_Model {
 		$this->db->select('archivo,url');
 		$this->db->where('id_tarea_fk',$id);
 		$results = $this->db->get('proyectos_tareas_archivos')->result();
+		return $results;
+	}
+	
+	function editar_bitacora_tarea_proyecto($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('proyectos_tareas_comentarios',$form_data);
+	}
+	
+	
+	function info_bitacora_tarea_proyecto($id)
+	{
+		$this->db->select('id,comentario,id_proyecto_tarea_fk');
+		$this->db->where('id',$id);
+		$results = $this->db->get('proyectos_tareas_comentarios')->row();
 		return $results;
 	}
 }

@@ -46,6 +46,7 @@
 								<th class="text-center">Fecha</th>
 								<th class="text-center">Descripción</th>
 								<th class="text-center">Usuario</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,6 +58,16 @@
 								<td class="text-center"><?= $bitacora->fecha ?></td>
 								<td class="text-center"><?= $bitacora->comentario?></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
+								<td class="text-center">
+									<?php
+									if($this->session->userdata('user_id') == $bitacora->id_usuario){
+									?>
+									<a href="<?= site_url('tareas_proyectos/editar_bitacora_tarea_proyecto/'.$bitacora->id_comentario) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+									<a href="<?= site_url('tareas_proyectos/eliminar_bitacora_tarea_proyecto/'.$bitacora->id_comentario."/".$id_tarea) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+									<?php
+									}
+									?>
+								</td>
 							</tr>
 							<?php
 							}
@@ -163,4 +174,20 @@ function asignar()
 		alert('No ha seleccionado un usuario');
 	}
 }
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			maxWidth	: 800,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '100%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});
 </script>

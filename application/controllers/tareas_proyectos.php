@@ -91,5 +91,30 @@ class Tareas_proyectos extends CI_Controller {
 
 		force_download($archivo, $datos);
 	}
+	
+	function editar_bitacora_tarea_proyecto($id)
+	{
+		$data['v']="editar_bitacora_tarea_proyecto";
+		$data['datos']=$this->tareas_proyectos_model->info_bitacora_tarea_proyecto($id);
+		$this->load->view('main_modal',$data);
+	}
+
+	function guardar_edicion_bitacora_tarea_proyecto()
+	{
+		$form_data=array(
+			'comentario'	=>	$this->input->post('comentario'),
+		);
+		$this->tareas_proyectos_model->editar_bitacora_tarea_proyecto($form_data,$this->input->post('id_bitacora'));
+		$this->load->view('cerrar_facybox');
+	}
+	
+	function eliminar_bitacora_tarea_proyecto($id,$id_proyecto)
+	{
+		$form_data=array(
+			'status'	=>	'0'
+		);
+		$this->tareas_proyectos_model->editar_bitacora_tarea_proyecto($form_data,$id);
+		redirect('proyectos/ver_proyecto/'.$id_proyecto);
+	}
 }
 ?>

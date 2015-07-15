@@ -87,7 +87,24 @@ class Clientes_model extends CI_Model {
 		$this->db->select('m.id,m.nombre,m.telefono,m.correo,m.puesto,m.id_clasificacion,clas.nombre clasiff');
 		$this->db->join('clasificacion_clientes clas','clas.id=m.id_clasificacion', 'left');
 		$this->db->where('id_cliente_fk',$id);
+		$this->db->where('m.status','1');
 		$results = $this->db->get('miembros m')->result();
+		return $results;
+	}
+	
+	function info_contacto($id)
+	{
+		$this->db->select('id,nombre,telefono,correo,puesto,direccion');
+		$this->db->where('id',$id);
+		$results = $this->db->get('miembros')->row();
+		return $results;
+	}
+	
+	function info_clasificaciones_contacto($id)
+	{
+		$this->db->select('clasificacion');
+		$this->db->where('id_miembro_fk',$id);
+		$results = $this->db->get('miembros_clasificaciones')->result();
 		return $results;
 	}
 	
@@ -111,6 +128,18 @@ class Clientes_model extends CI_Model {
 	function guardar_clasificacion_contacto($form_data)
 	{
 		$this->db->insert('miembros_clasificaciones', $form_data);
+	}
+	
+	function editar_contacto($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('miembros',$form_data);
+	}
+	
+	function borrar_clasificacion_contacto($id)
+	{
+		$this->db->where('id_miembro_fk',$id);
+		$this->db->delete('miembros_clasificaciones');
 	}
 }
 ?>
