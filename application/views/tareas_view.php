@@ -51,8 +51,8 @@
 								<td class="text-center"><?= $tarea_proyecto->fecha_fin ?></td>
 								<td class="text-center">
 								<?php
-									if($tarea_proyecto->estatus == '0'){ echo "<a haref='javascript:void(0)' class='btn-sm btn-warning'>En proceso</a> ";}
-									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-info'>Terminado</a> ";}
+									if($tarea_proyecto->estatus == '0'){ echo "<a haref='javascript:void(0)' class='btn-sm btn-success'>Abierto</a> ";}
+									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
 								<td class="text-center">
@@ -105,8 +105,8 @@
 								<td class="text-center"><?= $tarea_cliente->fecha_fin ?></td>
 								<td class="text-center">
 								<?php
-									if($tarea_cliente->estatus == '0'){ echo "<a haref='javascript:void(0)' class='btn-sm btn-warning'>En proceso</a> ";}
-									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-info'>Terminado</a> ";}
+									if($tarea_cliente->estatus == '0'){ echo "<a haref='javascript:void(0)' class='btn-sm btn-success'>Abierto</a> ";}
+									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
 								<td class="text-center">
