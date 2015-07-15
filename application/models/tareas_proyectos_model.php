@@ -95,5 +95,10 @@ class tareas_proyectos_model extends CI_Model {
 		$this->db->where('id',$id);
 		$this->db->update('proyectos_tareas',$form_data);
 	}
+	
+	function guardar_bitacora_proyecto($form_data)
+	{
+		$this->db->insert('proyectos_comentarios',$form_data);
+	}
 }
 ?>
