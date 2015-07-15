@@ -101,6 +101,7 @@
 						</div>
 					</div>
 					<?php 
+					$options="";
 						foreach($clasificaciones as $tipo)
 						{
 							$options.='<option value="'.$tipo->id.'" >'.$tipo->nombre.'</option>';
