@@ -54,7 +54,7 @@
 										$options="";
 										foreach($clasificaciones as $clasificacion)
 										{
-											echo '<option value="'.$clasificacion->id.'">'.$clasificacion->nombre.'</option>';
+											echo '<option value="'.$clasificacion->id.'" selected>'.$clasificacion->nombre.'</option>';
 										}
 									?>
 								</select>
@@ -67,16 +67,31 @@
 						<div class="col-sm-4 ">
 							<div class="input-group">
 								<select id="activo" name="activo" class="select-chosen form-control" data-placeholder="Selecciona un status.." >
-									<option value="0">Inactivo</option>
-									<option value="1">Activo</option>
+									<option value="1">Puede no estar al corriente</option>
+									<option value="2">Conoce de los proyectos</option>
+									<option value="3">Recomienda</option>
+									<option value="4"> Participa en la decisión</option>
 								</select>
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-						<label class="col-sm-2 control-label" for="comentario">Comentarios </label>
+						<label class="col-sm-2 control-label" for="activ2o">Status 2</label>
 						<div class="col-sm-4 ">
 							<div class="input-group">
-								<textarea id="comentario" name="comentario" rows="2" class="form-control" placeholder="Comentarios.."></textarea>
+								<select id="activo2" name="activo2" class="select-chosen form-control" data-placeholder="Selecciona un status 2.." >
+									<option value="1">Ex trabajador</option>
+									<option value="2">No nos conoce</option>
+									<option value="3">Sí nos conoce: Es contacto principal</option>
+								</select>
+								<span class="input-group-addon"><i class="gi gi-user"></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="comentario">Comentarios </label>
+						<div class="col-sm-10 ">
+							<div class="input-group">
+								<textarea id="comentario" name="comentario" rows="5" class="form-control" placeholder="Comentarios.."></textarea>
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>

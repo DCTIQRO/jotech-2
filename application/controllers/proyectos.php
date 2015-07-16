@@ -124,7 +124,9 @@ class Proyectos extends CI_Controller {
 		$data['descripcion']="Proyecto ".$proyecto->descripcion;
 		$data['bitacoras']=$this->proyectos_model->bitacora_proyecto($id);
 		$data['usuarios']=$this->proyectos_model->ver_usuarios_proyectos($id);
+		$data['contactos']=$this->proyectos_model->ver_contactos_proyectos($id);
 		$data['asignados']=$this->proyectos_model->ver_usuarios_asignados($id);
+		$data['asignados_contactos']=$this->proyectos_model->ver_contactos_asignados($id);
 		$data['tareas']=$this->proyectos_model->ver_tareas_proyecto($id);
 		$this->load->view('main',$data);
 	}
@@ -158,6 +160,19 @@ class Proyectos extends CI_Controller {
 		);
 		
 		$this->proyectos_model->guardar_usuarios($form_usuarios);
+	}
+	
+	function asignar_contacto()
+	{
+		date_default_timezone_set('America/Mexico_City');
+		
+		$form_usuarios[]=array(
+				'id_miembro_fk'		=>	$this->input->post('usuario'),
+				'id_proyecto_fk'	=>	$this->input->post('id_proyecto'),
+				'fecha_insercion'	=>	date('Y-m-d H:i:s'),
+		);
+		
+		$this->proyectos_model->guardar_contactos($form_usuarios);
 	}
 	
 	function desasignar_usuario($id,$id_proyecto)

@@ -143,10 +143,9 @@ function agregarClasif ()
 				'<div class="input-group">'+
 					'<select id="prioridad'+i+'" name="prioridad'+i+'" class="select-chosen form-control prioridades">'+
 						'<option value="">Seleccione una Prioridad</option>'+
-						'<option value="1">Prioridad 1</option>'+
-						'<option value="2">Prioridad 2</option>'+
-						'<option value="3">Prioridad 3</option>'+
-						'<option value="4">Prioridad 4</option>'+
+						'<option value="1">Baja</option>'+
+						'<option value="2">Mediana</option>'+
+						'<option value="3">Baja</option>'+
 					'</select>'+
 					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
 				'</div>'+

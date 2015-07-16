@@ -150,6 +150,50 @@
 		
 		<div class="block full">
 			<div class="block-title">
+				<h2>Contactos del <strong><?= $titulo ?></strong></h2>
+			</div>
+			<form action="<?= site_url('proyectos/asignar_contacto') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
+				<div class="form-group">
+					<?php
+					$options2[''] ='Selecciona un Contacto';
+					if(!empty($usuarios)){
+						foreach($contactos as $contacto){
+							$options2[$contacto->id] =  ($contacto->nombre);
+						}
+					}
+					?>
+					<div class="col-xs-12">
+						<?= form_dropdown('contactos', $options2, '','class="form-control select-chosen" id="contactos"'); ?>
+					</div>
+				</div>	
+				<div class="form-group">
+					<div class="col-xs-12 text-center">
+						<a href="javascript:void(0)" onClick="asignar2()" class="btn-sm btn-success" />Agregar</a>
+					</div>
+				</div>	
+				<input type="hidden" id="id_proyecto" name="id_proyecto" value="<?= $id_proyecto ?>" />
+			</form>
+			<div class="row">
+				<hr class="style-four">
+			</div>
+			<form class="form-horizontal form-bordered">
+				<?php
+				if(!empty($asignados)){
+					foreach($asignados_contactos as $asignado_contacto){
+				?>
+						<div class="form-group text-center">
+							<label class="label-control"><?= ($asignado_contacto->nombre) ?></label>
+							<a href="<?= site_url('proyectos/desasignar_contacto/'.($asignado_contacto->id)."/".$id_proyecto) ?>" class="btn-sm btn-danger pull-right"><i class="fa fa-times"></i></a>
+						</div>
+				<?php	
+					}
+				}
+				?>
+			</form>
+		</div>
+		
+		<div class="block full">
+			<div class="block-title">
 				<h2>Tareas del <strong><?= $titulo ?></strong></h2>
 			</div>
 			<form id="nueva_tarea" action="<?= site_url('proyectos/crear_tarea_proyecto') ?>" class="form-horizontal form-bordered hidden animation-pullDown" method="post" accept-charset="utf-8">
@@ -252,6 +296,23 @@ function asignar()
 	if($('#usuarios').val() != ""){
 		$.post("<?= site_url('proyectos/asignar_usuario') ?>",{
 				usuario: $('#usuarios').val(),
+				id_proyecto: $('#id_proyecto').val(),
+			}, function(result){
+			//console.log(result);
+			location.reload(true);
+		});
+	}
+	else
+	{
+		alert('No ha seleccionado un usuario');
+	}
+}
+
+function asignar2()
+{
+	if($('#contactos').val() != ""){
+		$.post("<?= site_url('proyectos/asignar_contacto') ?>",{
+				usuario: $('#contactos').val(),
 				id_proyecto: $('#id_proyecto').val(),
 			}, function(result){
 			//console.log(result);

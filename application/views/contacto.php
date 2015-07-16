@@ -12,12 +12,13 @@
 			<table id="tabla_contacto" class="table table-vcenter table-condensed table-bordered">
 				<thead>
 					<tr>
-						<th class="text-center">ID</th>
+						<!--<th class="text-center">ID</th>-->
 						<th class="text-center">Nombre</th>
 						<th class="text-center">Puesto</th>
 						<th class="text-center">Teléfono</th>
 						<th class="text-center">Correo</th>
 						<th class="text-center">Status</th>
+						<th class="text-center">Status 2</th>
 						<th class="text-center">Comentarios</th>
 						<th class="text-center">Clasificación</th>
 						<th class="text-center">Acciones</th>
@@ -29,15 +30,24 @@
 					{
 					?>
 					<tr>
-						<td class="text-center"><?= $contacto->id ?></td>
+						<!--<td class="text-center"><?= $contacto->id ?></td-->
 						<td class="text-center"><a href="javascript:void(0)"><?= $contacto->nombre ?></a></td>
 						<td class="text-center"><?= $contacto->puesto ?></td>
 						<td class="text-center"><?= $contacto->telefono ?></td>
 						<td class="text-center"><?= $contacto->correo ?></td>
 						<td class="text-center">
 						<?php
-							if($contacto->activo == 0){echo '<label class="btn btn-sm btn-danger">Inactivo</label>';}
-							if($contacto->activo == 1){echo '<label class="btn btn-sm btn-success">Activo</label>';}
+							if($contacto->activo == 1){echo '<label class="btn btn-xs btn-warning">Puede no estar al corriente</label>';}
+							if($contacto->activo == 2){echo '<label class="btn btn-xs btn-success">Conoce de los proyectos</label>';}
+							if($contacto->activo == 3){echo '<label class="btn btn-xs btn-info">Recomienda</label>';}
+							if($contacto->activo == 4){echo '<label class="btn btn-xs btn-primary">Participa en la decisión</label>';}
+						?></td>
+						
+						<td class="text-center">
+						<?php
+							if($contacto->activo == 1){echo '<label class="btn btn-xs btn-warning">Ex trabajador</label>';}
+							if($contacto->activo == 2){echo '<label class="btn btn-xs btn-success">No nos conoce</label>';}
+							if($contacto->activo == 3){echo '<label class="btn btn-xs btn-info">Sí nos conoce: Es contacto principal</label>';}
 						?></td>
 						<td class="text-center"><?= $contacto->comentarios ?></td>
 						<td class="text-center">

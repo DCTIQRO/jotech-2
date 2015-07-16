@@ -68,26 +68,46 @@
 					</div>
 				</div>
 				<div class="form-group">
-						<label class="col-sm-2 control-label" for="activo">Status</label>
-						<div class="col-sm-4 ">
-							<div class="input-group">
-								<select id="activo" name="activo" class="select-chosen form-control" data-placeholder="Selecciona un status.." >
-									<?php $select=""; if($datos->activo == '0'){$select="selected";} ?>
-									<option value="0" <?= $select ?> >Inactivo</option>
-									<?php $select=""; if($datos->activo == '1'){$select="selected";} ?>
-									<option value="1" <?= $select ?> >Activo</option>
-								</select>
-								<span class="input-group-addon"><i class="gi gi-user"></i></span>
-							</div>
-						</div>
-						<label class="col-sm-2 control-label" for="comentario">Comentarios </label>
-						<div class="col-sm-4 ">
-							<div class="input-group">
-								<textarea id="comentario" name="comentario" rows="2" class="form-control" placeholder="Comentarios.."><?= $datos->comentarios ?></textarea>
-								<span class="input-group-addon"><i class="gi gi-user"></i></span>
-							</div>
+					<label class="col-sm-2 control-label" for="activo">Status</label>
+					<div class="col-sm-4 ">
+						<div class="input-group">
+							<select id="activo" name="activo" class="select-chosen form-control" data-placeholder="Selecciona un status.." >
+								<?php $select=""; if($datos->activo == '1'){$select="selected";} ?>
+								<option value="1" <?= $select ?> >Puede no estar al corriente</option>
+								<?php $select=""; if($datos->activo == '2'){$select="selected";} ?>
+								<option value="2" <?= $select ?> >Conoce de los proyectos</option>
+								<?php $select=""; if($datos->activo == '3'){$select="selected";} ?>
+								<option value="3" <?= $select ?> >Recomienda</option>
+								<?php $select=""; if($datos->activo == '4'){$select="selected";} ?>
+								<option value="4" <?= $select ?> >Participa en la decisión</option>
+							</select>
+							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
+					<label class="col-sm-2 control-label" for="activo2">Status2</label>
+					<div class="col-sm-4 ">
+						<div class="input-group">
+							<select id="activo2" name="activo2" class="select-chosen form-control" data-placeholder="Selecciona un status.." >
+								<?php $select=""; if($datos->activo2 == '1'){$select="selected";} ?>
+								<option value="1" <?= $select ?> >Ex trabajador</option>
+								<?php $select=""; if($datos->activo2 == '2'){$select="selected";} ?>
+								<option value="2" <?= $select ?> >No nos conoce</option>
+								<?php $select=""; if($datos->activo2 == '3'){$select="selected";} ?>
+								<option value="3" <?= $select ?> >Sí nos conoce: Es contacto principal</option>
+							</select>
+							<span class="input-group-addon"><i class="gi gi-user"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="comentario">Comentarios </label>
+					<div class="col-sm-10 ">
+						<div class="input-group">
+							<textarea id="comentario" name="comentario" rows="2" class="form-control" placeholder="Comentarios.."><?= $datos->comentarios ?></textarea>
+							<span class="input-group-addon"><i class="gi gi-user"></i></span>
+						</div>
+					</div>
+				</div>
 				<input type="hidden" name="id_contacto" id="id_contacto" value="<?= $datos->id ?>" />
 					
 				<div class="form-group text-center">
