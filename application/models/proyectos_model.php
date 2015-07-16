@@ -166,6 +166,13 @@ class Proyectos_model extends CI_Model {
 		$this->db->delete('proyectos_usuarios');
 	}
 	
+	function desasignar_contacto($id,$proyecto)
+	{
+		$this->db->where('id_proyecto_fk',$proyecto);
+		$this->db->where('id_miembro_fk',$id);
+		$this->db->delete('proyectos_contactos');
+	}
+	
 	function crear_tarea_proyecto($form_data)
 	{
 		$this->db->insert('proyectos_tareas', $form_data); 

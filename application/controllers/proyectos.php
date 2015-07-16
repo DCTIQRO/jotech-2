@@ -181,6 +181,12 @@ class Proyectos extends CI_Controller {
 		redirect('proyectos/ver_proyecto/'.$id_proyecto);
 	}
 	
+	function desasignar_contacto($id,$id_proyecto)
+	{
+		$this->proyectos_model->desasignar_contacto($id,$id_proyecto);
+		redirect('proyectos/ver_proyecto/'.$id_proyecto);
+	}
+	
 	function crear_tarea_proyecto()
 	{
 		list($dia,$mes,$año)=explode('-',$this->input->post('fecha_inicio'));
