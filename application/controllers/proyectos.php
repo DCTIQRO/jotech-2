@@ -221,14 +221,14 @@ class Proyectos extends CI_Controller {
 	{
 		date_default_timezone_set('America/Mexico_City');
 		$form_data=array(
-			'estatus'	=>	'1'
+			'estatus'	=>	'0'
 		);
 		$this->proyectos_model->cerrar_proyecto($form_data,$id);
 		
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha abierto el proyecto '.$proyecto->nombre,
+			'comentario'	=>	'Se ha cerrado el proyecto '.$proyecto->nombre,
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$proyecto->id_cliente_fk,
@@ -243,14 +243,14 @@ class Proyectos extends CI_Controller {
 	{
 		date_default_timezone_set('America/Mexico_City');
 		$form_data=array(
-			'estatus'	=>	'0'
+			'estatus'	=>	'1'
 		);
 		$this->proyectos_model->cerrar_proyecto($form_data,$id);
 		
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha cerrado el proyecto '.$proyecto->nombre,
+			'comentario'	=>	'Se ha abierto el proyecto '.$proyecto->nombre,
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$proyecto->id_cliente_fk,
