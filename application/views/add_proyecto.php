@@ -71,7 +71,7 @@
 			</div>
 			
 			<div id="Clonar" name="Clonar">
-			<div class="form-group">
+			<div class="form-group" id="grupo0">
 				<label class="col-sm-2 control-label"  for="clasificacion">Clasificación</label>
 				<div class="col-sm-4">
 					<div class="input-group">
@@ -90,7 +90,7 @@
 					</div>
 				</div>
 				<label class="col-sm-2 control-label"  for="prioridad">Prioridad</label>
-				<div class="col-sm-4">
+				<div class="col-sm-3">
 					<div class="input-group">
 						<select id="prioridad" name="prioridad" class="select-chosen form-control prioridades">
 							<option value="">Seleccione una Prioridad</option>
@@ -100,7 +100,10 @@
 						</select>
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
-				</div>	
+				</div>
+				<div class="col-sm-1"  Style="padding-top:10px">
+					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
+				</div>
 			</div>
 			</div>
 			<div id="new_clasif" name="new_clasif">
@@ -112,7 +115,6 @@
 			</div>
 			<div class="form-group text-center">
 				<a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a>
-				<a href="javascript:void(0)" class="btn-sm btn-danger" onClick="quitarClasif()">Remover Ultima Clasificación</a>
 			</div>
 			<div class="form-group text-center">
 					<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Guardar</button>
@@ -139,7 +141,7 @@ function agregarClasif ()
 				'</div>'+
 			'</div>'+
 			'<label class="col-sm-2 control-label"  for="prioridad'+i+'">Prioridad '+i+'</label>'+
-			'<div class="col-sm-4">'+
+			'<div class="col-sm-3">'+
 				'<div class="input-group">'+
 					'<select id="prioridad'+i+'" name="prioridad'+i+'" class="select-chosen form-control prioridades">'+
 						'<option value="">Seleccione una Prioridad</option>'+
@@ -150,6 +152,9 @@ function agregarClasif ()
 					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
 				'</div>'+
 			'</div>'+
+			'<div class="col-sm-1"  Style="padding-top:10px">'+
+				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
+			'</div>'+
 		'</div>';
 	$("#new_clasif").append( x );
 	$('.select-chosen').chosen();
@@ -158,13 +163,9 @@ function agregarClasif ()
 	i++;
 }
 
-function quitarClasif ()
+function quitarClasif (num)
 {
-	if(i>1){
-		i--;
-		$('#grupo'+i).remove();
-		$('#numero_clas').val(i-1);
-	}
+	$('#grupo'+num).remove();
 }
 </script>
 

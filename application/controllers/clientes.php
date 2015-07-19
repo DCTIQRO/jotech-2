@@ -75,7 +75,7 @@ class Clientes extends CI_Controller {
 			}
 		}
 		
-		redirect('clientes');
+		redirect('clientes/contacto/'.$id_cliente);
 	}
 	
 	function ver($id)
@@ -167,9 +167,10 @@ class Clientes extends CI_Controller {
 			'correo'			=>	$this->input->post('correo'),
 			'activo'			=>	$this->input->post('activo'),
 			'activo2'			=>	$this->input->post('activo2'),
-			'comentarios'			=>	$this->input->post('comentario'),
+			'cp'				=>	$this->input->post('cp'),
+			'comentarios'		=>	$this->input->post('comentario'),
 			'id_cliente_fk'		=>	$this->input->post('id_cliente'),
-			'fecha_registro'	=>	date('Y-m-d'),
+			'fecha_registro'	=>	date('Y-m-d H:i:s'),
 		);
 		$id_contacto=$this->clientes_model->guardar_contacto($form_data);
 		if($id_contacto>0)
@@ -207,7 +208,8 @@ class Clientes extends CI_Controller {
 			'correo'			=>	$this->input->post('correo'),
 			'activo'			=>	$this->input->post('activo'),
 			'activo2'			=>	$this->input->post('activo2'),
-			'comentarios'			=>	$this->input->post('comentario'),
+			'cp'				=>	$this->input->post('cp'),
+			'comentarios'		=>	$this->input->post('comentario'),
 		);
 		
 		$id_contacto=$this->input->post('id_contacto');

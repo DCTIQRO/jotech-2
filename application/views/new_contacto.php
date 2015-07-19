@@ -22,6 +22,13 @@
 					</div>
 					
 					<div class="form-group">
+						<label class="col-sm-2 control-label" for="cp">CP </label>
+						<div class="col-sm-4 ">
+							<div class="input-group">
+								<input type="number" id="cp" name="cp" class="form-control" placeholder="CP del contacto..">
+								<span class="input-group-addon"><i class="gi gi-user"></i></span>
+							</div>
+						</div>
 						<label class="col-sm-2 control-label" for="telefono">Teléfono </label>
 						<div class="col-sm-4 ">
 							<div class="input-group">
@@ -29,6 +36,9 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
+					</div>
+					
+					<div class="form-group">
 						<label class="col-sm-2 control-label" for="correo">Correo </label>
 						<div class="col-sm-4 ">
 							<div class="input-group">
@@ -36,9 +46,6 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-					</div>
-					
-					<div class="form-group">
 						<label class="col-sm-2 control-label" for="puesto">Puesto </label>
 						<div class="col-sm-4 ">
 							<div class="input-group">
@@ -46,22 +53,8 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-						<label class="col-sm-2 control-label" for="clasificacion">Clasificación</label>
-						<div class="col-sm-4 ">
-							<div class="input-group">
-								<select id="clasificacion" name="clasificacion[]" class="select-chosen form-control" data-placeholder="Selecciona una clasificación.." multiple >
-									<?php 
-										$options="";
-										foreach($clasificaciones as $clasificacion)
-										{
-											echo '<option value="'.$clasificacion->id.'" selected>'.$clasificacion->nombre.'</option>';
-										}
-									?>
-								</select>
-								<span class="input-group-addon"><i class="gi gi-user"></i></span>
-							</div>
-						</div>
 					</div>
+					
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="activo">Status</label>
 						<div class="col-sm-4 ">
@@ -87,6 +80,25 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="clasificacion">Clasificación</label>
+						<div class="col-sm-10 ">
+							<div class="input-group">
+								<select id="clasificacion" name="clasificacion[]" class="select-chosen form-control" data-placeholder="Selecciona una clasificación.." multiple >
+									<?php 
+										$options="";
+										foreach($clasificaciones as $clasificacion)
+										{
+											echo '<option value="'.$clasificacion->id.'" selected>'.$clasificacion->nombre.'</option>';
+										}
+									?>
+								</select>
+								<span class="input-group-addon"><i class="gi gi-user"></i></span>
+							</div>
+						</div>
+					</div>
+					
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="comentario">Comentarios </label>
 						<div class="col-sm-10 ">

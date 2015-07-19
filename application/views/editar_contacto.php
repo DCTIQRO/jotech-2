@@ -23,6 +23,13 @@
 				</div>
 				
 				<div class="form-group">
+					<label class="col-sm-2 control-label" for="cp">CP </label>
+					<div class="col-sm-4 ">
+						<div class="input-group">
+							<input type="text" id="cp" name="cp" value="<?= $datos->cp ?>" class="form-control" placeholder="Teléfono del contacto..">
+							<span class="input-group-addon"><i class="gi gi-user"></i></span>
+						</div>
+					</div>
 					<label class="col-sm-2 control-label" for="telefono">Teléfono </label>
 					<div class="col-sm-4 ">
 						<div class="input-group">
@@ -30,6 +37,9 @@
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
+				</div>
+				
+				<div class="form-group">
 					<label class="col-sm-2 control-label" for="correo">Correo </label>
 					<div class="col-sm-4 ">
 						<div class="input-group">
@@ -37,9 +47,6 @@
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
-				</div>
-				
-				<div class="form-group">
 					<label class="col-sm-2 control-label" for="puesto">Puesto </label>
 					<div class="col-sm-4 ">
 						<div class="input-group">
@@ -47,8 +54,10 @@
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-2 control-label" for="clasificacion">Clasificación</label>
-					<div class="col-sm-4 ">
+					<div class="col-sm-10">
 						<div class="input-group">
 							<select id="clasificacion" name="clasificacion[]" class="select-chosen form-control" data-placeholder="Selecciona una clasificación.." multiple >
 								<?php 

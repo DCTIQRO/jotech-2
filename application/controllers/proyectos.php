@@ -40,7 +40,7 @@ class Proyectos extends CI_Controller {
 		$form_data=array(
 			'nombre' => $this->input->post('nombre'),
 			'descripcion' => $this->input->post('descripcion'),
-			'estatus' => $this->input->post('1'),
+			'estatus' => '1',
 			'fecha_inicio' => $año."-".$mes."-".$dia,
 			'descripcion_corta' => $this->input->post('descripcion_corta'),
 			'id_cliente_fk' => $this->input->post('id_cliente'),
@@ -61,7 +61,7 @@ class Proyectos extends CI_Controller {
 		$this->proyectos_model->guardar_etiquetas($form_etiqueta);
 		
 		$clasi=$this->input->post('clasificacion');
-		if($clasi != '0'){
+		if(!empty($clasi)){
 			$form_clasificacion=array(
 				'id_clasificacion' => $clasi,
 				'prioridad' 	=> $this->input->post('prioridad'),
@@ -75,7 +75,7 @@ class Proyectos extends CI_Controller {
 		for($i=1;$i<=$num;$i++)
 		{
 			$clasi=$this->input->post('clasificacion'.$i);
-			if($clasi != '0'){
+			if(!empty($clasi)){
 				$form_clasificacion=array(
 					'id_clasificacion' => $clasi,
 					'prioridad' 	=> $this->input->post('prioridad'.$i),
