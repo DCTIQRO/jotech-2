@@ -37,10 +37,11 @@ class Tareas_proyectos extends CI_Controller {
 	function guardar_bitacora()
 	{
 		date_default_timezone_set('America/Mexico_City');
-		
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
 		$form_data=array(
 			'comentario'		=>	$this->input->post('comentario'),
 			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia,
 			'id_usuario'		=>	$this->session->userdata('user_id'),
 			'id_proyecto_tarea_fk'	=>	$this->input->post('id_tarea')
 		);
@@ -108,6 +109,15 @@ class Tareas_proyectos extends CI_Controller {
 		);
 		$this->tareas_proyectos_model->editar_bitacora_tarea_proyecto($form_data,$this->input->post('id_bitacora'));
 		$this->load->view('cerrar_facybox');
+	}
+	
+	function cambiar_fecha()
+	{
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia
+		);
+		$this->tareas_proyectos_model->editar_bitacora_tarea_proyecto($form_data,$this->input->post('id_bitacora'));
 	}
 	
 	function eliminar_bitacora_tarea_proyecto($id,$id_proyecto)

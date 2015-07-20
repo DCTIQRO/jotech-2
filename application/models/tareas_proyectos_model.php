@@ -22,7 +22,7 @@ class tareas_proyectos_model extends CI_Model {
 	
 	function bitacora_tareas_proyecto($id)
 	{
-		$this->db->select('ptc.id id_comentario,ptc.comentario,ptc.fecha,pt.nombre,u.id id_usuario, u.first_name, u.last_name');
+		$this->db->select('ptc.id id_comentario,ptc.comentario,ptc.fecha,ptc.fecha_actividad,ptc.id id_bitacora,pt.nombre,u.id id_usuario, u.first_name, u.last_name');
 		$this->db->where('ptc.id_proyecto_tarea_fk',$id);
 		$this->db->where('ptc.status','1');
 		$this->db->join('proyectos_tareas pt','pt.id=ptc.id_proyecto_tarea_fk');
