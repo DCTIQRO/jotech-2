@@ -285,6 +285,36 @@
 				?>
 			</form>
 		</div>
+		
+		<div class="block full">
+			<div class="block-title">
+				<h2>Archivos del <strong><?= $titulo ?></strong></h2>
+			</div>
+			<div class="row">
+				<form action="<?= site_url('proyectos/upload/'.$id_proyecto) ?>" class="dropzone"></form>
+			</div>
+			<div class="row">
+				<hr class="style-four">
+			</div>
+			<div class="row">
+				<?php
+				foreach($archivos as $archivo)
+				{
+				?>
+					<div class="col-xs-10 col-xs-offset-1">
+						<a href="<?= site_url('proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>" class="widget widget-hover-effect2 themed-background-modern">
+							<div class="widget-simple">
+								<h4 class="widget-content widget-content-light text-center">
+									<strong><?= $archivo->archivo ?></strong>
+								</h4>
+							</div>
+						</a>
+					</div>
+				<?php
+				}
+				?>
+			</div>
+		</div>
 	</div>
 </div>
 <script src="<?= asset_url('js/pages/tablabitacoraproyectos.js') ?>"></script>

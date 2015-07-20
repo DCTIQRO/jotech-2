@@ -63,6 +63,17 @@ class Tareas extends CI_Controller {
 		}
 		
 		$this->tareas_model->guardar_usuarios($form_usuarios);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se ha creado la tarea cliente <a href="'.site_url('tareas/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre').'</a>',
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente'	=>	$this->input->post('id_cliente'),
+			'status'		=>	'1',
+			'tipo'			=>	'2'
+		);
+		$this->tareas_model->guardar_bitacora_cliente($form_bitacora);
+		
 		redirect('proyectos/proyectos_tareas/'.$this->input->post('id_cliente'));
 	}
 	
@@ -94,6 +105,7 @@ class Tareas extends CI_Controller {
 		);
 		
 		$this->tareas_model->guardar_bitacora_tarea($form_data);
+		
 		redirect('tareas/ver_tarea/'.$this->input->post('id_tarea'));
 	}
 	
@@ -155,7 +167,7 @@ class Tareas extends CI_Controller {
 		$tarea=$this->tareas_model->ver_tarea($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha cerrado la tarea '.$tarea->nombre,
+			'comentario'	=>	'Se ha cerrado la tarea <a href="'.site_url('tareas/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$tarea->id_cliente_fk,
@@ -178,7 +190,7 @@ class Tareas extends CI_Controller {
 		$tarea=$this->tareas_model->ver_tarea($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha abierto la tarea '.$tarea->nombre,
+			'comentario'	=>	'Se ha abierto la tarea <a href="'.site_url('tareas/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$tarea->id_cliente_fk,

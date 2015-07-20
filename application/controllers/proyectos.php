@@ -7,6 +7,7 @@ class Proyectos extends CI_Controller {
  		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->library('session');
+		$this->load->helper('download');
 		$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
@@ -97,6 +98,17 @@ class Proyectos extends CI_Controller {
 			);
 		}
 		$this->proyectos_model->guardar_usuarios($form_usuarios);
+				
+		$form_bitacora=array(
+			'comentario'	=>	'Se ha creado el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id_proyecto).'">'.$this->input->post('nombre').'</a>',
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente'	=>	$this->input->post('id_cliente'),
+			'status'		=>	'1',
+			'tipo'			=>	'2'
+		);
+		$this->proyectos_model->guardar_bitacora_cliente($form_bitacora);
+		
 		redirect('proyectos/proyectos_tareas/'.$this->input->post('id_cliente'));
 	}
 	
@@ -128,6 +140,7 @@ class Proyectos extends CI_Controller {
 		$data['asignados']=$this->proyectos_model->ver_usuarios_asignados($id);
 		$data['asignados_contactos']=$this->proyectos_model->ver_contactos_asignados($id);
 		$data['tareas']=$this->proyectos_model->ver_tareas_proyecto($id);
+		$data['archivos']=$this->proyectos_model->ver_archivos($id);
 		$this->load->view('main',$data);
 	}
 	
@@ -189,6 +202,7 @@ class Proyectos extends CI_Controller {
 	
 	function crear_tarea_proyecto()
 	{
+		date_default_timezone_set('America/Mexico_City');
 		list($dia,$mes,$año)=explode('-',$this->input->post('fecha_inicio'));
 		list($dia2,$mes2,$año2)=explode('-',$this->input->post('fecha_fin'));
 		
@@ -212,6 +226,17 @@ class Proyectos extends CI_Controller {
 				);
 			}
 			$this->proyectos_model->asignar_tareas($form_usuarios);
+			
+			$form_bitacora=array(
+				'comentario'	=>	'Se ha creado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre_tarea').'</a>',
+				'fecha'			=>	date('Y-m-d H:i:s'),
+				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+				'id_proyecto_fk'	=>	$this->input->post('proyecto'),
+				'status'		=> '1',
+				'tipo'			=> '2'
+			);
+			$this->proyectos_model->guardar_bitacora_proyecto($form_bitacora);
+			
 			redirect('proyectos/ver_proyecto/'.$this->input->post('proyecto'));
 		}
 		
@@ -228,7 +253,7 @@ class Proyectos extends CI_Controller {
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha cerrado el proyecto '.$proyecto->nombre,
+			'comentario'	=>	'Se ha cerrado el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id).'">'.($proyecto->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$proyecto->id_cliente_fk,
@@ -250,7 +275,7 @@ class Proyectos extends CI_Controller {
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha abierto el proyecto '.$proyecto->nombre,
+			'comentario'	=>	'Se ha abierto el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id).'">'.($proyecto->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$proyecto->id_cliente_fk,
@@ -275,7 +300,7 @@ class Proyectos extends CI_Controller {
 			);
 		
 			$form_bitacora=array(
-				'comentario'	=>	"Se ha cerrado la Tarea".$tarea->nombre,
+				'comentario'	=>	'Se ha cerrado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 				'fecha'			=>	date('Y-m-d H:i:s'),
 				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
 				'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
@@ -290,7 +315,7 @@ class Proyectos extends CI_Controller {
 				'estatus'	=>	'0'
 			);
 			$form_bitacora=array(
-				'comentario'	=>	"Se ha abierto la Tarea".$tarea->nombre,
+				'comentario'	=>	'Se ha abierto la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 				'fecha'			=>	date('Y-m-d H:i:s'),
 				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
 				'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
@@ -326,5 +351,34 @@ class Proyectos extends CI_Controller {
 		$this->proyectos_model->editar_bitacora_proyecto($form_data,$id);
 		redirect('proyectos/ver_proyecto/'.$id_proyecto);
 	}
+	
+	function upload($id) 
+    {
+        if (!empty($_FILES)) {
+			$nuevo_nombre=num_random(10);
+			$temp = explode(".",$_FILES["file"]["name"]);    
+			$tempFile = $_FILES['file']['tmp_name'];
+			$fileName = $nuevo_nombre.'.' .end($temp);
+			$targetPath = 'assets/upload/';
+			$targetFile = $targetPath . $fileName;
+			move_uploaded_file($tempFile, $targetFile);
+			chmod($targetFile,0644);
+			
+			$form_data=array(
+				'archivo'		=>	$_FILES["file"]["name"],
+				'url'			=>	$fileName,
+				'id_proyecto'	=>	$id
+			);
+			$this->proyectos_model->agregar_archivo($form_data);
+        }
+    }
+	
+	function descargar($archivo,$url)
+	{
+		$datos = file_get_contents("assets/upload/".$url); // Leer el contenido del archivo
+
+		force_download($archivo, $datos);
+	}
+	
 }
 ?>

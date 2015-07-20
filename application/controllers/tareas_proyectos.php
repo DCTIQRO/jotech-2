@@ -84,9 +84,9 @@ class Tareas_proyectos extends CI_Controller {
 				'id_tarea_fk'	=>	$id
 			);
 			$this->tareas_proyectos_model->agregar_archivo($form_data);
-        }
+      
+	  }
     }
-	
 	function descargar($archivo,$url)
 	{
 		$datos = file_get_contents("assets/upload/".$url); // Leer el contenido del archivo
@@ -131,7 +131,7 @@ class Tareas_proyectos extends CI_Controller {
 		$tarea=$this->tareas_proyectos_model->ver_tarea($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha cerrado la Tarea '.$tarea->nombre,
+			'comentario'	=>	'Se ha cerrado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
 			'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
@@ -154,7 +154,7 @@ class Tareas_proyectos extends CI_Controller {
 		$tarea=$this->tareas_proyectos_model->ver_tarea($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha abierto la Tarea '.$tarea->nombre,
+			'comentario'	=>	'Se ha abierto la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
 			'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,

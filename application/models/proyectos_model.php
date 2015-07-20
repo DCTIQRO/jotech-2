@@ -228,5 +228,18 @@ class Proyectos_model extends CI_Model {
 		return $results;
 	}
 	
+	function agregar_archivo($form_data)
+	{
+		$this->db->insert('proyectos_archivos', $form_data);
+	}
+	
+	function ver_archivos($id)
+	{
+		$this->db->select('archivo,url');
+		$this->db->where('id_proyecto',$id);
+		$results = $this->db->get('proyectos_archivos')->result();
+		return $results;
+	}
+	
 }
 ?>
