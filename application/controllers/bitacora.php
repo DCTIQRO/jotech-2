@@ -20,7 +20,8 @@ class Bitacora extends CI_Controller {
 	function cliente($id)
 	{
 		date_default_timezone_set('America/Mexico_City');
-		$this->form_validation->set_rules('comentario', 'comentario', 'required');
+		$this->form_validation->set_rules('comentario', 'Comentario', 'required');
+		$this->form_validation->set_rules('fecha', 'Fecha Actividad', 'required');
 		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
 		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
 		{
@@ -34,13 +35,15 @@ class Bitacora extends CI_Controller {
 		}
 		else
 		{
+				list($dia,$mes,$año)=explode('-',set_value('fecha'));
 				$form_data=array(
-					'comentario'	=>	set_value('comentario'),
-					'fecha'			=>	date('Y-m-d H:i:s'),
-					'id_usuario'	=>	$this->session->userdata('user_id'),
-					'id_cliente'	=>	$this->input->post('id_cliente'),
-					'status'		=>	'1',
-					'tipo'			=>	'1'
+					'comentario'		=>	set_value('comentario'),
+					'fecha'				=>	date('Y-m-d H:i:s'),
+					'fecha_actividad'	=>	$año."-".$mes."-".$dia,
+					'id_usuario'		=>	$this->session->userdata('user_id'),
+					'id_cliente'		=>	$this->input->post('id_cliente'),
+					'status'			=>	'1',
+					'tipo'				=>	'1'
 				);
 				
 				$this->bitacora_model->guardar_bitacora_cliente($form_data);
@@ -71,6 +74,16 @@ class Bitacora extends CI_Controller {
 		);
 		$this->bitacora_model->editar_bitacora_cliente($form_data,$this->input->post('id_bitacora'));
 		$this->load->view('cerrar_facybox');
+	}
+	
+	function cambiar_fecha()
+	{
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia
+		);
+		
+		$this->bitacora_model->editar_bitacora_cliente($form_data,$this->input->post('id_bitacora'));
 	}
 }
 ?>

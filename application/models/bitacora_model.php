@@ -17,7 +17,7 @@ class Bitacora_model extends CI_Model {
 
 	function bitacora_cliente($id)
 	{
-		$this->db->select('cc.idclientes_comentarios,cc.tipo,cc.comentario,cc.fecha,c.nombre,u.id, u.first_name, u.last_name');
+		$this->db->select('cc.idclientes_comentarios,cc.tipo,cc.comentario,cc.fecha,cc.fecha_actividad,cc.idclientes_comentarios id_bitacora,c.nombre,u.id, u.first_name, u.last_name');
 		$this->db->where('cc.id_cliente',$id);
 		$this->db->where('cc.status','1');
 		$this->db->join('clientes c','c.id=cc.id_cliente');

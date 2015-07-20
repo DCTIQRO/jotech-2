@@ -5,12 +5,18 @@
 	<div class="row">
 		<form id="bitacora_cliente" action="<?= site_url('bitacora/cliente/'.$id_cliente) ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 			<div class="form-group">
-				<label class="label-control col-xs-3 col-sm-2" for="comentario">Comentario</label>
-				<div class="col-xs-6 col-sm-7">
-					<textarea class="form-control" rows="3" id="comentario" name="comentario" placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+				<div class="col-xs-12 col-sm-10 text-center">
+					<label class="label-control col-xs-12 col-sm-2" for="comentario">Comentario</label>
+					<div class="col-xs-12 col-sm-10">
+						<textarea class="form-control" rows="3" id="comentario" name="comentario" placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+					</div>
+					<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
+					<div class="col-xs-12 col-sm-10">
+						<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" rows="3" id="fecha" name="fecha" placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
+					</div>
 				</div>
-				<div class="col-xs-3 col-sm-2 text-center">
-					<a href="javascript:void(0)" onClick="agregar_bitacora()" class="btn-sm btn-success">Guardar</a><br><br>
+				<div class="col-xs-12 col-sm-2 text-center">
+					<a href="javascript:void(0)" onClick="agregar_bitacora()" class="btn-sm btn-success">Guardar</a><br class="hidden-xs"><br class="hidden-xs">
 					<a href="<?= site_url('clientes/ver/'.$id_cliente) ?>" class="btn-sm btn-info">Regresar</a>
 				</div>
 				<div class="col-xs-12 text-center"><?php echo form_error('comentario'); ?></div>
@@ -24,6 +30,7 @@
 				<thead>
 					<tr>
 						<th class="text-center">Fecha</th>
+						<th class="text-center">Fecha Actividad</th>
 						<th class="text-center">Descripción</th>
 						<th class="text-center">Usuario</th>
 						<th class="text-center">Acciones</th>
@@ -33,9 +40,11 @@
 					<?php
 					foreach($bitacoras as $bitacora)
 					{
+						list($año,$mes,$dia)=explode("-",$bitacora->fecha_actividad);
 					?>
 					<tr>
 						<td class="text-center"><?= $bitacora->fecha ?></td>
+						<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
 						<td class="text-center"><?= $bitacora->comentario?></td>
 						<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 						<td class="text-center">
@@ -67,6 +76,19 @@
 function agregar_bitacora()
 {
 	$('#bitacora_cliente').submit();
+}
+$(".input-datepicker").datepicker({
+	autoclose:true,
+});
+function cambiarFecha(id)
+{
+	alert($('#fecha'+id).val());
+	$.post("<?= site_url('bitacora/cambiar_fecha') ?>", {
+		id_bitacora: id, 
+		fecha:$('#fecha'+id).val()
+	}, function(result){
+       console.log(result);
+    });
 }
 </script>
 
