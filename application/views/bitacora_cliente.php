@@ -82,7 +82,6 @@ $(".input-datepicker").datepicker({
 });
 function cambiarFecha(id)
 {
-	alert($('#fecha'+id).val());
 	$.post("<?= site_url('bitacora/cambiar_fecha') ?>", {
 		id_bitacora: id, 
 		fecha:$('#fecha'+id).val()
