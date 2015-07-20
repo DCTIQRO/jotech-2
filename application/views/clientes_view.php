@@ -34,6 +34,7 @@
 					<th class="text-center">Correo</th>
 					<th class="text-center">Telefono</th>
 					<th class="text-center hidden">Direccion</th>
+					<th class="text-center ">CP</th>
 					<th class="text-center">Ciudad</th>
 					<th class="text-center hidden">Estado</th>
 					<th class="text-center">Pais</th>
@@ -53,7 +54,8 @@
 					<td class="text-center hidden"><?= $cliente->website ?></td>
 					<td class="text-center"><?= $cliente->correo ?></td>
 					<td class="text-center"><?= $cliente->telefono ?></td>
-					<td class="text-center hidden"><?= ($cliente->calle)." #".($cliente->numero)." ".($cliente->colonia)?></td>
+					<td class="text-center hidden"><?= ($cliente->calle) ?></td>
+					<td class="text-center"><?= ($cliente->cp) ?></td>
 					<td class="text-center"><?= $cliente->ciudad ?></td>
 					<td class="text-center hidden"><?= $cliente->estado ?></td>
 					<td class="text-center"><?= $cliente->pais ?></td>
