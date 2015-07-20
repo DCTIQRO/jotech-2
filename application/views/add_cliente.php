@@ -81,7 +81,7 @@
 				<label class="col-sm-2 control-label" for="pais">País</label>
 				<div class="col-sm-4">
 					<div class="input-group">
-						<input type="text" id="pais" name="pais" class="form-control" placeholder="País..">
+						<input type="text" id="pais" name="pais" class="form-control" value="México" placeholder="País..">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
