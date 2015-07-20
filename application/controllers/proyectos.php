@@ -136,7 +136,7 @@ class Proyectos extends CI_Controller {
 		$data['descripcion']="Proyecto ".$proyecto->descripcion;
 		$data['bitacoras']=$this->proyectos_model->bitacora_proyecto($id);
 		$data['usuarios']=$this->proyectos_model->ver_usuarios_proyectos($id);
-		$data['contactos']=$this->proyectos_model->ver_contactos_proyectos($id);
+		$data['contactos']=$this->proyectos_model->ver_contactos_proyectos($id,$proyecto->id_cliente_fk);
 		$data['asignados']=$this->proyectos_model->ver_usuarios_asignados($id);
 		$data['asignados_contactos']=$this->proyectos_model->ver_contactos_asignados($id);
 		$data['tareas']=$this->proyectos_model->ver_tareas_proyecto($id);

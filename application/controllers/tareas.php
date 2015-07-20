@@ -96,12 +96,14 @@ class Tareas extends CI_Controller {
 	function guardar_bitacora()
 	{
 		date_default_timezone_set('America/Mexico_City');
-		
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
 		$form_data=array(
 			'comentario'		=>	$this->input->post('comentario'),
 			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia,
 			'id_usuario'		=>	$this->session->userdata('user_id'),
-			'id_cliente_tarea'	=>	$this->input->post('id_tarea')
+			'id_cliente_tarea'	=>	$this->input->post('id_tarea'),
+			'status'		=> '1',
 		);
 		
 		$this->tareas_model->guardar_bitacora_tarea($form_data);
@@ -200,6 +202,31 @@ class Tareas extends CI_Controller {
 		$this->tareas_model->guardar_bitacora_cliente($form_bitacora);
 		
 		redirect('tareas/ver_tarea/'.$id);
+	}
+	
+	function editar_bitacora_tareas($id)
+	{
+		$data['v']="editar_bitacora_tarea_cliente";
+		$data['datos']=$this->tareas_model->info_bitacora_tarea_cliente($id);
+		$this->load->view('main_modal',$data);
+	}
+
+	function guardar_edicion_bitacora_tareas()
+	{
+		$form_data=array(
+			'comentario'	=>	$this->input->post('comentario'),
+		);
+		$this->tareas_model->editar_bitacora_tarea_cliente($form_data,$this->input->post('id_bitacora'));
+		$this->load->view('cerrar_facybox');
+	}
+	
+	function cambiar_fecha()
+	{
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia
+		);
+		$this->tareas_model->editar_bitacora_tarea_cliente($form_data,$this->input->post('id_bitacora'));
 	}
 }
 ?>

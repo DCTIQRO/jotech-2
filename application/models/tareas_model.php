@@ -53,7 +53,7 @@ class Tareas_model extends CI_Model {
 	
 	function bitacora_tareas_cliente($id)
 	{
-		$this->db->select('ctc.comentario,ctc.fecha,ct.nombre, u.first_name, u.last_name');
+		$this->db->select('ctc.comentario,ctc.fecha,ctc.fecha_actividad,ctc.id id_bitacora,ct.nombre,u.id id_usuario, u.first_name, u.last_name');
 		$this->db->where('ctc.id_cliente_tarea',$id);
 		$this->db->join('clientes_tareas ct','ct.id=ctc.id_cliente_tarea');
 		$this->db->join('users u','u.id=ctc.id_usuario');
@@ -134,6 +134,21 @@ class Tareas_model extends CI_Model {
 	function guardar_bitacora_cliente($form_data)
 	{
 		$this->db->insert('clientes_comentarios',$form_data);
+	}
+	
+	function editar_bitacora_tarea_cliente($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('clientes_tareas_comentarios',$form_data);
+	}
+	
+	
+	function info_bitacora_tarea_cliente($id)
+	{
+		$this->db->select('id,comentario,id_cliente_tarea');
+		$this->db->where('id',$id);
+		$results = $this->db->get('clientes_tareas_comentarios')->row();
+		return $results;
 	}
 }
 ?>

@@ -216,10 +216,11 @@ class Proyectos_model extends CI_Model {
 		$this->db->insert('clientes_comentarios',$form_data);
 	}
 	
-	function ver_contactos_proyectos($id)
+	function ver_contactos_proyectos($id,$id_cliente)
 	{
 		$this->db->select('m.id,m.nombre');
 		$this->db->where('m.status','1');
+		$this->db->where('m.id_cliente_fk',$id_cliente);
 		$this->db->where('m.id NOT IN (SELECT id_miembro_fk FROM proyectos_contactos where id_proyecto_fk='.$id.')',NULL,FALSE);
 		$this->db->where('mc.clasificacion = SOME (SELECT id_clasificacion FROM proyectos_clasificaciones where id_proyecto_fk='.$id.')',NULL,FALSE);
 		$this->db->join('miembros_clasificaciones mc','mc.id_miembro_fk=m.id','inner');

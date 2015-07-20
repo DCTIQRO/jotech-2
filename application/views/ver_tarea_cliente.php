@@ -13,8 +13,8 @@
 	</div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
-	<li>Proyectos</li>
-	<li><a href="">Ver</a></li>
+	<li>Clientes</li>
+	<li><a href="">Tareas</a></li>
 </ul>
 <div class="row">
 	<div class="col-sm-8">
@@ -25,14 +25,21 @@
 			<div class="row">
 				<form action="<?= site_url('tareas/guardar_bitacora') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 					<div class="form-group">
-						<label class="label-control col-xs-3 col-sm-2" for="comentario">Comentario</label>
-						<div class="col-xs-6 col-sm-7">
-							<textarea class="form-control" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+						<div class="col-xs-12 col-sm-10 text-center">
+							<label class="label-control col-xs-12 col-sm-2" for="comentario">Comentario</label>
+							<div class="col-xs-12 col-sm-10">
+								<textarea class="form-control" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+							</div>
+							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
+							<div class="col-xs-12 col-sm-10">
+								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha" name="fecha" required placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
+							</div>
 						</div>
-						<div class="col-xs-3 col-sm-2 text-center">
+						<div class="col-xs-12 col-sm-2 text-center">
 							<input type="submit" class="btn-sm btn-success" value="Guardar"/>
 						</div>
 						<div class="col-xs-12 text-center"><?php echo form_error('comentario'); ?></div>
+						<div class="col-xs-12 text-center"><?php echo form_error('fecha'); ?></div>
 					</div>	
 					<input type="hidden" id="id_tarea" name="id_tarea" value="<?= $id_tarea ?>" />
 				</form>
@@ -45,17 +52,30 @@
 								<th class="text-center">Fecha</th>
 								<th class="text-center">Descripción</th>
 								<th class="text-center">Usuario</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
 							foreach($bitacoras as $bitacora)
 							{
+								list($año,$mes,$dia)=explode("-",$bitacora->fecha_actividad);
 							?>
 							<tr>
 								<td class="text-center"><?= $bitacora->fecha ?></td>
+								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
 								<td class="text-center"><?= $bitacora->comentario?></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
+								<td class="text-center">
+									<?php
+									if($this->session->userdata('user_id') == $bitacora->id_usuario){
+									?>
+									<a href="<?= site_url('tareas/editar_bitacora_tareas/'.$bitacora->id_bitacora) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+									<a href="<?= site_url('tareas/eliminar_bitacora_tareas/'.$bitacora->id_bitacora."/".$id_tarea) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+									<?php
+									}
+									?>
+								</td>
 							</tr>
 							<?php
 							}
@@ -166,10 +186,39 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			maxWidth	: 800,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '100%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});
+	
+$(".input-datepicker").datepicker({
+	autoclose:true,
+});
+function cambiarFecha(id)
+{
+	$.post("<?= site_url('tareas/cambiar_fecha') ?>", {
+		id_bitacora: id, 
+		fecha:$('#fecha'+id).val()
+	}, function(result){
+       console.log(result);
+    });
+}
+</script>
 <script src="<?= asset_url('js/pages/tablabitacoraproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
 
 <script>
+
 function asignar()
 {
 	if($('#usuarios').val() != ""){
