@@ -53,10 +53,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="referencia">Referencia</label>
+						<label class="col-md-2 control-label" for="cp">CP</label>
 						<div class="col-md-4">
 							<div class="input-group">
-								<input type="text" id="referencia" name="referencia" class="form-control" value="<?= $datos->entre_calles ?>" placeholder="Referencia de ubicación..">
+								<input type="text" id="cp" name="cp" class="form-control" value="<?= $datos->cp ?>" placeholder="CP de ubicación..">
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
