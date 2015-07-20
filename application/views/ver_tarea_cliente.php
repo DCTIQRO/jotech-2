@@ -50,6 +50,7 @@
 						<thead>
 							<tr>
 								<th class="text-center">Fecha</th>
+								<th class="text-center">Fecha Actividad</th>
 								<th class="text-center">Descripción</th>
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Acciones</th>
