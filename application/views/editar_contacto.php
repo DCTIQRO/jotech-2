@@ -59,16 +59,23 @@
 					<label class="col-sm-2 control-label" for="clasificacion">Clasificación</label>
 					<div class="col-sm-10">
 						<div class="input-group">
-							<select id="clasificacion" name="clasificacion[]" class="select-chosen form-control" data-placeholder="Selecciona una clasificación.." multiple >
+							<select id="clasificacion" name="clasificacion[]" onChange="cambio()" class="select-chosen form-control" data-placeholder="Selecciona una clasificación.." multiple >
 								<?php 
 									$options="";
+									$entro=0;
 									foreach($clasificaciones as $clasificacion)
 									{
 										$select="";
+										$select2="";
 										foreach($clasificaciones_contacto as $clas_contacto){
 											if($clas_contacto->clasificacion == $clasificacion->id){$select="selected";}
+											if($clas_contacto->clasificacion == '1' && $entro=="0" ){$select2="selected";}
 										}
-										echo '<option value="'.$clasificacion->id.'" '.$select.'>'.$clasificacion->nombre.'</option>';
+										if($entro=="0" ){
+											echo '<option value="1" '.$select2.'>Todas</option>';
+											$entro=1;
+										}
+										echo '<option value="'.$clasificacion->id.'" '.$select.' class="ocultar">'.$clasificacion->nombre.'</option>';
 									}
 								?>
 							</select>
@@ -126,3 +133,25 @@
 		</div>
 	</div>
 </div>
+
+<script>
+cambio();
+function cambio() {
+	var encontrado=0;
+	$("#clasificacion :selected").map(function(i, el) {
+		if($(el).val() == "1"){encontrado=1;}
+	});
+	if(encontrado == 1){
+		$(".ocultar").each(function() {
+			$(this).addClass('hidden');
+		});
+		$('#clasificacion').val('1').trigger('chosen:updated');
+	}
+	if(encontrado == 0){
+		$(".ocultar").each(function() {
+			$(this).removeClass('hidden');
+		});
+		$('#clasificacion').trigger('chosen:updated');
+	}
+}
+</script>

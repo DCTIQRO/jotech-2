@@ -63,9 +63,9 @@ class Clientes_model extends CI_Model {
 	
 	function ver_clasificaciones_contactos()
 	{
-		$this->db->select('clas.nombre,cc.id_miembro_fk');
-		$this->db->where('clas.status','1');
-		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
+		$this->db->select('clas.nombre,cc.id_miembro_fk,cc.clasificacion');
+		$this->db->where('clas.status != ','0');
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion','LEFT');
 		$results = $this->db->get('miembros_clasificaciones cc')->result();
 		return $results;
 	}

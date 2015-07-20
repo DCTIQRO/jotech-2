@@ -87,11 +87,12 @@
 						<div class="col-sm-10 ">
 							<div class="input-group">
 								<select id="clasificacion" name="clasificacion[]" class="select-chosen form-control" data-placeholder="Selecciona una clasificación.." multiple >
+									<option value="1" selected>Todas</option>
 									<?php 
 										$options="";
 										foreach($clasificaciones as $clasificacion)
 										{
-											echo '<option value="'.$clasificacion->id.'" selected>'.$clasificacion->nombre.'</option>';
+											echo '<option value="'.$clasificacion->id.'" class="hidden ocultar" >'.$clasificacion->nombre.'</option>';
 										}
 									?>
 								</select>
@@ -121,3 +122,25 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+$('#clasificacion').change(function() {
+	var encontrado=0;
+	$("#clasificacion :selected").map(function(i, el) {
+		if($(el).val() == "1"){encontrado=1;}
+	});
+	if(encontrado == 1){
+		$(".ocultar").each(function() {
+			$(this).addClass('hidden');
+		});
+		$('#clasificacion').val('1').trigger('chosen:updated');
+	}
+	if(encontrado == 0){
+		$(".ocultar").each(function() {
+			$(this).removeClass('hidden');
+		});
+		$('#clasificacion').trigger('chosen:updated');
+	}
+});
+</script>
