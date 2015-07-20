@@ -228,5 +228,14 @@ class Tareas extends CI_Controller {
 		);
 		$this->tareas_model->editar_bitacora_tarea_cliente($form_data,$this->input->post('id_bitacora'));
 	}
+	
+	function eliminar_bitacora_tarea_cliente($id,$idtarea)
+	{
+		$form_data=array(
+			'status'	=>	'0'
+		);
+		$this->tareas_model->editar_bitacora_tarea_cliente($form_data,$id);
+		redirect('tareas/ver_tarea/'.$idtarea);
+	}
 }
 ?>

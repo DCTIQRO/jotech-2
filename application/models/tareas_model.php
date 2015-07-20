@@ -55,6 +55,7 @@ class Tareas_model extends CI_Model {
 	{
 		$this->db->select('ctc.comentario,ctc.fecha,ctc.fecha_actividad,ctc.id id_bitacora,ct.nombre,u.id id_usuario, u.first_name, u.last_name');
 		$this->db->where('ctc.id_cliente_tarea',$id);
+		$this->db->where('ctc.status','1');
 		$this->db->join('clientes_tareas ct','ct.id=ctc.id_cliente_tarea');
 		$this->db->join('users u','u.id=ctc.id_usuario');
 		$this->db->order_by('ctc.fecha','asc');

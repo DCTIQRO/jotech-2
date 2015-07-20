@@ -72,7 +72,7 @@
 									if($this->session->userdata('user_id') == $bitacora->id_usuario){
 									?>
 									<a href="<?= site_url('tareas/editar_bitacora_tareas/'.$bitacora->id_bitacora) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-									<a href="<?= site_url('tareas/eliminar_bitacora_tareas/'.$bitacora->id_bitacora."/".$id_tarea) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+									<a href="<?= site_url('tareas/eliminar_bitacora_tarea_cliente/'.$bitacora->id_bitacora."/".$id_tarea) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
 									<?php
 									}
 									?>
