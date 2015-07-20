@@ -107,7 +107,7 @@ class Proyectos_model extends CI_Model {
 	
 	function bitacora_proyecto($id)
 	{
-		$this->db->select('pc.id id_comentario,pc.tipo,pc.comentario,pc.fecha,p.nombre,u.id id_usuario, u.first_name, u.last_name');
+		$this->db->select('pc.id id_comentario,pc.tipo,pc.comentario,pc.fecha,pc.fecha_actividad,pc.id id_bitacora,p.nombre,u.id id_usuario, u.first_name, u.last_name');
 		$this->db->where('pc.id_proyecto_fk',$id);
 		$this->db->where('pc.status','1');
 		$this->db->join('proyectos p','p.id=pc.id_proyecto_fk');

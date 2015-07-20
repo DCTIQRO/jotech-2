@@ -20,6 +20,7 @@
 					<a href="<?= site_url('clientes/ver/'.$id_cliente) ?>" class="btn-sm btn-info">Regresar</a>
 				</div>
 				<div class="col-xs-12 text-center"><?php echo form_error('comentario'); ?></div>
+				<div class="col-xs-12 text-center"><?php echo form_error('fecha'); ?></div>
 			</div>	
 			<input type="hidden" id="id_cliente" name="id_cliente" value="<?= $id_cliente ?>" />
 		</form>

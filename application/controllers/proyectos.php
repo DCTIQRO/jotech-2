@@ -148,9 +148,12 @@ class Proyectos extends CI_Controller {
 	{
 		date_default_timezone_set('America/Mexico_City');
 		
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		
 		$form_data=array(
 			'comentario'	=>	$this->input->post('comentario'),
 			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia,
 			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
 			'id_proyecto_fk'	=>	$this->input->post('id_proyecto'),
 			'status'		=> '1',
@@ -341,6 +344,15 @@ class Proyectos extends CI_Controller {
 		);
 		$this->proyectos_model->editar_bitacora_proyecto($form_data,$this->input->post('id_bitacora'));
 		$this->load->view('cerrar_facybox');
+	}
+	
+	function cambiar_fecha()
+	{
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia
+		);
+		$this->proyectos_model->editar_bitacora_proyecto($form_data,$this->input->post('id_bitacora'));
 	}
 	
 	function eliminar_bitacora_proyecto($id,$id_proyecto)
