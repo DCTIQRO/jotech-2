@@ -229,6 +229,19 @@ class Proyectos_model extends CI_Model {
 		return $results;
 	}
 	
+	function ver_contactos_proyectos_allclas($id,$id_cliente)
+	{
+		$this->db->select('m.id,m.nombre');
+		$this->db->where('m.status','1');
+		$this->db->where('m.id_cliente_fk',$id_cliente);
+		$this->db->where('m.id NOT IN (SELECT id_miembro_fk FROM proyectos_contactos where id_proyecto_fk='.$id.')',NULL,FALSE);
+		$this->db->where('mc.clasificacion','1');
+		$this->db->join('miembros_clasificaciones mc','mc.id_miembro_fk=m.id','inner');
+		$this->db->group_by('m.nombre');
+		$results = $this->db->get('miembros m')->result();
+		return $results;
+	}
+	
 	function agregar_archivo($form_data)
 	{
 		$this->db->insert('proyectos_archivos', $form_data);

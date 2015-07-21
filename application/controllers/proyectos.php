@@ -137,6 +137,7 @@ class Proyectos extends CI_Controller {
 		$data['bitacoras']=$this->proyectos_model->bitacora_proyecto($id);
 		$data['usuarios']=$this->proyectos_model->ver_usuarios_proyectos($id);
 		$data['contactos']=$this->proyectos_model->ver_contactos_proyectos($id,$proyecto->id_cliente_fk);
+		$data['contactos_all']=$this->proyectos_model->ver_contactos_proyectos_allclas($id,$proyecto->id_cliente_fk);
 		$data['asignados']=$this->proyectos_model->ver_usuarios_asignados($id);
 		$data['asignados_contactos']=$this->proyectos_model->ver_contactos_asignados($id);
 		$data['tareas']=$this->proyectos_model->ver_tareas_proyecto($id);
@@ -366,6 +367,7 @@ class Proyectos extends CI_Controller {
 	
 	function upload($id) 
     {
+		date_default_timezone_set('America/Mexico_City');
         if (!empty($_FILES)) {
 			$nuevo_nombre=num_random(10);
 			$temp = explode(".",$_FILES["file"]["name"]);    
@@ -382,6 +384,17 @@ class Proyectos extends CI_Controller {
 				'id_proyecto'	=>	$id
 			);
 			$this->proyectos_model->agregar_archivo($form_data);
+			$form_bitacora=array(
+				'comentario'	=>	'Se agrego el archivo <a href="'.site_url('proyectos/descargar/'.$_FILES["file"]["name"].'/'.$fileName).'">'.$_FILES["file"]["name"].'</a> al proyecto.',
+				'fecha'			=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+				'id_proyecto_fk'	=>	$id,
+				'status'		=> '1',
+				'tipo'			=> '2'
+			);
+			
+			$this->proyectos_model->guardar_bitacora_proyecto($form_bitacora);
         }
     }
 	

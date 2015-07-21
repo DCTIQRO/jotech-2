@@ -43,7 +43,10 @@ class Tareas_proyectos extends CI_Controller {
 			'fecha'				=>	date('Y-m-d H:i:s'),
 			'fecha_actividad'	=>	$año."-".$mes."-".$dia,
 			'id_usuario'		=>	$this->session->userdata('user_id'),
-			'id_proyecto_tarea_fk'	=>	$this->input->post('id_tarea')
+			'id_proyecto_tarea_fk'	=>	$this->input->post('id_tarea'),
+			'status'			=>'1',
+			'tipo'			=>'1',
+			
 		);
 		
 		$this->tareas_proyectos_model->guardar_bitacora_tarea($form_data);
@@ -85,7 +88,18 @@ class Tareas_proyectos extends CI_Controller {
 				'id_tarea_fk'	=>	$id
 			);
 			$this->tareas_proyectos_model->agregar_archivo($form_data);
-      
+			
+			$form_bitacora=array(
+				'comentario'	=>	'Se agrego el archivo <a href="'.site_url('proyectos/descargar/'.$_FILES["file"]["name"].'/'.$fileName).'">'.$_FILES["file"]["name"].'</a> a la tarea.',
+				'fecha'			=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario'	=>	$this->session->userdata('user_id'),
+				'id_proyecto_tarea_fk'	=>	$id,
+				'status'		=> '1',
+				'tipo'			=> '2'
+			);
+			
+			$this->tareas_proyectos_model->guardar_bitacora_tarea($form_bitacora);
 	  }
     }
 	function descargar($archivo,$url)

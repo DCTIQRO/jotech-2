@@ -131,6 +131,7 @@ class Tareas extends CI_Controller {
 	
 	function upload($id) 
     {
+		date_default_timezone_set('America/Mexico_City');
         if (!empty($_FILES)) {
 			$nuevo_nombre=num_random(10);
 			$temp = explode(".",$_FILES["file"]["name"]);    
@@ -147,6 +148,18 @@ class Tareas extends CI_Controller {
 				'id_tarea_fk'	=>	$id
 			);
 			$this->tareas_model->agregar_archivo($form_data);
+			
+			$form_bitacora=array(
+				'comentario'	=>	'Se agrego el archivo <a href="'.site_url('proyectos/descargar/'.$_FILES["file"]["name"].'/'.$fileName).'">'.$_FILES["file"]["name"].'</a> a la tarea.',
+				'fecha'			=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario'	=>	$this->session->userdata('user_id'),
+				'id_cliente_tarea'	=>	$id,
+				'status'		=> '1',
+				'tipo'			=> '2'
+			);
+			
+			$this->tareas_model->guardar_bitacora_tarea($form_bitacora);
         }
     }
 	

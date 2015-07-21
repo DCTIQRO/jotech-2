@@ -170,6 +170,9 @@
 						foreach($contactos as $contacto){
 							$options2[$contacto->id] =  ($contacto->nombre);
 						}
+						foreach($contactos_all as $contacto){
+							$options2[$contacto->id] =  ($contacto->nombre);
+						}
 					}
 					?>
 					<div class="col-xs-12">
