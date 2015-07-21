@@ -18,7 +18,30 @@
 	<li><a href="">Ver</a></li>
 </ul>
 <div class="row">
-	<div class="col-sm-8">
+	<div class="col-sm-12">
+		<div class="block full">
+			<div class="block-title">
+				<h2>Acciones del <strong><?= $titulo ?></strong></h2>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<?php
+					if($status == 0){
+					?>
+					<a href="<?= site_url('tareas_proyectos/cerrar_tarea/'.$id_tarea); ?>" class="btn-sm btn-danger">Cerrar Tarea Cliente</a>
+					<?php 
+					}
+					else
+					{
+					?>
+					<a href="<?= site_url('tareas_proyectos/abrir_tarea/'.$id_tarea); ?>" class="btn-sm btn-success">Abrir Tarea Cliente</a>
+					<?php	
+					}
+					?>
+					<a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto); ?>" class="btn-sm btn-info">Regresar al Proyecto</a>
+				</div>
+			</div>
+		</div>
 		<div class="block full">
 			<div class="block-title">
 				<h2>Bitacora <strong><?= $titulo ?></strong></h2>
@@ -90,30 +113,6 @@
 	<div class="col-sm-4">
 		<div class="block full">
 			<div class="block-title">
-				<h2>Acciones del <strong><?= $titulo ?></strong></h2>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 text-center">
-					<?php
-					if($status == 0){
-					?>
-					<a href="<?= site_url('tareas_proyectos/cerrar_tarea/'.$id_tarea); ?>" class="btn-sm btn-danger">Cerrar Tarea Cliente</a>
-					<?php 
-					}
-					else
-					{
-					?>
-					<a href="<?= site_url('tareas_proyectos/abrir_tarea/'.$id_tarea); ?>" class="btn-sm btn-success">Abrir Tarea Cliente</a>
-					<?php	
-					}
-					?>
-					<br><br>
-					<a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto); ?>" class="btn-sm btn-info">Regresar al Proyecto</a>
-				</div>
-			</div>
-		</div>
-		<div class="block full">
-			<div class="block-title">
 				<h2>Usuarios de la <strong><?= $titulo ?></strong></h2>
 			</div>
 			<form action="<?= site_url('tareas_proyectos/asignar_usuario') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
@@ -155,7 +154,8 @@
 				?>
 			</form>
 		</div>
-		
+	</div>
+	<div class="col-sm-8">
 		<div class="block full">
 			<div class="block-title">
 				<h2>Archivos de la <strong><?= $titulo ?></strong></h2>
@@ -170,16 +170,97 @@
 				<?php
 				foreach($archivos as $archivo)
 				{
-				?>
-					<div class="col-xs-10 col-xs-offset-1">
-						<a href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>" class="widget widget-hover-effect2 themed-background-modern">
-							<div class="widget-simple">
-								<h4 class="widget-content widget-content-light text-center">
-									<strong><?= $archivo->archivo ?></strong>
-								</h4>
-							</div>
+					$extension = extension($archivo->archivo);
+					
+					if($extension == 'jpg' || $extension == 'png' || $extension == 'gif' || $extension == 'JPG' || $extension == 'PNG' || $extension == 'GIF' )
+					{
+					?>
+					<div class="col-xs-6 col-sm-4 ">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/camera.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
 					</div>
+					<?php 
+					}
+					else if($extension == 'mp3' || $extension == 'MP3' || $extension == 'wav' || $extension == 'WAV' || $extension == 'arm' || $extension == 'ARM' || $extension == 'wmv' || $extension == 'WMV' )
+					{
+					?>
+					<div class="col-xs-6 col-sm-4 ">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/audio.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
+						</a>
+					</div>
+					<?php 
+					}
+					else if($extension == 'doc' || $extension == 'DOC' || $extension == 'docx' || $extension == 'DOCX')
+					{
+					?>
+					<div class="col-xs-6 col-sm-4 ">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/Word.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
+						</a>
+					</div>
+					<?php 
+					}
+					else if($extension == 'xls' || $extension == 'XLS' || $extension == 'xlsx' || $extension == 'XLSX')
+					{
+					?>
+					<div class="col-xs-6 col-sm-4 ">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/Excel.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
+						</a>
+					</div>
+					<?php 
+					}
+					else if($extension == 'ppt' || $extension == 'PPT' || $extension == 'pptx' || $extension == 'pptx')
+					{
+					?>
+					<div class="col-xs-6 col-sm-4">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/PowerPoint.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
+						</a>
+					</div>
+					<?php 
+					}
+					else if($extension == 'pdf' || $extension == 'PDF')
+					{
+					?>
+					<div class="col-xs-6 col-sm-4 ">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/pdf.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
+						</a>
+					</div>
+					<?php 
+					}
+					else if($extension == 'txt' || $extension == 'TXT')
+					{
+					?>
+					<div class="col-xs-6 col-sm-4 ">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/text.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
+						</a>
+					</div>
+					<?php 
+					}
+					else
+					{
+					?>
+					<div class="col-xs-6 col-sm-4">
+						<a class="widget widget-hover-effect1" href="<?= site_url('tareas_proyectos/descargar/'.($archivo->archivo)."/".$archivo->url) ?>">
+							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/file_search.png') ?>'); height:100px" ></div>
+							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF; height:60px" ><strong><?= $archivo->archivo ?></strong></div>
+						</a>
+					</div>
+					<?php 
+					}
+					?>
 				<?php
 				}
 				?>
