@@ -12,4 +12,9 @@
 		
 		return $digitos;
 	}
+	
+	function extension($str) 
+	{
+			return end(explode(".", $str));
+	}
 ?>

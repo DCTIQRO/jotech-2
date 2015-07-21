@@ -15,6 +15,14 @@ class Clasificacion_cliente_model extends CI_Model {
 		return $results;
 	}
 	
+	function contar_clasificaciones()
+	{
+		$this->db->where('status','1');
+		$this->db->select('COUNT(*) as total');
+		$results = $this->db->get('clasificacion_clientes')->result();
+		return $results;
+	}
+	
 	function info_clasificacion($id)
 	{
 		$this->db->select('id,nombre,descripcion');

@@ -4146,3 +4146,13 @@ hr.style-four {
     border: 0;
     box-shadow: inset 0 12px 12px -12px rgba(187, 187, 187, 0.81);
 }
+
+.imagen_fondo
+{
+-webkit-background-size: contain; 
+-moz-background-size: contain; 
+-o-background-size: contain; 
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center center;
+}
