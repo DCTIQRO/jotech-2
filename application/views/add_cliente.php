@@ -130,6 +130,8 @@
 							<option value="2">Prioridad 2</option>
 							<option value="3">Prioridad 3</option>
 							<option value="4">Prioridad 4</option>
+							<option value="5">Prioridad 5</option>
+							<option value="6">Prioridad 6</option>
 						</select>
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
@@ -184,6 +186,8 @@ function agregarClasif ()
 						'<option value="2">Prioridad 2</option>'+
 						'<option value="3">Prioridad 3</option>'+
 						'<option value="4">Prioridad 4</option>'+
+						'<option value="5">Prioridad 5</option>'+
+						'<option value="6">Prioridad 6</option>'+
 					'</select>'+
 					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
 				'</div>'+

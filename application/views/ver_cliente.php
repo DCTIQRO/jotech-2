@@ -142,6 +142,10 @@
 									<option value="3" <?= $selec ?> >Prioridad 3</option>
 									<?php  $selec=""; if($clasificacion_cliente->prioridad == 4){$selec="selected";} ?>
 									<option value="4" <?= $selec ?> >Prioridad 4</option>
+									<?php  $selec=""; if($clasificacion_cliente->prioridad == 5){$selec="selected";} ?>
+									<option value="5" <?= $selec ?> >Prioridad 5</option>
+									<?php  $selec=""; if($clasificacion_cliente->prioridad == 6){$selec="selected";} ?>
+									<option value="6" <?= $selec ?> >Prioridad 6</option>
 								</select>
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
@@ -194,6 +198,8 @@ function agregarClasif ()
 						'<option value="2">Prioridad 2</option>'+
 						'<option value="3">Prioridad 3</option>'+
 						'<option value="4">Prioridad 4</option>'+
+						'<option value="5">Prioridad 5</option>'+
+						'<option value="6">Prioridad 6</option>'+
 					'</select>'+
 					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
 				'</div>'+
