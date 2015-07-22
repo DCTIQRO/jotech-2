@@ -6,6 +6,13 @@
 		<div class="col-xs-12">
 			<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('clientes/guardar_edicion_contacto') ?>">
 				<div class="form-group">
+					<label class="col-sm-2 control-label" for="titulo">Título</label>
+					<div class="col-sm-4 ">
+						<div class="input-group">
+							<input type="text" id="titulo" name="titulo" value="<?= $datos->titulo ?>" class="form-control" placeholder="Dr Ing Lic">
+							<span class="input-group-addon"><i class="gi gi-user"></i></span>
+						</div>
+					</div>
 					<label class="col-sm-2 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
 					<div class="col-sm-4 ">
 						<div class="input-group">
@@ -13,20 +20,13 @@
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
+				</div>
+				
+				<div class="form-group">
 					<label class="col-sm-2 control-label" for="direccion">Dirección </label>
 					<div class="col-sm-4 ">
 						<div class="input-group">
 							<input type="text" id="direccion" name="direccion" value="<?= $datos->direccion ?>" class="form-control" placeholder="Dirección del contacto..">
-							<span class="input-group-addon"><i class="gi gi-user"></i></span>
-						</div>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-sm-2 control-label" for="cp">CP </label>
-					<div class="col-sm-4 ">
-						<div class="input-group">
-							<input type="text" id="cp" name="cp" value="<?= $datos->cp ?>" class="form-control" placeholder="Teléfono del contacto..">
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>
 					</div>
@@ -160,6 +160,6 @@ function cambio() {
 
 <script>
 $( document ).ready(function() {
-    $( "#nombre" ).focus();
+    $( "#titulo" ).focus();
 });
 </script>

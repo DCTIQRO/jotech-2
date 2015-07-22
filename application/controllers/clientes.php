@@ -167,7 +167,7 @@ class Clientes extends CI_Controller {
 			'correo'			=>	$this->input->post('correo'),
 			'activo'			=>	$this->input->post('activo'),
 			'activo2'			=>	$this->input->post('activo2'),
-			'cp'				=>	$this->input->post('cp'),
+			'titulo'			=>	$this->input->post('titulo'),
 			'comentarios'		=>	$this->input->post('comentario'),
 			'id_cliente_fk'		=>	$this->input->post('id_cliente'),
 			'fecha_registro'	=>	date('Y-m-d H:i:s'),
@@ -208,7 +208,7 @@ class Clientes extends CI_Controller {
 			'correo'			=>	$this->input->post('correo'),
 			'activo'			=>	$this->input->post('activo'),
 			'activo2'			=>	$this->input->post('activo2'),
-			'cp'				=>	$this->input->post('cp'),
+			'titulo'			=>	$this->input->post('titulo'),
 			'comentarios'		=>	$this->input->post('comentario'),
 		);
 		
