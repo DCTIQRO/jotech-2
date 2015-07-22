@@ -69,6 +69,7 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->select('id,nombre,fecha_inicio,progreso,estatus');
 		$this->db->where('id_cliente_fk',$id);
+		$this->db->order_by('fecha_inicio','desc');
 		$results = $this->db->get('proyectos')->result();
 		return $results;
 	}

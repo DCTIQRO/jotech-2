@@ -15,6 +15,7 @@ var TablesDatatables = function() {
             $('#tabla_proyectos').dataTable({
                 columnDefs: [ { orderable: false, targets: [4] } ],
                 pageLength: 10,
+				order: [[ 2, 'desc' ], [ 0, 'desc' ]],
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
 				language:{
 					"sProcessing":     "Procesando...",
@@ -45,6 +46,7 @@ var TablesDatatables = function() {
 			$('#tabla_tareas').dataTable({
                 columnDefs: [ { orderable: false, targets: [ 4 ] } ],
                 pageLength: 10,
+				order: [[ 2, 'desc' ], [ 0, 'desc' ]],
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
 				language:{
 					"sProcessing":     "Procesando...",
