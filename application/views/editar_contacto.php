@@ -109,7 +109,9 @@
 								<?php $select=""; if($datos->activo2 == '2'){$select="selected";} ?>
 								<option value="2" <?= $select ?> >No nos conoce</option>
 								<?php $select=""; if($datos->activo2 == '3'){$select="selected";} ?>
-								<option value="3" <?= $select ?> >Sí nos conoce: Es contacto principal</option>
+								<option value="3" <?= $select ?> >Es contacto principal</option>
+								<?php $select=""; if($datos->activo2 == '4'){$select="selected";} ?>
+								<option value="4" <?= $select ?> >Si nos conoce</option>
 							</select>
 							<span class="input-group-addon"><i class="gi gi-user"></i></span>
 						</div>

@@ -72,8 +72,8 @@
 						<div class="col-sm-4 ">
 							<div class="input-group">
 								<select id="activo2" name="activo2" class="select-chosen form-control" data-placeholder="Selecciona un status 2.." >
-									<option value="3">Sí nos conoce: Es contacto principal</option>
-									<option value="4">Si nos conoce: Aunque no sea contacto principal</option>
+									<option value="3">Es contacto principal</option>
+									<option value="4">Si nos conoce</option>
 									<option value="1">Ex trabajador</option>
 									<option value="2">No nos conoce</option>
 								</select>

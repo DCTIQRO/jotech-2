@@ -45,10 +45,10 @@
 						
 						<td class="text-center">
 						<?php
-							if($contacto->activo == 1){echo '<label class="btn-xs btn-warning">Ex trabajador</label>';}
-							if($contacto->activo == 2){echo '<label class="btn-xs btn-success">No nos conoce</label>';}
-							if($contacto->activo == 3){echo '<label class="btn-xs btn-info">Sí nos conoce: Es contacto principal</label>';}
-							if($contacto->activo == 4){echo '<label class="btn-xs btn-success">Si nos conoce: Aunque no sea contacto principal</label>';}
+							if($contacto->activo2 == 1){echo '<label class="btn-xs btn-warning">Ex trabajador</label>';}
+							if($contacto->activo2 == 2){echo '<label class="btn-xs btn-success">No nos conoce</label>';}
+							if($contacto->activo2 == 3){echo '<label class="btn-xs btn-info">Sí nos conoce: Es contacto principal</label>';}
+							if($contacto->activo2 == 4){echo '<label class="btn-xs btn-success">Si nos conoce: Aunque no sea contacto principal</label>';}
 						?></td>
 						<td class="text-center"><?= $contacto->comentarios ?></td>
 						<td class="text-center">
