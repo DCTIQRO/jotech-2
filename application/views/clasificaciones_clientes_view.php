@@ -26,7 +26,7 @@
 			<form class="form-bordered form-horizontal" action="<?= site_url('clasificaciones_clientes/guardar_clasificacion') ?>" method="post" >
 				<label class="label-control col-sm-2">Nombre</label>
 				<div class="col-sm-3">
-					<input class="form-control" name="nombre" type="text" placeholder="Nombre Clasificación">
+					<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre Clasificación">
 				</div>
 				<label class="label-control col-sm-2">Descripción</label>
 				<div class="col-sm-3">
@@ -89,4 +89,9 @@
 			closeEffect	: 'none'
 		});
 	});
+</script>
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
 </script>
