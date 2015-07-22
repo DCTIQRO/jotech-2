@@ -144,3 +144,9 @@ $('#clasificacion').change(function() {
 	}
 });
 </script>
+
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
+</script>

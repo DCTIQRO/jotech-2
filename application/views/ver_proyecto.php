@@ -491,3 +491,9 @@ function cambiarFecha(id)
 		});
 	});
 </script>
+
+<script>
+$( document ).ready(function() {
+    $( "#comentario" ).focus();
+});
+</script>

@@ -169,7 +169,7 @@
 			<div class="row">
 				<?php
 				foreach($archivos as $archivo)
-				{
+				{ 
 					$extension = extension($archivo->archivo);
 					
 					if($extension == 'jpg' || $extension == 'png' || $extension == 'gif' || $extension == 'JPG' || $extension == 'PNG' || $extension == 'GIF' )
@@ -260,8 +260,6 @@
 					</div>
 					<?php 
 					}
-					?>
-				<?php
 				}
 				?>
 			</div>
@@ -317,4 +315,10 @@ function cambiarFecha(id)
 			closeEffect	: 'none'
 		});
 	});
+</script>
+
+<script>
+$( document ).ready(function() {
+    $( "#comentario" ).focus();
+});
 </script>

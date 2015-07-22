@@ -155,3 +155,9 @@ function cambio() {
 	}
 }
 </script>
+
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
+</script>

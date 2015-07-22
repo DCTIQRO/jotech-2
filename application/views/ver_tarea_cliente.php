@@ -316,3 +316,9 @@ function asignar()
 	}
 }
 </script>
+
+<script>
+$( document ).ready(function() {
+    $( "#comentario" ).focus();
+});
+</script>

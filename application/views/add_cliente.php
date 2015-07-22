@@ -206,5 +206,11 @@ function quitarClasif (num)
 }
 </script>
 
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
+</script>
+
 <script src="<?= asset_url('js/pages/nuevocliente.js') ?>"></script>
 <script>$(function(){ FormsValidation.init(); });</script>
