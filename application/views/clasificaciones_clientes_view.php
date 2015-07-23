@@ -56,7 +56,7 @@
 					?>
 					<tr>
 						<td class="text-center"><?= $clasificacion->id ?></td>
-						<td class="text-center"><a href="javascript:void(0)"><?= $clasificacion->nombre ?></a></td>
+						<td class="text-center"><a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe"><?= $clasificacion->nombre ?></a></td>
 						<td class="text-center"><?= $clasificacion->descripcion ?></td>
 						<td class="text-center">
 							<a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
