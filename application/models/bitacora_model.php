@@ -45,5 +45,18 @@ class Bitacora_model extends CI_Model {
 		$this->db->where('idclientes_comentarios',$id);
 		$this->db->update('clientes_comentarios',$form_data);
 	}
+	
+	function agregar_archivo($form_data)
+	{
+		$this->db->insert('clientes_archivos', $form_data);
+	}
+	
+	function ver_archivos($id)
+	{
+		$this->db->select('archivo,url');
+		$this->db->where('id_cliente',$id);
+		$results = $this->db->get('clientes_archivos')->result();
+		return $results;
+	}
 }
 ?>

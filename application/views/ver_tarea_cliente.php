@@ -73,7 +73,6 @@
 						<thead>
 							<tr>
 								<th class="text-center">Fecha</th>
-								<th class="text-center">Fecha Actividad</th>
 								<th class="text-center">Descripción</th>
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Acciones</th>
@@ -86,7 +85,6 @@
 								list($año,$mes,$dia)=explode("-",$bitacora->fecha_actividad);
 							?>
 							<tr>
-								<td class="text-center"><?= $bitacora->fecha ?></td>
 								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
 								<td class="text-center"><?= $bitacora->comentario?></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>

@@ -100,12 +100,13 @@ class Proyectos extends CI_Controller {
 		$this->proyectos_model->guardar_usuarios($form_usuarios);
 				
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha creado el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id_proyecto).'">'.$this->input->post('nombre').'</a>',
-			'fecha'			=>	date('Y-m-d H:i:s'),
-			'id_usuario'	=>	$this->session->userdata('user_id'),
-			'id_cliente'	=>	$this->input->post('id_cliente'),
-			'status'		=>	'1',
-			'tipo'			=>	'2'
+			'comentario'		=>	'Se ha creado el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id_proyecto).'">'.$this->input->post('nombre').'</a>',
+			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'		=>	$this->session->userdata('user_id'),
+			'id_cliente'		=>	$this->input->post('id_cliente'),
+			'status'			=>	'1',
+			'tipo'				=>	'2'
 		);
 		$this->proyectos_model->guardar_bitacora_cliente($form_bitacora);
 		
@@ -232,12 +233,13 @@ class Proyectos extends CI_Controller {
 			$this->proyectos_model->asignar_tareas($form_usuarios);
 			
 			$form_bitacora=array(
-				'comentario'	=>	'Se ha creado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre_tarea').'</a>',
-				'fecha'			=>	date('Y-m-d H:i:s'),
-				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+				'comentario'		=>	'Se ha creado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre_tarea').'</a>',
+				'fecha'				=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario_fk'		=>	$this->session->userdata('user_id'),
 				'id_proyecto_fk'	=>	$this->input->post('proyecto'),
-				'status'		=> '1',
-				'tipo'			=> '2'
+				'status'			=> '1',
+				'tipo'				=> '2'
 			);
 			$this->proyectos_model->guardar_bitacora_proyecto($form_bitacora);
 			
@@ -257,12 +259,13 @@ class Proyectos extends CI_Controller {
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha cerrado el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id).'">'.($proyecto->nombre).'</a>',
-			'fecha'			=>	date('Y-m-d H:i:s'),
-			'id_usuario'	=>	$this->session->userdata('user_id'),
-			'id_cliente'	=>	$proyecto->id_cliente_fk,
-			'status'		=>	'1',
-			'tipo'			=>	'2'
+			'comentario'		=>	'Se ha cerrado el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id).'">'.($proyecto->nombre).'</a>',
+			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'		=>	$this->session->userdata('user_id'),
+			'id_cliente'		=>	$proyecto->id_cliente_fk,
+			'status'			=>	'1',
+			'tipo'				=>	'2'
 		);
 		$this->proyectos_model->guardar_bitacora_cliente($form_bitacora);
 		redirect('proyectos/ver_proyecto/'.$id);
@@ -279,12 +282,13 @@ class Proyectos extends CI_Controller {
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
 		
 		$form_bitacora=array(
-			'comentario'	=>	'Se ha abierto el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id).'">'.($proyecto->nombre).'</a>',
-			'fecha'			=>	date('Y-m-d H:i:s'),
-			'id_usuario'	=>	$this->session->userdata('user_id'),
-			'id_cliente'	=>	$proyecto->id_cliente_fk,
-			'status'		=>	'1',
-			'tipo'			=>	'2'
+			'comentario'		=>	'Se ha abierto el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id).'">'.($proyecto->nombre).'</a>',
+			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'		=>	$this->session->userdata('user_id'),
+			'id_cliente'		=>	$proyecto->id_cliente_fk,
+			'status'			=>	'1',
+			'tipo'				=>	'2'
 		);
 		$this->proyectos_model->guardar_bitacora_cliente($form_bitacora);
 		
@@ -304,12 +308,13 @@ class Proyectos extends CI_Controller {
 			);
 		
 			$form_bitacora=array(
-				'comentario'	=>	'Se ha cerrado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
-				'fecha'			=>	date('Y-m-d H:i:s'),
-				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+				'comentario'		=>	'Se ha cerrado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
+				'fecha'				=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario_fk'		=>	$this->session->userdata('user_id'),
 				'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
-				'status'		=> '1',
-				'tipo'			=> '2'
+				'status'			=> '1',
+				'tipo'				=> '2'
 			);
 			
 		}
@@ -319,12 +324,13 @@ class Proyectos extends CI_Controller {
 				'estatus'	=>	'0'
 			);
 			$form_bitacora=array(
-				'comentario'	=>	'Se ha abierto la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
-				'fecha'			=>	date('Y-m-d H:i:s'),
-				'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+				'comentario'		=>	'Se ha abierto la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
+				'fecha'				=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario_fk'		=>	$this->session->userdata('user_id'),
 				'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
-				'status'		=> '1',
-				'tipo'			=> '2'
+				'status'			=> '1',
+				'tipo'				=> '2'
 			);
 		}
 		$this->proyectos_model->cambiar_estado_tarea($form_data,$id);

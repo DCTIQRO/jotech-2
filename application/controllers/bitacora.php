@@ -8,6 +8,7 @@ class Bitacora extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		$this->load->database();
+		$this->load->helper('download');
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->model('bitacora_model');
@@ -31,6 +32,7 @@ class Bitacora extends CI_Controller {
 			$data['titulo']="Bitacora de ".$cliente->nombre;
 			$data['id_cliente']=$id;
 			$data['bitacoras']=$this->bitacora_model->bitacora_cliente($id);
+			$data['archivos']=$this->bitacora_model->ver_archivos($id);
 			$this->load->view('main',$data);
 		}
 		else
@@ -84,6 +86,46 @@ class Bitacora extends CI_Controller {
 		);
 		
 		$this->bitacora_model->editar_bitacora_cliente($form_data,$this->input->post('id_bitacora'));
+	}
+	
+	function upload($id) 
+    {
+		date_default_timezone_set('America/Mexico_City');
+        if (!empty($_FILES)) {
+			$nuevo_nombre=num_random(10);
+			$temp = explode(".",$_FILES["file"]["name"]);    
+			$tempFile = $_FILES['file']['tmp_name'];
+			$fileName = $nuevo_nombre.'.' .end($temp);
+			$targetPath = 'assets/upload/';
+			$targetFile = $targetPath . $fileName;
+			move_uploaded_file($tempFile, $targetFile);
+			chmod($targetFile,0644);
+			
+			$form_data=array(
+				'archivo'		=>	$_FILES["file"]["name"],
+				'url'			=>	$fileName,
+				'id_cliente'	=>	$id
+			);
+			$this->bitacora_model->agregar_archivo($form_data);
+			$form_bitacora=array(
+				'comentario'		=>	'Se agrego el archivo <a href="'.site_url('bitacora/descargar/'.$_FILES["file"]["name"].'/'.$fileName).'">'.$_FILES["file"]["name"].'</a> al cliente.',
+				'fecha'				=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario'		=>	$this->session->userdata('user_id'),
+				'id_cliente'		=>	$id,
+				'status'			=> '1',
+				'tipo'				=> '2'
+			);
+			
+			$this->bitacora_model->guardar_bitacora_cliente($form_bitacora);
+        }
+    }
+	
+	function descargar($archivo,$url)
+	{
+		$datos = file_get_contents("assets/upload/".$url); // Leer el contenido del archivo
+
+		force_download($archivo, $datos);
 	}
 }
 ?>

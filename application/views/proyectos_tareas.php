@@ -30,7 +30,7 @@
 								foreach($proyectos as $proyecto)
 								{
 								?>
-								<tr>
+								<tr onClick="ver_proyect(<?= $proyecto->id ?>)">
 									<td class="text-center"><?= $proyecto->id ?></td>
 									<td class="text-center"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
 									<td class="text-center"><?= $proyecto->fecha_inicio ?></td>
@@ -71,7 +71,7 @@
 								foreach($tareas as $tarea)
 								{
 								?>
-								<tr>
+								<tr onClick="ver_tarea(<?= $tarea->id ?>)">
 									<td class="text-center"><?= $tarea->id ?></td>
 									<td class="text-center"><a href="javascript:void(0)"><?= $tarea->nombre ?></a></td>
 									<td class="text-center"><?= $tarea->fecha_fin ?></td>
@@ -94,6 +94,22 @@
 		</div>
 	</div>
 </div>
+
+<script>
+function ver_proyect(id)
+{
+var pagina="<?= site_url('proyectos/ver_proyecto') ?>"+"/"+id;
+
+location.href=pagina;
+}
+
+function ver_tarea(id)
+{
+var pagina="<?= site_url('tareas/ver_tarea') ?>"+"/"+id;
+
+location.href=pagina;
+}
+</script>
 
 <script src="<?= asset_url('js/pages/tablaclientesproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
