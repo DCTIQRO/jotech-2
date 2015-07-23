@@ -57,5 +57,14 @@ class Clasificaciones_clientes extends CI_Controller {
 		$this->clasificacion_cliente_model->editar_clasificacion($form_data,$id);
 		redirect('clasificaciones_clientes');
 	}
+	
+	function cambiar_id($id)
+	{
+		$form_data=array(
+			"identificador"	=>	$this->input->post('identificador')
+		);
+		
+		$this->clasificacion_cliente_model->editar_clasificacion($form_data,$id);
+	}
 }
 ?>

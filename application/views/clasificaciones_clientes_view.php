@@ -55,7 +55,7 @@
 					{
 					?>
 					<tr>
-						<td class="text-center"><input type="number" Style="border: 0px; width:30px" value="<?= $clasificacion->id ?>" /></td>
+						<td class="text-center"><input type="number" Style="border: 0px; width:30px" id="identi<?= $clasificacion->id ?>" onChange="cambiar_id(<?= $clasificacion->id ?>)" value="<?= $clasificacion->identificador ?>" /></td>
 						<td class="text-center"><a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe"><?= $clasificacion->nombre ?></a></td>
 						<td class="text-center"><?= $clasificacion->descripcion ?></td>
 						<td class="text-center">
@@ -76,19 +76,27 @@
 <script>$(function(){ TablesDatatables.init(); });</script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$(".fancybox").fancybox({
-			maxWidth	: 800,
-			maxHeight	: 600,
-			fitToView	: false,
-			width		: '100%',
-			height		: '70%',
-			autoSize	: false,
-			closeClick	: false,
-			openEffect	: 'none',
-			closeEffect	: 'none'
-		});
+$(document).ready(function() {
+	$(".fancybox").fancybox({
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '100%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
 	});
+});
+</script>
+<script>
+function cambiar_id(id)
+{
+	$.post("<?= site_url('clasificaciones_clientes/cambiar_id') ?>"+"/"+id, {identificador:$('#identi'+id).val()}, function(result){
+        console.log(result);
+    });
+}
 </script>
 <script>
 $( document ).ready(function() {

@@ -9,7 +9,7 @@ class Clasificacion_cliente_model extends CI_Model {
 	
 	function ver_clasificaciones()
 	{
-		$this->db->select('id,nombre,descripcion');
+		$this->db->select('id,nombre,descripcion,identificador');
 		$this->db->where('status','1');
 		$results = $this->db->get('clasificacion_clientes')->result();
 		return $results;
