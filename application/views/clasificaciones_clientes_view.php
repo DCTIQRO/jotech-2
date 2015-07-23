@@ -55,7 +55,7 @@
 					{
 					?>
 					<tr>
-						<td class="text-center"><?= $clasificacion->id ?></td>
+						<td class="text-center"><input type="number" Style="border: 0px; width:30px" value="<?= $clasificacion->id ?>" /></td>
 						<td class="text-center"><a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe"><?= $clasificacion->nombre ?></a></td>
 						<td class="text-center"><?= $clasificacion->descripcion ?></td>
 						<td class="text-center">

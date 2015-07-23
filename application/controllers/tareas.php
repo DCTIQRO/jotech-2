@@ -36,6 +36,7 @@ class Tareas extends CI_Controller {
 	
 	function guardar_tarea()
 	{
+		date_default_timezone_set('America/Mexico_City');
 		list($dia,$mes,$año)=explode('-',$this->input->post('fecha_inicio'));
 		list($dia2,$mes2,$año2)=explode('-',$this->input->post('fecha_fin'));
 		date_default_timezone_set('America/Mexico_City');
