@@ -108,6 +108,7 @@ class Tareas_model extends CI_Model {
 	
 	function ver_tarea_proyectos($id)
 	{
+		date_default_timezone_set('America/Mexico_City');
 		$this->db->select('t.id,t.nombre,t.descripcion,p.nombre proyecto,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
 		$this->db->where('u.id_usuario_fk',$id);
 		$this->db->where('fecha_fin <=',date('Y-m-d'));
