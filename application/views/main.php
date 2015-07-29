@@ -54,7 +54,7 @@
                 </div>
             </div>
             
-            <div id="page-container" class="header-fixed-top sidebar-partial sidebar-visible-lg sidebar-no-animations">
+            <div id="page-container" class="header-fixed-top sidebar-partial  sidebar-no-animations">
                 <!-- Alternative Sidebar -->
 
                 <!-- Main Sidebar -->
@@ -76,7 +76,7 @@
                         'navbar-fixed-bottom'       for a bottom fixed header (fixed sidebars with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
                             'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
                     -->
-                    <header class="navbar navbar-default hidden-lg hidden-md">
+                    <header class="navbar navbar-default">
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
