@@ -94,7 +94,7 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-				<label class="col-sm-2 control-label" for="detalles">Clave</label>
+				<label class="col-sm-2 control-label" for="detalles">Claves</label>
 				<div class="col-sm-4">
 					<div class="input-group">
 						<input type="text" id="detalles" name="detalles" class="input-tags" value="">
