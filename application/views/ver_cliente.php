@@ -92,7 +92,7 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-						<label class="col-md-2 control-label" for="detalles">Detalles</label>
+						<label class="col-md-2 control-label" for="detalles">Claves</label>
 						<div class="col-md-4">
 							<div class="input-group">
 								<input type="text" id="detalles" name="detalles" class="input-tags"  value="<?= $datos->detalles ?>">
