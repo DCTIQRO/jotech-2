@@ -94,10 +94,10 @@
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
-				<label class="col-sm-2 control-label" for="detalles">Detalles</label>
+				<label class="col-sm-2 control-label" for="detalles">Clave</label>
 				<div class="col-sm-4">
 					<div class="input-group">
-						<textarea id="detalles" name="detalles" class="form-control" rows="2" placeholder="Detalles..."></textarea>
+						<input type="text" id="detalles" name="detalles" class="input-tags" value="">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
