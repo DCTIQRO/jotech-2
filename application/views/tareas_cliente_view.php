@@ -42,7 +42,7 @@
 							foreach($tareas_clientes as $tarea)
 							{
 							?>
-							<tr>
+							<tr onClick="irTarea(<?= $tarea->id ?>)">
 								<td class="text-center"><?= $tarea->id ?></td>
 								<td class="text-center"><a href="javascript:void(0)"><?= $tarea->nombre ?></a></td>
 								<td class="text-center"><?= $tarea->descripcion ?></td>
@@ -72,3 +72,10 @@
 
 <script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
+<script>
+function irTarea(id)
+{
+var pagina="<?= site_url('tareas/ver_tarea') ?>"+"/"+id;
+location.href=pagina;   
+}
+</script>

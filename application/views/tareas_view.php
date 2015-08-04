@@ -42,7 +42,7 @@
 							foreach($tareas_proyectos as $tarea_proyecto)
 							{
 							?>
-							<tr>
+							<tr onClick="irTareaProyecto(<?= $tarea_proyecto->id ?>)">
 								<td class="text-center"><?= $tarea_proyecto->id ?></td>
 								<td class="text-center"><a href="javascript:void(0)"><?= $tarea_proyecto->nombre ?></a></td>
 								<td class="text-center"><?= $tarea_proyecto->descripcion ?></td>
@@ -96,7 +96,7 @@
 							foreach($tareas_clientes as $tarea_cliente)
 							{
 							?>
-							<tr>
+							<tr onClick="irTarea(<?= $tarea_cliente->id ?>)">
 								<td class="text-center"><?= $tarea_cliente->id ?></td>
 								<td class="text-center"><a href="javascript:void(0)"><?= $tarea_cliente->nombre ?></a></td>
 								<td class="text-center"><?= $tarea_cliente->descripcion ?></td>
@@ -126,3 +126,15 @@
 
 <script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
+<script>
+function irTarea(id)
+{
+var pagina="<?= site_url('tareas/ver_tarea') ?>"+"/"+id;
+location.href=pagina;   
+}
+function irTareaProyecto(id)
+{
+var pagina="<?= site_url('tareas_proyectos/ver_tarea') ?>"+"/"+id;
+location.href=pagina;   
+}
+</script>

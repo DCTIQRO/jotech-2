@@ -42,7 +42,7 @@
 							foreach($proyectos as $proyecto)
 							{
 							?>
-							<tr>
+							<tr onClick="irProyecto('<?= $proyecto->id ?>')">
 								<td class="text-center"><?= $proyecto->id ?></td>
 								<td class="text-center"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
 								<td class="text-center"><?= $proyecto->descripcion ?></td>
@@ -72,3 +72,11 @@
 
 <script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
+
+<script>
+function irProyecto(id)
+{
+var pagina="<?= site_url('proyectos/ver_proyecto') ?>"+"/"+id;
+location.href=pagina;   
+}
+</script>
