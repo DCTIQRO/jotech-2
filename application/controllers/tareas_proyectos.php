@@ -21,12 +21,14 @@ class Tareas_proyectos extends CI_Controller {
 	function ver_tarea($id)
 	{			
 		$tarea=$this->tareas_proyectos_model->ver_tarea($id);
+		$proyecto=$this->tareas_proyectos_model->ver_proyecto($tarea->id_proyecto_fk);
 		$data['v']="ver_tarea_proyecto";
 		$data['titulo']="Tarea ".$tarea->nombre;
 		$data['descripcion']=$tarea->descripcion;
 		$data['id_tarea']=$id;
 		$data['id_proyecto']=$tarea->id_proyecto_fk;
 		$data['status']=$tarea->estatus;
+		$data['proyecto']=$proyecto->nombre;
 		$data['bitacoras']=$this->tareas_proyectos_model->bitacora_tareas_proyecto($id);
 		$data['usuarios']=$this->tareas_proyectos_model->ver_usuarios_tarea($id);
 		$data['asignados']=$this->tareas_proyectos_model->ver_usuarios_asignados($id);

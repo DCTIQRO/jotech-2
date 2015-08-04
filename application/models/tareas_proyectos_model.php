@@ -20,6 +20,14 @@ class tareas_proyectos_model extends CI_Model {
 		return $results;
 	}
 	
+	function ver_proyecto($id)
+	{
+		$this->db->select('id,nombre');
+		$this->db->where('id',$id);
+		$results = $this->db->get('proyectos')->row();
+		return $results;
+	}
+	
 	function bitacora_tareas_proyecto($id)
 	{
 		$this->db->select('ptc.id id_comentario,ptc.comentario,ptc.fecha,ptc.fecha_actividad,ptc.id id_bitacora,pt.nombre,u.id id_usuario, u.first_name, u.last_name');

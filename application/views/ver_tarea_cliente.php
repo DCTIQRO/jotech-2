@@ -14,7 +14,7 @@
 </div>
 <ul class="breadcrumb breadcrumb-top">
 	<li>Clientes</li>
-	<li><a href="">Tareas</a></li>
+	<li><a href="<?= site_url('proyectos/proyectos_tareas/'.$cliente); ?>"><?= $nombre_cliente ?></a></li>
 </ul>
 <div class="row">
 	<div class="col-sm-12">
@@ -38,6 +38,7 @@
 					}
 					?>
 					<a href="<?= site_url('proyectos/proyectos_tareas/'.$cliente); ?>" class="btn-sm btn-info">Tareas del Cliente</a>
+					<a href="<?= site_url('tareas'); ?>" class="btn-sm btn-primary">Todos las Tareas Cliente</a>
 				</div>
 			</div>
 		</div>

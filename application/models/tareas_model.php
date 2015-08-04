@@ -51,6 +51,13 @@ class Tareas_model extends CI_Model {
 		return $results;
 	}
 	
+	function tareas_cliente()
+	{
+		$this->db->select('id,nombre,descripcion,estatus,id_cliente_fk,fecha_inicio,fecha_fin');
+		$results = $this->db->get('clientes_tareas')->result();
+		return $results;
+	}
+	
 	function bitacora_tareas_cliente($id)
 	{
 		$this->db->select('ctc.comentario,ctc.fecha,ctc.fecha_actividad,ctc.id id_bitacora,ct.nombre,u.id id_usuario, u.first_name, u.last_name');

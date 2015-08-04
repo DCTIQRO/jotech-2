@@ -19,7 +19,7 @@ class Main extends CI_Controller {
 	 */
 	public function index()
 	{
-		redirect('tareas');
+		redirect('tareas/mis_tareas');
 	}
 }
 

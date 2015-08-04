@@ -30,10 +30,18 @@
 
 			
 			<div class="form-group">
-				<label class="col-md-2 control-label" for="descripcion_corta">Descripción Corta</label>
+				<label class="col-md-2 control-label" for="rango ">Rango</label>
 				<div class="col-md-4">
 					<div class="input-group">
-						<input type="text" id="descripcion_corta" name="descripcion_corta" class="form-control" placeholder="Descripcion_corta..">
+						<select id="rango" name="rango" class="select-chosen form-control" placeholder="Selecciona un rango">
+							<option value="">Selecciona un rango</option>
+							<option value="1">Más de 2,000,000</option>
+							<option value="2">Hasta 2,000,000</option>
+							<option value="3">Hasta 600,000</option>
+							<option value="4">Hasta 200,000</option>
+							<option value="5">Hasta 70,000</option>
+							<option value="6">Hasta 25,000</option>
+						</select>
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>

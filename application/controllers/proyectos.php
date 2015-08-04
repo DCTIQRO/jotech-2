@@ -43,7 +43,7 @@ class Proyectos extends CI_Controller {
 			'descripcion' => $this->input->post('descripcion'),
 			'estatus' => '1',
 			'fecha_inicio' => $año."-".$mes."-".$dia,
-			'descripcion_corta' => $this->input->post('descripcion_corta'),
+			'rango' => $this->input->post('rango'),
 			'id_cliente_fk' => $this->input->post('id_cliente'),
 			'progreso' => $this->input->post('0'),
 			'fecha_insercion' => date('Y-m-d H:i:s'),

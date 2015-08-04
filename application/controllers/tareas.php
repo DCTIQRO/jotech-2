@@ -16,6 +16,16 @@ class Tareas extends CI_Controller {
 	function index()
 	{			
 		$usuario=$this->tareas_model->ver_usuario($this->session->userdata('user_id'));
+		$data['v']="tareas_cliente_view";
+		$data['titulo']="Ver Tareas de ".($usuario->first_name)." ".$usuario->last_name;
+		$data['usuario']=$this->session->userdata('user_id');
+		$data['tareas_clientes']=$this->tareas_model->tareas_cliente();
+		$this->load->view('main',$data);
+	}
+	
+	function mis_tareas()
+	{
+		$usuario=$this->tareas_model->ver_usuario($this->session->userdata('user_id'));
 		$data['v']="tareas_view";
 		$data['titulo']="Ver Tareas de ".($usuario->first_name)." ".$usuario->last_name;
 		$data['usuario']=$this->session->userdata('user_id');
@@ -68,6 +78,7 @@ class Tareas extends CI_Controller {
 		$form_bitacora=array(
 			'comentario'	=>	'Se ha creado la tarea cliente <a href="'.site_url('tareas/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre').'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$this->input->post('id_cliente'),
 			'status'		=>	'1',
@@ -81,12 +92,14 @@ class Tareas extends CI_Controller {
 	function ver_tarea($id)
 	{			
 		$tarea=$this->tareas_model->ver_tarea($id);
+		$cliente=$this->tareas_model->ver_cliente($tarea->id_cliente_fk);
 		$data['v']="ver_tarea_cliente";
 		$data['titulo']="Tarea ".$tarea->nombre;
 		$data['descripcion']=$tarea->descripcion;
 		$data['id_tarea']=$id;
 		$data['status']=$tarea->estatus;
 		$data['cliente']=$tarea->id_cliente_fk;
+		$data['nombre_cliente']=$cliente->nombre;
 		$data['bitacoras']=$this->tareas_model->bitacora_tareas_cliente($id);
 		$data['usuarios']=$this->tareas_model->ver_usuarios_tarea($id);
 		$data['asignados']=$this->tareas_model->ver_usuarios_asignados($id);

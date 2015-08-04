@@ -6,21 +6,21 @@
 				<i class="fa fa-suitcase sidebar-nav-icon"></i>
 			</a>
 			<h1 class="widget-content text-letf animation-pullDown">
-				<strong>Listado de Proyectos</strong>
+				<strong>Listado de Tareas Cliente</strong>
 			</h1>
 			</div>
 		</div>
 	</div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
-	<li>Proyectos</li>
+	<li>Tareas Cliente</li>
 	<li><a href="">Listado</a></li>
 </ul>
 <div class="row">
 	<div class="col-xs-12" >
 		<div class="block">
 			<div class="block-title">
-				<h2>Listar <strong>Proyectos</strong></h2>
+				<h2>Listar <strong>Tareas Cliente</strong></h2>
 			</div>
 			<div class="row">
 				<div class="table-responsive">
@@ -28,35 +28,35 @@
 						<thead>
 							<tr>
 								<th class="text-center">ID</th>
-								<th class="text-center">Proyecto</th>
+								<th class="text-center">Tarea</th>
 								<th class="text-center">Descripción</th>
-								<th class="text-center">Descripción Corta</th>
 								<th class="text-center">Cliente</th>
-								<th class="text-center">Inicio</th>
+								<th class="text-center">Fecha Inicio</th>
+								<th class="text-center">Fecha Termino</th>
 								<th class="text-center">Status</th>
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-							foreach($proyectos as $proyecto)
+							foreach($tareas_clientes as $tarea)
 							{
 							?>
 							<tr>
-								<td class="text-center"><?= $proyecto->id ?></td>
-								<td class="text-center"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
-								<td class="text-center"><?= $proyecto->descripcion ?></td>
-								<td class="text-center"><?= $proyecto->descripcion_corta ?></td>
-								<td class="text-center"><?= $proyecto->cliente ?></td>
-								<td class="text-center"><?= $proyecto->fecha_inicio ?></td>
+								<td class="text-center"><?= $tarea->id ?></td>
+								<td class="text-center"><a href="javascript:void(0)"><?= $tarea->nombre ?></a></td>
+								<td class="text-center"><?= $tarea->descripcion ?></td>
+								<td class="text-center"><?= $tarea->id_cliente_fk ?></td>
+								<td class="text-center"><?= $tarea->fecha_inicio ?></td>
+								<td class="text-center"><?= $tarea->fecha_fin ?></td>
 								<td class="text-center">
 								<?php
-								if($proyecto->estatus == '0'){echo '<label class="btn btn-sm btn-danger">Cerrado</label>';}
-								if($proyecto->estatus == '1'){echo '<label class="btn btn-sm btn-success">Abierto</label>';}
+								if($tarea->estatus == '0'){echo '<label class="btn btn-sm btn-danger">Cerrado</label>';}
+								if($tarea->estatus == '1'){echo '<label class="btn btn-sm btn-success">Abierto</label>';}
 								?>
 								</td>
 								<td class="text-center">
-									<a href="<?= site_url('proyectos/ver_proyecto/'.$proyecto->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+									<a href="<?= site_url('tareas/ver_tarea/'.$tarea->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 								</td>
 							</tr>
 							<?php

@@ -13,9 +13,8 @@
 	</div>
 </div>
 <ul class="breadcrumb breadcrumb-top">
-	<li>Proyectos</li>
-	<li>Tareas</li>
-	<li><a href="">Ver</a></li>
+	<li>Proyecto</li>
+	<li><a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto); ?>"><?= $proyecto ?></a></li>
 </ul>
 <div class="row">
 	<div class="col-sm-12">

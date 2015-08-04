@@ -31,7 +31,7 @@
                             <span class="sidebar-header-title">Mi cuenta</span>
                         </li>
 						<li>
-                            <a href="<?= site_url('tareas') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mis Tareas</span></a>
+                            <a href="<?= site_url('tareas/mis_tareas') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mis Tareas</span></a>
                         </li>
 						<li>
                             <a href="javascript:void(0)"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Perfil</span></a>
@@ -45,6 +45,12 @@
                         </li>
                         <li>
                             <a href="<?= site_url('proyectos') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Proyectos</span></a>
+                        </li>
+						<li>
+                            <a href="<?= site_url('tareas') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tareas Cliente</span></a>
+                        </li>
+						<li>
+                            <a href="<?= site_url('contactos') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Contactos</span></a>
                         </li>
 						<li>
                             <a href="<?= site_url('clientes') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clientes</span></a>
