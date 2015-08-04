@@ -208,8 +208,9 @@ class Proyectos extends CI_Controller {
 	function crear_tarea_proyecto()
 	{
 		date_default_timezone_set('America/Mexico_City');
-		list($dia,$mes,$año)=explode('-',$this->input->post('fecha_inicio'));
-		list($dia2,$mes2,$año2)=explode('-',$this->input->post('fecha_fin'));
+
+		list($dia,$mes,$año)=explode('/',$this->input->post('fecha_inicio'));
+		list($dia2,$mes2,$año2)=explode('/',$this->input->post('fecha_fin'));
 		
 		$form_data=array(
 			'nombre'			=>	$this->input->post('nombre_tarea'),
