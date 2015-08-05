@@ -46,6 +46,7 @@
 								<th class="text-center">Cliente</th>
 								<th class="text-center">Inicio</th>
 								<th class="text-center">Status</th>
+								<th class="text-center">Acciones</th>
 							</tr>
 						</tfoot>
 						<tbody>
