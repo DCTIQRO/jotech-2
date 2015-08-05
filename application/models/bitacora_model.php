@@ -22,7 +22,7 @@ class Bitacora_model extends CI_Model {
 		$this->db->where('cc.status','1');
 		$this->db->join('clientes c','c.id=cc.id_cliente');
 		$this->db->join('users u','u.id=cc.id_usuario');
-		$this->db->order_by('cc.fecha','asc');
+		$this->db->order_by('cc.fecha','desc');
 		$results = $this->db->get('clientes_comentarios cc')->result();
 		return $results;
 	}

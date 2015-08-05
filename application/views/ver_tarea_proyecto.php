@@ -27,13 +27,13 @@
 					<?php
 					if($status == 0){
 					?>
-					<a href="<?= site_url('tareas_proyectos/cerrar_tarea/'.$id_tarea); ?>" class="btn-sm btn-danger">Cerrar Tarea Cliente</a>
+					<a href="<?= site_url('tareas_proyectos/cerrar_tarea/'.$id_tarea); ?>" class="btn-sm btn-danger">Cerrar Tarea</a>
 					<?php 
 					}
 					else
 					{
 					?>
-					<a href="<?= site_url('tareas_proyectos/abrir_tarea/'.$id_tarea); ?>" class="btn-sm btn-success">Abrir Tarea Cliente</a>
+					<a href="<?= site_url('tareas_proyectos/abrir_tarea/'.$id_tarea); ?>" class="btn-sm btn-success">Abrir Tarea</a>
 					<?php	
 					}
 					?>

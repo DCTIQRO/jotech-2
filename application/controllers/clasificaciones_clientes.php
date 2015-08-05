@@ -12,7 +12,9 @@ class Clasificaciones_clientes extends CI_Controller {
 		$this->load->model('clasificacion_cliente_model');
 	}	
 	function index()
-	{			
+	{	
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$data['v']="clasificaciones_clientes_view";
 		$data['clasificaciones']=$this->clasificacion_cliente_model->ver_clasificaciones();
 		$this->load->view('main',$data);

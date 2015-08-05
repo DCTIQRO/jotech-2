@@ -88,7 +88,7 @@
 						<label class="col-md-2 control-label" for="comentario">Comentarios</label>
 						<div class="col-md-4">
 							<div class="input-group">
-								<textarea id="comentario" name="comentario" class="form-control" rows="2" placeholder="Numero de ubicación.."><?= $datos->comentarios ?></textarea>
+								<textarea id="comentario" name="comentario" class="form-control" rows="1" placeholder="Numero de ubicación.."><?= $datos->comentarios ?></textarea>
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>

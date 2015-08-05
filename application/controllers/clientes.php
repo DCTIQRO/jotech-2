@@ -6,20 +6,25 @@ class Clientes extends CI_Controller {
 	{
  		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->model('clientes_model');
 	}	
 	function index()
-	{			
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$data['v']="clientes_view";
 		$data['clientes']=$this->clientes_model->ver_clientes();
 		$this->load->view('main',$data);
 	}
 	
 	function nuevo_cliente()
-	{			
+	{	
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$data['v']="add_cliente";
 		$data['clasificaciones']=$this->clientes_model->ver_clasificaciones();
 		$this->load->view('main',$data);
@@ -80,6 +85,8 @@ class Clientes extends CI_Controller {
 	
 	function ver($id)
 	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$cliente=$this->clientes_model->ver_cliente($id);
 		$data['v']="ver_cliente";
 		$data['datos']=$this->clientes_model->info_cliente($id);
@@ -135,6 +142,8 @@ class Clientes extends CI_Controller {
 	
 	function contacto($id)
 	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$cliente=$this->clientes_model->ver_cliente($id);
 		$data['v']="contacto";
 		$data['tab']="contacto";
@@ -147,6 +156,8 @@ class Clientes extends CI_Controller {
 	
 	function nuevo_contacto($id)
 	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$cliente=$this->clientes_model->ver_cliente($id);
 		$data['v']="new_contacto";
 		$data['tab']="contacto";

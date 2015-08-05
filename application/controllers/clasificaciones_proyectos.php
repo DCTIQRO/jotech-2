@@ -12,7 +12,9 @@ class Clasificaciones_proyectos extends CI_Controller {
 		$this->load->model('clasificacion_proyecto_model');
 	}	
 	function index()
-	{			
+	{	
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$data['v']="clasificaciones_proyectos_view";
 		$data['clasificaciones']=$this->clasificacion_proyecto_model->ver_clasificaciones();
 		$this->load->view('main',$data);

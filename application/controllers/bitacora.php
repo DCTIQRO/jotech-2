@@ -20,6 +20,8 @@ class Bitacora extends CI_Controller {
 	
 	function cliente($id)
 	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		date_default_timezone_set('America/Mexico_City');
 		$this->form_validation->set_rules('comentario', 'Comentario', 'required');
 		$this->form_validation->set_rules('fecha', 'Fecha Actividad', 'required');

@@ -14,7 +14,9 @@ class Proyectos extends CI_Controller {
 		$this->load->model('proyectos_model');
 	}	
 	function index()
-	{			
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$data['v']="proyectos_view";
 		$data['tab']="proyectos";
 		$data['titulo']="Listado de Proyectos";
@@ -23,10 +25,12 @@ class Proyectos extends CI_Controller {
 	}
 	
 	function nuevo_proyecto($id)
-	{			
+	{		
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$data['v']="add_proyecto";
 		$cliente=$this->proyectos_model->ver_cliente($id);
-		$data['clasificaciones']=$this->proyectos_model->ver_clasificaciones();
+		$data['clasificaciones']=$this->proyectos_model->clasificacion_cliente($id);
 		$data['tipos']=$this->proyectos_model->ver_tipos();
 		$data['titulo']="Crear proyecto de ".$cliente->nombre;
 		$data['usuarios']=$this->proyectos_model->ver_usuarios();
@@ -115,6 +119,8 @@ class Proyectos extends CI_Controller {
 	
 	function proyectos_tareas($id)
 	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$cliente=$this->proyectos_model->ver_cliente($id);
 		$data['v']="proyectos_tareas";
 		$data['id_cliente']=$id;
@@ -127,6 +133,8 @@ class Proyectos extends CI_Controller {
 	
 	function ver_proyecto($id)
 	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
 		$data['v']="ver_proyecto";
 		$data['tab']="proyectos";

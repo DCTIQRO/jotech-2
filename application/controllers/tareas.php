@@ -14,7 +14,9 @@ class Tareas extends CI_Controller {
 		$this->load->model('tareas_model');
 	}	
 	function index()
-	{			
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$usuario=$this->tareas_model->ver_usuario($this->session->userdata('user_id'));
 		$data['v']="tareas_cliente_view";
 		$data['titulo']="Ver Tareas de ".($usuario->first_name)." ".$usuario->last_name;
@@ -25,6 +27,8 @@ class Tareas extends CI_Controller {
 	
 	function mis_tareas()
 	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$usuario=$this->tareas_model->ver_usuario($this->session->userdata('user_id'));
 		$data['v']="tareas_view";
 		$data['titulo']="Ver Tareas de ".($usuario->first_name)." ".$usuario->last_name;
@@ -35,7 +39,9 @@ class Tareas extends CI_Controller {
 	}
 	
 	function nueva_tarea($id)
-	{			
+	{		
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$cliente=$this->tareas_model->ver_cliente($id);
 		$data['v']="add_tarea";
 		$data['titulo']="Crear Tarea de ".$cliente->nombre;
@@ -90,7 +96,9 @@ class Tareas extends CI_Controller {
 	}
 	
 	function ver_tarea($id)
-	{			
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$tarea=$this->tareas_model->ver_tarea($id);
 		$cliente=$this->tareas_model->ver_cliente($tarea->id_cliente_fk);
 		$data['v']="ver_tarea_cliente";

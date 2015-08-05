@@ -369,7 +369,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-xs-6 col-xs-offset-4 ">
-						<input type="submit" class="btn-sm btn-success" value="Agregar" />
+						<input type="submit" class="btn-sm btn-success" value="Guardar Tarea" />
 					</div>
 				</div>
 				<input type="hidden" id="proyecto" name="proyecto" value="<?= $id_proyecto ?>" />

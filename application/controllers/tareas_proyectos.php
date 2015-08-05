@@ -19,7 +19,9 @@ class Tareas_proyectos extends CI_Controller {
 	}
 	
 	function ver_tarea($id)
-	{			
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
 		$tarea=$this->tareas_proyectos_model->ver_tarea($id);
 		$proyecto=$this->tareas_proyectos_model->ver_proyecto($tarea->id_proyecto_fk);
 		$data['v']="ver_tarea_proyecto";

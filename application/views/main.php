@@ -15,7 +15,7 @@
 		
 		<?php
 
-			$cssface=array('css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css');
+			$cssface=array('css/bootstrap.min.css','css/jquery.dataTables.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css');
 			foreach($cssface as $url)
 
 			{
@@ -88,11 +88,22 @@
                         </ul>
 						<?php
 							$this->db->select('id,nombre');
-							$this->db->where('status','1');
+							$this->db->where('borrado','1');
 							$this->db->order_by('nombre','asc');
-							$clientes = $this->db->get('clientes')->result();
+							$proyectos = $this->db->get('proyectos')->result();
 						?>
 						<ul class="nav navbar-nav-custom pull-right">
+							<li Style="padding-top: 8px; width: 350px;">
+								<select id="buscar_proyecto" onChange="buscar_proyecto()" data-placeholder="Selecciona un proyecto" name="buscar_proyecto" class="select-chosen">
+									<option></option>
+									<?php
+										foreach($proyectos as $proyecto)
+										{
+											echo '<option value="'.$proyecto->id.'">'.$proyecto->nombre.'</option>';
+										}
+									?>
+								</select>
+							</li>
 							<li Style="padding-top: 8px; width: 350px;">
 								<select id="buscar_cliente" onChange="buscar_cliente()" data-placeholder="Selecciona un cliente" name="buscar_cliente" class="select-chosen">
 									<option></option>
@@ -131,6 +142,13 @@
 				var pagina="<?= site_url("clientes/ver") ?>"+"/"+$('#buscar_cliente').val();
 				location.href=pagina;
 			}
+			
+			function buscar_proyecto()
+			{
+				var pagina="<?= site_url("proyectos/ver_proyecto") ?>"+"/"+$('#buscar_proyecto').val();
+				location.href=pagina;
+			}
+			
 		</script>
     </body>
 </html>

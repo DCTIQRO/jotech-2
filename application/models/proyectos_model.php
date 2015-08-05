@@ -14,6 +14,16 @@ class Proyectos_model extends CI_Model {
 		return $results;
 	}
 	
+	function clasificacion_cliente($id)
+	{
+		$this->db->where('cc.id_cliente_fk',$id);
+		$this->db->where('clas.status','1');
+		$this->db->select('clas.id,cc.clasificacion,clas.nombre');
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
+		$results = $this->db->get('clientes_clasificaciones cc')->result();
+		return $results;
+	}
+	
 	
 	function ver_tipos()
 	{
