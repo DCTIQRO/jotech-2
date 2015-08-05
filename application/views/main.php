@@ -86,6 +86,25 @@
                                 </a>
                             </li>
                         </ul>
+						<?php
+							$this->db->select('id,nombre');
+							$this->db->where('status','1');
+							$this->db->order_by('nombre','asc');
+							$clientes = $this->db->get('clientes')->result();
+						?>
+						<ul class="nav navbar-nav-custom pull-right">
+							<li Style="padding-top: 8px; width: 350px;">
+								<select id="buscar_cliente" onChange="buscar_cliente()" data-placeholder="Selecciona un cliente" name="buscar_cliente" class="select-chosen">
+									<option></option>
+									<?php
+										foreach($clientes as $cliente)
+										{
+											echo '<option value="'.$cliente->id.'">'.$cliente->nombre.'</option>';
+										}
+									?>
+								</select>
+							</li>
+						</ul>
                     </header>
                     <!-- END Header -->
 
@@ -106,6 +125,13 @@
         <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
 		
         <script>$(function(){ Index.init(); });</script>
+		<script>
+			function buscar_cliente()
+			{
+				var pagina="<?= site_url("clientes/ver") ?>"+"/"+$('#buscar_cliente').val();
+				location.href=pagina;
+			}
+		</script>
     </body>
 </html>
 

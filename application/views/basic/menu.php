@@ -34,6 +34,9 @@
                             <a href="<?= site_url('tareas/mis_tareas') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mis Tareas</span></a>
                         </li>
 						<li>
+                            <a href="<?= site_url('recordatorios') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Recordatorios</span></a>
+                        </li>
+						<li>
                             <a href="javascript:void(0)"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Perfil</span></a>
                         </li>
 						<li>
