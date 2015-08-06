@@ -140,5 +140,46 @@ class Clientes_model extends CI_Model {
 		$this->db->where('id_miembro_fk',$id);
 		$this->db->delete('miembros_clasificaciones');
 	}
+	
+	function limpiar_proyectos($id)
+	{
+		$this->db->select('id');
+		$this->db->where('id_cliente_fk',$id);
+		$results = $this->db->get('proyectos')->result();
+		
+		foreach($results as $result)
+		{
+			$form_data=array(
+				'borrado'	=>	'0'
+			);
+			$this->db->where('id',$result->id);
+			$this->db->update('proyectos',$form_data);
+		}
+		return $results;
+	}
+	
+	function limpiar_tareas_proyectos($id,$form_data)
+	{
+		$this->db->where('id_proyecto_fk',$id);
+		$this->db->update('proyectos_tareas',$form_data);
+	}
+	
+	function limpiar_tareas($id)
+	{
+		$form_data=array(
+			'borrado'	=>	'0'
+		);
+		$this->db->where('id_cliente_fk',$id);
+		$this->db->update('clientes_tareas',$form_data);
+	}
+	
+	function limpiar_contactos($id)
+	{
+		$form_data=array(
+			'borrado'	=>	'0'
+		);
+		$this->db->where('id_cliente_fk',$id);
+		$this->db->update('miembros',$form_data);
+	}
 }
 ?>

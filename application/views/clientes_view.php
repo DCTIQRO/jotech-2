@@ -65,23 +65,24 @@
 				foreach($clientes as $cliente)
 				{
 				?>
-				<tr onClick="irCliente('<?= $cliente->id ?>')">
-					<td class="text-center"><?= $cliente->id ?></td>
-					<td class="text-center"><a href="<?= site_url('clientes/ver/'.$cliente->id) ?>"><?= $cliente->nombre ?></a></td>
-					<td class="text-center hidden"><?= $cliente->website ?></td>
-					<td class="text-center"><?= $cliente->correo ?></td>
-					<td class="text-center"><?= $cliente->telefono ?></td>
+				<tr>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->id ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><a href="<?= site_url('clientes/ver/'.$cliente->id) ?>"><?= $cliente->nombre ?></a></td>
+					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->website ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->correo ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->telefono ?></td>
 					<td class="text-center hidden"><?= ($cliente->calle) ?></td>
-					<td class="text-center"><?= ($cliente->cp) ?></td>
-					<td class="text-center"><?= $cliente->ciudad ?></td>
-					<td class="text-center hidden"><?= $cliente->estado ?></td>
-					<td class="text-center"><?= $cliente->pais ?></td>
-					<td class="text-center"><p class="texto_desc"><?= $cliente->detalles ?></p></td>
-					<td class="text-center hidden"><?= $cliente->fecha_registro ?></td>
-					<td class="text-center">
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= ($cliente->cp) ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->ciudad ?></td>
+					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->estado ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->pais ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><p class="texto_desc"><?= $cliente->detalles ?></p></td>
+					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->fecha_registro ?></td>
+					<td class="text-center" >
 						<a href="<?= site_url('clientes/ver/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Ver Cliente" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 						<a href="<?= site_url('proyectos/nuevo_proyecto/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Nuevo Proyecto" class="btn btn-xs btn-default"><i class="fa fa-briefcase"></i></a>
 						<a href="<?= site_url('tareas/nueva_tarea/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Nueva Tarea Cliente" class="btn btn-xs btn-default"><i class="fa fa-check-square-o"></i></a>
+						<a href="<?= site_url('clientes/eliminar/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Eliminar Cliente" data-title="Confirmar Eliminación de Cliente"  data-text="Esta seguro de eliminar al cliente <?= $cliente->nombre ?>" data-confirm-button="Si" data-cancel-button="No" class="btn btn-xs btn-default eliminar"><i class="fa fa-trash-o"></i></a>
 					</td>
 				</tr>
 				<?php
@@ -114,5 +115,7 @@ var pagina="<?= site_url('clientes/ver') ?>"+"/"+id;
 location.href=pagina;   
 }
 </script>
+<script>
+$(".eliminar").confirm();
+</script>
 <script src="<?= asset_url('js/pages/tablaclientes.js') ?>"></script>
-<script>$(function(){ TablesDatatables.init(); });</script>

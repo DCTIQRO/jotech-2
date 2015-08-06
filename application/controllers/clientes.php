@@ -248,5 +248,27 @@ class Clientes extends CI_Controller {
 		$this->clientes_model->editar_contacto($form_data,$id);
 		redirect('clientes/contacto/'.$id_cliente);
 	}
+	
+	function eliminar($id)
+	{
+		$form_data=array(
+			'status'	=>	'0'
+		);
+		$this->clientes_model->actualizar_cliente($id,$form_data);
+		$proyectos=$this->clientes_model->limpiar_proyectos($id,$form_data);
+		
+		foreach($proyectos as $proyecto)
+		{
+			$form_data=array(
+				'borrado'	=>	'0'
+			);
+			$this->clientes_model->limpiar_tareas_proyectos($proyecto->id,$form_data);
+		}
+		
+		$this->clientes_model->limpiar_tareas($id);
+		$this->clientes_model->limpiar_contactos($id);
+		
+		redirect('clientes');
+	}
 }
 ?>
