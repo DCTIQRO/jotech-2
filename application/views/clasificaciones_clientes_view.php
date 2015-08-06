@@ -44,7 +44,7 @@
 				<thead>
 					<tr>
 						<th class="text-center">ID</th>
-						<th class="text-center">Cliente</th>
+						<th class="text-center">Nombre</th>
 						<th class="text-center">Descripción</th>
 						<th class="text-center">Acciones</th>
 					</tr>
@@ -52,7 +52,7 @@
 				<tfoot>
 					<tr>
 						<th class="text-center">ID</th>
-						<th class="text-center">Cliente</th>
+						<th class="text-center">Nombre</th>
 						<th class="text-center">Descripción</th>
 						<th class="text-center">Acciones</th>
 					</tr>
@@ -68,7 +68,7 @@
 						<td class="text-center"><?= $clasificacion->descripcion ?></td>
 						<td class="text-center">
 							<a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-							<a href="<?= site_url('clasificaciones_clientes/eliminar_clasificacion/'.$clasificacion->id) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+							<a href="<?= site_url('clasificaciones_clientes/eliminar_clasificacion/'.$clasificacion->id) ?>" data-toggle="tooltip" data-original-title="Eliminar" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar la clasificación <?= $clasificacion->nombre ?>" data-confirm-button="Si" data-cancel-button="No" class="btn btn-xs btn-default eliminar"><i class="fa fa-trash-o"></i></a>
 						</td>
 					</tr>
 					<?php
@@ -109,4 +109,8 @@ function cambiar_id(id)
 $( document ).ready(function() {
     $( "#nombre" ).focus();
 });
+</script>
+
+<script>
+$(".eliminar").confirm();
 </script>
