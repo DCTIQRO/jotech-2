@@ -4158,3 +4158,12 @@ background-size: contain;
 background-repeat: no-repeat;
 background-position: center center;
 }
+
+tfoot input {
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+	color: #394263;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}

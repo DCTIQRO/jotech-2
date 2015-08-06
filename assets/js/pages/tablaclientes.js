@@ -1,20 +1,15 @@
-/*
- *  Document   : tablesDatatables.js
- *  Author     : pixelcave
- *  Description: Custom javascript code used in Tables Datatables page
- */
-
-var TablesDatatables = function() {
-
-    return {
-        init: function() {
-            /* Initialize Bootstrap Datatables Integration */
-            App.datatables();
-
-            /* Initialize Datatables */
-            $('#tabla_clientes').dataTable({
-                columnDefs: [ { orderable: false, targets: [] } ],
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#tabla_clientes tfoot th').each( function () {
+        var title = $('#tabla_clientes thead th').eq( $(this).index() ).text();
+        $(this).html( '<input class="" type="text" placeholder="'+title+'" />' );
+    } );
+    // DataTable
+	 App.datatables();
+    var table = $('#tabla_clientes').DataTable({
+		columnDefs: [ { orderable: false, targets: [7] } ],
                 pageLength: 10,
+				autoWidth: true,
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
 				language:{
 					"sProcessing":     "Procesando...",
@@ -40,10 +35,17 @@ var TablesDatatables = function() {
 						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 					}
 				}
-            });
-
-            /* Add placeholder attribute to the search input */
-            $('.dataTables_filter input').attr('placeholder', 'Search');
-        }
-    };
-}();
+	});
+	$('.dataTables_filter input').attr('placeholder', 'Search');
+ 
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            that
+                .search( this.value )
+                .draw();
+        } );
+    } );
+} );

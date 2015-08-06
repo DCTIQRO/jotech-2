@@ -43,6 +43,23 @@
 					<th class="text-center">Acciones</th>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<th class="text-center">ID</th>
+					<th class="text-center">Cliente</th>
+					<th class="text-center hidden">WebSite</th>
+					<th class="text-center">Correo</th>
+					<th class="text-center">Telefono</th>
+					<th class="text-center hidden">Direccion</th>
+					<th class="text-center ">CP</th>
+					<th class="text-center">Ciudad</th>
+					<th class="text-center hidden">Estado</th>
+					<th class="text-center">Pais</th>
+					<th class="text-center">Detalles</th>
+					<th class="text-center hidden">Fecha Registro</th>
+					<th class="text-center">Acciones</th>
+				</tr>
+			</tfoot>
 			<tbody>
 				<?php
 				foreach($clientes as $cliente)

@@ -81,7 +81,7 @@
 					<table id="tabla_proyectos" class="table table-vcenter table-condensed table-bordered">
 						<thead>
 							<tr>
-								<th class="text-center">ID</th>
+								<th class="text-center" Style="width: 50px !important;">ID</th>
 								<th class="text-center">Tarea</th>
 								<th class="text-center">Descripción</th>
 								<th class="text-center">Cliente</th>
@@ -97,7 +97,7 @@
 							{
 							?>
 							<tr onClick="irTarea(<?= $tarea_cliente->id ?>)">
-								<td class="text-center"><?= $tarea_cliente->id ?></td>
+								<td class="text-center" Style="width: 50px !important;"><?= $tarea_cliente->id ?></td>
 								<td class="text-center"><a href="javascript:void(0)"><?= $tarea_cliente->nombre ?></a></td>
 								<td class="text-center"><?= $tarea_cliente->descripcion ?></td>
 								<td class="text-center"><?= $tarea_cliente->cliente ?></td>

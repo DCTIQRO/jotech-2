@@ -37,6 +37,18 @@
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
+						<tfoot>
+							<tr>
+								<th class="text-center">ID</th>
+								<th class="text-center">Tarea</th>
+								<th class="text-center">Descripción</th>
+								<th class="text-center">Cliente</th>
+								<th class="text-center">Fecha Inicio</th>
+								<th class="text-center">Fecha Termino</th>
+								<th class="text-center">Status</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</tfoot>
 						<tbody>
 							<?php
 							foreach($tareas_clientes as $tarea)
@@ -71,7 +83,6 @@
 </div>
 
 <script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
-<script>$(function(){ TablesDatatables.init(); });</script>
 <script>
 function irTarea(id)
 {

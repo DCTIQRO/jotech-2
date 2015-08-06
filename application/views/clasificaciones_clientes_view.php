@@ -40,7 +40,7 @@
 	</div>
 	<div class="row">
 		<div class="table-responsive">
-			<table id="tabla_clientes" class="table table-vcenter table-condensed table-bordered">
+			<table id="tabla_clasificaciones" class="table table-vcenter table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th class="text-center">ID</th>
@@ -49,6 +49,14 @@
 						<th class="text-center">Acciones</th>
 					</tr>
 				</thead>
+				<tfoot>
+					<tr>
+						<th class="text-center">ID</th>
+						<th class="text-center">Cliente</th>
+						<th class="text-center">Descripción</th>
+						<th class="text-center">Acciones</th>
+					</tr>
+				</tfoot>
 				<tbody>
 					<?php
 					foreach($clasificaciones as $clasificacion)
@@ -72,8 +80,7 @@
 	</div>
 </div>
 
-<script src="<?= asset_url('js/pages/tablaclientes.js') ?>"></script>
-<script>$(function(){ TablesDatatables.init(); });</script>
+<script src="<?= asset_url('js/pages/tablaclasificaciones.js') ?>"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {

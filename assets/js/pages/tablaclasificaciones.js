@@ -1,13 +1,13 @@
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
-    $('#tabla_proyectos tfoot th').each( function () {
-        var title = $('#tabla_proyectos thead th').eq( $(this).index() ).text();
+    $('#tabla_clasificaciones tfoot th').each( function () {
+        var title = $('#tabla_clasificaciones thead th').eq( $(this).index() ).text();
         $(this).html( '<input class="" type="text" placeholder="'+title+'" />' );
     } );
     // DataTable
 	 App.datatables();
-    var table = $('#tabla_proyectos').DataTable({
-		columnDefs: [ { orderable: false, targets: [7] } ],
+    var table = $('#tabla_clasificaciones').DataTable({
+		columnDefs: [ { orderable: false, targets: [3] } ],
                 pageLength: 10,
 				autoWidth: true,
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],

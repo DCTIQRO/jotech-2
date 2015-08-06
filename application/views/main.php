@@ -15,7 +15,7 @@
 		
 		<?php
 
-			$cssface=array('css/bootstrap.min.css','css/jquery.dataTables.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css');
+			$cssface=array('css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css');
 			foreach($cssface as $url)
 
 			{
@@ -104,6 +104,12 @@
 									?>
 								</select>
 							</li>
+							<?php
+								$this->db->select('id,nombre');
+								$this->db->where('status','1');
+								$this->db->order_by('nombre','asc');
+								$clientes = $this->db->get('clientes')->result();
+							?>
 							<li Style="padding-top: 8px; width: 350px;">
 								<select id="buscar_cliente" onChange="buscar_cliente()" data-placeholder="Selecciona un cliente" name="buscar_cliente" class="select-chosen">
 									<option></option>

@@ -82,64 +82,16 @@
 	</div>
 </div>
 
-<script src="<?= asset_url('js/datatable.min.js') ?>"></script>
-<script>
-$(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#tabla_proyectos tfoot th').each( function () {
-        var title = $('#tabla_proyectos thead th').eq( $(this).index() ).text();
-        $(this).html( '<input class="form-control" type="text" placeholder="'+title+'" />' );
-    } );
- 
-    // DataTable
-    var table = $('#tabla_proyectos').DataTable({
-		columnDefs: [ { orderable: false, targets: [7] } ],
-                pageLength: 10,
-				autoWidth: true,
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
-				language:{
-					"sProcessing":     "Procesando...",
-					"sLengthMenu":     "Mostrar _MENU_ registros",
-					"sZeroRecords":    "No se encontraron resultados",
-					"sEmptyTable":     "Ningún dato disponible en esta tabla",
-					"sInfo":           "Registros del _START_ al _END_ de un total de _TOTAL_ registros",
-					"sInfoEmpty":      "Sin registros",
-					"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-					"sInfoPostFix":    "",
-					"sSearch":         "Buscar: ",
-					"sUrl":            "",
-					"sInfoThousands":  ",",
-					"sLoadingRecords": "Cargando...",
-					"oPaginate": {
-						"sFirst":    "Primero",
-						"sLast":     "Último",
-						"sNext":     "Siguiente",
-						"sPrevious": "Anterior"
-					},
-					"oAria": {
-						"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-					}
-				}
-	});
- 
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
- 
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            that
-                .search( this.value )
-                .draw();
-        } );
-    } );
-} );
-</script>
+
+<script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
 <style>
 tfoot input {
         width: 100%;
         padding: 3px;
         box-sizing: border-box;
+		color: #394263;
+		border: 1px solid #ccc;
+		border-radius: 4px;
     }
 </style>
 <script>

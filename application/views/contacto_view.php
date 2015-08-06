@@ -38,6 +38,19 @@
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
+						<tfoot>
+							<tr>
+								<th class="text-center">ID</th>
+								<th class="text-center">Nombre</th>
+								<th class="text-center">Puesto</th>
+								<th class="text-center">Teléfono</th>
+								<th class="text-center">Correo</th>
+								<th class="text-center">Status</th>
+								<th class="text-center">Status 2</th>
+								<th class="text-center">Comentarios</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</tfoot>
 						<tbody>
 							<?php
 							foreach($contactos as $contacto)
