@@ -9,6 +9,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_clasificaciones()
 	{
+		$this->db->where('status','1');
 		$this->db->select('id,nombre');
 		$results = $this->db->get('clasificacion_clientes')->result();
 		return $results;
@@ -42,6 +43,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_usuarios()
 	{
+		$this->db->where('active','1');
 		$this->db->select('id,first_name,last_name');
 		$this->db->order_by("first_name", "asc");
 		$results = $this->db->get('users')->result();
@@ -79,6 +81,7 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->select('id,nombre,fecha_inicio,progreso,estatus');
 		$this->db->where('id_cliente_fk',$id);
+		$this->db->where('borrado','1');
 		$this->db->order_by('fecha_inicio','desc');
 		$results = $this->db->get('proyectos')->result();
 		return $results;
@@ -88,6 +91,7 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->select('id,nombre,fecha_fin,estatus');
 		$this->db->where('id_cliente_fk',$id);
+		$this->db->where('borrado','1');
 		$results = $this->db->get('clientes_tareas')->result();
 		return $results;
 	}
@@ -102,6 +106,7 @@ class Proyectos_model extends CI_Model {
 	 
 	function todos_proyectos()
 	{
+		$this->db->where('p.borrado','1');
 		$this->db->select('p.id,p.nombre,p.descripcion_corta,p.estatus,p.descripcion,p.progreso,p.fecha_inicio,p.progreso,c.nombre cliente');
 		$this->db->join('clientes c','c.id=p.id_cliente_fk');
 		$results = $this->db->get('proyectos p')->result();
@@ -123,7 +128,7 @@ class Proyectos_model extends CI_Model {
 		$this->db->where('pc.status','1');
 		$this->db->join('proyectos p','p.id=pc.id_proyecto_fk');
 		$this->db->join('users u','u.id=pc.id_usuario_fk');
-		$this->db->order_by('pc.fecha','asc');
+		$this->db->order_by('pc.fecha_actividad','desc');
 		$results = $this->db->get('proyectos_comentarios pc')->result();
 		return $results;
 	}
@@ -136,6 +141,7 @@ class Proyectos_model extends CI_Model {
 	function ver_usuarios_proyectos($id)
 	{
 		$this->db->select('id,first_name,last_name');
+		$this->db->where('active','1');
 		$this->db->where('id NOT IN (SELECT id_usuario_fk FROM proyectos_usuarios where id_proyecto_fk='.$id.')',NULL,FALSE);
 		$results = $this->db->get('users')->result();
 		return $results;
@@ -144,6 +150,7 @@ class Proyectos_model extends CI_Model {
 	function ver_usuarios_asignados($id)
 	{
 		$this->db->select('u.id,u.first_name,u.last_name');
+		$this->db->where('u.active','1');
 		$this->db->where('pu.id_proyecto_fk',$id);
 		$this->db->join('users u','u.id=pu.id_usuario_fk');
 		$this->db->order_by("first_name", "asc");
@@ -155,6 +162,7 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->select('m.id,m.nombre');
 		$this->db->where('pc.id_proyecto_fk',$id);
+		$this->db->where('m.borrado','1');
 		$this->db->join('miembros m','m.id=pc.id_miembro_fk');
 		$this->db->order_by("m.nombre", "asc");
 		$results = $this->db->get('proyectos_contactos pc')->result();
@@ -165,6 +173,7 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->select('id,nombre,estatus');
 		$this->db->where('id_proyecto_fk',$id);
+		$this->db->where('borrado','1');
 		$this->db->order_by("fecha_fin", "desc");
 		$results = $this->db->get('proyectos_tareas')->result();
 		return $results;
@@ -231,6 +240,7 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->select('m.id,m.nombre');
 		$this->db->where('m.status','1');
+		$this->db->where('m.borrado','1');
 		$this->db->where('m.id_cliente_fk',$id_cliente);
 		$this->db->where('m.id NOT IN (SELECT id_miembro_fk FROM proyectos_contactos where id_proyecto_fk='.$id.')',NULL,FALSE);
 		$this->db->where('mc.clasificacion = SOME (SELECT id_clasificacion FROM proyectos_clasificaciones where id_proyecto_fk='.$id.')',NULL,FALSE);
@@ -244,6 +254,7 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->select('m.id,m.nombre');
 		$this->db->where('m.status','1');
+		$this->db->where('m.borrado','1');
 		$this->db->where('m.id_cliente_fk',$id_cliente);
 		$this->db->where('m.id NOT IN (SELECT id_miembro_fk FROM proyectos_contactos where id_proyecto_fk='.$id.')',NULL,FALSE);
 		$this->db->where('mc.clasificacion','1');

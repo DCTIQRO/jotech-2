@@ -52,12 +52,12 @@
 				<form action="<?= site_url('proyectos/guardar_bitacora') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-10 text-center">
-							<label class="label-control col-xs-12 col-sm-2" for="comentario">Comentario</label>
-							<div class="col-xs-12 col-sm-10">
-								<textarea class="form-control" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
-							</div>
+							<label class="label-control col-xs-12 col-sm-10" for="comentario">Comentario</label>
 							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
 							<div class="col-xs-12 col-sm-10">
+								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-2">
 								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha" name="fecha" required placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
 							</div>
 						</div>
@@ -410,9 +410,11 @@
 		</div>
 	</div>
 </div>
+
+<script src="<?= asset_url('js/helpers/ckeditor/ckeditor.js') ?>"></script>
+<script src="<?= asset_url('js/helpers/ckeditor/config.js') ?>"></script>
 <script src="<?= asset_url('js/pages/tablabitacoraproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
-
 <script>
 function asignar()
 {
