@@ -50,12 +50,12 @@
 				<form action="<?= site_url('tareas/guardar_bitacora') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-10 text-center">
-							<label class="label-control col-xs-12 col-sm-2" for="comentario">Comentario</label>
-							<div class="col-xs-12 col-sm-10">
-								<textarea class="form-control" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
-							</div>
+							<label class="label-control col-xs-12 col-sm-10" for="comentario">Comentario</label>
 							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
 							<div class="col-xs-12 col-sm-10">
+								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-2">
 								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha" name="fecha" required placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
 							</div>
 						</div>
@@ -87,7 +87,7 @@
 							?>
 							<tr>
 								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
-								<td class="text-center"><?= $bitacora->comentario?></td>
+								<td><?= $bitacora->comentario?></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 								<td class="text-center">
 									<?php
@@ -320,4 +320,11 @@ function asignar()
 $( document ).ready(function() {
     $( "#comentario" ).focus();
 });
+</script>
+
+<script src="//cdn.ckeditor.com/4.5.2/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'comentario', {
+    customConfig: '<?= asset_url('js/helpers/config ckeditor/config.js') ?>'
+} );
 </script>

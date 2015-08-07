@@ -89,7 +89,7 @@
 							?>
 							<tr>
 								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
-								<td class="text-center"><?= $bitacora->comentario?></td>
+								<td><?= $bitacora->comentario?></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 								<td class="text-center">
 									<?php
@@ -410,9 +410,14 @@
 		</div>
 	</div>
 </div>
+<!--ckeditor-->
+<script src="//cdn.ckeditor.com/4.5.2/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'comentario', {
+    customConfig: '<?= asset_url('js/helpers/config ckeditor/config.js') ?>'
+} );
+</script>
 
-<script src="<?= asset_url('js/helpers/ckeditor/ckeditor.js') ?>"></script>
-<script src="<?= asset_url('js/helpers/ckeditor/config.js') ?>"></script>
 <script src="<?= asset_url('js/pages/tablabitacoraproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
 <script>

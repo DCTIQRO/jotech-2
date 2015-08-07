@@ -36,6 +36,7 @@ class tareas_proyectos_model extends CI_Model {
 		$this->db->join('proyectos_tareas pt','pt.id=ptc.id_proyecto_tarea_fk');
 		$this->db->join('users u','u.id=ptc.id_usuario');
 		$this->db->order_by('ptc.fecha_actividad','desc');
+		$this->db->order_by('ptc.fecha','desc');
 		$results = $this->db->get('proyectos_tareas_comentarios ptc')->result();
 		return $results;
 	}

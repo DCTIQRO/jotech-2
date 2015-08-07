@@ -161,6 +161,7 @@ class Tareas_proyectos extends CI_Controller {
 		$form_bitacora=array(
 			'comentario'	=>	'Se ha cerrado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
 			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
 			'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
 			'status'		=>	'1',
@@ -184,6 +185,7 @@ class Tareas_proyectos extends CI_Controller {
 		$form_bitacora=array(
 			'comentario'	=>	'Se ha abierto la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
 			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
 			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
 			'id_proyecto_fk'	=>	$tarea->id_proyecto_fk,
 			'status'		=>	'1',

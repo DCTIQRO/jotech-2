@@ -129,6 +129,7 @@ class Proyectos_model extends CI_Model {
 		$this->db->join('proyectos p','p.id=pc.id_proyecto_fk');
 		$this->db->join('users u','u.id=pc.id_usuario_fk');
 		$this->db->order_by('pc.fecha_actividad','desc');
+		$this->db->order_by('pc.fecha','desc');
 		$results = $this->db->get('proyectos_comentarios pc')->result();
 		return $results;
 	}
