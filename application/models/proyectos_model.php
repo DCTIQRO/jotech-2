@@ -35,7 +35,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_cliente($id)
 	{
-		$this->db->select('nombre');
+		$this->db->select('nombre,id');
 		$this->db->where('id',$id);
 		$results = $this->db->get('clientes')->row();
 		return $results;

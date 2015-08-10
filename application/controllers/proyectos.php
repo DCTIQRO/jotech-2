@@ -136,9 +136,11 @@ class Proyectos extends CI_Controller {
 		$login=$this->session->userdata('user_id');
 		if(empty($login)){redirect('auth/login');}
 		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		$cliente=$this->proyectos_model->ver_cliente($proyecto->id_cliente_fk);
 		$data['v']="ver_proyecto";
 		$data['tab']="proyectos";
 		$data['id_proyecto']=$id;
+		$data['datos_cliente']=$cliente;
 		$data['titulo']="Proyecto ".$proyecto->nombre;
 		$data['status']=$proyecto->estatus;
 		$data['cliente']=$proyecto->id_cliente_fk;

@@ -1,20 +1,12 @@
-<div class="content-header">
-	<div class="header-section">
-		<div class="widget">
-			<div class="widget-simple">
-			<a href="javascript:void(0)" class="widget-icon pull-left themed-background-fire animation-fadeIn">
-				<i class="fa fa-folder-open-o sidebar-nav-icon"></i>
-			</a>
-			<h1 class="widget-content text-letf animation-pullDown">
-				<strong><?= $titulo ?></strong><small> <?= $descripcion ?></small>
-			</h1>
-			</div>
-		</div>
-	</div>
-</div>
 <ul class="breadcrumb breadcrumb-top">
-	<li>Proyectos</li>
-	<li><a href="">Ver</a></li>
+	<a href="<?= site_url('clientes/ver/'.$datos_cliente->id) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $datos_cliente->nombre ?></a>
+	<ul class="nav nav-pills">
+		<li><a href="<?= site_url('clientes/ver/'.$datos_cliente->id) ?>">Detalles</a></li>
+		<li class="active"><a href="<?= site_url('proyectos/proyectos_tareas/'.$datos_cliente->id) ?>">Proyectos</a></li>
+		<li><a href="<?= site_url('proyectos/proyectos_tareas/'.$datos_cliente->id) ?>">Tareas</a></li>
+		<li><a href="<?= site_url('clientes/contacto/'.$datos_cliente->id) ?>">Contactos</a></li>
+		<li><a href="<?= site_url('bitacora/cliente/'.$datos_cliente->id) ?>">Bitacora</a></li>
+	</ul>
 </ul>
 <div class="row">
 	<div class="col-sm-12">
@@ -225,7 +217,11 @@
 		<div class="block full">
 			<div class="block-title">
 				<h2>Usuarios del <strong><?= $titulo ?></strong></h2>
+				<div class="block-options pull-right">
+					<a href="javascript:void(0)" class="btn btn-sm btn-default" data-toggle="tooltip" onClick="despliega_usuarios()" title="" data-original-title="Desplegar" id="desplegar_usuario"><i class="fa fa-chevron-down"></i></a>
+				</div>
 			</div>
+			<div id="divusuarios" class="hidden">
 			<form action="<?= site_url('proyectos/asignar_usuario') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 				<div class="form-group">
 					<?php
@@ -264,13 +260,18 @@
 				}
 				?>
 			</form>
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-4">
 		<div class="block full">
 			<div class="block-title">
 				<h2>Contactos del <strong><?= $titulo ?></strong></h2>
+				<div class="block-options pull-right">
+					<a href="javascript:void(0)" class="btn btn-sm btn-default" data-toggle="tooltip" onClick="despliega_contactos()" title="" data-original-title="Desplegar" id="desplegar_contacto"><i class="fa fa-chevron-down"></i></a>
+				</div>
 			</div>
+			<div id="divcontactos" class="hidden">
 			<form action="<?= site_url('proyectos/asignar_contacto') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 				<div class="form-group">
 					<?php
@@ -312,12 +313,16 @@
 				}
 				?>
 			</form>
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-4">
 		<div class="block full">
 			<div class="block-title">
 				<h2>Tareas del <strong><?= $titulo ?></strong></h2>
+				<div class="block-options pull-right">
+					<a href="javascript:void(0)" class="btn btn-sm btn-default" data-toggle="tooltip" onClick="despliega_tareas()" title="" data-original-title="Desplegar" id="desplegar_tarea"><i class="fa fa-chevron-down"></i></a>
+				</div>
 			</div>
 			<form id="nueva_tarea" action="<?= site_url('proyectos/crear_tarea_proyecto') ?>" class="form-horizontal form-bordered hidden animation-pullDown" method="post" accept-charset="utf-8">
 				<div class="form-group">
@@ -374,7 +379,7 @@
 				</div>
 				<input type="hidden" id="proyecto" name="proyecto" value="<?= $id_proyecto ?>" />
 			</form>
-			<form class="form-horizontal form-bordered">
+			<form id="tareas" class="form-horizontal form-bordered hidden">
 				<div class="form-group">
 					<div class="col-xs-12 text-center">
 						<a id="boton-tarea" href="javascript:void(0)" onClick="agregar_tarea()" class="btn-sm btn-success" />Nueva Tarea</a>
@@ -420,6 +425,43 @@ CKEDITOR.replace( 'comentario', {
 
 <script src="<?= asset_url('js/pages/tablabitacoraproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
+<script>
+function despliega_tareas()
+{
+	if($('#tareas').hasClass('hidden')){
+		$('#tareas').removeClass('hidden');
+		$('#desplegar_tarea').html('<i class="fa fa-chevron-up"></i>');
+	}
+	else{
+		$('#tareas').addClass('hidden');
+		$('#desplegar_tarea').html('<i class="fa fa-chevron-down"></i>');
+	}
+}
+
+function despliega_contactos()
+{
+	if($('#divcontactos').hasClass('hidden')){
+		$('#divcontactos').removeClass('hidden');
+		$('#desplegar_contacto').html('<i class="fa fa-chevron-up"></i>');
+	}
+	else{
+		$('#divcontactos').addClass('hidden');
+		$('#desplegar_contacto').html('<i class="fa fa-chevron-down"></i>');
+	}
+}
+
+function despliega_usuarios()
+{
+	if($('#divusuarios').hasClass('hidden')){
+		$('#divusuarios').removeClass('hidden');
+		$('#desplegar_usuario').html('<i class="fa fa-chevron-up"></i>');
+	}
+	else{
+		$('#divusuarios').addClass('hidden');
+		$('#desplegar_usuario').html('<i class="fa fa-chevron-down"></i>');
+	}
+}
+</script>
 <script>
 function asignar()
 {
