@@ -15,7 +15,7 @@
 		
 		<?php
 
-			$cssface=array('css/ckeditor.css','css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css');
+			$cssface=array('css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css');
 			foreach($cssface as $url)
 
 			{

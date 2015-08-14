@@ -284,5 +284,27 @@ class Proyectos_model extends CI_Model {
 		$this->db->update('proyectos',$form_data);
 	}
 	
+	function editar_tarea_proyecto($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('proyectos_tareas',$form_data);
+	}
+	
+	function ver_proyecto_clasificacion($id)
+	{
+		$this->db->select('cc.nombre,cc.id,pc.prioridad');
+		$this->db->join('clasificacion_clientes cc','pc.id_clasificacion=cc.id');
+		$this->db->where('pc.id_proyecto_fk',$id);
+		$this->db->order_by('pc.prioridad','desc');
+		$results = $this->db->get('proyectos_clasificaciones pc')->result();
+		return $results;
+	}
+	
+	function borrar_clasificacion($id)
+	{
+		$this->db->where('id_proyecto_fk',$id);
+		$this->db->delete('proyectos_clasificaciones');
+	}
+	
 }
 ?>

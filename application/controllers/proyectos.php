@@ -145,6 +145,7 @@ class Proyectos extends CI_Controller {
 		$data['status']=$proyecto->estatus;
 		$data['cliente']=$proyecto->id_cliente_fk;
 		$data['descripcion']="Proyecto ".$proyecto->descripcion;
+		$data['clasificaciones']=$this->proyectos_model->ver_proyecto_clasificacion($id);
 		$data['bitacoras']=$this->proyectos_model->bitacora_proyecto($id);
 		$data['usuarios']=$this->proyectos_model->ver_usuarios_proyectos($id);
 		$data['contactos']=$this->proyectos_model->ver_contactos_proyectos($id,$proyecto->id_cliente_fk);
@@ -185,6 +186,64 @@ class Proyectos extends CI_Controller {
 			$this->proyectos_model->editar_proyecto($form_data,$id);
 			$this->load->view('cerrar_facybox');   // or whatever logic needs to occur
 		}
+	}
+	
+	function editar_clasificaciones($id)
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
+		
+		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		$data['titulo']="Proyecto ".$proyecto->nombre;
+		$data['v']="editar_clasificacion_proyecto";
+		$data['tab']="proyectos";
+		$data['id']=$id;
+		$data['clasificaciones']=$this->proyectos_model->clasificacion_cliente($proyecto->id_cliente_fk);
+		$data['clasificaciones_asignadas']=$this->proyectos_model->ver_proyecto_clasificacion($id);
+		$this->load->view('main_modal',$data);
+	}
+	
+	function guardar_edicion_clasificaciones($id) {
+		$num=$this->input->post('numero_clas');
+		
+		$this->proyectos_model->borrar_clasificacion($id);
+			
+		for($i=1;$i<=$num;$i++)
+		{
+			$clasi=$this->input->post('clasificacion'.$i);
+			if(!empty($clasi)){
+				if($clasi != '0'){
+					$form_clasificacion=array(
+						'id_clasificacion' => $clasi,
+						'prioridad' 	=> $this->input->post('prioridad'.$i),
+						'id_proyecto_fk' => $id,
+					);
+					$this->proyectos_model->guardar_clasificacion($form_clasificacion);
+				}
+			}
+		}
+		
+		$this->load->view('cerrar_facybox'); 
+	}
+	
+	function cambiar_inicio_tarea()
+	{
+		list($dia,$mes,$año)=explode('-',$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_inicio'	=>	$año."-".$mes."-".$dia
+		);
+		print_r($form_data);
+		$this->proyectos_model->editar_tarea_proyecto($form_data,$this->input->post('id_tarea'));
+	}
+	
+	function cambiar_fin_tarea()
+	{
+		list($dia,$mes,$año)=explode('-',$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_fin'	=>	$año."-".$mes."-".$dia
+		);
+		print_r($form_data);
+		$this->proyectos_model->editar_tarea_proyecto($form_data,$this->input->post('id_tarea'));
 	}
 	
 	function guardar_bitacora()

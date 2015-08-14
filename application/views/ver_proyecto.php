@@ -57,6 +57,35 @@
 						<h4 class="list-group-item-heading"><strong>Descripción</strong></h4>
 						<p class="list-group-item-text"><?= $descripcion ?></p>
 					</div>
+					
+					<div class="col-xs-12" Style="border:1px solid #ddd; padding-top:10px; padding-bottom:10px; margin-top:15px">
+						<div class="col-xs-12">
+							<div class="col-sm-4 col-xs-6 col-sm-offset-4 text-center">
+								<h4><strong>Clasificación</strong></h4>
+							</div>
+							<div class="col-sm-4 col-xs-6 text-right">
+								<a href="<?= site_url('proyectos/editar_clasificaciones/'.$id_proyecto) ?>" class="badge fancybox fancybox.iframe"><i class="fa fa-pencil"></i>  Editar</a>
+							</div>
+						</div>
+						<?php 
+							foreach($clasificaciones as $clasificacion){
+								$prioridad="";
+								if($clasificacion->prioridad == "3")$prioridad="Alta";
+								if($clasificacion->prioridad == "2")$prioridad="Mediana";
+								if($clasificacion->prioridad == "1")$prioridad="Baja";
+						?>
+								<div class="col-xs-12 col-sm-4 col-md-3">
+									<div class="list-group-item">
+										<span class="badge">Prioridad  <?= $prioridad ?></span>
+										<h4 class="list-group-item-heading"></h4><br>
+										<p class="list-group-item-text"><strong><h4><?= $clasificacion->nombre ?><h4></strong></p>
+									</div>
+								</div>
+						<?php
+							}
+						?>
+					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -140,7 +169,7 @@
 				</div>
 				<div class="col-xs-6 col-xs-offset-3 text-center">
 					<div class="table-responsive">
-						<table class="table table-vcenter table-condensed table-bordered">
+						<table id="tabla_contactos" class="table table-vcenter table-condensed table-bordered">
 							<thead>
 								<tr>
 									<th class="text-center">Nombre</th>
@@ -237,9 +266,9 @@
 					<a id="boton-tarea" href="javascript:void(0)" onClick="agregar_tarea()" class="btn-sm btn-success" />Nueva Tarea</a>
 					<br><br>
 				</div>
-				<div class="col-xs-6 col-xs-offset-3">
+				<div class="col-xs-8 col-xs-offset-2">
 					<div class="table-responsive">
-						<table class="table table-vcenter table-condensed table-bordered">
+						<table id="tabla_tareas_proyectos" class="table table-vcenter table-condensed table-bordered">
 							<thead>
 								<tr>
 									<th class="text-center">Tarea</th>
@@ -250,18 +279,20 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php
+								if(!empty($tareas)){
+									$i=0;
+									foreach($tareas as $tarea){
+										$check="";
+										if($tarea->estatus == 1){$check="checked";}
+								?>
 								<tr>
-									<?php
-									if(!empty($tareas)){
-										$i=0;
-										foreach($tareas as $tarea){
-											$check="";
-											if($tarea->estatus == 1){$check="checked";}
-									?>
 									<td class="text-center"><a href="<?= site_url('tareas_proyectos/ver_tarea/'.$tarea->id) ?>"><?= $tarea->nombre ?></a></td>
 									<td class="text-center"><?= $tarea->descripcion ?></td>
-									<td class="text-center"><?= $tarea->fecha_inicio ?></td>
-									<td class="text-center"><?= $tarea->fecha_fin ?></td>
+									<?php list($año,$mes,$dia)=explode('-',$tarea->fecha_inicio) ?>
+									<?php list($año2,$mes2,$dia2)=explode('-',$tarea->fecha_fin) ?>
+									<td class="text-center"><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="inicio<?= $tarea->id ?>" value="<?= $dia."-".$mes."-".$año ?>" onchange="cambiar_inicio(<?= $tarea->id ?>)" Style="border:0px"/></td>
+									<td class="text-center"><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="fin<?= $tarea->id ?>" value="<?= $dia2."-".$mes2."-".$año2 ?>" onchange="cambiar_fin(<?= $tarea->id ?>)" Style="border:0px"/></td>
 									<td class="text-center">
 										<section>  
 										  <!-- Squared TWO -->
@@ -271,12 +302,12 @@
 										  </div>
 										</section>
 									</td>
-									<?php
-										$i++;
-										}
-									}
-									?>
 								</tr>
+								<?php
+									$i++;
+									}
+								}
+								?>
 							</tbody>
 						</table>
 					</div>
@@ -471,6 +502,7 @@ CKEDITOR.replace( 'comentario', {
 
 <script src="<?= asset_url('js/pages/tablabitacoraproyectos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
+
 <script>
 function despliega_tareas()
 {
@@ -575,6 +607,25 @@ function cambiarFecha(id)
 	$.post("<?= site_url('proyectos/cambiar_fecha') ?>", {
 		id_bitacora: id, 
 		fecha:$('#fecha'+id).val()
+	}, function(result){
+       console.log(result);
+    });
+}
+
+function cambiar_inicio(id)
+{
+	$.post("<?= site_url('proyectos/cambiar_inicio_tarea') ?>", {
+		id_tarea: id, 
+		fecha:$('#inicio'+id).val()
+	}, function(result){
+       console.log(result);
+    });
+}
+function cambiar_fin(id)
+{
+	$.post("<?= site_url('proyectos/cambiar_fin_tarea') ?>", {
+		id_tarea: id, 
+		fecha:$('#fin'+id).val()
 	}, function(result){
        console.log(result);
     });
