@@ -161,7 +161,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_contactos_asignados($id)
 	{
-		$this->db->select('m.id,m.nombre');
+		$this->db->select('m.id,m.nombre,m.telefono,m.correo');
 		$this->db->where('pc.id_proyecto_fk',$id);
 		$this->db->where('m.borrado','1');
 		$this->db->join('miembros m','m.id=pc.id_miembro_fk');
@@ -172,7 +172,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_tareas_proyecto($id)
 	{
-		$this->db->select('id,nombre,estatus');
+		$this->db->select('id,nombre,estatus,descripcion,fecha_inicio,fecha_fin');
 		$this->db->where('id_proyecto_fk',$id);
 		$this->db->where('borrado','1');
 		$this->db->order_by("fecha_fin", "desc");
@@ -276,6 +276,12 @@ class Proyectos_model extends CI_Model {
 		$this->db->where('id_proyecto',$id);
 		$results = $this->db->get('proyectos_archivos')->result();
 		return $results;
+	}
+	
+	function editar_proyecto($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('proyectos',$form_data);
 	}
 	
 }

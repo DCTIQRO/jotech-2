@@ -156,6 +156,37 @@ class Proyectos extends CI_Controller {
 		$this->load->view('main',$data);
 	}
 	
+	function editar_descripcion($id)
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
+		
+		$this->form_validation->set_rules('descripcion', 'descripcion', 'required');
+			
+		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+	
+		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+		{
+			$proyecto=$this->proyectos_model->ver_proyecto($id);
+			$data['titulo']="Proyecto ".$proyecto->nombre;
+			$data['v']="editar_descripcion_proyecto";
+			$data['tab']="proyectos";
+			$data['id']=$id;
+			$data['descripcion']=$proyecto->descripcion;
+			$this->load->view('main_modal',$data);
+		}
+		else // passed validation proceed to post success logic
+		{
+			echo "entra";
+			$form_data = array(
+				'descripcion' => set_value('descripcion')
+			);
+		
+			$this->proyectos_model->editar_proyecto($form_data,$id);
+			$this->load->view('cerrar_facybox');   // or whatever logic needs to occur
+		}
+	}
+	
 	function guardar_bitacora()
 	{
 		date_default_timezone_set('America/Mexico_City');
