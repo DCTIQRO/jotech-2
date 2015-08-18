@@ -42,6 +42,7 @@
 		<li><a href="javascript:void(0)" onClick="despliega_usuarios()">Usuarios <span id="desplegar_usuario"><i class="fa fa-chevron-down"></i></span></a></li>
 		<li><a href="javascript:void(0)" onClick="despliega_contactos()">Contactos <span id="desplegar_contacto"><i class="fa fa-chevron-down"></i></span></a></li>
 		<li><a href="javascript:void(0)" onClick="despliega_tareas()">Tareas <span id="desplegar_tarea"><i class="fa fa-chevron-down"></i></span></a></li>
+		<li><a href="javascript:void(0)" onClick="despliega_anexos()">Anexos <span id="desplegar_anexo"><i class="fa fa-chevron-down"></i></span></a></li>
 	</ul>
 </ul>
 <div class="row">
@@ -314,73 +315,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="block full">
-			<div class="block-title">
-				<h2>Bitacora <strong><?= $titulo ?></strong></h2>
-			</div>
-			<div class="row">
-				<form action="<?= site_url('proyectos/guardar_bitacora') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
-					<div class="form-group">
-						<div class="col-xs-12 col-sm-10 text-center">
-							<label class="label-control col-xs-12 col-sm-10" for="comentario">Comentario</label>
-							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
-							<div class="col-xs-12 col-sm-10">
-								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
-							</div>
-							<div class="col-xs-12 col-sm-2">
-								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha" name="fecha" required placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-2 text-center">
-							<input type="submit" class="btn-sm btn-success" value="Guardar"/>
-						</div>
-						<div class="col-xs-12 text-center"><?php echo form_error('comentario'); ?></div>
-						<div class="col-xs-12 text-center"><?php echo form_error('fecha'); ?></div>
-					</div>	
-					<input type="hidden" id="id_proyecto" name="id_proyecto" value="<?= $id_proyecto ?>" />
-				</form>
-			</div>
-			<div class="row">
-				<div class="table-responsive">
-					<table id="tabla_bitacora_proyectos" class="table table-vcenter table-condensed table-bordered">
-						<thead>
-							<tr>
-								<th class="text-center">Fecha</th>
-								<th class="text-center">Descripción</th>
-								<th class="text-center">Usuario</th>
-								<th class="text-center">Acciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-							foreach($bitacoras as $bitacora)
-							{
-								list($año,$mes,$dia)=explode("-",$bitacora->fecha_actividad);
-							?>
-							<tr>
-								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
-								<td><?= $bitacora->comentario?></td>
-								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
-								<td class="text-center">
-									<?php
-									if($this->session->userdata('user_id') == $bitacora->id_usuario && $bitacora->tipo != 2){
-									?>
-									<a href="<?= site_url('proyectos/editar_bitacora_proyecto/'.$bitacora->id_comentario) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-									<a href="<?= site_url('proyectos/eliminar_bitacora_proyecto/'.$bitacora->id_comentario."/".$id_proyecto) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
-									<?php
-									}
-									?>
-								</td>
-							</tr>
-							<?php
-							}
-							?>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="block full">
+		<div class="block full hidden" id="anexos_proyectos">
 			<div class="block-title">
 				<h2>Archivos del <strong><?= $titulo ?></strong></h2>
 			</div>
@@ -490,6 +425,72 @@
 				?>
 			</div>
 		</div>
+		<div class="block full">
+			<div class="block-title">
+				<h2>Bitacora <strong><?= $titulo ?></strong></h2>
+			</div>
+			<div class="row">
+				<form action="<?= site_url('proyectos/guardar_bitacora') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
+					<div class="form-group">
+						<div class="col-xs-12 col-sm-10 text-center">
+							<label class="label-control col-xs-12 col-sm-10" for="comentario">Comentario</label>
+							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
+							<div class="col-xs-12 col-sm-10">
+								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-2">
+								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha" name="fecha" required placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-2 text-center">
+							<input type="submit" class="btn-sm btn-success" value="Guardar"/>
+						</div>
+						<div class="col-xs-12 text-center"><?php echo form_error('comentario'); ?></div>
+						<div class="col-xs-12 text-center"><?php echo form_error('fecha'); ?></div>
+					</div>	
+					<input type="hidden" id="id_proyecto" name="id_proyecto" value="<?= $id_proyecto ?>" />
+				</form>
+			</div>
+			<div class="row">
+				<div class="table-responsive">
+					<table id="tabla_bitacora_proyectos" class="table table-vcenter table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center">Fecha</th>
+								<th class="text-center">Descripción</th>
+								<th class="text-center">Usuario</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							foreach($bitacoras as $bitacora)
+							{
+								list($año,$mes,$dia)=explode("-",$bitacora->fecha_actividad);
+							?>
+							<tr>
+								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
+								<td><?= $bitacora->comentario?></td>
+								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
+								<td class="text-center">
+									<?php
+									if($this->session->userdata('user_id') == $bitacora->id_usuario && $bitacora->tipo != 2){
+									?>
+									<a href="<?= site_url('proyectos/editar_bitacora_proyecto/'.$bitacora->id_comentario) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+									<a href="<?= site_url('proyectos/eliminar_bitacora_proyecto/'.$bitacora->id_comentario."/".$id_proyecto) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+									<?php
+									}
+									?>
+								</td>
+							</tr>
+							<?php
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <!--ckeditor-->
@@ -549,6 +550,18 @@ function despliega_usuarios()
 	else{
 		$('#usuarios_proyectos').addClass('hidden');
 		$('#desplegar_usuario').html('<i class="fa fa-chevron-down"></i>');
+	}
+}
+
+function despliega_anexos()
+{
+	if($('#anexos_proyectos').hasClass('hidden')){
+		$('#anexos_proyectos').removeClass('hidden');
+		$('#desplegar_anexo').html('<i class="fa fa-chevron-up"></i>');
+	}
+	else{
+		$('#anexos_proyectos').addClass('hidden');
+		$('#desplegar_anexo').html('<i class="fa fa-chevron-down"></i>');
 	}
 }
 </script>

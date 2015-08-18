@@ -8,7 +8,7 @@
 						<div class="col-xs-12 col-sm-10 text-center">
 							<label class="label-control col-xs-12 col-sm-2" for="comentario">Comentario</label>
 							<div class="col-xs-12 col-sm-10">
-								<textarea class="form-control" rows="3" id="comentario" name="comentario" placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
 							</div>
 							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
 							<div class="col-xs-12 col-sm-10">
@@ -177,6 +177,14 @@
 		</div>
 	</div>
 </div>
+
+<!--ckeditor-->
+<script src="//cdn.ckeditor.com/4.5.2/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'comentario', {
+    customConfig: '<?= asset_url('js/helpers/config ckeditor/config.js') ?>'
+} );
+</script>
 
 <script src="<?= asset_url('js/pages/tablabitacoraclientes.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
