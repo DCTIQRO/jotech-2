@@ -168,7 +168,7 @@
 						<input type="hidden" id="id_proyecto" name="id_proyecto" value="<?= $id_proyecto ?>" />
 					</form>
 				</div>
-				<div class="col-xs-6 col-xs-offset-3 text-center">
+				<div class="col-xs-8 col-xs-offset-2 text-center">
 					<div class="table-responsive">
 						<table id="tabla_contactos" class="table table-vcenter table-condensed table-bordered">
 							<thead>

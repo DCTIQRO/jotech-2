@@ -45,7 +45,7 @@ class Tareas_model extends CI_Model {
 	
 	function ver_tarea($id)
 	{
-		$this->db->select('nombre,descripcion,estatus,id_cliente_fk');
+		$this->db->select('nombre,descripcion,fecha_inicio,fecha_fin,estatus,id_cliente_fk');
 		$this->db->where('id',$id);
 		$results = $this->db->get('clientes_tareas')->row();
 		return $results;
@@ -153,7 +153,12 @@ class Tareas_model extends CI_Model {
 		$this->db->where('id',$id);
 		$this->db->update('clientes_tareas_comentarios',$form_data);
 	}
-	
+
+	function editar_tarea($form_data,$id)
+	{
+		$this->db->where('id',$id);
+		$this->db->update('clientes_tareas',$form_data);
+	}
 	
 	function info_bitacora_tarea_cliente($id)
 	{

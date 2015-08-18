@@ -106,6 +106,8 @@ class Tareas extends CI_Controller {
 		$data['descripcion']=$tarea->descripcion;
 		$data['id_tarea']=$id;
 		$data['status']=$tarea->estatus;
+		$data['fecha_inicio']=$tarea->fecha_inicio;
+		$data['fecha_fin']=$tarea->fecha_fin;
 		$data['cliente']=$tarea->id_cliente_fk;
 		$data['nombre_cliente']=$cliente->nombre;
 		$data['bitacoras']=$this->tareas_model->bitacora_tareas_cliente($id);
@@ -271,6 +273,36 @@ class Tareas extends CI_Controller {
 		);
 		$this->tareas_model->editar_bitacora_tarea_cliente($form_data,$id);
 		redirect('tareas/ver_tarea/'.$idtarea);
+	}
+	
+	function editar_descripcion($id)
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
+		
+		$this->form_validation->set_rules('descripcion', 'descripcion', 'required');
+			
+		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+	
+		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+		{
+			$tarea=$this->tareas_model->ver_tarea($id);
+			$data['titulo']="Tarea ".$tarea->nombre;
+			$data['v']="editar_descripcion_tarea";
+			$data['id']=$id;
+			$data['descripcion']=$tarea->descripcion;
+			$this->load->view('main_modal',$data);
+		}
+		else // passed validation proceed to post success logic
+		{
+			echo "entra";
+			$form_data = array(
+				'descripcion' => set_value('descripcion')
+			);
+		
+			$this->tareas_model->editar_tarea($form_data,$id);
+			$this->load->view('cerrar_facybox');   // or whatever logic needs to occur
+		}
 	}
 }
 ?>
