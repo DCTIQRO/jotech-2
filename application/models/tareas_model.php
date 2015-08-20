@@ -108,7 +108,7 @@ class Tareas_model extends CI_Model {
 	
 	function ver_archivos($id)
 	{
-		$this->db->select('archivo,url');
+		$this->db->select('archivo,url,id');
 		$this->db->where('id_tarea_fk',$id);
 		$results = $this->db->get('clientes_tareas_archivos')->result();
 		return $results;
@@ -166,6 +166,20 @@ class Tareas_model extends CI_Model {
 		$this->db->where('id',$id);
 		$results = $this->db->get('clientes_tareas_comentarios')->row();
 		return $results;
+	}
+	
+	function ver_archivo($id)
+	{
+		$this->db->select('archivo,url,id,id_tarea_fk');
+		$this->db->where('id',$id);
+		$results = $this->db->get('clientes_tareas_archivos')->row();
+		return $results;
+	}
+	
+	function borrar_archivo($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete('clientes_tareas_archivos');
 	}
 }
 ?>

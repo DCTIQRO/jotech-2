@@ -304,5 +304,28 @@ class Tareas extends CI_Controller {
 			$this->load->view('cerrar_facybox');   // or whatever logic needs to occur
 		}
 	}
+	
+	function borrar_archivo($id)
+	{
+		date_default_timezone_set('America/Mexico_City');
+		$archivo=$this->tareas_model->ver_archivo($id);
+		$this->tareas_model->borrar_archivo($id);
+		unlink('assets/upload/'.$archivo->url);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se elimino el archivo '.$archivo->archivo.' de la tarea.',
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente_tarea'	=>	$archivo->id_tarea_fk,
+			'status'		=> '1',
+			'tipo'			=> '2'
+		);
+		
+		$this->tareas_model->guardar_bitacora_tarea($form_bitacora);
+		
+		redirect('tareas/ver_tarea/'.$archivo->id_tarea_fk);
+		
+	}
 }
 ?>

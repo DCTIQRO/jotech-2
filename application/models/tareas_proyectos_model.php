@@ -28,6 +28,20 @@ class tareas_proyectos_model extends CI_Model {
 		return $results;
 	}
 	
+	function ver_archivo($id)
+	{
+		$this->db->select('archivo,url,id,id_tarea_fk');
+		$this->db->where('id',$id);
+		$results = $this->db->get('proyectos_tareas_archivos')->row();
+		return $results;
+	}
+	
+	function borrar_archivo($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete('proyectos_tareas_archivos');
+	}
+	
 	function ver_cliente($id)
 	{
 		$this->db->select('id,nombre');
@@ -86,7 +100,7 @@ class tareas_proyectos_model extends CI_Model {
 	
 	function ver_archivos($id)
 	{
-		$this->db->select('archivo,url');
+		$this->db->select('archivo,url,id');
 		$this->db->where('id_tarea_fk',$id);
 		$results = $this->db->get('proyectos_tareas_archivos')->result();
 		return $results;

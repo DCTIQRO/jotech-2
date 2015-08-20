@@ -53,10 +53,24 @@ class Bitacora_model extends CI_Model {
 	
 	function ver_archivos($id)
 	{
-		$this->db->select('archivo,url');
+		$this->db->select('archivo,url,id');
 		$this->db->where('id_cliente',$id);
 		$results = $this->db->get('clientes_archivos')->result();
 		return $results;
+	}
+	
+	function ver_archivo($id)
+	{
+		$this->db->select('archivo,url,id,id_cliente');
+		$this->db->where('id',$id);
+		$results = $this->db->get('clientes_archivos')->row();
+		return $results;
+	}
+	
+	function borrar_archivo($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete('clientes_archivos');
 	}
 }
 ?>

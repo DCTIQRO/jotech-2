@@ -141,13 +141,13 @@ class Tareas_proyectos extends CI_Controller {
 		$this->tareas_proyectos_model->editar_bitacora_tarea_proyecto($form_data,$this->input->post('id_bitacora'));
 	}
 	
-	function eliminar_bitacora_tarea_proyecto($id,$id_proyecto)
+	function eliminar_bitacora_tarea_proyecto($id,$id_tarea)
 	{
 		$form_data=array(
 			'status'	=>	'0'
 		);
 		$this->tareas_proyectos_model->editar_bitacora_tarea_proyecto($form_data,$id);
-		redirect('proyectos/ver_proyecto/'.$id_proyecto);
+		redirect('tareas_proyectos/ver_tarea/'.$id_tarea);
 	}
 	
 	function cerrar_tarea($id)
@@ -227,6 +227,29 @@ class Tareas_proyectos extends CI_Controller {
 			$this->tareas_proyectos_model->editar_tarea_proyecto($form_data,$id);
 			$this->load->view('cerrar_facybox');   // or whatever logic needs to occur
 		}
+	}
+	
+	function borrar_archivo($id)
+	{
+		date_default_timezone_set('America/Mexico_City');
+		$archivo=$this->tareas_proyectos_model->ver_archivo($id);
+		$this->tareas_proyectos_model->borrar_archivo($id);
+		unlink('assets/upload/'.$archivo->url);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se agrego el archivo '.$archivo->archivo.' de la tarea.',
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_proyecto_tarea_fk'	=>	$archivo->id_tarea_fk,
+			'status'		=> '1',
+			'tipo'			=> '2'
+		);
+			
+		$this->tareas_proyectos_model->guardar_bitacora_tarea($form_bitacora);
+		
+		redirect('tareas_proyectos/ver_tarea/'.$archivo->id_tarea_fk);
+		
 	}
 }
 ?>

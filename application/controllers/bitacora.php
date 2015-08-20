@@ -129,5 +129,28 @@ class Bitacora extends CI_Controller {
 
 		force_download($archivo, $datos);
 	}
+	
+	function borrar_archivo($id)
+	{
+		date_default_timezone_set('America/Mexico_City');
+		$archivo=$this->bitacora_model->ver_archivo($id);
+		$this->bitacora_model->borrar_archivo($id);
+		unlink('assets/upload/'.$archivo->url);
+		
+		$form_bitacora=array(
+			'comentario'		=>	'Se elimino el archivo '.$archivo->archivo.' del cliente.',
+			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'		=>	$this->session->userdata('user_id'),
+			'id_cliente'		=>	$archivo->id_cliente,
+			'status'			=> '1',
+			'tipo'				=> '2'
+		);
+		
+		$this->bitacora_model->guardar_bitacora_cliente($form_bitacora);
+		
+		redirect('bitacora/cliente/'.$archivo->id_cliente);
+		
+	}
 }
 ?>

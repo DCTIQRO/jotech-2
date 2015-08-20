@@ -339,6 +339,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/camera.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -350,6 +353,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/audio.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -361,6 +367,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/Word.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -372,6 +381,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/Excel.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -383,6 +395,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/PowerPoint.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -394,6 +409,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/pdf.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -405,6 +423,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/text.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -416,6 +437,9 @@
 							<div class="col-xs-12 imagen_fondo" Style="background-image:url('<?= asset_url('images/iconos/file_search.png') ?>'); height:100px" ></div>
 							<div class="col-xs-12 text-center" Style="text-shadow:0px 0px 5px #389096; color:#46B7BF" ><strong><?= $archivo->archivo ?></strong></div>
 						</a>
+						<div class="col-xs-12 text-center" Style="margin-top:10px">
+							<a href="<?= site_url('proyectos/borrar_archivo/'.$archivo->id) ?>" class="btn btn-sm btn-danger confirm" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar el archivo <?= $archivo->archivo ?>" data-confirm-button="Si" data-cancel-button="No" ><i class="fa fa-trash-o"></i> Eliminar</a>
+						</div>
 					</div>
 					<?php 
 					}
@@ -664,5 +688,6 @@ function cambiar_fin(id)
 <script>
 $( document ).ready(function() {
     $( "#comentario" ).focus();
+    $( ".confirm" ).confirm();
 });
 </script>

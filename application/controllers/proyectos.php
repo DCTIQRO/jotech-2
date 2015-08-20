@@ -546,5 +546,28 @@ class Proyectos extends CI_Controller {
 		force_download($archivo, $datos);
 	}
 	
+	function borrar_archivo($id)
+	{
+		date_default_timezone_set('America/Mexico_City');
+		$archivo=$this->proyectos_model->ver_archivo($id);
+		$this->proyectos_model->borrar_archivo($id);
+		unlink('assets/upload/'.$archivo->url);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se elimino el archivo '.($archivo->archivo).' del proyecto.',
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario_fk'	=>	$this->session->userdata('user_id'),
+			'id_proyecto_fk'	=>	$archivo->id_proyecto,
+			'status'		=> '1',
+			'tipo'			=> '2'
+		);
+		
+		$this->proyectos_model->guardar_bitacora_proyecto($form_bitacora);
+		
+		redirect('proyectos/ver_proyecto/'.$archivo->id_proyecto);
+		
+	}
+	
 }
 ?>

@@ -272,7 +272,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_archivos($id)
 	{
-		$this->db->select('archivo,url');
+		$this->db->select('archivo,url,id');
 		$this->db->where('id_proyecto',$id);
 		$results = $this->db->get('proyectos_archivos')->result();
 		return $results;
@@ -304,6 +304,20 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->where('id_proyecto_fk',$id);
 		$this->db->delete('proyectos_clasificaciones');
+	}
+	
+	function ver_archivo($id)
+	{
+		$this->db->select('archivo,url,id,id_proyecto');
+		$this->db->where('id',$id);
+		$results = $this->db->get('proyectos_archivos')->row();
+		return $results;
+	}
+	
+	function borrar_archivo($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete('proyectos_archivos');
 	}
 	
 }
