@@ -93,17 +93,17 @@ list($año2,$mes2,$dia2)=explode('-',$fecha_fin);
 							<div class="row text-center">
 								<div class="col-xs-4">
 									<h3 class="themed-color-modern">
-										<strong><?= $dia ?></strong><br>
+										<strong><?= $dia2 ?></strong><br>
 									</h3>
 								</div>
 								<div class="col-xs-4">
 									<h3 class="themed-color-modern">
-										<strong><?= $mes ?></strong><br>
+										<strong><?= $mes2 ?></strong><br>
 									</h3>
 								</div>
 								<div class="col-xs-4">
 									<h3 class="themed-color-modern">
-										<strong><?= $año ?></strong><br>
+										<strong><?= $año2 ?></strong><br>
 									</h3>
 								</div>
 							</div>

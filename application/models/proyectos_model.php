@@ -150,7 +150,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_usuarios_asignados($id)
 	{
-		$this->db->select('u.id,u.first_name,u.last_name');
+		$this->db->select('u.id,u.first_name,u.last_name,u.email');
 		$this->db->where('u.active','1');
 		$this->db->where('pu.id_proyecto_fk',$id);
 		$this->db->join('users u','u.id=pu.id_usuario_fk');

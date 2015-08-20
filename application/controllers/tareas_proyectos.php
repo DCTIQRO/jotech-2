@@ -28,8 +28,11 @@ class Tareas_proyectos extends CI_Controller {
 		$data['titulo']="Tarea ".$tarea->nombre;
 		$data['descripcion']=$tarea->descripcion;
 		$data['id_tarea']=$id;
+		$data['datos_cliente']=$this->tareas_proyectos_model->ver_cliente($proyecto->id_cliente_fk);
 		$data['id_proyecto']=$tarea->id_proyecto_fk;
 		$data['status']=$tarea->estatus;
+		$data['fecha_inicio']=$tarea->fecha_inicio;
+		$data['fecha_fin']=$tarea->fecha_fin;
 		$data['proyecto']=$proyecto->nombre;
 		$data['bitacoras']=$this->tareas_proyectos_model->bitacora_tareas_proyecto($id);
 		$data['usuarios']=$this->tareas_proyectos_model->ver_usuarios_tarea($id);
@@ -194,6 +197,36 @@ class Tareas_proyectos extends CI_Controller {
 		$this->tareas_proyectos_model->guardar_bitacora_proyecto($form_bitacora);
 		
 		redirect('tareas_proyectos/ver_tarea/'.$id);
+	}
+	
+	function editar_descripcion($id)
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
+		
+		$this->form_validation->set_rules('descripcion', 'descripcion', 'required');
+			
+		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+	
+		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
+		{
+			$tarea=$this->tareas_proyectos_model->ver_tarea($id);
+			$data['titulo']="Tarea ".$tarea->nombre;
+			$data['v']="editar_descripcion_tarea_proyecto";
+			$data['id']=$id;
+			$data['descripcion']=$tarea->descripcion;
+			$this->load->view('main_modal',$data);
+		}
+		else // passed validation proceed to post success logic
+		{
+			echo "entra";
+			$form_data = array(
+				'descripcion' => set_value('descripcion')
+			);
+		
+			$this->tareas_proyectos_model->editar_tarea_proyecto($form_data,$id);
+			$this->load->view('cerrar_facybox');   // or whatever logic needs to occur
+		}
 	}
 }
 ?>

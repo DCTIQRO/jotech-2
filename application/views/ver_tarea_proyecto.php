@@ -1,159 +1,184 @@
-<div class="content-header">
-	<div class="header-section">
-		<div class="widget">
-			<div class="widget-simple">
-			<a href="javascript:void(0)" class="widget-icon pull-left themed-background-fire animation-fadeIn">
-				<i class="fa fa-folder-open-o sidebar-nav-icon"></i>
-			</a>
-			<h1 class="widget-content text-letf animation-pullDown">
-				<strong><?= $titulo ?></strong><small> <?= $descripcion ?></small>
-			</h1>
-			</div>
-		</div>
-	</div>
-</div>
 <ul class="breadcrumb breadcrumb-top">
-	<li>Proyecto</li>
-	<li><a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto); ?>"><?= $proyecto ?></a></li>
+	<a href="<?= site_url('clientes/ver/'.$datos_cliente->id) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $datos_cliente->nombre ?></a>
+	<ul class="nav nav-pills">
+		<li><a href="<?= site_url('clientes/ver/'.$datos_cliente->id) ?>">Detalles</a></li>
+		<li class="active"><a href="<?= site_url('proyectos/proyectos_tareas/'.$datos_cliente->id) ?>">Proyectos</a></li>
+		<li><a href="<?= site_url('proyectos/proyectos_tareas/'.$datos_cliente->id) ?>">Tareas</a></li>
+		<li><a href="<?= site_url('clientes/contacto/'.$datos_cliente->id) ?>">Contactos</a></li>
+		<li><a href="<?= site_url('bitacora/cliente/'.$datos_cliente->id) ?>">Bitacora</a></li>
+	</ul>
 </ul>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="block full">
-			<div class="block-title">
-				<h2>Acciones del <strong><?= $titulo ?></strong></h2>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 text-center">
+
+<ul class="breadcrumb breadcrumb-top">
+	<a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $proyecto?></a>
+	<ul class="nav nav-pills">
+		<li><a href="<?= site_url('proyectos/ver_descripcion/'.$id_proyecto) ?>" class="fancybox fancybox.iframe">Detalles</a></li>
+		<li class="active"><a href="<?= site_url('proyectos/ver_usuarios_asignados/'.$id_proyecto) ?>" class="fancybox fancybox.iframe">Usuarios</a></li>
+		<li><a href="<?= site_url('proyectos/ver_contactos_proyectos/'.$id_proyecto) ?>" class="fancybox fancybox.iframe">Contactos</a></li>
+	</ul>
+</ul>
+
+<ul class="breadcrumb breadcrumb-top">
+	<div class="block-options pull-right">
+		<div class="btn-group btn-group-sm">
+			<a href="javascript:void(0)" class="btn btn-alt btn-sm btn-info dropdown-toggle enable-tooltip" data-toggle="dropdown" title="" data-original-title="Options" aria-expanded="false"><span class="caret"></span></a>
+			<ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+				<li>
 					<?php
 					if($status == 0){
 					?>
-					<a href="<?= site_url('tareas_proyectos/cerrar_tarea/'.$id_tarea); ?>" class="btn-sm btn-danger">Cerrar Tarea</a>
+					<a href="<?= site_url('tareas_proyectos/cerrar_tarea/'.$id_tarea); ?>"><i class="gi gi-cloud pull-right"></i> Cerrar Tarea</a>
 					<?php 
 					}
 					else
 					{
 					?>
-					<a href="<?= site_url('tareas_proyectos/abrir_tarea/'.$id_tarea); ?>" class="btn-sm btn-success">Abrir Tarea</a>
+					<a href="<?= site_url('tareas_proyectos/abrir_tarea/'.$id_tarea); ?>"><i class="gi gi-cloud pull-right"></i> Abrir Tarea</a>
 					<?php	
 					}
 					?>
-					<a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto); ?>" class="btn-sm btn-info">Regresar al Proyecto</a>
-				</div>
-			</div>
-		</div>
-		<div class="block full">
-			<div class="block-title">
-				<h2>Bitacora <strong><?= $titulo ?></strong></h2>
-			</div>
-			<div class="row">
-				<form action="<?= site_url('tareas_proyectos/guardar_bitacora') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
-					<div class="form-group">
-						<div class="col-xs-12 col-sm-10 text-center">
-							<label class="label-control col-xs-12 col-sm-10" for="comentario">Comentario</label>
-							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
-							<div class="col-xs-6 col-sm-10">
-								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
-							</div>
-							<div class="col-xs-12 col-sm-2">
-								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha" name="fecha" required placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-2 text-center">
-							<input type="submit" class="btn-sm btn-success" value="Guardar"/>
-						</div>
-						<div class="col-xs-12 text-center"><?php echo form_error('comentario'); ?></div>
-					</div>	
-					<input type="hidden" id="id_tarea" name="id_tarea" value="<?= $id_tarea ?>" />
-				</form>
-			</div>
-			<div class="row">
-				<div class="table-responsive">
-					<table id="tabla_bitacora_proyectos" class="table table-vcenter table-condensed table-bordered">
-						<thead>
-							<tr>
-								<th class="text-center">Fecha</th>
-								<th class="text-center">Descripción</th>
-								<th class="text-center">Usuario</th>
-								<th class="text-center">Acciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-							foreach($bitacoras as $bitacora)
-							{
-								list($año,$mes,$dia)=explode("-",$bitacora->fecha_actividad);
-							?>
-							<tr>
-								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
-								<td class="text-center"><?= $bitacora->comentario?></td>
-								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
-								<td class="text-center">
-									<?php
-									if($this->session->userdata('user_id') == $bitacora->id_usuario){
-									?>
-									<a href="<?= site_url('tareas_proyectos/editar_bitacora_tarea_proyecto/'.$bitacora->id_comentario) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-									<a href="<?= site_url('tareas_proyectos/eliminar_bitacora_tarea_proyecto/'.$bitacora->id_comentario."/".$id_tarea) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
-									<?php
-									}
-									?>
-								</td>
-							</tr>
-							<?php
-							}
-							?>
-						</tbody>
-					</table>
-				</div>
-			</div>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto); ?>"><i class="fa fa-wrench fa-fw pull-right"></i> Regresar al Proyecto</a>
+				</li>
+			</ul>
 		</div>
 	</div>
-	<div class="col-sm-4">
-		<div class="block full">
+	<a href="<?= site_url('tareas_proyectos/ver_tarea/'.$id_tarea) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $titulo ?></a>
+	<ul class="nav nav-pills">
+		<li><a href="javascript:void(0)" onClick="despliega_detalles()">Detalles <span id="desplegar_detalles"><i class="fa fa-chevron-down"></i></span></a></li>
+		<li><a href="javascript:void(0)" onClick="despliega_usuarios()">Usuarios <span id="desplegar_usuario"><i class="fa fa-chevron-down"></i></span></a></li>
+		<li><a href="javascript:void(0)" onClick="despliega_anexos()">Anexos <span id="desplegar_anexo"><i class="fa fa-chevron-down"></i></span></a></li>
+	</ul>
+</ul>
+
+<div class="row">
+	<div class="col-sm-12">
+		<?php
+		list($año,$mes,$dia)=explode('-',$fecha_inicio);
+		list($año2,$mes2,$dia2)=explode('-',$fecha_fin);
+		?>
+		<div class="block full hidden" id="detalles_tareas">
+			<div class="block-title">
+				<h2>Detalles de la <strong><?= $titulo ?></strong></h2>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 col-sm-3 col-sm-offset-3">
+					<a href="javascript:void(0)" class="widget widget-hover-effect4">
+						<div class="widget-simple themed-background-modern">
+							<h4 class="widget-content widget-content-light text-center">
+								<strong>Fecha Inicio</strong>
+							</h4>
+						</div>
+						<div class="widget-extra">
+							<div class="row text-center">
+								<div class="col-xs-4">
+									<h3 class="themed-color-modern">
+										<strong><?= $dia ?></strong><br>
+									</h3>
+								</div>
+								<div class="col-xs-4">
+									<h3 class="themed-color-modern">
+										<strong><?= $mes ?></strong><br>
+									</h3>
+								</div>
+								<div class="col-xs-4">
+									<h3 class="themed-color-modern">
+										<strong><?= $año ?></strong><br>
+									</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-6 col-sm-3 ">
+					<a href="javascript:void(0)" class="widget widget-hover-effect4">
+						<div class="widget-simple themed-background-modern">
+							<h4 class="widget-content widget-content-light text-center">
+								<strong>Fecha Fin</strong>
+							</h4>
+						</div>
+						<div class="widget-extra">
+							<div class="row text-center">
+								<div class="col-xs-4">
+									<h3 class="themed-color-modern">
+										<strong><?= $dia2 ?></strong><br>
+									</h3>
+								</div>
+								<div class="col-xs-4">
+									<h3 class="themed-color-modern">
+										<strong><?= $mes2 ?></strong><br>
+									</h3>
+								</div>
+								<div class="col-xs-4">
+									<h3 class="themed-color-modern">
+										<strong><?= $año2 ?></strong><br>
+									</h3>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-12 text-center">
+					<div class="list-group-item">
+						<a href="<?= site_url('tareas_proyectos/editar_descripcion/'.$id_tarea) ?>" class="badge fancybox fancybox.iframe"><i class="fa fa-pencil"></i>  Editar</a>
+						<h4 class="list-group-item-heading"><strong>Descripción</strong></h4>
+						<p class="list-group-item-text"><?= $descripcion ?></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="block full hidden" id="usuarios_tarea">
 			<div class="block-title">
 				<h2>Usuarios de la <strong><?= $titulo ?></strong></h2>
 			</div>
-			<form action="<?= site_url('tareas_proyectos/asignar_usuario') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
-				<div class="form-group">
-					<?php
-					$options[''] ='Selecciona un Usuario';
-					if(!empty($usuarios)){
-						foreach($usuarios as $usuario){
-							$options[$usuario->id] =  ($usuario->first_name)." ".$usuario->last_name;
-						}
-					}
-					?>
-					<div class="col-xs-12">
-						<?= form_dropdown('usuarios', $options, '','class="form-control select-chosen" id="usuarios"'); ?>
-					</div>
-				</div>	
-				<div class="form-group">
-					<div class="col-xs-12 text-center">
-						<a href="javascript:void(0)" onClick="asignar()" class="btn-sm btn-success" />Agregar</a>
-					</div>
-				</div>	
-				<input type="hidden" id="id_tarea" name="id_tarea" value="<?= $id_tarea ?>" />
-			</form>
 			<div class="row">
-				<hr class="style-four">
+				<div class="col-sm-6 col-sm-offset-3">
+					<form action="<?= site_url('tareas_proyectos/asignar_usuario') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
+						<div class="form-group">
+							<?php
+							$options[''] ='Selecciona un Usuario';
+							if(!empty($usuarios)){
+								foreach($usuarios as $usuario){
+									$options[$usuario->id] =  ($usuario->first_name)." ".$usuario->last_name;
+								}
+							}
+							?>
+							<div class="col-xs-12">
+								<?= form_dropdown('usuarios', $options, '','class="form-control select-chosen" id="usuarios"'); ?>
+							</div>
+						</div>	
+						<div class="form-group">
+							<div class="col-xs-12 text-center">
+								<a href="javascript:void(0)" onClick="asignar()" class="btn-sm btn-success" />Agregar</a>
+							</div>
+						</div>	
+						<input type="hidden" id="id_tarea" name="id_tarea" value="<?= $id_tarea ?>" />
+					</form>
+					<div class="row">
+						<hr class="style-four">
+					</div>
+					<form class="form-horizontal form-bordered">
+						<?php
+						if(!empty($asignados)){
+							foreach($asignados as $asignado){
+						?>
+								<div class="form-group text-center">
+									<label class="label-control"><?= ($asignado->first_name)." ".$asignado->last_name ?></label>
+									<a href="<?= site_url('tareas_proyectos/desasignar_usuario/'.($asignado->id)."/".$id_tarea) ?>" class="btn-sm btn-danger pull-right"><i class="fa fa-times"></i></a>
+								</div>
+						<?php	
+							}
+						}
+						?>
+					</form>
+				</div>
 			</div>
-			<form class="form-horizontal form-bordered">
-				<?php
-				if(!empty($asignados)){
-					foreach($asignados as $asignado){
-				?>
-						<div class="form-group text-center">
-							<label class="label-control"><?= ($asignado->first_name)." ".$asignado->last_name ?></label>
-							<a href="<?= site_url('tareas_proyectos/desasignar_usuario/'.($asignado->id)."/".$id_tarea) ?>" class="btn-sm btn-danger pull-right"><i class="fa fa-times"></i></a>
-						</div>
-				<?php	
-					}
-				}
-				?>
-			</form>
 		</div>
-	</div>
-	<div class="col-sm-8">
-		<div class="block full">
+		
+		<div class="block full hidden" id="anexos_tarea">
 			<div class="block-title">
 				<h2>Archivos de la <strong><?= $titulo ?></strong></h2>
 			</div>
@@ -261,6 +286,72 @@
 				?>
 			</div>
 		</div>
+		
+		<div class="block full">
+			<div class="block-title">
+				<h2>Bitacora <strong><?= $titulo ?></strong></h2>
+			</div>
+			<div class="row">
+				<form action="<?= site_url('tareas_proyectos/guardar_bitacora') ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
+					<div class="form-group">
+						<div class="col-xs-12 col-sm-10 text-center">
+							<label class="label-control col-xs-12 col-sm-10" for="comentario">Comentario</label>
+							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
+							<div class="col-xs-6 col-sm-10">
+								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" required placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-2">
+								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha" name="fecha" required placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-2 text-center">
+							<input type="submit" class="btn-sm btn-success" value="Guardar"/>
+						</div>
+						<div class="col-xs-12 text-center"><?php echo form_error('comentario'); ?></div>
+					</div>	
+					<input type="hidden" id="id_tarea" name="id_tarea" value="<?= $id_tarea ?>" />
+				</form>
+			</div>
+			<div class="row">
+				<div class="table-responsive">
+					<table id="tabla_bitacora_proyectos" class="table table-vcenter table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center">Fecha</th>
+								<th class="text-center">Descripción</th>
+								<th class="text-center">Usuario</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							foreach($bitacoras as $bitacora)
+							{
+								list($año,$mes,$dia)=explode("-",$bitacora->fecha_actividad);
+							?>
+							<tr>
+								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
+								<td class="text-center"><?= $bitacora->comentario?></td>
+								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
+								<td class="text-center">
+									<?php
+									if($this->session->userdata('user_id') == $bitacora->id_usuario){
+									?>
+									<a href="<?= site_url('tareas_proyectos/editar_bitacora_tarea_proyecto/'.$bitacora->id_comentario) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+									<a href="<?= site_url('tareas_proyectos/eliminar_bitacora_tarea_proyecto/'.$bitacora->id_comentario."/".$id_tarea) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+									<?php
+									}
+									?>
+								</td>
+							</tr>
+							<?php
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <script src="<?= asset_url('js/pages/tablabitacoraproyectos.js') ?>"></script>
@@ -318,6 +409,44 @@ function cambiarFecha(id)
 $( document ).ready(function() {
     $( "#comentario" ).focus();
 });
+</script>
+
+<script>
+function despliega_detalles()
+{
+	if($('#detalles_tareas').hasClass('hidden')){
+		$('#detalles_tareas').removeClass('hidden');
+		$('#desplegar_detalles').html('<i class="fa fa-chevron-up"></i>');
+	}
+	else{
+		$('#detalles_tareas').addClass('hidden');
+		$('#desplegar_detalles').html('<i class="fa fa-chevron-down"></i>');
+	}
+}
+
+function despliega_usuarios()
+{
+	if($('#usuarios_tarea').hasClass('hidden')){
+		$('#usuarios_tarea').removeClass('hidden');
+		$('#desplegar_usuario').html('<i class="fa fa-chevron-up"></i>');
+	}
+	else{
+		$('#usuarios_tarea').addClass('hidden');
+		$('#desplegar_usuario').html('<i class="fa fa-chevron-down"></i>');
+	}
+}
+
+function despliega_anexos()
+{
+	if($('#anexos_tarea').hasClass('hidden')){
+		$('#anexos_tarea').removeClass('hidden');
+		$('#desplegar_anexo').html('<i class="fa fa-chevron-up"></i>');
+	}
+	else{
+		$('#anexos_tarea').addClass('hidden');
+		$('#desplegar_anexo').html('<i class="fa fa-chevron-down"></i>');
+	}
+}
 </script>
 
 <!--ckeditor-->

@@ -157,6 +157,40 @@ class Proyectos extends CI_Controller {
 		$this->load->view('main',$data);
 	}
 	
+	function ver_descripcion($id)
+	{
+		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		
+		$data['v']="ver_descripcion_proyecto";
+		$data['titulo']="Proyecto ".$proyecto->nombre;
+		$data['descripcion']=$proyecto->descripcion;
+		$data['clasificaciones']=$this->proyectos_model->ver_proyecto_clasificacion($id);
+		
+		$this->load->view('main_modal',$data);
+	}
+	
+	function ver_usuarios_asignados($id)
+	{
+		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		
+		$data['v']="ver_usuarios_proyectos";
+		$data['titulo']="Proyecto ".$proyecto->nombre;
+		$data['usuarios']=$this->proyectos_model->ver_usuarios_asignados($id);
+		
+		$this->load->view('main_modal',$data);
+	}
+	
+	function ver_contactos_proyectos($id)
+	{
+		$proyecto=$this->proyectos_model->ver_proyecto($id);
+		
+		$data['v']="ver_contactos_proyectos";
+		$data['titulo']="Proyecto ".$proyecto->nombre;
+		$data['contactos']=$this->proyectos_model->ver_contactos_asignados($id);
+		
+		$this->load->view('main_modal',$data);
+	}
+	
 	function editar_descripcion($id)
 	{
 		$login=$this->session->userdata('user_id');
