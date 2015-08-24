@@ -16,6 +16,7 @@ var TablesDatatables = function() {
 				responsive: true,
                 columnDefs: [ { orderable: false, targets: [6] } ],
                 pageLength: 10,
+				order: [[ 5, "desc" ]],
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
 				language:{
 					"sProcessing":     "Procesando...",

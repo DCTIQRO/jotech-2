@@ -22,37 +22,33 @@ class Bitacora extends CI_Controller {
 	{
 		$login=$this->session->userdata('user_id');
 		if(empty($login)){redirect('auth/login');}
+
+		$cliente=$this->bitacora_model->ver_cliente($id);
+		$data['v']="bitacora_cliente";
+		$data['tab']="bitacora";
+		$data['titulo']="Bitacora de ".$cliente->nombre;
+		$data['id_cliente']=$id;
+		$data['bitacoras']=$this->bitacora_model->bitacora_cliente($id);
+		$data['archivos']=$this->bitacora_model->ver_archivos($id);
+		$this->load->view('main',$data);
+	}
+	
+	function guardar_bitacora($id)
+	{
 		date_default_timezone_set('America/Mexico_City');
-		$this->form_validation->set_rules('comentario', 'Comentario', 'required');
-		$this->form_validation->set_rules('fecha', 'Fecha Actividad', 'required');
-		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
-		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-		{
-			$cliente=$this->bitacora_model->ver_cliente($id);
-			$data['v']="bitacora_cliente";
-			$data['tab']="bitacora";
-			$data['titulo']="Bitacora de ".$cliente->nombre;
-			$data['id_cliente']=$id;
-			$data['bitacoras']=$this->bitacora_model->bitacora_cliente($id);
-			$data['archivos']=$this->bitacora_model->ver_archivos($id);
-			$this->load->view('main',$data);
-		}
-		else
-		{
-				list($dia,$mes,$año)=explode('-',set_value('fecha'));
-				$form_data=array(
-					'comentario'		=>	set_value('comentario'),
-					'fecha'				=>	date('Y-m-d H:i:s'),
-					'fecha_actividad'	=>	$año."-".$mes."-".$dia,
-					'id_usuario'		=>	$this->session->userdata('user_id'),
-					'id_cliente'		=>	$this->input->post('id_cliente'),
-					'status'			=>	'1',
-					'tipo'				=>	'1'
-				);
-				
-				$this->bitacora_model->guardar_bitacora_cliente($form_data);
-				redirect('bitacora/cliente/'.$id);
-		}
+		list($dia,$mes,$año)=explode('-',$this->input->post('fecha'));
+		$form_data=array(
+			'comentario'		=>	$this->input->post('comentario'),
+			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	$año."-".$mes."-".$dia,
+			'id_usuario'		=>	$this->session->userdata('user_id'),
+			'id_cliente'		=>	$this->input->post('id_cliente'),
+			'status'			=>	'1',
+			'tipo'				=>	'1'
+		);
+		
+		$this->bitacora_model->guardar_bitacora_cliente($form_data);
+		redirect('bitacora/cliente/'.$id);
 	}
 	
 	function eliminar($id,$id_cliente)

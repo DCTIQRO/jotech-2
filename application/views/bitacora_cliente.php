@@ -3,16 +3,16 @@
 		<div class="block">
 			<?php $this->load->view('basic/tabs_cliente') ?>
 			<div class="row">
-				<form id="bitacora_cliente" action="<?= site_url('bitacora/cliente/'.$id_cliente) ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
+				<form id="bitacora_cliente" action="<?= site_url('bitacora/guardar_bitacora/'.$id_cliente) ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-10 text-center">
 							<label class="label-control col-xs-12 col-sm-2" for="comentario">Comentario</label>
 							<div class="col-xs-12 col-sm-10">
-								<textarea class="form-control ckeditor" rows="3" id="comentario" name="comentario" placeholder="Escribe un comentario" value="<?= set_value('comentario') ?>" ></textarea>
+								<textarea class="form-control ckeditor" rows="3" id="comentario"  name="comentario" placeholder="Escribe un comentario" value="" required ></textarea>
 							</div>
 							<label class="label-control col-xs-12 col-sm-2" for="fecha">Fecha Actividad</label>
 							<div class="col-xs-12 col-sm-10">
-								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" rows="3" id="fecha" name="fecha" placeholder="dd-mm-yyyy" value="<?= set_value('fecha') ?>" />
+								<input type="text" class="form-control input-datepicker"  data-date-format="dd-mm-yyyy" rows="3" id="fecha" name="fecha" placeholder="dd-mm-yyyy"  required />
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-2 text-center">
@@ -44,7 +44,7 @@
 							?>
 							<tr>
 								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
-								<td class="text-center"><?= $bitacora->comentario?></td>
+								<td class="text-center"><?= $bitacora->comentario ?></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 								<td class="text-center">
 									<?php
