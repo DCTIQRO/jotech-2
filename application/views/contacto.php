@@ -31,7 +31,7 @@
 					?>
 					<tr>
 						<!--<td class="text-center"><?= $contacto->id ?></td-->
-						<td class="text-center"><a href="javascript:void(0)"><?= $contacto->titulo ?>. <?= $contacto->nombre ?></a></td>
+						<td class="text-center"><a href="javascript:void(0)"><?= $contacto->titulo ?> <?= $contacto->nombre ?></a></td>
 						<td class="text-center"><?= $contacto->puesto ?></td>
 						<td class="text-center"><?= $contacto->telefono ?></td>
 						<td class="text-center"><?= $contacto->correo ?></td>

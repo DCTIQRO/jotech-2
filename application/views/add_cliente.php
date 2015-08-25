@@ -100,6 +100,7 @@
 						<input type="text" id="detalles" name="detalles" class="input-tags" value="">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
+					<br>
 				</div>
 			</div>
 			<div id="Clonar" name="Clonar">
