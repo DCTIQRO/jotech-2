@@ -3518,7 +3518,7 @@ code {
 
 /* Bottom Margin */
 p, .table, .alert, .carousel {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Removing shadows and radius */
@@ -4166,4 +4166,14 @@ tfoot input {
 	color: #394263;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+}
+
+thead input {
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+	color: #394263;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 13px;
 }

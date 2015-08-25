@@ -386,8 +386,10 @@ class Proyectos extends CI_Controller {
 	function cerrar_proyecto($id)
 	{
 		date_default_timezone_set('America/Mexico_City');
+		$fecha=date('Y-m-d');
 		$form_data=array(
-			'estatus'	=>	'0'
+			'estatus'	=>	'0',
+			'fecha_entrega' => $fecha
 		);
 		$this->proyectos_model->cerrar_proyecto($form_data,$id);
 		
@@ -410,7 +412,8 @@ class Proyectos extends CI_Controller {
 	{
 		date_default_timezone_set('America/Mexico_City');
 		$form_data=array(
-			'estatus'	=>	'1'
+			'estatus'	=>	'1',
+			'fecha_entrega' => '0000-00-00'
 		);
 		$this->proyectos_model->cerrar_proyecto($form_data,$id);
 		

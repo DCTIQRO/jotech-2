@@ -1,16 +1,16 @@
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
-    $('#tabla_clientes tfoot th').each( function () {
-        var title = $('#tabla_clientes thead th').eq( $(this).index() ).text();
-        $(this).html( '<input class="" type="text" placeholder="'+title+'" />' );
+    $('#tabla_clientes thead th').each( function () {
+        var title = $('#tabla_clientes tfoot th').eq( $(this).index() ).text();
+        $(this).html( '<input class="busqueda" type="text" placeholder="'+title+'" />' );
     } );
     // DataTable
 	 App.datatables();
     var table = $('#tabla_clientes').DataTable({
 		columnDefs: [ { orderable: false, targets: [7] } ],
-                pageLength: 10,
+                pageLength: -1,
 				autoWidth: true,
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -42,7 +42,7 @@ $(document).ready(function() {
     table.columns().every( function () {
         var that = this;
  
-        $( 'input', this.footer() ).on( 'keyup change', function () {
+        $( 'input', this.header() ).on( 'keyup change', function () {
             that
                 .search( this.value )
                 .draw();

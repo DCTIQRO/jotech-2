@@ -44,7 +44,7 @@
 							?>
 							<tr>
 								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd-mm-yyyy" value="<?= $dia."-".$mes."-".$año ?>" /></td>
-								<td class="text-center"><?= $bitacora->comentario ?></td>
+								<td class="text-left"><?= $bitacora->comentario ?></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 								<td class="text-center">
 									<?php

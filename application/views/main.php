@@ -86,24 +86,7 @@
                                 </a>
                             </li>
                         </ul>
-						<?php
-							$this->db->select('id,nombre');
-							$this->db->where('borrado','1');
-							$this->db->order_by('nombre','asc');
-							$proyectos = $this->db->get('proyectos')->result();
-						?>
 						<ul class="nav navbar-nav-custom pull-right">
-							<li Style="padding-top: 8px; width: 350px;">
-								<select id="buscar_proyecto" onChange="buscar_proyecto()" data-placeholder="Selecciona un proyecto" name="buscar_proyecto" class="select-chosen">
-									<option></option>
-									<?php
-										foreach($proyectos as $proyecto)
-										{
-											echo '<option value="'.$proyecto->id.'">'.$proyecto->nombre.'</option>';
-										}
-									?>
-								</select>
-							</li>
 							<?php
 								$this->db->select('id,nombre');
 								$this->db->where('status','1');
@@ -120,6 +103,11 @@
 										}
 									?>
 								</select>
+							</li>
+							<li Style="padding-top: 8px; width: 150px;">
+								<div class="col-xs-12">
+									<a href="<?= site_url('clientes/nuevo_cliente') ?>" class="btn btn-sm btn-info">Agregar Cliente</a>
+								</div>
 							</li>
 						</ul>
                     </header>

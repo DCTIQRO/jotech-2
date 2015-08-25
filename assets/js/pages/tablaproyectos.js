@@ -1,8 +1,8 @@
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
-    $('#tabla_proyectos tfoot th').each( function () {
-        var title = $('#tabla_proyectos thead th').eq( $(this).index() ).text();
-        $(this).html( '<input class="" type="text" placeholder="'+title+'" />' );
+    $('#tabla_proyectos thead th').each( function () {
+        var title = $('#tabla_proyectos tfoot th').eq( $(this).index() ).text();
+        $(this).html( '<input class="busqueda" type="text" placeholder="'+title+'" />' );
     } );
     // DataTable
 	 App.datatables();
@@ -42,7 +42,7 @@ $(document).ready(function() {
     table.columns().every( function () {
         var that = this;
  
-        $( 'input', this.footer() ).on( 'keyup change', function () {
+        $( 'input', this.header() ).on( 'keyup change', function () {
             that
                 .search( this.value )
                 .draw();

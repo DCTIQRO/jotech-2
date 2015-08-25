@@ -54,13 +54,13 @@
 							foreach($tareas_clientes as $tarea)
 							{
 							?>
-							<tr onClick="irTarea(<?= $tarea->id ?>)">
-								<td class="text-center"><?= $tarea->id ?></td>
-								<td class="text-center"><a href="javascript:void(0)"><?= $tarea->nombre ?></a></td>
-								<td class="text-center"><?= $tarea->descripcion ?></td>
-								<td class="text-center"><?= $tarea->id_cliente_fk ?></td>
-								<td class="text-center"><?= $tarea->fecha_inicio ?></td>
-								<td class="text-center"><?= $tarea->fecha_fin ?></td>
+							<tr>
+								<td class="text-center" onClick="irTarea(<?= $tarea->id ?>)"><?= $tarea->id ?></td>
+								<td class="text-center" onClick="irTarea(<?= $tarea->id ?>)"><a href="javascript:void(0)"><?= $tarea->nombre ?></a></td>
+								<td class="text-center" onClick="irTarea(<?= $tarea->id ?>)"><?= $tarea->descripcion ?></td>
+								<td class="text-center" onClick="irTarea(<?= $tarea->id ?>)"><?= $tarea->id_cliente_fk ?></td>
+								<td class="text-center" onClick="irTarea(<?= $tarea->id ?>)"><?= $tarea->fecha_inicio ?></td>
+								<td class="text-center" onClick="irTarea(<?= $tarea->id ?>)"><?= $tarea->fecha_fin ?></td>
 								<td class="text-center">
 								<?php
 								if($tarea->estatus == '0'){echo '<label class="btn btn-sm btn-danger">Cerrado</label>';}
@@ -82,7 +82,7 @@
 	</div>
 </div>
 
-<script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
+<script src="<?= asset_url('js/pages/tablaclientes.js') ?>"></script>
 <script>
 function irTarea(id)
 {

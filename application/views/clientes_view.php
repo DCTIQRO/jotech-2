@@ -1,22 +1,3 @@
-<div class="content-header">
-	<div class="header-section">
-		<div class="widget">
-			<div class="widget-simple">
-			<a href="<?= site_url('clientes/nuevo_cliente') ?>" class="widget-icon pull-left themed-background-fire animation-fadeIn">
-			<i class="gi gi-user_add sidebar-nav-icon"></i>
-			</a>
-			<h1 class="widget-content text-letf animation-pullDown">
-			<strong>Clientes</strong>
-			</h1>
-			</div>
-		</div>
-	</div>
-</div>
-<ul class="breadcrumb breadcrumb-top">
-	<li>Clientes</li>
-	<li><a href="">Registrados</a></li>
-</ul>
-
 <div class="block full">
 	<div class="block-title">
 		<h2>Información <strong>Clientes</strong></h2>
@@ -28,7 +9,6 @@
 		<table id="tabla_clientes" class="table table-vcenter table-condensed table-bordered">
 			<thead>
 				<tr>
-					<th class="text-center">ID</th>
 					<th class="text-center">Cliente</th>
 					<th class="text-center hidden">WebSite</th>
 					<th class="text-center">Correo</th>
@@ -45,7 +25,6 @@
 			</thead>
 			<tfoot>
 				<tr>
-					<th class="text-center">ID</th>
 					<th class="text-center">Cliente</th>
 					<th class="text-center hidden">WebSite</th>
 					<th class="text-center">Correo</th>
@@ -66,7 +45,6 @@
 				{
 				?>
 				<tr>
-					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->id ?></td>
 					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><a href="<?= site_url('clientes/ver/'.$cliente->id) ?>"><?= $cliente->nombre ?></a></td>
 					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->website ?></td>
 					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->correo ?></td>
