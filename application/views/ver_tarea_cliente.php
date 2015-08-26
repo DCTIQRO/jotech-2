@@ -2,8 +2,8 @@
 	<a href="<?= site_url('clientes/ver/'.$cliente) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $nombre_cliente ?></a>
 	<ul class="nav nav-pills">
 		<li><a href="<?= site_url('clientes/ver/'.$cliente) ?>">Detalles</a></li>
-		<li><a href="<?= site_url('proyectos/proyectos_tareas/'.$cliente) ?>">Proyectos</a></li>
-		<li class="active"><a href="<?= site_url('proyectos/proyectos_tareas/'.$cliente) ?>">Tareas</a></li>
+		<li><a href="<?= site_url('proyectos/cliente/'.$cliente) ?>">Proyectos</a></li>
+		<li class="active"><a href="<?= site_url('tareas/cliente/'.$cliente) ?>">Tareas</a></li>
 		<li><a href="<?= site_url('clientes/contacto/'.$cliente) ?>">Contactos</a></li>
 		<li><a href="<?= site_url('bitacora/cliente/'.$cliente) ?>">Bitacora</a></li>
 	</ul>
@@ -27,7 +27,7 @@
 					<?php	
 					}
 					?>
-					<a href="<?= site_url('proyectos/proyectos_tareas/'.$cliente); ?>" ><i class="gi gi-cloud pull-right"></i> Tareas del Cliente</a>
+					<a href="<?= site_url('tareas/cliente/'.$cliente); ?>" ><i class="gi gi-cloud pull-right"></i> Tareas del Cliente</a>
 				</li>
 				<li class="divider"></li>
 				<li>

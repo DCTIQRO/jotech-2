@@ -117,6 +117,19 @@ class Tareas extends CI_Controller {
 		$this->load->view('main',$data);
 	}	
 	
+	function cliente($id)
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
+		$cliente=$this->tareas_model->ver_cliente($id);
+		$data['v']="tareas_vista_cliente";
+		$data['id_cliente']=$id;
+		$data['tab']="tarea_vista";
+		$data['titulo']="Tareas de ".$cliente->nombre;
+		$data['tareas']=$this->tareas_model->ver_tareas($id);
+		$this->load->view('main',$data);
+	}
+	
 	function guardar_bitacora()
 	{
 		date_default_timezone_set('America/Mexico_City');

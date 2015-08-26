@@ -2,8 +2,8 @@
 	<a href="<?= site_url('clientes/ver/'.$datos_cliente->id) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $datos_cliente->nombre ?></a>
 	<ul class="nav nav-pills">
 		<li><a href="<?= site_url('clientes/ver/'.$datos_cliente->id) ?>">Detalles</a></li>
-		<li class="active"><a href="<?= site_url('proyectos/proyectos_tareas/'.$datos_cliente->id) ?>">Proyectos</a></li>
-		<li><a href="<?= site_url('proyectos/proyectos_tareas/'.$datos_cliente->id) ?>">Tareas</a></li>
+		<li class="active"><a href="<?= site_url('proyectos/cliente/'.$datos_cliente->id) ?>">Proyectos</a></li>
+		<li><a href="<?= site_url('tareas/cliente/'.$datos_cliente->id) ?>">Tareas</a></li>
 		<li><a href="<?= site_url('clientes/contacto/'.$datos_cliente->id) ?>">Contactos</a></li>
 		<li><a href="<?= site_url('bitacora/cliente/'.$datos_cliente->id) ?>">Bitacora</a></li>
 	</ul>

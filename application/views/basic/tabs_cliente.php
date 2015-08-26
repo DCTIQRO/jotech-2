@@ -6,7 +6,9 @@
 				<?php $activo=""; if($tab == 'detalles'){$activo="active";} ?>
 				<li class="<?= $activo ?>"><a href="<?= site_url('clientes/ver/'.$id_cliente) ?>">Detalles</a></li>
 				<?php $activo=""; if($tab == 'proyec_tarea'){$activo="active";} ?>
-				<li class="<?= $activo ?>"><a href="<?= site_url('proyectos/proyectos_tareas/'.$id_cliente) ?>">Proyectos y Tareas</a></li>
+				<li class="<?= $activo ?>"><a href="<?= site_url('proyectos/cliente/'.$id_cliente) ?>">Proyectos</a></li>
+				<?php $activo=""; if($tab == 'tarea_vista'){$activo="active";} ?>
+				<li class="<?= $activo ?>"><a href="<?= site_url('tareas/cliente/'.$id_cliente) ?>">Tareas Cliente</a></li>
 				<?php $activo=""; if($tab == 'contacto'){$activo="active";} ?>
 				<li class="<?= $activo ?>"><a href="<?= site_url('clientes/contacto/'.$id_cliente) ?>">Contacto</a></li>
 				<?php $activo=""; if($tab == 'bitacora'){$activo="active";} ?>

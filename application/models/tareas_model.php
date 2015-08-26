@@ -183,5 +183,14 @@ class Tareas_model extends CI_Model {
 		$this->db->where('id',$id);
 		$this->db->delete('clientes_tareas_archivos');
 	}
+	
+	function ver_tareas($id)
+	{
+		$this->db->select('id,nombre,fecha_fin,estatus');
+		$this->db->where('id_cliente_fk',$id);
+		$this->db->where('borrado','1');
+		$results = $this->db->get('clientes_tareas')->result();
+		return $results;
+	}
 }
 ?>
