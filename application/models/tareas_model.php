@@ -186,7 +186,7 @@ class Tareas_model extends CI_Model {
 	
 	function ver_tareas($id)
 	{
-		$this->db->select('id,nombre,fecha_fin,estatus');
+		$this->db->select('id,nombre,fecha_fin,estatus,fecha_inicio');
 		$this->db->where('id_cliente_fk',$id);
 		$this->db->where('borrado','1');
 		$results = $this->db->get('clientes_tareas')->result();
