@@ -279,6 +279,24 @@ class Tareas extends CI_Controller {
 		$this->tareas_model->editar_bitacora_tarea_cliente($form_data,$this->input->post('id_bitacora'));
 	}
 	
+	function cambiar_inicio_tarea()
+	{
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_inicio'	=>	$año."-".$mes."-".$dia
+		);
+		$this->tareas_model->editar_tarea($form_data,$this->input->post('id_tarea'));
+	}
+	
+	function cambiar_fin_tarea()
+	{
+		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		$form_data=array(
+			'fecha_fin'	=>	$año."-".$mes."-".$dia
+		);
+		$this->tareas_model->editar_tarea($form_data,$this->input->post('id_tarea'));
+	}
+	
 	function eliminar_bitacora_tarea_cliente($id,$idtarea)
 	{
 		$form_data=array(
