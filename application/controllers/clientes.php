@@ -18,6 +18,8 @@ class Clientes extends CI_Controller {
 		if(empty($login)){redirect('auth/login');}
 		$data['v']="clientes_view";
 		$data['clientes']=$this->clientes_model->ver_clientes();
+		$data['clasificaciones']=$this->clientes_model->todas_clasificacion_cliente();
+		$data['contactos']=$this->clientes_model->todos_contactos();
 		$this->load->view('main',$data);
 	}
 	
@@ -184,9 +186,9 @@ class Clientes extends CI_Controller {
 			'fecha_registro'	=>	date('Y-m-d H:i:s'),
 		);
 		$id_contacto=$this->clientes_model->guardar_contacto($form_data);
-		if($id_contacto>0)
+		$clasi=$this->input->post('clasificacion');
+		if($id_contacto>0 && !empty($clasi))
 		{
-			$clasi=$this->input->post('clasificacion');
 			
 			for($i=0;$i<count($clasi);$i++)
 			{
@@ -206,6 +208,15 @@ class Clientes extends CI_Controller {
 		$data['datos']=$this->clientes_model->info_contacto($id);
 		$data['clasificaciones']=$this->clientes_model->clasificacion_cliente($id_cliente);
 		$data['clasificaciones_contacto']=$this->clientes_model->info_clasificaciones_contacto($id);
+		$this->load->view('main_modal',$data);
+	}
+	
+	function ver_contacto($id,$id_cliente)
+	{
+		$data['v']="ver_contacto";
+		$data['datos']=$this->clientes_model->info_contacto($id);
+		$data['clasificaciones_cliente']=$this->clientes_model->clasificacion_cliente($id_cliente);
+		$data['clasificaciones']=$this->clientes_model->vista_clasificaciones_contacto($id);
 		$this->load->view('main_modal',$data);
 	}
 	

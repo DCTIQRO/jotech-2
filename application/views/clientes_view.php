@@ -10,32 +10,38 @@
 			<thead>
 				<tr>
 					<th class="text-center">Cliente</th>
+					<th class="text-center">Clasificaciones</th>
+					<th class="text-center">Prioridad</th>
 					<th class="text-center hidden">WebSite</th>
-					<th class="text-center">Correo</th>
-					<th class="text-center">Telefono</th>
+					<th class="text-center hidden">Correo</th>
+					<th class="text-center hidden">Telefono</th>
 					<th class="text-center hidden">Direccion</th>
-					<th class="text-center ">CP</th>
 					<th class="text-center">Ciudad</th>
-					<th class="text-center hidden">Estado</th>
-					<th class="text-center">Pais</th>
-					<th class="text-center">Detalles</th>
+					<th class="text-center ">Estado</th>
+					<th class="text-center ">CP</th>
+					<th class="text-center hidden">Pais</th>
+					<th class="text-center hidden">Detalles</th>
 					<th class="text-center hidden">Fecha Registro</th>
+					<th class="text-center">Contactos</th>
 					<th class="text-center">Acciones</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
 					<th class="text-center">Cliente</th>
+					<th class="text-center">Clasificaciones</th>
+					<th class="text-center">Prioridad</th>
 					<th class="text-center hidden">WebSite</th>
-					<th class="text-center">Correo</th>
-					<th class="text-center">Telefono</th>
+					<th class="text-center hidden">Correo</th>
+					<th class="text-center hidden">Telefono</th>
 					<th class="text-center hidden">Direccion</th>
-					<th class="text-center ">CP</th>
 					<th class="text-center">Ciudad</th>
-					<th class="text-center hidden">Estado</th>
-					<th class="text-center">Pais</th>
-					<th class="text-center">Detalles</th>
+					<th class="text-center">Estado</th>
+					<th class="text-center ">CP</th>
+					<th class="text-center hidden">Pais</th>
+					<th class="text-center hidden">Detalles</th>
 					<th class="text-center hidden">Fecha Registro</th>
+					<th class="text-center">Contactos</th>
 					<th class="text-center">Acciones</th>
 				</tr>
 			</tfoot>
@@ -46,16 +52,46 @@
 				?>
 				<tr>
 					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><a href="<?= site_url('clientes/ver/'.$cliente->id) ?>"><?= $cliente->nombre ?></a></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')">
+						<?php
+							foreach($clasificaciones as $clasificacion)
+							{
+								if($clasificacion->id_cliente_fk == $cliente->id){
+									echo '<label class="btn btn-xs btn-primary">'.$clasificacion->nombre.'</label><br>';
+								}
+							}
+						?>
+					</td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')">
+						<?php
+							foreach($clasificaciones as $clasificacion)
+							{
+								if($clasificacion->id_cliente_fk == $cliente->id){
+									echo '<label class="btn btn-xs btn-info">Prioridad '.$clasificacion->prioridad.'</label><br>';
+								}
+							}
+						?>
+					</td>
 					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->website ?></td>
-					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->correo ?></td>
-					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->telefono ?></td>
+					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->correo ?></td>
+					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->telefono ?></td>
 					<td class="text-center hidden"><?= ($cliente->calle) ?></td>
-					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= ($cliente->cp) ?></td>
 					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->ciudad ?></td>
-					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->estado ?></td>
-					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->pais ?></td>
-					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><p class="texto_desc"><?= $cliente->detalles ?></p></td>
+					<td class="text-center " onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->estado ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= ($cliente->cp) ?></td>
+					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->pais ?></td>
+					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><p class="texto_desc"><?= $cliente->detalles ?></p></td>
 					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->fecha_registro ?></td>
+					<td class="text-center">
+						<?php
+							foreach($contactos as $contacto)
+							{
+								if($contacto->id_cliente_fk == $cliente->id){
+									echo '<a href="'.site_url('clientes/ver_contacto/'.$contacto->id.'/'.$cliente->id).'" class="btn btn-xs btn-info fancybox fancybox.iframe">'.$contacto->titulo." ".$contacto->nombre.'</a><br>';
+								}
+							}
+						?>
+					</td>
 					<td class="text-center" >
 						<a href="<?= site_url('clientes/ver/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Ver Cliente" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 						<a href="<?= site_url('proyectos/nuevo_proyecto/'.$cliente->id) ?>" data-toggle="tooltip" data-original-title="Nuevo Proyecto" class="btn btn-xs btn-default"><i class="fa fa-briefcase"></i></a>
@@ -97,3 +133,18 @@ location.href=pagina;
 $(".eliminar").confirm();
 </script>
 <script src="<?= asset_url('js/pages/tablaclientes.js') ?>"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			maxWidth	: 800,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '100%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});
+</script>

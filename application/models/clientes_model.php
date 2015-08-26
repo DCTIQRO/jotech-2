@@ -91,6 +91,15 @@ class Clientes_model extends CI_Model {
 		return $results;
 	}
 	
+	function todos_contactos()
+	{
+		$this->db->select('m.id,m.nombre,m.titulo,m.id_cliente_fk');
+		$this->db->where('m.status','1');
+		$this->db->where('m.activo2','3');
+		$results = $this->db->get('miembros m')->result();
+		return $results;
+	}
+	
 	function info_contacto($id)
 	{
 		$this->db->select('id,nombre,telefono,correo,puesto,direccion,activo,activo2,comentarios,titulo');
@@ -104,6 +113,15 @@ class Clientes_model extends CI_Model {
 		$this->db->select('clasificacion');
 		$this->db->where('id_miembro_fk',$id);
 		$results = $this->db->get('miembros_clasificaciones')->result();
+		return $results;
+	}
+	
+	function vista_clasificaciones_contacto($id)
+	{
+		$this->db->select('clas.nombre,cc.id_miembro_fk,cc.clasificacion');
+		$this->db->where('cc.id_miembro_fk',$id);
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion','LEFT');
+		$results = $this->db->get('miembros_clasificaciones cc')->result();
 		return $results;
 	}
 	
@@ -180,6 +198,15 @@ class Clientes_model extends CI_Model {
 		);
 		$this->db->where('id_cliente_fk',$id);
 		$this->db->update('miembros',$form_data);
+	}
+	
+	function todas_clasificacion_cliente()
+	{
+		$this->db->where('clas.status','1');
+		$this->db->select('clas.id,cc.clasificacion,clas.nombre,cc.id_cliente_fk,cc.prioridad');
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
+		$results = $this->db->get('clientes_clasificaciones cc')->result();
+		return $results;
 	}
 }
 ?>

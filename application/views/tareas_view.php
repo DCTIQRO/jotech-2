@@ -24,7 +24,7 @@
 			</div>
 			<div class="row">
 				<div class="table-resposive">
-					<table id="tabla_proyectos" class="table table-vcenter table-condensed table-bordered">
+					<table id="tabla_tareas_proyecto" class="table table-vcenter table-condensed table-bordered">
 						<thead>
 							<tr>
 								<th class="text-center">ID</th>
@@ -37,6 +37,18 @@
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
+						<tfoot>
+							<tr>
+								<th class="text-center">ID</th>
+								<th class="text-center">Tarea</th>
+								<th class="text-center">Descripción</th>
+								<th class="text-center">Proyecto</th>
+								<th class="text-center">Inicio</th>
+								<th class="text-center">Fin</th>
+								<th class="text-center">Status</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</tfoot>
 						<tbody>
 							<?php
 							foreach($tareas_proyectos as $tarea_proyecto)
@@ -78,7 +90,7 @@
 			</div>
 			<div class="row">
 				<div class="table-resposive">
-					<table id="tabla_proyectos" class="table table-vcenter table-condensed table-bordered">
+					<table id="tabla_tareas_clientes" class="table table-vcenter table-condensed table-bordered">
 						<thead>
 							<tr>
 								<th class="text-center" Style="width: 50px !important;">ID</th>
@@ -91,6 +103,18 @@
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
+						<tfoot>
+							<tr>
+								<th class="text-center" Style="width: 50px !important;">ID</th>
+								<th class="text-center">Tarea</th>
+								<th class="text-center">Descripción</th>
+								<th class="text-center">Cliente</th>
+								<th class="text-center">Inicio</th>
+								<th class="text-center">Fin</th>
+								<th class="text-center">Status</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</tfoot>
 						<tbody>
 							<?php
 							foreach($tareas_clientes as $tarea_cliente)
@@ -124,7 +148,7 @@
 	</div>
 </div>
 
-<script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
+<script src="<?= asset_url('js/pages/tablamistareas.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
 <script>
 function irTarea(id)

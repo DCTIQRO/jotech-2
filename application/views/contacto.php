@@ -62,7 +62,7 @@
 						?>
 						</td>
 						<td class="text-center">
-							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Ver Contacto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
+							<a href="<?= site_url('clientes/ver_contacto/'.$contacto->id."/".$id_cliente) ?>" data-toggle="tooltip" data-original-title="Ver Contacto" class="btn btn-xs btn-default fancybox fancybox.iframe"><i class="fa fa-eye"></i></a>
 							<a href="<?= site_url('clientes/editar_contacto/'.$contacto->id."/".$id_cliente) ?>" class="fancybox fancybox.iframe btn btn-xs btn-default" data-toggle="tooltip" data-original-title="Editar" ><i class="fa fa-pencil"></i></a>
 							<a href="<?= site_url('clientes/eliminar_contacto/'.$contacto->id."/".$id_cliente) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
 						</td>
