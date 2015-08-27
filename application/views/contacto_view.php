@@ -24,30 +24,24 @@
 			</div>
 			<div class="row">
 				<div class="table-responsive">
-					<table id="tabla_proyectos" class="table table-vcenter table-condensed table-bordered">
+					<table id="tabla_contactos" class="table table-vcenter table-condensed table-bordered">
 						<thead>
 							<tr>
-								<th class="text-center">ID</th>
+								<th class="text-center">Status 2</th>
 								<th class="text-center">Nombre</th>
-								<th class="text-center">Puesto</th>
+								<th class="text-center">Cliente</th>
 								<th class="text-center">Teléfono</th>
 								<th class="text-center">Correo</th>
-								<th class="text-center">Status</th>
-								<th class="text-center">Status 2</th>
-								<th class="text-center">Comentarios</th>
 								<th class="text-center">Acciones</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th class="text-center">ID</th>
+								<th class="text-center">Status 2</th>
 								<th class="text-center">Nombre</th>
-								<th class="text-center">Puesto</th>
+								<th class="text-center">Cliente</th>
 								<th class="text-center">Teléfono</th>
 								<th class="text-center">Correo</th>
-								<th class="text-center">Status</th>
-								<th class="text-center">Status 2</th>
-								<th class="text-center">Comentarios</th>
 								<th class="text-center">Acciones</th>
 							</tr>
 						</tfoot>
@@ -57,19 +51,6 @@
 							{
 							?>
 							<tr>
-								<td class="text-center"><?= $contacto->id ?></td>
-								<td class="text-center"><a href="javascript:void(0)"><?=  $contacto->titulo." ".$contacto->nombre ?></a></td>
-								<td class="text-center"><?= $contacto->puesto ?></td>
-								<td class="text-center"><?= $contacto->telefono ?></td>
-								<td class="text-center"><?= $contacto->correo ?></td>
-								<td class="text-center">
-								<?php
-									if($contacto->activo == 1){echo '<label class="btn-xs btn-warning">Puede no estar al corriente</label>';}
-									if($contacto->activo == 2){echo '<label class="btn-xs btn-success">Conoce de los proyectos</label>';}
-									if($contacto->activo == 3){echo '<label class="btn-xs btn-info">Recomienda</label>';}
-									if($contacto->activo == 4){echo '<label class="btn-xs btn-primary">Participa en la decisión</label>';}
-								?></td>
-								
 								<td class="text-center">
 								<?php
 									if($contacto->activo2 == 1){echo '<label class="btn-xs btn-warning">Ex trabajador</label>';}
@@ -77,7 +58,10 @@
 									if($contacto->activo2 == 3){echo '<label class="btn-xs btn-info">Sí nos conoce: Es contacto principal</label>';}
 									if($contacto->activo2 == 4){echo '<label class="btn-xs btn-success">Si nos conoce: Aunque no sea contacto principal</label>';}
 								?></td>
-								<td class="text-center"><?= $contacto->comentarios ?></td>
+								<td class="text-center"><a href="<?= site_url('clientes/ver_contacto/'.$contacto->id.'/'.$contacto->cliente) ?>" class="fancybox fancybox.iframe"><?=  $contacto->titulo." ".$contacto->nombre ?></a></td>
+								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$contacto->cliente) ?>"><?= $contacto->name_cliente ?></a></td>
+								<td class="text-center"><?= $contacto->telefono ?></td>
+								<td class="text-center"><a href="mailto:<?= $contacto->correo ?>"><?= $contacto->correo ?></a></td>
 								<td class="text-center">
 									<a href="<?= site_url('clientes/ver_contacto/'.$contacto->id.'/'.$contacto->cliente) ?>" data-toggle="tooltip" data-original-title="Ver Contacto" class="btn btn-xs btn-default fancybox fancybox.iframe"><i class="fa fa-eye"></i></a>
 									<a href="<?= site_url('clientes/editar_contacto/'.$contacto->id."/".$contacto->cliente) ?>" class="fancybox fancybox.iframe btn btn-xs btn-default" data-toggle="tooltip" data-original-title="Editar" ><i class="fa fa-pencil"></i></a>
@@ -111,5 +95,5 @@ $(document).ready(function() {
 });
 </script>
 
-<script src="<?= asset_url('js/pages/tablaproyectos.js') ?>"></script>
+<script src="<?= asset_url('js/pages/tablacontactos.js') ?>"></script>
 <script>$(function(){ TablesDatatables.init(); });</script>
