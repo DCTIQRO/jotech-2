@@ -47,9 +47,9 @@ $(document).ready(function() {
 	
 	var table3 = $('#tabla_tareas_generales').DataTable({
 		columnDefs: [ { orderable: false, targets: [6] } ],
-                pageLength: 10,
+                pageLength: -1,
 				autoWidth: true,
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",

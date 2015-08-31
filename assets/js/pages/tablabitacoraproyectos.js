@@ -14,9 +14,9 @@ var TablesDatatables = function() {
             /* Initialize Datatables */
             $('#tabla_bitacora_proyectos').dataTable({
                 columnDefs: [ { orderable: false, targets: [] } ],
-                pageLength: 10,
+                pageLength: -1,
 				aaSorting: [[ 0, 'desc' ]], 
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -45,9 +45,9 @@ var TablesDatatables = function() {
 			
 			$('#tabla_tareas_proyectos').dataTable({
                 columnDefs: [ { orderable: false, targets: [] } ],
-                pageLength: 10,
+                pageLength: -1,
 				aaSorting: [[ 3, 'desc' ]], 
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",

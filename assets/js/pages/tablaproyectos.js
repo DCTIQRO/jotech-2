@@ -8,9 +8,9 @@ $(document).ready(function() {
 	 App.datatables();
     var table = $('#tabla_proyectos').DataTable({
 		columnDefs: [ { orderable: false, targets: [7] } ],
-                pageLength: 10,
+                pageLength: -1,
 				autoWidth: true,
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",

@@ -14,9 +14,9 @@ var TablesDatatables = function() {
             /* Initialize Datatables */
             $('#tabla_bitacora_cliente').dataTable({
                 columnDefs: [ { orderable: false, targets: [] } ],
-                pageLength: 10,
+                pageLength: -1,
 				aaSorting: [[ 0, 'desc' ]], 
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",

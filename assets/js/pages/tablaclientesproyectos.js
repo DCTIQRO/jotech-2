@@ -14,9 +14,9 @@ var TablesDatatables = function() {
             /* Initialize Datatables */
             $('#tabla_proyectos').dataTable({
                 columnDefs: [ { orderable: false, targets: [4] } ],
-                pageLength: 10,
+                pageLength: -1,
 				order: [[ 2, 'desc' ], [ 0, 'desc' ]],
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",

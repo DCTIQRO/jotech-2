@@ -8,10 +8,10 @@ $(document).ready(function() {
 	 App.datatables();
     var table2 = $('#tabla_contactos').DataTable({
 		columnDefs: [ { orderable: false, targets: [5] } ],
-                pageLength: 10,
+                pageLength: -1,
 				autoWidth: true,
 				aaSorting: [[ 0, 'desc' ]],
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",
