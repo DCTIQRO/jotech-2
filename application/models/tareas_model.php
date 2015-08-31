@@ -129,11 +129,12 @@ class Tareas_model extends CI_Model {
 	function ver_tarea_proyectos($id)
 	{
 		date_default_timezone_set('America/Mexico_City');
-		$this->db->select('t.id,t.nombre,t.descripcion,t.id_proyecto_fk,p.nombre proyecto,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
+		$this->db->select('t.id,t.nombre,t.descripcion,t.id_proyecto_fk,p.nombre proyecto,c.nombre cliente,p.id_cliente_fk id_cliente,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
 		$this->db->where('u.id_usuario_fk',$id);
 		$this->db->where('t.estatus','0');
 		$this->db->where('MONTH(fecha_fin) <=',date('m'));
 		$this->db->join('proyectos p','p.id=t.id_proyecto_fk');
+		$this->db->join('clientes c','c.id=p.id_cliente_fk');
 		$this->db->join('proyectos_tareas_usuarios u','u.id_tarea_fk=t.id');
 		$results = $this->db->get('proyectos_tareas t')->result();
 		return $results;

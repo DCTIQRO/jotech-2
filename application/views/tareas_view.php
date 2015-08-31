@@ -15,7 +15,8 @@
 								<th class="text-center">Fin</th>
 								<th class="text-center">Status</th>
 								<th class="text-center">Descripción</th>
-								<th class="text-center">Proyecto/Cliente</th>
+								<th class="text-center">Proyecto</th>
+								<th class="text-center">Cliente</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -26,7 +27,8 @@
 								<th class="text-center">Fin</th>
 								<th class="text-center">Status</th>
 								<th class="text-center">Descripción</th>
-								<th class="text-center">Proyecto/Cliente</th>
+								<th class="text-center">Proyecto</th>
+								<th class="text-center">Cliente</th>
 							</tr>
 						</tfoot>
 						<tbody>
@@ -49,6 +51,7 @@
 								</td>
 								<td class="text-center"><?= $tarea_general->descripcion ?></td>
 								<td class="text-center">Sin vinculos</td>
+								<td class="text-center">Sin vinculos</td>
 							</tr>
 							<?php
 							}
@@ -70,6 +73,7 @@
 								</td>
 								<td class="text-center"><?= $tarea_proyecto->descripcion ?></td>
 								<td class="text-center"><a href="<?= site_url('proyectos/ver_proyecto/'.$tarea_proyecto->id_proyecto_fk) ?>"><?= $tarea_proyecto->proyecto ?></a></td>
+								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$tarea_proyecto->id_cliente) ?>"><?= $tarea_proyecto->cliente ?></a></td>
 							</tr>
 							<?php
 							}
@@ -90,6 +94,7 @@
 								?>
 								</td>
 								<td class="text-center"><?= $tarea_cliente->descripcion ?></td>
+								<td class="text-center">Sin vinculos</td>
 								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$tarea_cliente->id_cliente_fk) ?>"><?= $tarea_cliente->cliente ?></a></td>
 							</tr>
 							<?php
