@@ -114,10 +114,22 @@ class Tareas_model extends CI_Model {
 		return $results;
 	}
 	
+	function ver_tarea_general($id)
+	{
+		date_default_timezone_set('America/Mexico_City');
+		$this->db->select('t.id,t.nombre,t.descripcion,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
+		$this->db->where('u.id_usuario_fk',$id);
+		$this->db->where('t.estatus','0');
+		$this->db->where('MONTH(fecha_fin) <=',date('m'));
+		$this->db->join('tareas_generales_usuarios u','u.id_tarea_fk=t.id');
+		$results = $this->db->get('tareas_generales t')->result();
+		return $results;
+	}
+	
 	function ver_tarea_proyectos($id)
 	{
 		date_default_timezone_set('America/Mexico_City');
-		$this->db->select('t.id,t.nombre,t.descripcion,p.nombre proyecto,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
+		$this->db->select('t.id,t.nombre,t.descripcion,t.id_proyecto_fk,p.nombre proyecto,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
 		$this->db->where('u.id_usuario_fk',$id);
 		$this->db->where('t.estatus','0');
 		$this->db->where('MONTH(fecha_fin) <=',date('m'));
@@ -129,7 +141,7 @@ class Tareas_model extends CI_Model {
 	
 	function ver_tarea_cliente($id)
 	{
-		$this->db->select('t.id,t.nombre,t.descripcion,c.nombre cliente,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
+		$this->db->select('t.id,t.nombre,t.id_cliente_fk,t.descripcion,c.nombre cliente,t.fecha_inicio,t.fecha_fin,t.fecha_entrega,t.estatus');
 		$this->db->where('u.id_usuario_fk',$id);
 		$this->db->where('t.estatus','0');
 		$this->db->where('MONTH(fecha_fin) <=',date('m'));

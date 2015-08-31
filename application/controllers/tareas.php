@@ -33,6 +33,7 @@ class Tareas extends CI_Controller {
 		$data['v']="tareas_view";
 		$data['titulo']="Ver Tareas de ".($usuario->first_name)." ".$usuario->last_name;
 		$data['usuario']=$this->session->userdata('user_id');
+		$data['tareas_generales']=$this->tareas_model->ver_tarea_general($this->session->userdata('user_id'));
 		$data['tareas_proyectos']=$this->tareas_model->ver_tarea_proyectos($this->session->userdata('user_id'));
 		$data['tareas_clientes']=$this->tareas_model->ver_tarea_cliente($this->session->userdata('user_id'));
 		$this->load->view('main',$data);
@@ -220,6 +221,7 @@ class Tareas extends CI_Controller {
 		
 		$form_bitacora=array(
 			'comentario'	=>	'Se ha cerrado la tarea <a href="'.site_url('tareas/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
+			'fecha_actividad'	=>	date('Y-m-d'),
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$tarea->id_cliente_fk,
@@ -243,6 +245,7 @@ class Tareas extends CI_Controller {
 		
 		$form_bitacora=array(
 			'comentario'	=>	'Se ha abierto la tarea <a href="'.site_url('tareas/ver_tarea/'.$id).'">'.($tarea->nombre).'</a>',
+			'fecha_actividad'	=>	date('Y-m-d'),
 			'fecha'			=>	date('Y-m-d H:i:s'),
 			'id_usuario'	=>	$this->session->userdata('user_id'),
 			'id_cliente'	=>	$tarea->id_cliente_fk,

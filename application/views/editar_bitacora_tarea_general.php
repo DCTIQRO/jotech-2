@@ -4,7 +4,7 @@
 	</div>
 	<div class="row" Style="margin-bottom:10px">
 		<div class="col-xs-12">
-			<form class="form-bordered form-horizontal" action="<?= site_url('tareas_proyectos/guardar_edicion_bitacora_tarea_proyecto') ?>" method="post" >
+			<form class="form-bordered form-horizontal" action="<?= site_url('tareas_generales/guardar_edicion_bitacora_tareas') ?>" method="post" >
 				<div class="form-group">
 					<label class="label-control col-sm-12">Comentario</label>
 					<div class="col-sm-12">

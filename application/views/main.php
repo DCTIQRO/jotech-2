@@ -34,6 +34,21 @@
 			echo '<script src="'.asset_url($url).'"></script>';
 		} 	
 	?>
+	<script type="text/javascript">
+			$(document).ready(function() {
+				$(".fancy").fancybox({
+					maxWidth	: 1100,
+					maxHeight	: 800,
+					fitToView	: false,
+					width		: '100%',
+					height		: '85%',
+					autoSize	: false,
+					closeClick	: false,
+					openEffect	: 'none',
+					closeEffect	: 'none'
+				});
+			});
+		</script>
     <body>
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
@@ -110,6 +125,13 @@
 								</div>
 							</li>
 						</ul>
+						<ul class="nav navbar-nav-custom pull-right">
+							<li Style="padding-top: 8px; width: 150px; margin-right: 20px;">
+								<div class="col-xs-12">
+									<a href="<?= site_url('tareas_generales/nuevo') ?>" class="btn btn-sm btn-primary fancy fancybox.iframe">Nueva Tarea General</a>
+								</div>
+							</li>
+						</ul>
                     </header>
                     <!-- END Header -->
 
@@ -135,15 +157,7 @@
 			{
 				var pagina="<?= site_url("clientes/ver") ?>"+"/"+$('#buscar_cliente').val();
 				location.href=pagina;
-			}
-			
-			function buscar_proyecto()
-			{
-				var pagina="<?= site_url("proyectos/ver_proyecto") ?>"+"/"+$('#buscar_proyecto').val();
-				location.href=pagina;
-			}
-			
+			}			
 		</script>
     </body>
 </html>
-
