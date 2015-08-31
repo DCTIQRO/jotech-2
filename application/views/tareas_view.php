@@ -90,7 +90,7 @@
 								?>
 								</td>
 								<td class="text-center"><?= $tarea_cliente->descripcion ?></td>
-								<td class="text-center"><a href="<?= site_url('tareas/ver_tareas/'.$tarea_cliente->id_cliente_fk) ?>"><?= $tarea_cliente->cliente ?></a></td>
+								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$tarea_cliente->id_cliente_fk) ?>"><?= $tarea_cliente->cliente ?></a></td>
 							</tr>
 							<?php
 							}
@@ -103,7 +103,6 @@
 	</div>
 </div>
 
-<script src="<?= asset_url('js/pages/tablamistareas.js') ?>"></script>
 <script>
 function irTarea(id)
 {
@@ -160,3 +159,5 @@ function cambiar_fin_general(id)
     });
 }
 </script>
+
+<script src="<?= asset_url('js/pages/tablamistareas.js') ?>"></script>
