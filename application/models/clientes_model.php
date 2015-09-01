@@ -86,7 +86,7 @@ class Clientes_model extends CI_Model {
 	{
 		$this->db->select('m.id,m.nombre,m.telefono,m.correo,m.puesto,m.activo,m.activo2,m.comentarios,m.titulo');
 		$this->db->where('id_cliente_fk',$id);
-		$this->db->where('m.status','1');
+		$this->db->where('m.borrado','1');
 		$results = $this->db->get('miembros m')->result();
 		return $results;
 	}
@@ -94,7 +94,7 @@ class Clientes_model extends CI_Model {
 	function todos_contactos()
 	{
 		$this->db->select('m.id,m.nombre,m.titulo,m.id_cliente_fk');
-		$this->db->where('m.status','1');
+		$this->db->where('m.borrado','1');
 		$this->db->where('m.activo2','3');
 		$results = $this->db->get('miembros m')->result();
 		return $results;
@@ -102,7 +102,7 @@ class Clientes_model extends CI_Model {
 	
 	function info_contacto($id)
 	{
-		$this->db->select('id,nombre,telefono,correo,puesto,direccion,activo,activo2,comentarios,titulo');
+		$this->db->select('id,nombre,telefono,correo,puesto,direccion,activo,activo2,comentarios,titulo,id_cliente_fk');
 		$this->db->where('id',$id);
 		$results = $this->db->get('miembros')->row();
 		return $results;
@@ -176,6 +176,23 @@ class Clientes_model extends CI_Model {
 		return $results;
 	}
 	
+	function regresar_proyectos($id)
+	{
+		$this->db->select('id');
+		$this->db->where('id_cliente_fk',$id);
+		$results = $this->db->get('proyectos')->result();
+		
+		foreach($results as $result)
+		{
+			$form_data=array(
+				'borrado'	=>	'1'
+			);
+			$this->db->where('id',$result->id);
+			$this->db->update('proyectos',$form_data);
+		}
+		return $results;
+	}
+	
 	function limpiar_tareas_proyectos($id,$form_data)
 	{
 		$this->db->where('id_proyecto_fk',$id);
@@ -191,10 +208,30 @@ class Clientes_model extends CI_Model {
 		$this->db->update('clientes_tareas',$form_data);
 	}
 	
+	function regresar_tareas($id)
+	{
+		$form_data=array(
+			'borrado'	=>	'1'
+		);
+		$this->db->where('id_cliente_fk',$id);
+		$this->db->update('clientes_tareas',$form_data);
+	}
+	
 	function limpiar_contactos($id)
 	{
 		$form_data=array(
-			'borrado'	=>	'0'
+			'borrado'	=>	'0',
+			'status'	=>	'0'
+		);
+		$this->db->where('id_cliente_fk',$id);
+		$this->db->update('miembros',$form_data);
+	}
+	
+	function regresar_contactos($id)
+	{
+		$form_data=array(
+			'borrado'	=>	'1',
+			'status'	=>	'1'
 		);
 		$this->db->where('id_cliente_fk',$id);
 		$this->db->update('miembros',$form_data);

@@ -107,7 +107,7 @@ class Proyectos_model extends CI_Model {
 	function todos_proyectos()
 	{
 		$this->db->where('p.borrado','1');
-		$this->db->select('p.id,p.nombre,p.descripcion_corta,p.estatus,p.descripcion,p.progreso,p.fecha_inicio,p.progreso,c.nombre cliente');
+		$this->db->select('p.id,p.nombre,p.descripcion_corta,p.estatus,p.descripcion,p.progreso,p.fecha_inicio,p.progreso,c.nombre cliente, c.id id_cliente');
 		$this->db->join('clientes c','c.id=p.id_cliente_fk');
 		$results = $this->db->get('proyectos p')->result();
 		return $results;
@@ -318,6 +318,33 @@ class Proyectos_model extends CI_Model {
 	{
 		$this->db->where('id',$id);
 		$this->db->delete('proyectos_archivos');
+	}
+	
+	function todas_clasificacion_proyecto()
+	{
+		$this->db->where('clas.status','1');
+		$this->db->select('clas.id,cc.id_clasificacion,clas.nombre,cc.id_proyecto_fk,cc.prioridad');
+		$this->db->join('clasificacion_clientes clas','clas.id=cc.id_clasificacion');
+		$results = $this->db->get('proyectos_clasificaciones cc')->result();
+		return $results;
+	}
+	
+	function todos_contactos_proyecto()
+	{
+		$this->db->where('m.borrado','1');
+		$this->db->select('m.id,pc.id_proyecto_fk,m.nombre,m.id_cliente_fk');
+		$this->db->join('miembros m','m.id=pc.id_miembro_fk');
+		$results = $this->db->get('proyectos_contactos pc')->result();
+		return $results;
+	}
+	
+	function todos_usuarios_proyecto()
+	{
+		$this->db->where('u.active','1');
+		$this->db->select('u.id,pu.id_proyecto_fk,u.first_name,u.last_name');
+		$this->db->join('users u','u.id=pu.id_usuario_fk');
+		$results = $this->db->get('proyectos_usuarios pu')->result();
+		return $results;
 	}
 	
 }

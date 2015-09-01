@@ -21,7 +21,12 @@ class Tareas extends CI_Controller {
 		$data['v']="tareas_cliente_view";
 		$data['titulo']="Ver Tareas de ".($usuario->first_name)." ".$usuario->last_name;
 		$data['usuario']=$this->session->userdata('user_id');
-		$data['tareas_clientes']=$this->tareas_model->tareas_cliente();
+		$data['tareas_generales']=$this->tareas_model->todas_tarea_general();
+		$data['tareas_proyectos']=$this->tareas_model->todas_tarea_proyectos();
+		$data['tareas_clientes']=$this->tareas_model->todas_tarea_cliente();
+		$data['usuarios_generales']=$this->tareas_model->usuarios_tarea_general();
+		$data['usuarios_clientes']=$this->tareas_model->usuarios_tarea_cliente();
+		$data['usuarios_proyectos']=$this->tareas_model->usuarios_tarea_proyecto();
 		$this->load->view('main',$data);
 	}
 	

@@ -1,21 +1,3 @@
-<div class="content-header">
-	<div class="header-section">
-		<div class="widget">
-			<div class="widget-simple">
-			<a href="javascript:void(0)" class="widget-icon pull-left themed-background-fire animation-fadeIn">
-				<i class="fa fa-suitcase sidebar-nav-icon"></i>
-			</a>
-			<h1 class="widget-content text-letf animation-pullDown">
-				<strong>Listado de Proyectos</strong>
-			</h1>
-			</div>
-		</div>
-	</div>
-</div>
-<ul class="breadcrumb breadcrumb-top">
-	<li>Proyectos</li>
-	<li><a href="">Listado</a></li>
-</ul>
 <div class="row">
 	<div class="col-xs-12" >
 		<div class="block">
@@ -27,26 +9,28 @@
 					<table id="tabla_proyectos" class="table table-vcenter table-condensed table-bordered">
 						<thead>
 							<tr>
-								<th class="text-center">ID</th>
 								<th class="text-center">Proyecto</th>
-								<th class="text-center" Style="width:10%">Descripción</th>
-								<th class="text-center">Descripción Corta</th>
-								<th class="text-center">Cliente</th>
-								<th class="text-center">Inicio</th>
 								<th class="text-center">Status</th>
-								<th class="text-center">Acciones</th>
+								<th class="text-center">Cliente</th>
+								<th class="text-center">Clasificaciones</th>
+								<th class="text-center">Prioridades</th>
+								<th class="text-center hidden" >Descripción</th>
+								<th class="text-center">Contactos</th>
+								<th class="text-center">Usuarios</th>
+								<th class="text-center hidden">Acciones</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th class="text-center">ID</th>
 								<th class="text-center">Proyecto</th>
-								<th class="text-center">Descripción</th>
-								<th class="text-center">Descripción Corta</th>
-								<th class="text-center">Cliente</th>
-								<th class="text-center">Inicio</th>
 								<th class="text-center">Status</th>
-								<th class="text-center">Acciones</th>
+								<th class="text-center">Cliente</th>
+								<th class="text-center">Clasificaciones</th>
+								<th class="text-center">Prioridades</th>
+								<th class="text-center hidden">Descripción</th>
+								<th class="text-center">Contactos</th>
+								<th class="text-center">Usuarios</th>
+								<th class="text-center hidden">Acciones</th>
 							</tr>
 						</tfoot>
 						<tbody>
@@ -54,20 +38,65 @@
 							foreach($proyectos as $proyecto)
 							{
 							?>
-							<tr onClick="irProyecto('<?= $proyecto->id ?>')">
-								<td class="text-center"><?= $proyecto->id ?></td>
-								<td class="text-center"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
-								<td class="text-center"><?= $proyecto->descripcion ?></td>
-								<td class="text-center"><?= $proyecto->descripcion_corta ?></td>
-								<td class="text-center"><?= $proyecto->cliente ?></td>
-								<td class="text-center"><?= $proyecto->fecha_inicio ?></td>
+							<tr>
+								<td class="text-center" onClick="irProyecto('<?= $proyecto->id ?>')"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
+								<td class="text-center">
+									<?php
+									if($proyecto->estatus == '0'){echo '<label class="btn btn-sm btn-danger">Cerrado</label>';}
+									if($proyecto->estatus == '1'){echo '<label class="btn btn-sm btn-success">Abierto</label>';}
+									?>
+								</td>
+								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$proyecto->id_cliente) ?>"><?= $proyecto->cliente ?></a></td>
 								<td class="text-center">
 								<?php
-								if($proyecto->estatus == '0'){echo '<label class="btn btn-sm btn-danger">Cerrado</label>';}
-								if($proyecto->estatus == '1'){echo '<label class="btn btn-sm btn-success">Abierto</label>';}
+									foreach($clasificaciones as $clasificacion)
+									{
+										if($clasificacion->id_proyecto_fk == $proyecto->id)
+										{
+											echo '<label class="btn btn-sm btn-primary">'.$clasificacion->nombre.'</label>';
+										}
+									}
 								?>
 								</td>
 								<td class="text-center">
+								<?php
+									foreach($clasificaciones as $clasificacion)
+									{
+										if($clasificacion->id_proyecto_fk == $proyecto->id)
+										{
+											$prioridad="";
+											if($clasificacion->prioridad == 1)$prioridad="Baja";
+											if($clasificacion->prioridad == 2)$prioridad="Mediana";
+											if($clasificacion->prioridad == 3)$prioridad="Alta";
+											echo '<label class="btn btn-sm btn-info">'.$prioridad.'</label>';
+										}
+									}
+								?>
+								</td>
+								<td class="text-center hidden"><?= $proyecto->descripcion ?></td>
+								<td class="text-center">
+								<?php
+									foreach($contactos as $contacto)
+									{
+										if($contacto->id_proyecto_fk == $proyecto->id)
+										{
+											echo '<a href="'.site_url('clientes/ver_contacto/'.$contacto->id."/".$contacto->id_cliente_fk).'" class="btn btn-sm btn-info fancybox fancybox.iframe">'.$contacto->nombre.'</a>';
+										}
+									}
+								?>
+								</td>
+								<td class="text-center">
+								<?php
+									foreach($usuarios as $usuario)
+									{
+										if($usuario->id_proyecto_fk == $proyecto->id)
+										{
+											echo '<a href="javascript:void(0)" class="btn btn-sm btn-default">'.$usuario->first_name." ".$usuario->last_name.'</a>';
+										}
+									}
+								?>
+								</td>
+								<td class="text-center hidden">
 									<a href="<?= site_url('proyectos/ver_proyecto/'.$proyecto->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
 								</td>
 							</tr>
@@ -100,4 +129,20 @@ function irProyecto(id)
 var pagina="<?= site_url('proyectos/ver_proyecto') ?>"+"/"+id;
 location.href=pagina;   
 }
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			maxWidth	: 800,
+			maxHeight	: 600,
+			fitToView	: false,
+			width		: '100%',
+			height		: '70%',
+			autoSize	: false,
+			closeClick	: false,
+			openEffect	: 'none',
+			closeEffect	: 'none'
+		});
+	});
 </script>

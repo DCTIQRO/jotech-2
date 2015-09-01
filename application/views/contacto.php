@@ -7,6 +7,17 @@
 			<a href="<?= site_url('clientes/nuevo_contacto/'.$id_cliente) ?>" class="btn-sm btn-info">Nuevo Contacto</a>
 		</div>
 	</div>
+	<?php
+	if($deshacer != 0)
+	{
+	?>
+	<div class="alert alert-warning alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<h4><i class="fa fa-exclamation-circle"></i> Deshacer</h4>El cliente <?= $contacto_borrado ?> se ha enviado a la Papelera. <a href="<?= site_url('clientes/regresar_contacto/'.$deshacer) ?>" class="alert-link">¡Deshacer!</a>
+	</div>
+	<?php
+	}
+	?>
 	<div class="row">
 		<div class="table-responsive">
 			<table id="tabla_contacto" class="table table-vcenter table-condensed table-bordered">
@@ -64,7 +75,7 @@
 						<td class="text-center">
 							<a href="<?= site_url('clientes/ver_contacto/'.$contacto->id."/".$id_cliente) ?>" data-toggle="tooltip" data-original-title="Ver Contacto" class="btn btn-xs btn-default fancybox fancybox.iframe"><i class="fa fa-eye"></i></a>
 							<a href="<?= site_url('clientes/editar_contacto/'.$contacto->id."/".$id_cliente) ?>" class="fancybox fancybox.iframe btn btn-xs btn-default" data-toggle="tooltip" data-original-title="Editar" ><i class="fa fa-pencil"></i></a>
-							<a href="<?= site_url('clientes/eliminar_contacto/'.$contacto->id."/".$id_cliente) ?>" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+							<a href="<?= site_url('clientes/eliminar_contacto/'.$contacto->id."/".$id_cliente) ?>" data-toggle="tooltip" data-original-title="Eliminar" data-title="Confirmar Eliminación de Contacto"  data-text="Esta seguro de eliminar al contacto <?= $contacto->titulo ?> <?= $contacto->nombre ?>" data-confirm-button="Si" data-cancel-button="No" class="btn btn-xs btn-default eliminar"><i class="fa fa-trash-o"></i></a>
 						</td>
 					</tr>
 					<?php
@@ -95,4 +106,8 @@
 			closeEffect	: 'none'
 		});
 	});
+</script>
+
+<script>
+$(".eliminar").confirm();
 </script>

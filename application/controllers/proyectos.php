@@ -21,6 +21,9 @@ class Proyectos extends CI_Controller {
 		$data['tab']="proyectos";
 		$data['titulo']="Listado de Proyectos";
 		$data['proyectos']=$this->proyectos_model->todos_proyectos();
+		$data['clasificaciones']=$this->proyectos_model->todas_clasificacion_proyecto();
+		$data['contactos']=$this->proyectos_model->todos_contactos_proyecto();
+		$data['usuarios']=$this->proyectos_model->todos_usuarios_proyecto();
 		$this->load->view('main',$data);
 	}
 	

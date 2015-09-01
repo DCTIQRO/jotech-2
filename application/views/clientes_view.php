@@ -5,6 +5,17 @@
 			<a href="<?= site_url('clientes/nuevo_cliente') ?>" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="" data-original-title="Agregar Cliente"><i class="fa fa-plus"></i> Agregar Cliente</a>
 		</div>
 	</div>
+	<?php
+	if($deshacer != 0)
+	{
+	?>
+	<div class="alert alert-warning alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<h4><i class="fa fa-exclamation-circle"></i> Deshacer</h4>El cliente <?= $cliente_borrado ?> se ha enviado a la Papelera. <a href="<?= site_url('clientes/deshacer/'.$deshacer) ?>" class="alert-link">¡Deshacer!</a>
+	</div>
+	<?php
+	}
+	?>
 	<div class="table-responsive">
 		<table id="tabla_clientes" class="table table-vcenter table-condensed table-bordered">
 			<thead>
