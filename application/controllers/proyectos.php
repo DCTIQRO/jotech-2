@@ -144,6 +144,9 @@ class Proyectos extends CI_Controller {
 		$data['tab']="proyec_tarea";
 		$data['titulo']="Proyectos y Tareas de ".$cliente->nombre;
 		$data['proyectos']=$this->proyectos_model->ver_proyectos($id);
+		$data['clasificaciones']=$this->proyectos_model->todas_clasificacion_proyecto();
+		$data['etiquetas']=$this->proyectos_model->todas_etiquetas_proyecto();
+		$data['usuarios']=$this->proyectos_model->todos_usuarios_proyecto();
 		$data['tareas']=$this->proyectos_model->ver_tareas($id);
 		$this->load->view('main',$data);
 	}

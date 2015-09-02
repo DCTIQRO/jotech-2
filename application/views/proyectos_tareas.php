@@ -14,11 +14,14 @@
 						<table id="tabla_proyectos" class="table table-vcenter table-condensed table-bordered">
 							<thead>
 								<tr>
-									<th class="text-center">ID</th>
 									<th class="text-center">Proyecto</th>
+									<th class="text-center">Descripción</th>
 									<th class="text-center">Inicio</th>
+									<th class="text-center">Etiquetas</th>
+									<th class="text-center">Clasificación</th>
+									<th class="text-center">Prioridad</th>
 									<th class="text-center">Estatus</th>
-									<th class="text-center">Acciones</th>
+									<th class="text-center">Usuarios</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -26,10 +29,47 @@
 								foreach($proyectos as $proyecto)
 								{
 								?>
-								<tr onClick="ver_proyect(<?= $proyecto->id ?>)">
-									<td class="text-center"><?= $proyecto->id ?></td>
-									<td class="text-center"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
+								<tr>
+									<td class="text-center" onClick="ver_proyect(<?= $proyecto->id ?>)"><a href="javascript:void(0)"><?= $proyecto->nombre ?></a></td>
+									<td class="text-center"><?= $proyecto->descripcion ?></td>
 									<td class="text-center"><?= $proyecto->fecha_inicio ?></td>
+									<td class="text-center">
+									<?php
+										foreach($etiquetas as $etiqueta)
+										{
+											if($etiqueta->id_proyecto_fk == $proyecto->id && $etiqueta->etiqueta != "")
+											{
+												echo '<label class="btn btn-sm btn-default">'.$etiqueta->etiqueta.'</label>';
+											}
+										}
+									?>
+									</td>
+									<td class="text-center">
+									<?php
+										foreach($clasificaciones as $clasificacion)
+										{
+											if($clasificacion->id_proyecto_fk == $proyecto->id)
+											{
+												echo '<label class="btn btn-sm btn-primary">'.$clasificacion->nombre.'</label>';
+											}
+										}
+									?>
+									</td>
+									<td class="text-center">
+									<?php
+										foreach($clasificaciones as $clasificacion)
+										{
+											if($clasificacion->id_proyecto_fk == $proyecto->id)
+											{
+												$prioridad="";
+												if($clasificacion->prioridad == 1)$prioridad="Baja";
+												if($clasificacion->prioridad == 2)$prioridad="Mediana";
+												if($clasificacion->prioridad == 3)$prioridad="Alta";
+												echo '<label class="btn btn-sm btn-info">'.$prioridad.'</label>';
+											}
+										}
+									?>
+									</td>
 									<td class="text-center">
 									<?php
 										if($proyecto->estatus == 0){echo '<label class="btn-sm btn-danger">Cerrado</label>';}
@@ -40,8 +80,16 @@
 										</div>-->
 									</td>
 									<td class="text-center">
-										<a href="<?= site_url('proyectos/ver_proyecto/'.$proyecto->id) ?>" data-toggle="tooltip" data-original-title="Ver Proyecto" class="btn btn-xs btn-default"><i class="fa fa-eye"></i></a>
-									</td>
+								<?php
+									foreach($usuarios as $usuario)
+									{
+										if($usuario->id_proyecto_fk == $proyecto->id)
+										{
+											echo '<a href="javascript:void(0)" class="btn btn-sm btn-default">'.$usuario->first_name." ".$usuario->last_name.'</a>';
+										}
+									}
+								?>
+								</td>
 								</tr>
 								<?php
 								}

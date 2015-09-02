@@ -79,7 +79,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_proyectos($id)
 	{
-		$this->db->select('id,nombre,fecha_inicio,progreso,estatus');
+		$this->db->select('id,nombre,fecha_inicio,progreso,estatus,descripcion');
 		$this->db->where('id_cliente_fk',$id);
 		$this->db->where('borrado','1');
 		$this->db->order_by('fecha_inicio','desc');
@@ -326,6 +326,13 @@ class Proyectos_model extends CI_Model {
 		$this->db->select('clas.id,cc.id_clasificacion,clas.nombre,cc.id_proyecto_fk,cc.prioridad');
 		$this->db->join('clasificacion_clientes clas','clas.id=cc.id_clasificacion');
 		$results = $this->db->get('proyectos_clasificaciones cc')->result();
+		return $results;
+	}
+	
+	function todas_etiquetas_proyecto()
+	{
+		$this->db->select('id,etiqueta,id_proyecto_fk');
+		$results = $this->db->get('proyectos_etiquetas')->result();
 		return $results;
 	}
 	
