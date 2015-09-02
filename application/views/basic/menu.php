@@ -64,7 +64,7 @@
 							if($pantalla->Tareas == 1)$oculto="";
 						?>
 						<li class="<?= $oculto ?>">
-                            <a href="<?= site_url('tareas') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tareas Cliente</span></a>
+                            <a href="<?= site_url('tareas') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tareas</span></a>
                         </li>
 						<?php 
 							$oculto="hidden"; 
