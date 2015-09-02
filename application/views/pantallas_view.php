@@ -3,7 +3,7 @@
 		<h2>Permisos <strong>Pantallas</strong></h2>
 	</div>
 	<div class="table-responsive">
-		<table id="tabla_clientes" class="table table-vcenter table-condensed table-bordered">
+		<table id="tabla_clientes" class="table table-vcenter table-condensed">
 			<thead>
 				<tr>
 					<th class="text-center">Usuarios</th>
