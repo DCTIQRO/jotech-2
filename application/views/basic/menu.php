@@ -46,16 +46,44 @@
 						<li class="sidebar-header">
                             <span class="sidebar-header-title">Datos</span>
                         </li>
-                        <!--<li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Proyectos');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Proyectos == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
                             <a href="<?= site_url('proyectos') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Proyectos</span></a>
                         </li>
-						<li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Tareas');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Tareas == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
                             <a href="<?= site_url('tareas') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tareas Cliente</span></a>
-                        </li>-->
-						<li>
+                        </li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Contactos');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Contactos == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
                             <a href="<?= site_url('contactos') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Contactos</span></a>
                         </li>
-						<li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Clientes');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Clientes == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
                             <a href="<?= site_url('clientes') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clientes</span></a>
 						</li>
 						
@@ -63,7 +91,14 @@
 						<li class="sidebar-header">
                             <span class="sidebar-header-title">Administración</span>
                         </li>
-                        <li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Usuarios');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Usuarios == 1)$oculto="";
+						?>
+                        <li class="<?= $oculto ?>">
 							<a href="javascript:void(0)" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Usuarios</span></a>
 							<ul>
 								<li>
@@ -74,8 +109,25 @@
 								</li>
 							</ul>
                         </li>
-						<li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Clasificaciones');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Clasificaciones == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
                             <a href="<?= site_url('clasificaciones_clientes') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clasificaciónes</span></a>
+                        </li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Pantallas');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Pantallas == 1)$oculto="";
+						?>
+						<li  class="<?= $oculto ?>">
+                            <a href="<?= site_url('pantallas') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Permisos Menú</span></a>
                         </li>
                     </ul>
                     <!-- END Sidebar Navigation -->
