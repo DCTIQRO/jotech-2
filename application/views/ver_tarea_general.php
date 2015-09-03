@@ -7,13 +7,13 @@
 					<?php
 					if($status == 0){
 					?>
-					<a href="<?= site_url('tareas_generales/cerrar_tarea/'.$id_tarea); ?>"><i class="gi gi-cloud pull-right"></i> Cerrar Tarea Cliente</a>
+					<a href="<?= site_url('tareas_generales/cerrar_tarea/'.$id_tarea); ?>"><i class="gi gi-cloud pull-right"></i> Cerrar Tarea General</a>
 					<?php 
 					}
 					else
 					{
 					?>
-					<a href="<?= site_url('tareas_generales/abrir_tarea/'.$id_tarea); ?>"><i class="gi gi-cloud pull-right"></i> Abrir Tarea Cliente</a>
+					<a href="<?= site_url('tareas_generales/abrir_tarea/'.$id_tarea); ?>"><i class="gi gi-cloud pull-right"></i> Abrir Tarea General</a>
 					<?php	
 					}
 					?>

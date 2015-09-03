@@ -15,7 +15,7 @@ var TablesDatatables = function() {
             $('#tabla_historial').dataTable({
                 columnDefs: [ { orderable: false, targets: [] } ],
                 pageLength: -1,
-				aaSorting: [[ 0, 'desc' ]], 
+				aaSorting: [[ 1, 'desc' ]], 
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
 				language:{
 					"sProcessing":     "Procesando...",
