@@ -13,6 +13,7 @@
 					<th class="text-center">Tareas</th>
 					<th class="text-center">Usuarios</th>
 					<th class="text-center">Clasificaciones</th>
+					<th class="text-center">Papelera</th>
 					<th class="text-center">Permisos Pantalla</th>
 				</tr>
 			</thead>
@@ -97,6 +98,19 @@
 								$check="";if($pantalla->Clasificaciones == 1)$check="checked";
 								
 								echo '<label class="switch switch-primary"><input type="checkbox" value="1" '.$check.' id="Clasificaciones'.$pantalla->user_id.'" onChange="cambiar_status(\'Clasificaciones\','.$pantalla->user_id.')" ><span></span></label>';
+							}
+						}
+					?>
+					</td>
+					<td class="text-center">
+					<?php
+						foreach($pantallas as $pantalla)
+						{
+							if($pantalla->user_id == $usuario->id)
+							{
+								$check="";if($pantalla->Papelera == 1)$check="checked";
+								
+								echo '<label class="switch switch-primary"><input type="checkbox" value="1" '.$check.' id="Papelera'.$pantalla->user_id.'" onChange="cambiar_status(\'Papelera\','.$pantalla->user_id.')" ><span></span></label>';
 							}
 						}
 					?>

@@ -263,14 +263,14 @@ class Clientes extends CI_Controller {
 		$this->clientes_model->editar_contacto($form_data,$id);
 
 		
-		$cliente=$this->clientes_model->ver_cliente($id);
+		$cliente=$this->clientes_model->ver_cliente($id_cliente);
 		$data['v']="contacto";
 		$data['deshacer']=$id;
 		$data['contacto_borrado']=$contacto->titulo." ".$contacto->nombre;
 		$data['tab']="contacto";
 		$data['titulo']="Contactos de ".$cliente->nombre;
-		$data['id_cliente']=$id;
-		$data['contactos']=$this->clientes_model->ver_contactos($id);
+		$data['id_cliente']=$id_cliente;
+		$data['contactos']=$this->clientes_model->ver_contactos($id_cliente);
 		$data['clasificaciones']=$this->clientes_model->ver_clasificaciones_contactos();
 		$this->load->view('main',$data);
 	}
@@ -284,6 +284,17 @@ class Clientes extends CI_Controller {
 		);
 		$this->clientes_model->editar_contacto($form_data,$id);
 		redirect('clientes/contacto/'.$contacto->id_cliente_fk);
+	}
+	
+	function delete_contacto($id)
+	{
+		$contacto=$this->clientes_model->info_contacto($id);
+		$form_data=array(
+			'borrado'	=>	'2',
+			'status'	=>	'2'
+		);
+		$this->clientes_model->editar_contacto($form_data,$id);
+		redirect('papelera');
 	}
 	
 	
@@ -336,6 +347,28 @@ class Clientes extends CI_Controller {
 		$this->clientes_model->regresar_contactos($id);
 		
 		redirect('clientes');
+	}
+	
+	function delete($id)
+	{
+		$form_data=array(
+			'status'	=>	'2'
+		);
+		$this->clientes_model->actualizar_cliente($id,$form_data);
+		$proyectos=$this->clientes_model->delete_proyectos($id,$form_data);
+		
+		foreach($proyectos as $proyecto)
+		{
+			$form_data=array(
+				'borrado'	=>	'2'
+			);
+			$this->clientes_model->limpiar_tareas_proyectos($proyecto->id,$form_data);
+		}
+		
+		$this->clientes_model->delete_tareas($id);
+		$this->clientes_model->delete_contactos($id);
+		
+		redirect('papeleria');
 	}
 	
 }

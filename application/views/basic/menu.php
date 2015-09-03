@@ -41,7 +41,14 @@
                         </li>
 						<li>
                             <a href="<?= site_url('auth/logout') ?>"><i class="gi gi-charts sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Cerrar Sesión</span></a>
-                        </li>                        
+                        </li>
+						
+						<?php 
+							$this->db->select('*');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if(!empty($pantalla)){
+						?>
 						<!-- Modulo Proyectos -->
 						<li class="sidebar-header">
                             <span class="sidebar-header-title">Datos</span>
@@ -121,6 +128,16 @@
                         </li>
 						<?php 
 							$oculto="hidden"; 
+							$this->db->select('Papelera');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Papelera == 1)$oculto="";
+						?>
+						<li  class="<?= $oculto ?>">
+                            <a href="<?= site_url('papelera') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Papelera</span></a>
+                        </li>
+						<?php 
+							$oculto="hidden"; 
 							$this->db->select('Pantallas');
 							$this->db->where('user_id',$this->session->userdata('user_id'));
 							$pantalla=$this->db->get('Pantallas')->row();
@@ -129,6 +146,7 @@
 						<li  class="<?= $oculto ?>">
                             <a href="<?= site_url('pantallas') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Permisos Menú</span></a>
                         </li>
+							<?php } ?>
                     </ul>
                     <!-- END Sidebar Navigation -->
                     
