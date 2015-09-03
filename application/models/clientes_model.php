@@ -281,5 +281,10 @@ class Clientes_model extends CI_Model {
 		$results = $this->db->get('clientes_clasificaciones cc')->result();
 		return $results;
 	}
+	
+	function guardar_bitacora($form_data)
+	{
+		$this->db->insert('bitacora_general', $form_data); 
+	}
 }
 ?>

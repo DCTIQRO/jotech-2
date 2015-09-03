@@ -81,6 +81,16 @@ class Clientes extends CI_Controller {
 					$this->clientes_model->guardar_clasificacion($form_clasificacion);
 				}
 			}
+			
+			$form_bitacora=array(
+				'comentario'		=>	'Se ha creado el cliente <a href="'.site_url('clientes/ver/'.$id_cliente).'">'.$this->input->post('nombre').'</a>',
+				'fecha'				=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario'		=>	$this->session->userdata('user_id'),
+				'status'			=>	'1',
+				'tipo'				=>	'2'
+			);
+			$this->clientes_model->guardar_bitacora($form_bitacora);
 		}
 		
 		redirect('clientes/contacto/'.$id_cliente);
@@ -318,6 +328,16 @@ class Clientes extends CI_Controller {
 		$this->clientes_model->limpiar_tareas($id);
 		$this->clientes_model->limpiar_contactos($id);
 		
+		$form_bitacora=array(
+			'comentario'		=>	'Se ha eliminado el cliente '.$cliente->nombre,
+			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'		=>	$this->session->userdata('user_id'),
+			'status'			=>	'1',
+			'tipo'				=>	'2'
+		);
+		$this->clientes_model->guardar_bitacora($form_bitacora);
+		
 		$data['v']="clientes_view";
 		$data['clientes']=$this->clientes_model->ver_clientes();
 		$data['deshacer']=$id;
@@ -329,6 +349,7 @@ class Clientes extends CI_Controller {
 	
 	function deshacer($id)
 	{
+		$cliente=$this->clientes_model->ver_cliente($id);
 		$form_data=array(
 			'status'	=>	'1'
 		);
@@ -345,6 +366,16 @@ class Clientes extends CI_Controller {
 		
 		$this->clientes_model->regresar_tareas($id);
 		$this->clientes_model->regresar_contactos($id);
+		
+		$form_bitacora=array(
+			'comentario'		=>	'Se ha recuperado el cliente <a href="'.site_url('clientes/ver/'.$id).'">'.$cliente->nombre.'</a>',
+			'fecha'				=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'		=>	$this->session->userdata('user_id'),
+			'status'			=>	'1',
+			'tipo'				=>	'2'
+		);
+		$this->clientes_model->guardar_bitacora($form_bitacora);
 		
 		redirect('clientes');
 	}

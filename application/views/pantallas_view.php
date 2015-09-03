@@ -11,6 +11,7 @@
 					<th class="text-center">Clientes</th>
 					<th class="text-center">Proyectos</th>
 					<th class="text-center">Tareas</th>
+					<th class="text-center">Historial</th>
 					<th class="text-center">Usuarios</th>
 					<th class="text-center">Clasificaciones</th>
 					<th class="text-center">Papelera</th>
@@ -72,6 +73,19 @@
 								$check="";if($pantalla->Tareas == 1)$check="checked";
 								
 								echo '<label class="switch switch-primary"><input type="checkbox" value="1" '.$check.' id="Tareas'.$pantalla->user_id.'" onChange="cambiar_status(\'Tareas\','.$pantalla->user_id.')" ><span></span></label>';
+							}
+						}
+					?>
+					</td>
+					<td class="text-center">
+					<?php
+						foreach($pantallas as $pantalla)
+						{
+							if($pantalla->user_id == $usuario->id)
+							{
+								$check="";if($pantalla->Historial == 1)$check="checked";
+								
+								echo '<label class="switch switch-primary"><input type="checkbox" value="1" '.$check.' id="Historial'.$pantalla->user_id.'" onChange="cambiar_status(\'Historial\','.$pantalla->user_id.')" ><span></span></label>';
 							}
 						}
 					?>

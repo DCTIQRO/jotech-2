@@ -17,7 +17,7 @@ class Pantallas_model extends CI_Model {
 	
 	function ver_pantallas()
 	{
-		$this->db->select('id,user_id,Contactos,Clientes,Proyectos,Tareas,Usuarios,Clasificaciones,Pantallas,Papelera');
+		$this->db->select('id,user_id,Contactos,Clientes,Proyectos,Tareas,Usuarios,Clasificaciones,Pantallas,Papelera,Historial');
 		$results = $this->db->get('Pantallas')->result();
 		return $results;
 	}

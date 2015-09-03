@@ -94,6 +94,17 @@
                             <a href="<?= site_url('clientes') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clientes</span></a>
 						</li>
 						
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Historial');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Historial == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
+                            <a href="<?= site_url('historial') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Historial</span></a>
+						</li>
+						
 						<!-- Modulo Proyectos -->
 						<li class="sidebar-header">
                             <span class="sidebar-header-title">Administración</span>
