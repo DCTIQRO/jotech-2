@@ -1,5 +1,5 @@
 <ul class="breadcrumb breadcrumb-top">
-	<h4 class="sub-header"><?= $titulo ?></h4>
+	<h4><?= $titulo ?></h4>
 	<ul class="nav nav-pills">
 		<?php $activo=""; if($tab == 'detalles'){$activo="active";} ?>
 		<li class="<?= $activo ?>"><a href="<?= site_url('clientes/ver/'.$id_cliente) ?>">Detalles</a></li>

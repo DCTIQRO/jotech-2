@@ -1,7 +1,7 @@
+<?php $this->load->view('basic/tabs_cliente') ?>
 <div class="row">
 	<div class="col-xs-12" >
 		<div class="block">
-			<?php $this->load->view('basic/tabs_cliente') ?>
 			<div class="row">
 				<form id="bitacora_cliente" action="<?= site_url('bitacora/guardar_bitacora/'.$id_cliente) ?>" class="form-horizontal form-bordered" method="post" accept-charset="utf-8" >
 					<div class="form-group">

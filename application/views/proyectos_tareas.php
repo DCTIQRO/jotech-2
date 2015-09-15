@@ -1,7 +1,7 @@
+<?php $this->load->view('basic/tabs_cliente') ?>
 <div class="row">
 	<div class="col-xs-12" >
 		<div class="block">
-			<?php $this->load->view('basic/tabs_cliente') ?>
 			<div class="row" Style="margin-bottom: 15px;">
 				<div class="col-sm-12">
 					<a href="<?= site_url('proyectos/nuevo_proyecto/'.$id_cliente) ?>" class="btn-sm btn-info">Nuevo Proyecto</a>
