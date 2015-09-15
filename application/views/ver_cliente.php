@@ -1,6 +1,6 @@
+<?php $this->load->view('basic/tabs_cliente') ?>
 <div class="row">
 	<div class="block">
-		<?php $this->load->view('basic/tabs_cliente') ?>
 		<div class="row">
 			<div class="col-xs-12">
 				<form class="" id="new_cliente" method="post" action="<?= site_url('clientes/actualizar/'.$datos->id) ?>" >
