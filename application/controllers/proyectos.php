@@ -94,18 +94,19 @@ class Proyectos extends CI_Controller {
 		}
 			
 		$usuarios=$this->input->post('usuarios');
+		if(!empty($usuarios)){
+			for($i=0;$i<count($usuarios);$i++)
+			{
+				$form_usuarios[]=array(
+					'id_usuario_fk'		=>	$usuarios[$i],
+					'id_proyecto_fk'	=>	$id_proyecto,
+					'fecha_insercion'	=>	date('Y-m-d H:i:s'),
+					'permiso'			=>	'1'
+				);
+			}
 		
-		for($i=0;$i<count($usuarios);$i++)
-		{
-			$form_usuarios[]=array(
-				'id_usuario_fk'		=>	$usuarios[$i],
-				'id_proyecto_fk'	=>	$id_proyecto,
-				'fecha_insercion'	=>	date('Y-m-d H:i:s'),
-				'permiso'			=>	'1'
-			);
-		}
 		$this->proyectos_model->guardar_usuarios($form_usuarios);
-				
+		}		
 		$form_bitacora=array(
 			'comentario'		=>	'Se ha creado el proyecto <a href="'.site_url('proyectos/ver_proyecto/'.$id_proyecto).'">'.$this->input->post('nombre').'</a>',
 			'fecha'				=>	date('Y-m-d H:i:s'),
@@ -117,7 +118,7 @@ class Proyectos extends CI_Controller {
 		);
 		$this->proyectos_model->guardar_bitacora_cliente($form_bitacora);
 		
-		redirect('proyectos/proyectos_tareas/'.$this->input->post('id_cliente'));
+		redirect('proyectos/cliente/'.$this->input->post('id_cliente'));
 	}
 	
 	function proyectos_tareas($id)
@@ -129,6 +130,7 @@ class Proyectos extends CI_Controller {
 		$data['id_cliente']=$id;
 		$data['tab']="proyec_tarea";
 		$data['titulo']="Proyectos y Tareas de ".$cliente->nombre;
+		$data['etiquetas']=$this->proyectos_model->todas_etiquetas_proyecto();
 		$data['proyectos']=$this->proyectos_model->ver_proyectos($id);
 		$data['tareas']=$this->proyectos_model->ver_tareas($id);
 		$this->load->view('main',$data);

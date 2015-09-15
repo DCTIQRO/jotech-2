@@ -36,7 +36,7 @@
 			</ul>
 		</div>
 	</div>
-	<a href="<?= site_url('proyectos/ver_proyectos/'.$id_proyecto) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $titulo ?></a>
+	<a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $titulo ?></a>
 	<ul class="nav nav-pills">
 		<li><a href="javascript:void(0)" onClick="despliega_detalles()">Detalles <span id="desplegar_detalles"><i class="fa fa-chevron-down"></i></span></a></li>
 		<li><a href="javascript:void(0)" onClick="despliega_usuarios()">Usuarios <span id="desplegar_usuario"><i class="fa fa-chevron-down"></i></span></a></li>

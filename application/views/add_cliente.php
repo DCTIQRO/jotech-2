@@ -206,7 +206,6 @@ function agregarClasif ()
 
 function quitarClasif (num)
 {
-
 		$('#grupo'+num).remove();
 }
 </script>
