@@ -43,6 +43,10 @@
 		<li><a href="javascript:void(0)" onClick="despliega_contactos()">Contactos <span id="desplegar_contacto"><i class="fa fa-chevron-down"></i></span></a></li>
 		<li><a href="javascript:void(0)" onClick="despliega_tareas()">Tareas <span id="desplegar_tarea"><i class="fa fa-chevron-down"></i></span></a></li>
 		<li><a href="javascript:void(0)" onClick="despliega_anexos()">Anexos <span id="desplegar_anexo"><i class="fa fa-chevron-down"></i></span></a></li>
+		<div class="col-xs-4">
+		<label class="control-label col-xs-2">División</label><div class="col-xs-4"><input class="form-control" id="divisor" value="<?= $divisor ?>" placeholder="Divisor" /></div>
+		<label class="control-label col-xs-2">Avisador</label><div class="col-xs-4"><input class="form-control" id="avisador" value="<?= $avisador ?>" placeholder="Avisador" /></div>
+		</div>
 	</ul>
 </ul>
 <div class="row">
@@ -79,7 +83,7 @@
 									<div class="list-group-item">
 										<span class="badge">Prioridad  <?= $prioridad ?></span>
 										<h4 class="list-group-item-heading"></h4><br>
-										<p class="list-group-item-text"><strong><h4><?= $clasificacion->nombre ?><h4></strong></p>
+										<p class="list-group-item-text"><strong><h4><?= $clasificacion->nombre ?><h4></strong><small><?= $clasificacion->observaciones ?></small></p>
 									</div>
 								</div>
 						<?php
@@ -689,5 +693,19 @@ function cambiar_fin(id)
 $( document ).ready(function() {
     $( "#comentario" ).focus();
     $( ".confirm" ).confirm();
+});
+</script>
+
+<script>
+$( "#divisor" ).change(function() {
+	$.post( "<?= site_url('proyectos/divisor/'.$id_proyecto) ?>", {divisor:$('#divisor').val()}, function( data ) {
+		console.log(data);
+	});
+});
+
+$( "#avisador" ).change(function() {
+	$.post( "<?= site_url('proyectos/avisador/'.$id_proyecto) ?>", {avisor:$('#avisador').val()}, function( data ) {
+		console.log(data);
+	});
 });
 </script>

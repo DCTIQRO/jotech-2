@@ -115,7 +115,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_proyecto($id)
 	{
-		$this->db->select('nombre,descripcion,estatus,id_cliente_fk');
+		$this->db->select('nombre,descripcion,estatus,id_cliente_fk,avisador,divisor');
 		$this->db->where('id',$id);
 		$results = $this->db->get('proyectos')->row();
 		return $results;
@@ -292,7 +292,7 @@ class Proyectos_model extends CI_Model {
 	
 	function ver_proyecto_clasificacion($id)
 	{
-		$this->db->select('cc.nombre,cc.id,pc.prioridad');
+		$this->db->select('cc.nombre,cc.id,pc.prioridad,pc.observaciones');
 		$this->db->join('clasificacion_clientes cc','pc.id_clasificacion=cc.id');
 		$this->db->where('pc.id_proyecto_fk',$id);
 		$this->db->order_by('pc.prioridad','desc');

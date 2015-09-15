@@ -73,6 +73,7 @@ class Proyectos extends CI_Controller {
 			$form_clasificacion=array(
 				'id_clasificacion' => $clasi,
 				'prioridad' 	=> $this->input->post('prioridad'),
+				'observaciones' 	=> $this->input->post('observaciones'),
 				'id_proyecto_fk' => $id_proyecto,
 			);
 			$this->proyectos_model->guardar_clasificacion($form_clasificacion);
@@ -87,6 +88,7 @@ class Proyectos extends CI_Controller {
 				$form_clasificacion=array(
 					'id_clasificacion' => $clasi,
 					'prioridad' 	=> $this->input->post('prioridad'.$i),
+					'observaciones' 	=> $this->input->post('observaciones'.$i),
 					'id_proyecto_fk' => $id_proyecto,
 				);
 				$this->proyectos_model->guardar_clasificacion($form_clasificacion);
@@ -165,6 +167,8 @@ class Proyectos extends CI_Controller {
 		$data['datos_cliente']=$cliente;
 		$data['titulo']="Proyecto ".$proyecto->nombre;
 		$data['status']=$proyecto->estatus;
+		$data['avisador']=$proyecto->avisador;
+		$data['divisor']=$proyecto->divisor;
 		$data['cliente']=$proyecto->id_cliente_fk;
 		$data['descripcion']="Proyecto ".$proyecto->descripcion;
 		$data['clasificaciones']=$this->proyectos_model->ver_proyecto_clasificacion($id);
@@ -272,6 +276,7 @@ class Proyectos extends CI_Controller {
 					$form_clasificacion=array(
 						'id_clasificacion' => $clasi,
 						'prioridad' 	=> $this->input->post('prioridad'.$i),
+						'observaciones' 	=> $this->input->post('observaciones'.$i),
 						'id_proyecto_fk' => $id,
 					);
 					$this->proyectos_model->guardar_clasificacion($form_clasificacion);
@@ -592,6 +597,27 @@ class Proyectos extends CI_Controller {
 		
 		redirect('proyectos/ver_proyecto/'.$archivo->id_proyecto);
 		
+	}
+	
+	function divisor($id)
+	{
+		$form_data = array(
+			'divisor' => $this->input->post('divisor')
+		);
+	
+		$this->proyectos_model->editar_proyecto($form_data,$id);
+		echo $this->input->post('divisor');
+	}
+	
+	function avisador($id)
+	{
+		$form_data = array(
+			'avisador' => $this->input->post('avisor')
+		);
+	
+		$this->proyectos_model->editar_proyecto($form_data,$id);
+		
+		echo $this->input->post('avisor');
 	}
 	
 }

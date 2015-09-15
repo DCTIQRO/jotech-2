@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '54.174.28.137';
-$db['default']['username'] = 'jotech';
-$db['default']['password'] = 'dcti*trev*mont';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'xeon';
 $db['default']['database'] = 'jotech';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
