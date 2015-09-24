@@ -23,16 +23,16 @@
 					<th class="text-center">Cliente</th>
 					<th class="text-center">Clasificaciones</th>
 					<th class="text-center">Prioridad</th>
-					<th class="text-center hidden">WebSite</th>
-					<th class="text-center hidden">Correo</th>
-					<th class="text-center hidden">Telefono</th>
-					<th class="text-center hidden">Direccion</th>
+					<th class="text-center">WebSite</th>
+					<th class="text-center">Correo</th>
+					<th class="text-center">Telefono</th>
+					<th class="text-center">Direccion</th>
 					<th class="text-center">Ciudad</th>
 					<th class="text-center ">Estado</th>
 					<th class="text-center ">CP</th>
-					<th class="text-center hidden">Pais</th>
-					<th class="text-center hidden">Detalles</th>
-					<th class="text-center hidden">Fecha Registro</th>
+					<th class="text-center">Pais</th>
+					<th class="text-center">Detalles</th>
+					<th class="text-center">Fecha Registro</th>
 					<th class="text-center">Contactos</th>
 					<th class="text-center">Acciones</th>
 				</tr>
@@ -42,16 +42,16 @@
 					<th class="text-center">Cliente</th>
 					<th class="text-center">Clasificaciones</th>
 					<th class="text-center">Prioridad</th>
-					<th class="text-center hidden">WebSite</th>
-					<th class="text-center hidden">Correo</th>
-					<th class="text-center hidden">Telefono</th>
-					<th class="text-center hidden">Direccion</th>
+					<th class="text-center">WebSite</th>
+					<th class="text-center">Correo</th>
+					<th class="text-center">Telefono</th>
+					<th class="text-center">Direccion</th>
 					<th class="text-center">Ciudad</th>
 					<th class="text-center">Estado</th>
 					<th class="text-center ">CP</th>
-					<th class="text-center hidden">Pais</th>
-					<th class="text-center hidden">Detalles</th>
-					<th class="text-center hidden">Fecha Registro</th>
+					<th class="text-center">Pais</th>
+					<th class="text-center">Detalles</th>
+					<th class="text-center">Fecha Registro</th>
 					<th class="text-center">Contactos</th>
 					<th class="text-center">Acciones</th>
 				</tr>
@@ -83,16 +83,16 @@
 							}
 						?>
 					</td>
-					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->website ?></td>
-					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->correo ?></td>
-					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->telefono ?></td>
-					<td class="text-center hidden"><?= ($cliente->calle) ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->website ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->correo ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->telefono ?></td>
+					<td class="text-center"><?= ($cliente->calle) ?></td>
 					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->ciudad ?></td>
 					<td class="text-center " onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->estado ?></td>
 					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= ($cliente->cp) ?></td>
-					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->pais ?></td>
-					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><p class="texto_desc"><?= $cliente->detalles ?></p></td>
-					<td class="text-center hidden" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->fecha_registro ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->pais ?></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><p class="texto_desc"><?= $cliente->detalles ?></p></td>
+					<td class="text-center" onClick="irCliente('<?= $cliente->id ?>')"><?= $cliente->fecha_registro ?></td>
 					<td class="text-center">
 						<?php
 							foreach($contactos as $contacto)

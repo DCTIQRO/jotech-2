@@ -1,9 +1,5 @@
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
-    $('#tabla_contactos thead th').each( function () {
-        var title = $('#tabla_contactos thead th').eq( $(this).index() ).text();
-        $(this).html( '<input class="" type="text" placeholder="'+title+'" />' );
-    } );
     // DataTable
 	 App.datatables();
     var table2 = $('#tabla_contactos').DataTable({
@@ -12,6 +8,19 @@ $(document).ready(function() {
 				autoWidth: true,
 				aaSorting: [[ 0, 'desc' ]],
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
+				dom: "<'row'<'col-sm-4 col-xs-12 text-center'l><'col-sm-4 col-xs-12 text-center'B><'col-sm-4 col-xs-12 text-center'f>>" +'tr' +"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+				stateSave: true,
+				buttons: [
+					'copyHtml5',
+					'excelHtml5',
+					'csvHtml5',
+					'pdfHtml5',
+					'print',
+					{
+						extend: 'colvis',
+						columns: ':not(:first-child)'
+					}
+				],
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -38,7 +47,12 @@ $(document).ready(function() {
 				}
 	});
 	$('.dataTables_filter input').attr('placeholder', 'Search');
- 
+	
+	$('#tabla_contactos thead th').each( function () {
+        var title = $('#tabla_contactos thead th').eq( $(this).index() ).text();
+        $(this).html( '<input class="" type="text" placeholder="'+title+'" />' );
+    } );
+	
     // Apply the search
     table2.columns().every( function () {
         var that = this;

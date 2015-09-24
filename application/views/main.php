@@ -15,7 +15,7 @@
 		
 		<?php
 
-			$cssface=array('css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css');
+			$cssface=array('css/bootstrap.min.css','css/plugins.css','css/main.css','css/themes.css','fancy/source/jquery.fancybox.css','css/checkbox.css','css/datatables/buttons.dataTables.min.css','css/datatables/responsive.bootstrap.min.css','css/datatables/buttons.bootstrap.min.css');
 			foreach($cssface as $url)
 
 			{
@@ -28,7 +28,7 @@
 
     </head>
 	<?php 
-		$jsface=array('js/vendor/jquery-1.11.2.min.js','js/vendor/bootstrap.min.js','js/plugins.js','js/app.js','js/pages/index.js','js/readmore.min.js','fancy/source/jquery.fancybox.js','js/jquery.confirm.min.js');
+		$jsface=array('js/vendor/jquery-1.11.2.min.js','js/vendor/bootstrap.min.js','js/plugins.js','js/app.js','js/pages/index.js','js/readmore.min.js','fancy/source/jquery.fancybox.js','js/jquery.confirm.min.js','js/datatables/dataTables.buttons.js','js/datatables/buttons.colVis.js','js/datatables/buttons.html5.js','js/datatables/dataTables.buttons.js','js/datatables/jszip.min.js','js/datatables/pdfmake.min.js','js/datatables/vfs_fonts.js','js/datatables/buttons.print.js','js/datatables/dataTables.responsive.min.js');
 		foreach($jsface as $url)
 		{
 			echo '<script src="'.asset_url($url).'"></script>';

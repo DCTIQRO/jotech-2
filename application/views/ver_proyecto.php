@@ -83,7 +83,7 @@
 									<div class="list-group-item">
 										<span class="badge">Prioridad  <?= $prioridad ?></span>
 										<h4 class="list-group-item-heading"></h4><br>
-										<p class="list-group-item-text"><strong><h4><?= $clasificacion->nombre ?><h4></strong><small><?= $clasificacion->observaciones ?></small></p>
+										<p class="list-group-item-text"><strong><h4><?= $clasificacion->nombre ?><h4></strong></p>
 									</div>
 								</div>
 						<?php

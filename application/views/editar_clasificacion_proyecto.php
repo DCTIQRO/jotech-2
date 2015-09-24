@@ -42,10 +42,6 @@
 					<div class="col-sm-2"  Style="padding-top:10px">
 						<label onClick="quitarClasif (<?= $i ?>)" class="btn-sm btn-danger">Eliminar</label>
 					</div>
-					<label class="label-control col-sm-2">Obervaciones</label>
-					<div class="col-sm-8">
-						<textarea id="observaciones<?= $i ?>" name="observaciones<?= $i ?>" rows="1" class="form-control"><?= $asignaciones->observaciones ?></textarea>
-					</div>
 				</div>
 			<?php $i++; } ?>
 				<div id="new_clasif" name="new_clasif">
@@ -90,10 +86,6 @@ function agregarClasif ()
 			'</div>'+
 			'<div class="col-sm-2"  Style="padding-top:10px">'+
 				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
-			'</div>'+
-			'<label class="label-control col-sm-2">Obervaciones'+i+'</label>'+
-			'<div class="col-sm-8">'+
-				'<textarea id="observaciones'+i+'" name="observaciones'+i+'" rows="1" class="form-control"></textarea>'+
 			'</div>'+
 		'</div>';
 	$("#new_clasif").append( x );

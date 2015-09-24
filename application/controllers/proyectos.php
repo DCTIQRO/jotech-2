@@ -73,7 +73,6 @@ class Proyectos extends CI_Controller {
 			$form_clasificacion=array(
 				'id_clasificacion' => $clasi,
 				'prioridad' 	=> $this->input->post('prioridad'),
-				'observaciones' 	=> $this->input->post('observaciones'),
 				'id_proyecto_fk' => $id_proyecto,
 			);
 			$this->proyectos_model->guardar_clasificacion($form_clasificacion);
@@ -88,7 +87,6 @@ class Proyectos extends CI_Controller {
 				$form_clasificacion=array(
 					'id_clasificacion' => $clasi,
 					'prioridad' 	=> $this->input->post('prioridad'.$i),
-					'observaciones' 	=> $this->input->post('observaciones'.$i),
 					'id_proyecto_fk' => $id_proyecto,
 				);
 				$this->proyectos_model->guardar_clasificacion($form_clasificacion);
@@ -276,7 +274,6 @@ class Proyectos extends CI_Controller {
 					$form_clasificacion=array(
 						'id_clasificacion' => $clasi,
 						'prioridad' 	=> $this->input->post('prioridad'.$i),
-						'observaciones' 	=> $this->input->post('observaciones'.$i),
 						'id_proyecto_fk' => $id,
 					);
 					$this->proyectos_model->guardar_clasificacion($form_clasificacion);

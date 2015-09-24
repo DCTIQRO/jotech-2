@@ -81,8 +81,8 @@
 			<div id="Clonar" name="Clonar" class="row">
 			<div class="form-group" id="grupo0">
 				<br><br><br>
-				<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
-				<div class="col-sm-3">
+				<label class="col-sm-2 control-label"  for="clasificacion">Clasificación</label>
+				<div class="col-sm-4">
 						<select id="clasificacion" name="clasificacion" class="select-chosen form-control clasifi" onchange="checar_clasificacion('');">
 							<option value="0">Seleccione una Clasificación</option>
 							<?php 
@@ -95,18 +95,14 @@
 							?>
 						</select>
 				</div>
-				<label class="col-sm-1 control-label"  for="prioridad">Prioridad</label>
-				<div class="col-sm-2">
+				<label class="col-sm-2 control-label"  for="prioridad">Prioridad</label>
+				<div class="col-sm-3">
 						<select id="prioridad" name="prioridad" class="select-chosen form-control prioridades">
 							<option value="">Seleccione una Prioridad</option>
 							<option value="1">Baja</option>
 							<option value="2">Mediana</option>
 							<option value="3">Alta</option>
 						</select>
-				</div>
-				<label class="col-sm-1 control-label"  for="observaciones">Observaciones</label>
-				<div class="col-sm-2">
-						<input type="text" id="observaciones" name="observaciones"  class="form-control" />
 				</div>
 				<div class="col-sm-1"  Style="padding-top:10px">
 					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
@@ -138,25 +134,21 @@ function agregarClasif ()
 {
 	x=	'<div class="row">'+
 		'<div class="form-group" id="grupo'+i+'">'+
-			'<label class="col-sm-1 control-label"  for="clasificacion'+i+'">Clasificación'+i+'</label>'+
-			'<div class="col-sm-3">'+
+			'<label class="col-sm-2	control-label"  for="clasificacion'+i+'">Clasificación'+i+'</label>'+
+			'<div class="col-sm-4">'+
 				'<select id="clasificacion'+i+'" name="clasificacion'+i+'" class="select-chosen form-control clasifi">'+
 					'<option value="0">Seleccione una Clasificación</option>'+
 					'<?= $options ?>'+
 				'</select>'+
 			'</div>'+
-			'<label class="col-sm-1 control-label"  for="prioridad'+i+'">Prioridad'+i+'</label>'+
-			'<div class="col-sm-2">'+
+			'<label class="col-sm-2 control-label"  for="prioridad'+i+'">Prioridad'+i+'</label>'+
+			'<div class="col-sm-3">'+
 				'<select id="prioridad'+i+'" name="prioridad'+i+'" class="select-chosen form-control prioridades">'+
 					'<option value="">Seleccione una Prioridad</option>'+
 					'<option value="1">Baja</option>'+
 					'<option value="2">Mediana</option>'+
 					'<option value="3">Baja</option>'+
 				'</select>'+
-			'</div>'+
-			'<label class="col-sm-1 control-label"  for="observaciones'+i+'">Observaciones'+i+'</label>'+
-			'<div class="col-sm-2">'+
-					'<input type="text" id="observaciones'+i+'" name="observaciones'+i+'"  class="form-control" />'+
 			'</div>'+
 			'<div class="col-sm-1"  Style="padding-top:10px">'+
 				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
