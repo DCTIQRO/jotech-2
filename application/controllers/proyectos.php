@@ -382,14 +382,16 @@ class Proyectos extends CI_Controller {
 		$usuarios=$this->input->post('usuarios_tarea');
 		if($id_tarea > 0)
 		{
-			for($i=0;$i<count($usuarios);$i++)
-			{
-				$form_usuarios[]=array(
-					'id_usuario_fk'		=>	$usuarios[$i],
-					'id_tarea_fk'		=>	$id_tarea,
-				);
+			if(!empty($usuarios)){
+				for($i=0;$i<count($usuarios);$i++)
+				{
+					$form_usuarios[]=array(
+						'id_usuario_fk'		=>	$usuarios[$i],
+						'id_tarea_fk'		=>	$id_tarea,
+					);
+				}
+				$this->proyectos_model->asignar_tareas($form_usuarios);
 			}
-			$this->proyectos_model->asignar_tareas($form_usuarios);
 			
 			$form_bitacora=array(
 				'comentario'		=>	'Se ha creado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre_tarea').'</a>',
@@ -402,8 +404,8 @@ class Proyectos extends CI_Controller {
 			);
 			$this->proyectos_model->guardar_bitacora_proyecto($form_bitacora);
 			
-			redirect('proyectos/ver_proyecto/'.$this->input->post('proyecto'));
 		}
+		redirect('proyectos/ver_proyecto/'.$this->input->post('proyecto'));
 		
 	}
 	
