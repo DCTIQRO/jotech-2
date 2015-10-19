@@ -58,7 +58,7 @@
 									if($contacto->activo2 == 3){echo '<label class="btn-xs btn-info">Sí nos conoce: Es contacto principal</label>';}
 									if($contacto->activo2 == 4){echo '<label class="btn-xs btn-success">Si nos conoce: Aunque no sea contacto principal</label>';}
 								?></td>
-								<td class="text-center"><a href="<?= site_url('clientes/ver_contacto/'.$contacto->id.'/'.$contacto->cliente) ?>" class="fancybox fancybox.iframe"><?=  $contacto->titulo." ".$contacto->nombre ?></a></td>
+								<td class="text-center"><a href="<?= site_url('clientes/editar_contacto/'.$contacto->id.'/'.$contacto->cliente) ?>" class="fancybox fancybox.iframe"><?=  $contacto->titulo." ".$contacto->nombre ?></a></td>
 								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$contacto->cliente) ?>"><?= $contacto->name_cliente ?></a></td>
 								<td class="text-center"><?= $contacto->telefono ?></td>
 								<td class="text-center"><a href="mailto:<?= $contacto->correo ?>"><?= $contacto->correo ?></a></td>
