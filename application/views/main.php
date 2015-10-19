@@ -71,7 +71,7 @@
                 </div>
             </div>
             
-            <div id="page-container" class="header-fixed-top sidebar-partial  sidebar-no-animations">
+            <div id="page-container" class="sidebar-no-animations">
                 <!-- Alternative Sidebar -->
 
                 <!-- Main Sidebar -->
