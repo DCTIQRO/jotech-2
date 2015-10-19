@@ -3,6 +3,39 @@
  *  Author     : pixelcave
  *  Description: Custom javascript code used in Tables Datatables page
  */
+ 
+ /* Create an array with the values of all the input boxes in a column */
+$.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+        return $('input', td).val();
+    } );
+}
+ 
+/* Create an array with the values of all the input boxes in a column, parsed as numbers */
+$.fn.dataTable.ext.order['dom-text-numeric'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+        return $('input', td).val() * 1;
+    } );
+}
+ 
+/* Create an array with the values of all the select options in a column */
+$.fn.dataTable.ext.order['dom-select'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+        return $('select', td).val();
+    } );
+}
+ 
+/* Create an array with the values of all the checkboxes in a column */
+$.fn.dataTable.ext.order['dom-checkbox'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+        return $('input', td).prop('checked') ? '1' : '0';
+    } );
+}
+
 
 var TablesDatatables = function() {
 
@@ -40,7 +73,13 @@ var TablesDatatables = function() {
 						"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 						"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 					}
-				}
+				},
+				"columns": [
+					{ "orderDataType": "dom-text", type:'date-eu'},
+					null,
+					null,
+					null,
+				]
             });
 			
 			$('#tabla_tareas_proyectos').dataTable({

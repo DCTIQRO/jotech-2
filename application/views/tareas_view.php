@@ -40,9 +40,9 @@
 								<td class="text-center" onClick="irTareaGeneral(<?= $tarea_general->id ?>)"><a href="javascript:void(0)"><?= $tarea_general->nombre ?></a></td>
 								<td class="text-center" onClick="irTareaGeneral(<?= $tarea_general->id ?>)">Tarea General</td>
 								<?php list($año,$mes,$dia)=explode('-',$tarea_general->fecha_inicio) ?>
-								<td class="text-center"><label id="oculto_inicio_general<?= $tarea_general->id ?>" class="label_oculto"><?= $dia."-".$mes."-".$año ?></label><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="inicio_general<?= $tarea_general->id ?>" value="<?= $dia."-".$mes."-".$año ?>" onchange="cambiar_inicio_general(<?= $tarea_general->id ?>)" Style="border:0px"/></td>
+								<td class="text-center"><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="inicio_general<?= $tarea_general->id ?>" value="<?= $dia."-".$mes."-".$año ?>" onchange="cambiar_inicio_general(<?= $tarea_general->id ?>)" Style="border:0px"/></td>
 								<?php list($año,$mes,$dia)=explode('-',$tarea_general->fecha_fin) ?>
-								<td class="text-center"><label id="oculto_fin_general<?= $tarea_general->id ?>" class="label_oculto"><?= $dia."-".$mes."-".$año ?></label><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="fin_general<?= $tarea_general->id ?>" value="<?= $dia."-".$mes."-".$año ?>" onchange="cambiar_fin_general(<?= $tarea_general->id ?>)" Style="border:0px"/></td>
+								<td class="text-center"><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="fin_general<?= $tarea_general->id ?>" value="<?= $dia."-".$mes."-".$año ?>" onchange="cambiar_fin_general(<?= $tarea_general->id ?>)" Style="border:0px"/></td>
 								<td class="text-center">
 								<?php
 									if($tarea_general->estatus == '0'){ echo "<a haref='javascript:void(0)' class='btn-sm btn-success'>Abierto</a> ";}

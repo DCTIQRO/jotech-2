@@ -32,7 +32,9 @@
 		foreach($jsface as $url)
 		{
 			echo '<script src="'.asset_url($url).'"></script>';
-		} 	
+		}
+		
+		echo '<script src="//cdn.datatables.net/plug-ins/1.10.9/sorting/date-eu.js"></script>';
 	?>
 	<script type="text/javascript">
 			$(document).ready(function() {
