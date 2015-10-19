@@ -409,6 +409,52 @@ class Proyectos extends CI_Controller {
 		
 	}
 	
+	function crear_tarea_proyecto_modal()
+	{
+		date_default_timezone_set('America/Mexico_City');
+
+		list($dia,$mes,$año)=explode('/',$this->input->post('fecha_inicio'));
+		list($dia2,$mes2,$año2)=explode('/',$this->input->post('fecha_fin'));
+		
+		$form_data=array(
+			'nombre'			=>	$this->input->post('nombre_tarea'),
+			'descripcion'		=>	$this->input->post('descripcion_tarea'),
+			'id_proyecto_fk'	=>	$this->input->post('proyecto'),
+			'fecha_inicio'		=>	$año."-".$mes."-".$dia,
+			'fecha_fin'			=>	$año2."-".$mes2."-".$dia2,
+			'estatus'			=>	'0'
+		);
+		$id_tarea=$this->proyectos_model->crear_tarea_proyecto($form_data);
+		$usuarios=$this->input->post('usuarios_tarea');
+		if($id_tarea > 0)
+		{
+			if(!empty($usuarios)){
+				for($i=0;$i<count($usuarios);$i++)
+				{
+					$form_usuarios[]=array(
+						'id_usuario_fk'		=>	$usuarios[$i],
+						'id_tarea_fk'		=>	$id_tarea,
+					);
+				}
+				$this->proyectos_model->asignar_tareas($form_usuarios);
+			}
+			
+			$form_bitacora=array(
+				'comentario'		=>	'Se ha creado la Tarea <a href="'.site_url('tareas_proyectos/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre_tarea').'</a>',
+				'fecha'				=>	date('Y-m-d H:i:s'),
+				'fecha_actividad'	=>	date('Y-m-d'),
+				'id_usuario_fk'		=>	$this->session->userdata('user_id'),
+				'id_proyecto_fk'	=>	$this->input->post('proyecto'),
+				'status'			=> '1',
+				'tipo'				=> '2'
+			);
+			$this->proyectos_model->guardar_bitacora_proyecto($form_bitacora);
+			
+		}
+		$this->load->view('cerrar_facybox');
+		
+	}
+	
 	function cerrar_proyecto($id)
 	{
 		date_default_timezone_set('America/Mexico_City');

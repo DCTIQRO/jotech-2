@@ -11,5 +11,6 @@
 		<li class="<?= $activo ?>"><a href="<?= site_url('clientes/contacto/'.$id_cliente) ?>">Contactos</a></li>
 		<?php $activo=""; if($tab == 'bitacora'){$activo="active";} ?>
 		<li class="<?= $activo ?>"><a href="<?= site_url('bitacora/cliente/'.$id_cliente) ?>">Bitacora</a></li>
+		<li><a href="<?= site_url('tareas/agregar_tarea/'.$id_cliente) ?>" class="fancy fancybox.iframe">Nueva tarea Cliente</a></li>
 	</ul>
 </ul> 

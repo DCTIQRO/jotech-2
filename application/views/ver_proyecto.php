@@ -6,6 +6,7 @@
 		<li><a href="<?= site_url('tareas/cliente/'.$datos_cliente->id) ?>">Tareas</a></li>
 		<li><a href="<?= site_url('clientes/contacto/'.$datos_cliente->id) ?>">Contactos</a></li>
 		<li><a href="<?= site_url('bitacora/cliente/'.$datos_cliente->id) ?>">Bitacora</a></li>
+		<li><a href="<?= site_url('tareas/agregar_tarea/'.$datos_cliente->id) ?>" class="fancy fancybox.iframe">Nueva tarea Cliente</a></li>
 	</ul>
 </ul>
 <ul class="breadcrumb breadcrumb-top">
@@ -31,6 +32,8 @@
 				</li>
 				<li class="divider"></li>
 				<li>
+					<a href="<?= site_url('tareas_proyectos/agregar_tarea/'.$id_proyecto) ?>" class="fancy fancybox.iframe"><i class="fa fa-wrench fa-fw pull-right"></i>Nueva tarea Proyecto</a>
+				</li><li>
 					<a href="<?= site_url('proyectos'); ?>"><i class="fa fa-wrench fa-fw pull-right"></i>Todos los Proyectos</a>
 				</li>
 			</ul>

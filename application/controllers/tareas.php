@@ -56,6 +56,18 @@ class Tareas extends CI_Controller {
 		$this->load->view('main',$data);
 	}	
 	
+	function agregar_tarea($id)
+	{		
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
+		$cliente=$this->tareas_model->ver_cliente($id);
+		$data['v']="add_tarea_modal";
+		$data['titulo']="Crear Tarea de ".$cliente->nombre;
+		$data['id_cliente']=$id;
+		$data['usuarios']=$this->tareas_model->ver_usuarios();
+		$this->load->view('main_modal',$data);
+	}	
+	
 	function guardar_tarea()
 	{
 		date_default_timezone_set('America/Mexico_City');
@@ -99,6 +111,51 @@ class Tareas extends CI_Controller {
 		$this->tareas_model->guardar_bitacora_cliente($form_bitacora);
 		
 		redirect('proyectos/proyectos_tareas/'.$this->input->post('id_cliente'));
+	}
+	
+	function guardar_tarea_modal()
+	{
+		date_default_timezone_set('America/Mexico_City');
+		list($dia,$mes,$año)=explode('-',$this->input->post('fecha_inicio'));
+		list($dia2,$mes2,$año2)=explode('-',$this->input->post('fecha_fin'));
+		date_default_timezone_set('America/Mexico_City');
+		$form_data=array(
+			'nombre' => $this->input->post('nombre'),
+			'descripcion' => $this->input->post('descripcion'),
+			'fecha_inicio' => $año."-".$mes."-".$dia,
+			'fecha_fin' => $año2."-".$mes2."-".$dia2,
+			'estatus' => '0',
+			'id_cliente_fk' => $this->input->post('id_cliente'),
+			'fecha_registro' => date('Y-m-d H:i:s'),
+		);
+		
+		$id_tarea=$this->tareas_model->guardar_tarea($form_data);
+		
+		$usuarios=$this->input->post('usuarios');
+		
+		for($i=0;$i<count($usuarios);$i++)
+		{
+			$form_usuarios[]=array(
+				'id_usuario_fk'	=>	$usuarios[$i],
+				'id_tarea_fk'	=>	$id_tarea,
+				'tipo'			=>	'0'
+			);
+		}
+		
+		$this->tareas_model->guardar_usuarios($form_usuarios);
+		
+		$form_bitacora=array(
+			'comentario'	=>	'Se ha creado la tarea cliente <a href="'.site_url('tareas/ver_tarea/'.$id_tarea).'">'.$this->input->post('nombre').'</a>',
+			'fecha'			=>	date('Y-m-d H:i:s'),
+			'fecha_actividad'	=>	date('Y-m-d'),
+			'id_usuario'	=>	$this->session->userdata('user_id'),
+			'id_cliente'	=>	$this->input->post('id_cliente'),
+			'status'		=>	'1',
+			'tipo'			=>	'2'
+		);
+		$this->tareas_model->guardar_bitacora_cliente($form_bitacora);
+		
+		$this->load->view('cerrar_facybox');
 	}
 	
 	function ver_tarea($id)

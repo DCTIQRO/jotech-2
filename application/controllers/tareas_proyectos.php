@@ -18,6 +18,18 @@ class Tareas_proyectos extends CI_Controller {
 		
 	}
 	
+	function agregar_tarea($id)
+	{
+		$login=$this->session->userdata('user_id');
+		if(empty($login)){redirect('auth/login');}
+		$proyecto=$this->tareas_proyectos_model->ver_proyecto($id);
+		$data['titulo']="Crear tarea del Proyecto ".$proyecto->nombre;
+		$data['v']="add_tarea_proyecto_modal";
+		$data['id_proyecto']=$proyecto->id;
+		$data['asignados']=$this->tareas_proyectos_model->ver_usuarios_tarea($id);
+		$this->load->view('main_modal',$data);
+	}
+	
 	function ver_tarea($id)
 	{
 		$login=$this->session->userdata('user_id');

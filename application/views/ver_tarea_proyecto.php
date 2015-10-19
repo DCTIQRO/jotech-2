@@ -6,6 +6,7 @@
 		<li><a href="<?= site_url('tareas/cliente/'.$datos_cliente->id) ?>">Tareas</a></li>
 		<li><a href="<?= site_url('clientes/contacto/'.$datos_cliente->id) ?>">Contactos</a></li>
 		<li><a href="<?= site_url('bitacora/cliente/'.$datos_cliente->id) ?>">Bitacora</a></li>
+		<li><a href="<?= site_url('tareas/agregar_tarea/'.$datos_cliente->id) ?>" class="fancy fancybox.iframe">Nueva tarea Cliente</a></li>
 	</ul>
 </ul>
 
@@ -13,8 +14,9 @@
 	<a href="<?= site_url('proyectos/ver_proyecto/'.$id_proyecto) ?>" Style="float:left; margin-right:100px; padding-top:10px"><?= $proyecto?></a>
 	<ul class="nav nav-pills">
 		<li><a href="<?= site_url('proyectos/ver_descripcion/'.$id_proyecto) ?>" class="fancybox fancybox.iframe">Detalles</a></li>
-		<li class="active"><a href="<?= site_url('proyectos/ver_usuarios_asignados/'.$id_proyecto) ?>" class="fancybox fancybox.iframe">Usuarios</a></li>
+		<li><a href="<?= site_url('proyectos/ver_usuarios_asignados/'.$id_proyecto) ?>" class="fancybox fancybox.iframe">Usuarios</a></li>
 		<li><a href="<?= site_url('proyectos/ver_contactos_proyectos/'.$id_proyecto) ?>" class="fancybox fancybox.iframe">Contactos</a></li>
+		<li><a href="<?= site_url('tareas_proyectos/agregar_tarea/'.$id_proyecto) ?>" class="fancy fancybox.iframe">Nueva tarea Proyecto</a></li>
 	</ul>
 </ul>
 
