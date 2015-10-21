@@ -6,7 +6,7 @@
 			</div>
 			<div class="row">
 				<div class="table-resposive">
-					<table id="tabla_tareas_generales" class="table table-vcenter table-condensed table-bordered">
+					<table id="tabla_tareas_clientes" class="table table-vcenter table-condensed table-bordered" width="100%" >
 						<thead>
 							<tr>
 								<th class="text-center">Tarea</th>
