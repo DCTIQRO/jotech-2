@@ -565,7 +565,7 @@ class Proyectos extends CI_Controller {
 	
 	function cambiar_fecha()
 	{
-		list($dia,$mes,$año)=explode("-",$this->input->post('fecha'));
+		list($dia,$mes,$año)=explode("/",$this->input->post('fecha'));
 		$form_data=array(
 			'fecha_actividad'	=>	$año."-".$mes."-".$dia
 		);

@@ -42,6 +42,7 @@ $(document).ready(function() {
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
 				dom: "<'row'<'col-sm-4 col-xs-12 text-center'l><'col-sm-4 col-xs-12 text-center'B><'col-sm-4 col-xs-12 text-center'f>>" +'tr' +"<'row'<'col-sm-5'i><'col-sm-7'p>>",
 				stateSave: true,
+				aaSorting: [[ 3, 'desc' ]],
 				buttons: [
 					'copyHtml5',
 					'excelHtml5',
@@ -91,11 +92,10 @@ $(document).ready(function() {
 	
 	var table3 = $('#tabla_tareas_generales').DataTable({
 		responsive: true,
-		columnDefs: [ { orderable: false, targets: [6] } ],
+		columnDefs: [ { orderable: false, targets: [] } ],
                 pageLength: -1,
 				autoWidth: true,
                 lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
-				//"sDom": 'Rlfrtip',
 				dom: "<'row'<'col-sm-4 col-xs-12 text-center'l><'col-sm-4 col-xs-12 text-center'B><'col-sm-4 col-xs-12 text-center'f>>" +'tr' +"<'row'<'col-sm-5'i><'col-sm-7'p>>",
 				stateSave: true,
 				buttons: [
