@@ -19,7 +19,7 @@
 									<th class="text-center">Inicio</th>
 									<th class="text-center">Entrega</th>
 									<th class="text-center">Progreso</th>
-									<th class="text-center">Accioness</th>
+									<th class="text-center">AccioneS/th>
 								</tr>
 							</thead>
 							<tbody>
