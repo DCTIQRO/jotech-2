@@ -47,6 +47,7 @@ class Tareas_model extends CI_Model {
 	{
 		$this->db->select('nombre,descripcion,fecha_inicio,fecha_fin,estatus,id_cliente_fk');
 		$this->db->where('id',$id);
+		$this->db->order_by('estatus','desc');
 		$results = $this->db->get('clientes_tareas')->row();
 		return $results;
 	}
