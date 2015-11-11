@@ -105,7 +105,11 @@
 			</div>
 			<div id="Clonar" name="Clonar">
 			<div class="form-group" id="grupo0">
+<<<<<<< HEAD
 						<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
+=======
+				<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
+>>>>>>> origin/master
 				<div class="col-sm-3">
 					<div class="input-group">
 						<select id="clasificacion" name="clasificacion" class="select-chosen form-control clasifi" onchange="checar_clasificacion('');">
@@ -140,6 +144,7 @@
 				<label class="col-sm-1 control-label"  for="observaciones">Observaciones</label>
 				<div class="col-sm-2">
 						<input type="text" id="observaciones" name="observaciones"  class="form-control" />
+<<<<<<< HEAD
 
 				</div>
 				<input type="checkbox" id="maquinas" name="maquinas" value="0"> <b>Máquinas</b>
@@ -147,6 +152,12 @@
 					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
 				</div>
 
+=======
+				</div>
+				<div class="col-sm-1"  Style="padding-top:10px">
+					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
+				</div>
+>>>>>>> origin/master
 			</div>
 			</div>
 			<div id="new_clasif" name="new_clasif">
@@ -174,7 +185,10 @@
 var i=1;
 function agregarClasif ()
 {
+<<<<<<< HEAD
 	
+=======
+>>>>>>> origin/master
 	x=	'<div class="form-group" id="grupo'+i+'">'+
 			'<label class="col-sm-1 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
 			'<div class="col-sm-3">'+
@@ -205,7 +219,10 @@ function agregarClasif ()
 			'<div class="col-sm-2">'+
 					'<input type="text" id="observaciones'+i+'" name="observaciones'+i+'"  class="form-control" />'+
 			'</div>'+
+<<<<<<< HEAD
 			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
+=======
+>>>>>>> origin/master
 			'<div class="col-sm-1"  Style="padding-top:10px">'+
 				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
 			'</div><br><br>'+
@@ -231,6 +248,17 @@ function quitarClasif (num)
 {
 		$('#grupo'+num).remove();
 }
+
+function quitarClasif (num)
+{
+		$('#grupo'+num).remove();
+}
+</script>
+
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
 </script>
 
 <script>

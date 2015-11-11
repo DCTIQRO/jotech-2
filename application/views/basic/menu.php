@@ -26,39 +26,97 @@
 
                                         <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
-                        <li>
-                            <a href="<?= site_url('clientes') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Inicio</span></a>
-                        </li>
 						<!-- Modulo Clientes -->
                         <li class="sidebar-header">
-                            <span class="sidebar-header-title">Clientes</span>
-                        </li>
-                        <li>
-                            <a href="<?= site_url('clientes') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Todos los clientes</span></a>
-						</li>
-                        <li>
-                            <a href="<?= site_url('clientes/nuevo_cliente') ?>"><i class="fa fa-user-plus sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Nuevo Cliente</span></a>
+                            <span class="sidebar-header-title">Mi cuenta</span>
                         </li>
 						<li>
-                            <a href="<?= site_url('clasificaciones_clientes') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clasificación Cliente</span></a>
+                            <a href="<?= site_url('tareas/mis_tareas') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Mis Tareas</span></a>
                         </li>
-                        
+						<!--<li>
+                            <a href="<?= site_url('recordatorios') ?>"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Recordatorios</span></a>
+                        </li>-->
+						<li>
+                            <a href="javascript:void(0)"><i class="fa fa-flag sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Perfil</span></a>
+                        </li>
+						<li>
+                            <a href="<?= site_url('auth/logout') ?>"><i class="gi gi-charts sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Cerrar Sesión</span></a>
+                        </li>
+						
+						<?php 
+							$this->db->select('*');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if(!empty($pantalla)){
+						?>
 						<!-- Modulo Proyectos -->
 						<li class="sidebar-header">
-                            <span class="sidebar-header-title">Proyectos</span>
+                            <span class="sidebar-header-title">Datos</span>
                         </li>
-                        <li>
-                            <a href="javascript:void(0)"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Listar Proyectos</span></a>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Proyectos');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Proyectos == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
+                            <a href="<?= site_url('proyectos') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Proyectos</span></a>
                         </li>
-                        <li>
-                            <a href="<?= site_url('clasificaciones_proyectos') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clasificación Proyecto</span></a>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Tareas');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Tareas == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
+                            <a href="<?= site_url('tareas') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tareas</span></a>
                         </li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Contactos');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Contactos == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
+                            <a href="<?= site_url('contactos') ?>"><i class="fa fa-cogs sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Contactos</span></a>
+                        </li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Clientes');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Clientes == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
+                            <a href="<?= site_url('clientes') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clientes</span></a>
+						</li>
+						
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Historial');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Historial == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
+                            <a href="<?= site_url('historial') ?>"><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Historial</span></a>
+						</li>
 						
 						<!-- Modulo Proyectos -->
 						<li class="sidebar-header">
-                            <span class="sidebar-header-title">Administrar</span>
+                            <span class="sidebar-header-title">Administración</span>
                         </li>
-                        <li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Usuarios');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Usuarios == 1)$oculto="";
+						?>
+                        <li class="<?= $oculto ?>">
 							<a href="javascript:void(0)" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-users sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Usuarios</span></a>
 							<ul>
 								<li>
@@ -69,12 +127,37 @@
 								</li>
 							</ul>
                         </li>
-                        <li class="sidebar-header">
-                            <span class="sidebar-header-title">Cuenta</span>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Clasificaciones');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Clasificaciones == 1)$oculto="";
+						?>
+						<li class="<?= $oculto ?>">
+                            <a href="<?= site_url('clasificaciones_clientes') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Clasificaciónes</span></a>
                         </li>
-                        <li>
-                            <a href="<?= site_url('auth/logout') ?>"><i class="gi gi-charts sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Cerrar Sesión</span></a>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Papelera');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Papelera == 1)$oculto="";
+						?>
+						<li  class="<?= $oculto ?>">
+                            <a href="<?= site_url('papelera') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Papelera</span></a>
                         </li>
+						<?php 
+							$oculto="hidden"; 
+							$this->db->select('Pantallas');
+							$this->db->where('user_id',$this->session->userdata('user_id'));
+							$pantalla=$this->db->get('Pantallas')->row();
+							if($pantalla->Pantallas == 1)$oculto="";
+						?>
+						<li  class="<?= $oculto ?>">
+                            <a href="<?= site_url('pantallas') ?>"><i class="fa fa-cubes sidebar-nav-icon sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Permisos Menú</span></a>
+                        </li>
+							<?php } ?>
                     </ul>
                     <!-- END Sidebar Navigation -->
                     

@@ -1777,6 +1777,12 @@ class Ion_auth_model extends CI_Model
 		    'old_last_login'       => $user->last_login
 		);
 		
+		$this->db->select('group_id');
+		$this->db->where('user_id',$user->id);
+		$result=$this->db->get('users_groups')->row();
+		
+		$this->session->set_userdata('tipo_usuario',$result->group_id);
+		
 		if(empty($this->identity_column_alt) === FALSE) {
 			$session_data['identity_alt'] = $user->{$this->identity_column_alt};
 		}

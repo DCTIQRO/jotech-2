@@ -15,14 +15,14 @@
 				<label class="col-md-4 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
 				<div class="col-md-6">
 					<div class="input-group">
-						<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del cliente..">
+						<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre de la tarea..">
 						<span class="input-group-addon"><i class="gi gi-user"></i></span>
 					</div>
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="descripcion">Descripción <span class="text-danger">*</span></label>
+				<label class="col-md-4 control-label" for="descripcion">Descripción</label>
 				<div class="col-md-6">
 					<div class="input-group">
 						<input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Descripcion ..">
@@ -32,7 +32,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="fecha_inicio">Fecha Inicio <span class="text-danger">*</span></label>
+				<label class="col-md-4 control-label" for="fecha_inicio">Fecha Inicio</label>
 				<div class="col-md-6">
 					<div class="input-group">
 						<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-YYYY..">
@@ -42,7 +42,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="fecha_fin">Fecha Fin <span class="text-danger">*</span></label>
+				<label class="col-md-4 control-label" for="fecha_fin">Fecha Fin</label>
 				<div class="col-md-6">
 					<div class="input-group">
 						<input type="text" id="fecha_fin" name="fecha_fin" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-YYYY..">
@@ -77,6 +77,12 @@
 </div>
 </div>
 </div>
+
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
+</script>
 
 <script src="<?= asset_url('js/pages/nuevocliente.js') ?>"></script>
 <script>$(function(){ FormsValidation.init(); });</script>

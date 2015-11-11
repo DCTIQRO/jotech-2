@@ -296,7 +296,11 @@
 								?>
 								<tr>
 									<td class="text-center"><a href="<?= site_url('tareas_proyectos/ver_tarea/'.$tarea->id) ?>"><?= $tarea->nombre ?></a></td>
+<<<<<<< HEAD
 									<td class="text-center"><p class="texto_desc"><?= $tarea->descripcion ?></p></td>
+=======
+									<td class="text-center"><?= $tarea->descripcion ?></td>
+>>>>>>> origin/master
 									<?php list($año,$mes,$dia)=explode('-',$tarea->fecha_inicio) ?>
 									<?php list($año2,$mes2,$dia2)=explode('-',$tarea->fecha_fin) ?>
 									<td class="text-center"><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="inicio<?= $tarea->id ?>" value="<?= $dia."-".$mes."-".$año ?>" onchange="cambiar_inicio(<?= $tarea->id ?>)" Style="border:0px"/></td>
@@ -501,7 +505,11 @@
 							?>
 							<tr>
 								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd/mm/yyyy" value="<?= $dia."/".$mes."/".$año ?>" /></td>
+<<<<<<< HEAD
 								<td><p class="texto_desc"><?= $bitacora->comentario?></p></td>
+=======
+								<td><?= $bitacora->comentario?></td>
+>>>>>>> origin/master
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 								<td class="text-center">
 									<?php
@@ -712,6 +720,7 @@ $( "#avisador" ).change(function() {
 	});
 });
 </script>
+<<<<<<< HEAD
 <script>
 $( window ).load(function() {
 	$('.texto_desc').readmore({
@@ -727,3 +736,5 @@ $( window ).load(function() {
     $('article').readmore({speed: 500});
 });
 </script>
+=======
+>>>>>>> origin/master

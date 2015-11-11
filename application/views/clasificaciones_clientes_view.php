@@ -26,7 +26,7 @@
 			<form class="form-bordered form-horizontal" action="<?= site_url('clasificaciones_clientes/guardar_clasificacion') ?>" method="post" >
 				<label class="label-control col-sm-2">Nombre</label>
 				<div class="col-sm-3">
-					<input class="form-control" name="nombre" type="text" placeholder="Nombre Clasificación">
+					<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre Clasificación">
 				</div>
 				<label class="label-control col-sm-2">Descripción</label>
 				<div class="col-sm-3">
@@ -40,27 +40,35 @@
 	</div>
 	<div class="row">
 		<div class="table-responsive">
-			<table id="tabla_clientes" class="table table-vcenter table-condensed table-bordered">
+			<table id="tabla_clasificaciones" class="table table-vcenter table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th class="text-center">ID</th>
-						<th class="text-center">Cliente</th>
+						<th class="text-center">Nombre</th>
 						<th class="text-center">Descripción</th>
 						<th class="text-center">Acciones</th>
 					</tr>
 				</thead>
+				<tfoot>
+					<tr>
+						<th class="text-center">ID</th>
+						<th class="text-center">Nombre</th>
+						<th class="text-center">Descripción</th>
+						<th class="text-center">Acciones</th>
+					</tr>
+				</tfoot>
 				<tbody>
 					<?php
 					foreach($clasificaciones as $clasificacion)
 					{
 					?>
 					<tr>
-						<td class="text-center"><?= $clasificacion->id ?></td>
-						<td class="text-center"><a href="javascript:void(0)"><?= $clasificacion->nombre ?></a></td>
+						<td class="text-center"><input type="number" Style="border: 0px; width:30px" id="identi<?= $clasificacion->id ?>" onChange="cambiar_id(<?= $clasificacion->id ?>)" value="<?= $clasificacion->identificador ?>" /></td>
+						<td class="text-center"><a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe"><?= $clasificacion->nombre ?></a></td>
 						<td class="text-center"><?= $clasificacion->descripcion ?></td>
 						<td class="text-center">
-							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-							<a href="javascript:void(0)" data-toggle="tooltip" data-original-title="Eliminar" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+							<a href="<?= site_url('clasificaciones_clientes/editar/'.$clasificacion->id) ?>" class="fancybox fancybox.iframe" data-toggle="tooltip" data-original-title="Editar" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+							<a href="<?= site_url('clasificaciones_clientes/eliminar_clasificacion/'.$clasificacion->id) ?>" data-toggle="tooltip" data-original-title="Eliminar" data-title="Confirmar Eliminación de Clasificación"  data-text="Esta seguro de eliminar la clasificación <?= $clasificacion->nombre ?>" data-confirm-button="Si" data-cancel-button="No" class="btn btn-xs btn-default eliminar"><i class="fa fa-trash-o"></i></a>
 						</td>
 					</tr>
 					<?php
@@ -72,5 +80,37 @@
 	</div>
 </div>
 
-<script src="<?= asset_url('js/pages/tablaclientes.js') ?>"></script>
-<script>$(function(){ TablesDatatables.init(); });</script>
+<script src="<?= asset_url('js/pages/tablaclasificaciones.js') ?>"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".fancybox").fancybox({
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '100%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+});
+</script>
+<script>
+function cambiar_id(id)
+{
+	$.post("<?= site_url('clasificaciones_clientes/cambiar_id') ?>"+"/"+id, {identificador:$('#identi'+id).val()}, function(result){
+        console.log(result);
+    });
+}
+</script>
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
+</script>
+
+<script>
+$(".eliminar").confirm();
+</script>

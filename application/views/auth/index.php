@@ -36,6 +36,16 @@
 					<th class="text-center"><?php echo lang('index_action_th');?></th>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<th class="text-center"><?php echo lang('index_fname_th');?></th>
+					<th class="text-center"><?php echo lang('index_lname_th');?></th>
+					<th class="text-center"><?php echo lang('index_email_th');?></th>
+					<th class="text-center"><?php echo lang('index_groups_th');?></th>
+					<th class="text-center"><?php echo lang('index_status_th');?></th>
+					<th class="text-center"><?php echo lang('index_action_th');?></th>
+				</tr>
+			</tfoot>
 			<tbody>
 			<?php foreach ($users as $user):?>
 				<tr>
@@ -63,4 +73,3 @@
 </div>
 
 <script src="<?= asset_url('js/pages/tablausuarios.js') ?>"></script>
-<script>$(function(){ TablesDatatables.init(); });</script>
