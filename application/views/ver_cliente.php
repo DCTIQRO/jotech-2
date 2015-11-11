@@ -154,6 +154,10 @@
 						<div class="col-sm-2">
 								<input type="text" id="observaciones<?= $i ?>" name="observaciones<?= $i ?>" value="<?= $clasificacion_cliente->observaciones ?>"  class="form-control" />
 						</div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 						<?php
 							if ($clasificacion_cliente->maquinas == 1) {
 							
@@ -168,6 +172,11 @@
 							}
 						?>
 						
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 						<div class="col-sm-1"  Style="padding-top:10px">
 							<label onClick="quitarClasif (<?= $i ?>)" class="btn-sm btn-danger">Eliminar</label>
 						</div>
@@ -226,7 +235,14 @@ function agregarClasif ()
 			'<div class="col-sm-2">'+
 					'<input type="text" id="observaciones'+i+'" name="observaciones'+i+'"  class="form-control" />'+
 			'</div>'+
+<<<<<<< HEAD
 			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
+=======
+<<<<<<< HEAD
+			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 			'<div class="col-sm-1"  Style="padding-top:10px">'+
 				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
 			'</div><br><br>'+
@@ -251,6 +267,10 @@ function quitarClasif (num)
 $( document ).ready(function() {
     $( "#nombre" ).focus();
 });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 </script>
 <script type="text/javascript">
 	function checar (maquina) {
@@ -262,6 +282,11 @@ $( document ).ready(function() {
 		}
 		
 	}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 </script>
 
 <script src="<?= asset_url('js/pages/nuevocliente.js') ?>"></script>

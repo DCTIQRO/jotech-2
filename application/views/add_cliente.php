@@ -105,7 +105,15 @@
 			</div>
 			<div id="Clonar" name="Clonar">
 			<div class="form-group" id="grupo0">
+<<<<<<< HEAD
 						<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
+=======
+<<<<<<< HEAD
+						<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
+=======
+				<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
+>>>>>>> origin/master
+>>>>>>> origin/master
 				<div class="col-sm-3">
 					<div class="input-group">
 						<select id="clasificacion" name="clasificacion" class="select-chosen form-control clasifi" onchange="checar_clasificacion('');">
@@ -140,6 +148,10 @@
 				<label class="col-sm-1 control-label"  for="observaciones">Observaciones</label>
 				<div class="col-sm-2">
 						<input type="text" id="observaciones" name="observaciones"  class="form-control" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
 				</div>
 				<input type="checkbox" id="maquinas" name="maquinas" value="0"> <b>Máquinas</b>
@@ -147,6 +159,15 @@
 					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
 				</div>
 
+<<<<<<< HEAD
+=======
+=======
+				</div>
+				<div class="col-sm-1"  Style="padding-top:10px">
+					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
+				</div>
+>>>>>>> origin/master
+>>>>>>> origin/master
 			</div>
 			</div>
 			<div id="new_clasif" name="new_clasif">
@@ -174,7 +195,14 @@
 var i=1;
 function agregarClasif ()
 {
+<<<<<<< HEAD
 	
+=======
+<<<<<<< HEAD
+	
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 	x=	'<div class="form-group" id="grupo'+i+'">'+
 			'<label class="col-sm-1 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
 			'<div class="col-sm-3">'+
@@ -205,7 +233,14 @@ function agregarClasif ()
 			'<div class="col-sm-2">'+
 					'<input type="text" id="observaciones'+i+'" name="observaciones'+i+'"  class="form-control" />'+
 			'</div>'+
+<<<<<<< HEAD
 			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
+=======
+<<<<<<< HEAD
+			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 			'<div class="col-sm-1"  Style="padding-top:10px">'+
 				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
 			'</div><br><br>'+
@@ -219,6 +254,20 @@ function agregarClasif ()
 		});
 	i++;
 
+<<<<<<< HEAD
+}
+
+
+	$('#maquinas').on('click', function () {
+		    $(this).val(this.checked ? 1 : 0);  
+		});
+	
+	
+function quitarClasif (num)
+{
+		$('#grupo'+num).remove();
+=======
+>>>>>>> origin/master
 }
 
 
@@ -231,6 +280,23 @@ function quitarClasif (num)
 {
 		$('#grupo'+num).remove();
 }
+
+function quitarClasif (num)
+{
+		$('#grupo'+num).remove();
+}
+</script>
+
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
+</script>
+
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
 </script>
 
 <script>
