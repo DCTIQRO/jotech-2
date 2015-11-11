@@ -154,6 +154,20 @@
 						<div class="col-sm-2">
 								<input type="text" id="observaciones<?= $i ?>" name="observaciones<?= $i ?>" value="<?= $clasificacion_cliente->observaciones ?>"  class="form-control" />
 						</div>
+						<?php
+							if ($clasificacion_cliente->maquinas == 1) {
+							
+							?>
+								<input type="checkbox" id="maquinas<?= $i ?>" name="maquinas<?= $i ?>" value="1" checked onclick="checar('maquinas<?= $i ?>')"> <b>Máquinas</b>
+								
+							<?php
+							}else{
+						?>
+							<input type="checkbox" id="maquinas<?= $i ?>" name="maquinas<?= $i ?>" value="0" onclick="checar('maquinas<?= $i ?>')"> <b>Máquinas</b>
+						<?php
+							}
+						?>
+						
 						<div class="col-sm-1"  Style="padding-top:10px">
 							<label onClick="quitarClasif (<?= $i ?>)" class="btn-sm btn-danger">Eliminar</label>
 						</div>
@@ -212,6 +226,7 @@ function agregarClasif ()
 			'<div class="col-sm-2">'+
 					'<input type="text" id="observaciones'+i+'" name="observaciones'+i+'"  class="form-control" />'+
 			'</div>'+
+			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
 			'<div class="col-sm-1"  Style="padding-top:10px">'+
 				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
 			'</div><br><br>'+
@@ -220,6 +235,9 @@ function agregarClasif ()
 	$('.select-chosen').chosen();
 	$('#div_nueva_clasificacion'+i).hide();
 	$('#numero_clas').val(i);
+	$('#maquinas'+i).on('click', function () {
+		    $(this).val(this.checked ? 1 : 0);  
+		});
 	i++;
 }
 
@@ -233,6 +251,17 @@ function quitarClasif (num)
 $( document ).ready(function() {
     $( "#nombre" ).focus();
 });
+</script>
+<script type="text/javascript">
+	function checar (maquina) {
+		var a = $("#"+maquina).val();
+		if (a==1){
+			$("#"+maquina).attr('value','0');
+		}else{
+			$("#"+maquina).attr('value','1');
+		}
+		
+	}
 </script>
 
 <script src="<?= asset_url('js/pages/nuevocliente.js') ?>"></script>

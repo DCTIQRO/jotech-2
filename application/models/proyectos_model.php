@@ -49,6 +49,16 @@ class Proyectos_model extends CI_Model {
 		$results = $this->db->get('users')->result();
 		return $results;
 	}
+
+	function ver_logueado($id)
+	{
+		$this->db->where('active','1');
+		$this->db->select('id,first_name,last_name');
+		$this->db->where('id',$id);
+		$row = $this->db->get('users')->row();
+		return $row;
+
+	}
 	
 	function guardar_proyecto($form_data)
 	{

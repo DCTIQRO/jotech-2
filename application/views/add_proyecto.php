@@ -66,10 +66,20 @@
 				<div class="col-md-4">
 					<div class="input-group">
 						<select id="usuarios" name="usuarios[]" class="select-chosen form-control" data-placeholder="Selecciona un usuario.." multiple >
+								
 							<?php 
+							
+								$idL = $logueado;
+								echo $idL."encu";
+								
 								foreach($usuarios as $usuario)
 								{
-									echo '<option value="'.$usuario->id.'">'.($usuario->first_name)." ".($usuario->last_name).'</option>';
+									if ($usuario->id == $idL) {
+										$r= "selected";
+									}else{
+										$r= "";
+									}
+									echo '<option value="'.$usuario->id.'" '.$r.' >'.($usuario->first_name)." ".($usuario->last_name).'</option>';
 								}
 							?>
 						</select>

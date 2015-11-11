@@ -62,7 +62,7 @@
 									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
-								<td class="text-center"><?= $tarea_general->descripcion ?></td>
+								<td class="text-center"><p class="texto_desc"><?= $tarea_general->descripcion ?></p></td>
 								<td class="text-center">Sin vinculos</td>
 								<td class="text-center">Sin vinculos</td>
 							</tr>
@@ -95,7 +95,7 @@
 									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
-								<td class="text-center"><?= $tarea_proyecto->descripcion ?></td>
+								<td class="text-center"><p class="texto_desc"><?= $tarea_proyecto->descripcion ?></p></td>
 								<td class="text-center"><a href="<?= site_url('proyectos/ver_proyecto/'.$tarea_proyecto->id_proyecto_fk) ?>"><?= $tarea_proyecto->proyecto ?></a></td>
 								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$tarea_proyecto->id_cliente) ?>"><?= $tarea_proyecto->cliente ?></a></td>
 							</tr>
@@ -128,7 +128,7 @@
 									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
-								<td class="text-center"><?= $tarea_cliente->descripcion ?></td>
+								<td class="text-center"><p class="texto_desc"><?= $tarea_cliente->descripcion ?></p></td>
 								<td class="text-center">Sin vinculos</td>
 								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$tarea_cliente->id_cliente_fk) ?>"><?= $tarea_cliente->cliente ?></a></td>
 							</tr>
@@ -224,5 +224,19 @@ function cambiar_fin_cliente(id)
     });
 }
 </script>
+<script>
+$( window ).load(function() {
+	$('.texto_desc').readmore({
+      moreLink: '<a href="javascript:void(0)">Ver mas</a>',
+      collapsedHeight: 18,
+      afterToggle: function(trigger, element, expanded) {
+        if(! expanded) { // The "Close" link was clicked
+          $('html, body').animate({scrollTop: $(element).offset().top}, {duration: 100});
+        }
+      }
+    });
 
+    $('article').readmore({speed: 500});
+});
+</script>
 <script src="<?= asset_url('js/pages/tablamistareas.js') ?>"></script>

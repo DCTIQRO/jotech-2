@@ -105,7 +105,7 @@
 			</div>
 			<div id="Clonar" name="Clonar">
 			<div class="form-group" id="grupo0">
-				<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
+						<label class="col-sm-1 control-label"  for="clasificacion">Clasificación</label>
 				<div class="col-sm-3">
 					<div class="input-group">
 						<select id="clasificacion" name="clasificacion" class="select-chosen form-control clasifi" onchange="checar_clasificacion('');">
@@ -140,10 +140,13 @@
 				<label class="col-sm-1 control-label"  for="observaciones">Observaciones</label>
 				<div class="col-sm-2">
 						<input type="text" id="observaciones" name="observaciones"  class="form-control" />
+
 				</div>
+				<input type="checkbox" id="maquinas" name="maquinas" value="0"> <b>Máquinas</b>
 				<div class="col-sm-1"  Style="padding-top:10px">
 					<label onClick="quitarClasif (0)" class="btn-sm btn-danger">Eliminar</label>
 				</div>
+
 			</div>
 			</div>
 			<div id="new_clasif" name="new_clasif">
@@ -159,7 +162,7 @@
 			<div class="form-group text-center">
 				<br><br><br>
 				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i> Guardar</button>
-				<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button>
+				<!-- <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Limpiar</button> -->
 				<br><br><br>
 			</div>			
 		</form>
@@ -171,6 +174,7 @@
 var i=1;
 function agregarClasif ()
 {
+	
 	x=	'<div class="form-group" id="grupo'+i+'">'+
 			'<label class="col-sm-1 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
 			'<div class="col-sm-3">'+
@@ -201,6 +205,7 @@ function agregarClasif ()
 			'<div class="col-sm-2">'+
 					'<input type="text" id="observaciones'+i+'" name="observaciones'+i+'"  class="form-control" />'+
 			'</div>'+
+			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
 			'<div class="col-sm-1"  Style="padding-top:10px">'+
 				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
 			'</div><br><br>'+
@@ -209,9 +214,19 @@ function agregarClasif ()
 	$('.select-chosen').chosen();
 	$('#div_nueva_clasificacion'+i).hide();
 	$('#numero_clas').val(i);
+	$('#maquinas'+i).on('click', function () {
+		    $(this).val(this.checked ? 1 : 0);  
+		});
 	i++;
+
 }
 
+
+	$('#maquinas').on('click', function () {
+		    $(this).val(this.checked ? 1 : 0);  
+		});
+	
+	
 function quitarClasif (num)
 {
 		$('#grupo'+num).remove();

@@ -296,7 +296,7 @@
 								?>
 								<tr>
 									<td class="text-center"><a href="<?= site_url('tareas_proyectos/ver_tarea/'.$tarea->id) ?>"><?= $tarea->nombre ?></a></td>
-									<td class="text-center"><?= $tarea->descripcion ?></td>
+									<td class="text-center"><p class="texto_desc"><?= $tarea->descripcion ?></p></td>
 									<?php list($año,$mes,$dia)=explode('-',$tarea->fecha_inicio) ?>
 									<?php list($año2,$mes2,$dia2)=explode('-',$tarea->fecha_fin) ?>
 									<td class="text-center"><input type="text" class="text-center input-datepicker" data-date-format="dd-mm-yyyy" id="inicio<?= $tarea->id ?>" value="<?= $dia."-".$mes."-".$año ?>" onchange="cambiar_inicio(<?= $tarea->id ?>)" Style="border:0px"/></td>
@@ -501,7 +501,7 @@
 							?>
 							<tr>
 								<td class="text-center"><input type="text" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" id="fecha<?= $bitacora->id_bitacora  ?>" onBlur="cambiarFecha(<?= $bitacora->id_bitacora ?>)" placeholder="dd/mm/yyyy" value="<?= $dia."/".$mes."/".$año ?>" /></td>
-								<td><?= $bitacora->comentario?></td>
+								<td><p class="texto_desc"><?= $bitacora->comentario?></p></td>
 								<td class="text-center"><?= ($bitacora->first_name)." ".$bitacora->last_name ?></td>
 								<td class="text-center">
 									<?php
@@ -710,5 +710,20 @@ $( "#avisador" ).change(function() {
 	$.post( "<?= site_url('proyectos/avisador/'.$id_proyecto) ?>", {avisor:$('#avisador').val()}, function( data ) {
 		console.log(data);
 	});
+});
+</script>
+<script>
+$( window ).load(function() {
+	$('.texto_desc').readmore({
+      moreLink: '<a href="javascript:void(0)">Ver mas</a>',
+      collapsedHeight: 18,
+      afterToggle: function(trigger, element, expanded) {
+        if(! expanded) { // The "Close" link was clicked
+          $('html, body').animate({scrollTop: $(element).offset().top}, {duration: 100});
+        }
+      }
+    });
+
+    $('article').readmore({speed: 500});
 });
 </script>

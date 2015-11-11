@@ -19,7 +19,7 @@
 									<th class="text-center">Inicio</th>
 									<th class="text-center">Entrega</th>
 									<th class="text-center">Progreso</th>
-									<th class="text-center">AccioneS/th>
+									<th class="text-center">Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -87,6 +87,11 @@ function cambiar_fin(id)
        console.log(result);
     });
 }
+// $(document).ready(function() {
+//     $('#tabla_tareas').DataTable( {
+//         "order": [[ 4, "asc" ]]
+//     } );
+// } );
 </script>
 
 <script src="<?= asset_url('js/pages/tablaclientesproyectos.js') ?>"></script>

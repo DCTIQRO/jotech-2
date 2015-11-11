@@ -38,6 +38,7 @@ class Proyectos extends CI_Controller {
 		$data['titulo']="Crear proyecto de ".$cliente->nombre;
 		$data['usuarios']=$this->proyectos_model->ver_usuarios();
 		$data['id_cliente']=$id;
+		$data['logueado']=$login;
 		$this->load->view('main',$data);
 	}
 	
