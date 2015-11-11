@@ -1,9 +1,9 @@
+<?php $this->load->view('basic/tabs_cliente') ?>
 <div class="row">
 	<div class="block">
-		<?php $this->load->view('basic/tabs_cliente') ?>
 		<div class="row">
 			<div class="col-xs-12">
-				<form class="form-horizontal form-bordered" id="new_cliente" method="post" action="<?= site_url('clientes/actualizar/'.$datos->id) ?>" >
+				<form class="" id="new_cliente" method="post" action="<?= site_url('clientes/actualizar/'.$datos->id) ?>" >
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nombre">Nombre <span class="text-danger">*</span></label>
 						<div class="col-md-4">
@@ -44,15 +44,6 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-						<label class="col-md-2 control-label" for="numero">Numero</label>
-						<div class="col-md-4">
-							<div class="input-group">
-								<input type="text" id="numero" name="numero" class="form-control" value="<?= $datos->numero ?>" placeholder="Numero de ubicación..">
-								<span class="input-group-addon"><i class="gi gi-user"></i></span>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-md-2 control-label" for="colonia">Colonia</label>
 						<div class="col-md-4">
 							<div class="input-group">
@@ -60,15 +51,15 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-						<label class="col-md-2 control-label" for="referencia">Referencia</label>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="cp">CP</label>
 						<div class="col-md-4">
 							<div class="input-group">
-								<input type="text" id="referencia" name="referencia" class="form-control" value="<?= $datos->entre_calles ?>" placeholder="Referencia de ubicación..">
+								<input type="text" id="cp" name="cp" class="form-control" value="<?= $datos->cp ?>" placeholder="CP de ubicación..">
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-md-2 control-label" for="ciudad">Ciudad</label>
 						<div class="col-md-4">
 							<div class="input-group">
@@ -76,6 +67,8 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-md-2 control-label" for="estado">Estado</label>
 						<div class="col-md-4">
 							<div class="input-group">
@@ -83,8 +76,6 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-md-2 control-label" for="pais">País</label>
 						<div class="col-md-4">
 							<div class="input-group">
@@ -92,20 +83,36 @@
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-						<label class="col-md-2 control-label" for="detalles">Detalles</label>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="comentario">Comentarios</label>
 						<div class="col-md-4">
 							<div class="input-group">
-								<textarea id="detalles" name="detalles" class="form-control" rows="2" placeholder="Detalles..."><?= $datos->detalles ?></textarea>
+								<textarea id="comentario" name="comentario" class="form-control" rows="1" placeholder="Numero de ubicación.."><?= $datos->comentarios ?></textarea>
+								<span class="input-group-addon"><i class="gi gi-user"></i></span>
+							</div>
+						</div>
+						<label class="col-md-2 control-label" for="detalles">Claves</label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" id="detalles" name="detalles" class="input-tags"  value="<?= $datos->detalles ?>">
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
 					</div>
+					<?php 
+					$options="";
+						foreach($clasificaciones as $tipo)
+						{
+							$options.='<option value="'.$tipo->id.'" >'.$tipo->nombre.'</option>';
+						}
+					?>
 					<?php
 					$i=1;
-					foreach($clasificaciones_cliente as $clasificacion_cliente){ ?>
-					<div class="form-group">
-						<label class="col-md-2 control-label"  for="clasificacion<?= $i ?>">Clasificación <?= $i ?></label>
-						<div class="col-md-4">
+					foreach($clasificaciones_cliente as $clasificacion_cliente){?>
+					<div class="form-group" id="grupo<?= $i ?>">
+						<label class="col-md-1 control-label"  for="clasificacion<?= $i ?>">Clasificación <?= $i ?></label>
+						<div class="col-md-3">
 							<div class="input-group">
 								<select id="clasificacion<?= $i ?>" name="clasificacion<?= $i ?>" class="select-chosen form-control" onchange="checar_clasificacion();">
 									<option value="a">Seleccione una Clasificación</option>
@@ -115,15 +122,15 @@
 											$select="";
 											if($tipo->id == $clasificacion_cliente->clasificacion){$select="selected";}
 											echo '<option value="'.$tipo->id.'" '.$select.'>'.$tipo->nombre.'</option>';
-											$options='<option value="'.$tipo->id.'" >'.$tipo->nombre.'</option>';
+											$options.='<option value="'.$tipo->id.'" >'.$tipo->nombre.'</option>';
 										}
 									?>
 								</select>
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
 						</div>
-						<label class="col-md-2 control-label"  for="prioridad<?= $i ?>"> Prioridad<?= $i ?></label>
-						<div class="col-md-4">
+						<label class="col-md-1 control-label"  for="prioridad<?= $i ?>"> Prioridad<?= $i ?></label>
+						<div class="col-md-3">
 							<div class="input-group">
 								<select id="prioridad<?= $i ?>" name="prioridad<?= $i ?>" class="select-chosen form-control">
 									<option value="">Seleccione una Prioridad</option>
@@ -135,19 +142,49 @@
 									<option value="3" <?= $selec ?> >Prioridad 3</option>
 									<?php  $selec=""; if($clasificacion_cliente->prioridad == 4){$selec="selected";} ?>
 									<option value="4" <?= $selec ?> >Prioridad 4</option>
+									<?php  $selec=""; if($clasificacion_cliente->prioridad == 5){$selec="selected";} ?>
+									<option value="5" <?= $selec ?> >Prioridad 5</option>
+									<?php  $selec=""; if($clasificacion_cliente->prioridad == 6){$selec="selected";} ?>
+									<option value="6" <?= $selec ?> >Prioridad 6</option>
 								</select>
 								<span class="input-group-addon"><i class="gi gi-user"></i></span>
 							</div>
-						</div>	
+						</div>
+						<label class="col-sm-1 control-label"  for="observaciones<?= $i ?>">Observaciones</label>
+						<div class="col-sm-2">
+								<input type="text" id="observaciones<?= $i ?>" name="observaciones<?= $i ?>" value="<?= $clasificacion_cliente->observaciones ?>"  class="form-control" />
+						</div>
+						<?php
+							if ($clasificacion_cliente->maquinas == 1) {
+							
+							?>
+								<input type="checkbox" id="maquinas<?= $i ?>" name="maquinas<?= $i ?>" value="1" checked onclick="checar('maquinas<?= $i ?>')"> <b>Máquinas</b>
+								
+							<?php
+							}else{
+						?>
+							<input type="checkbox" id="maquinas<?= $i ?>" name="maquinas<?= $i ?>" value="0" onclick="checar('maquinas<?= $i ?>')"> <b>Máquinas</b>
+						<?php
+							}
+						?>
+						
+						<div class="col-sm-1"  Style="padding-top:10px">
+							<label onClick="quitarClasif (<?= $i ?>)" class="btn-sm btn-danger">Eliminar</label>
+						</div>
 					</div>
 					<?php $i++; } ?>
 					<div id="new_clasif" name="new_clasif">
 						<!--Aqui se pondran las nuevas clasificaciones-->
 					</div>
 					<input type="hidden" name="numero_clas" id="numero_clas" value="<?= $i ?>" />
-					<div class="form-group text-center"><a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a></div>
 					<div class="form-group text-center">
-							<button type="submit" class="btn btn-sm btn-info"><i class="fa fa-arrow-right"></i> Actualizar Cambios</button>
+						<hr Style="border-color:#FFF ; width: 100%;">
+					</div>
+					<div class="form-group text-center">
+						<a href="javascript:void(0)" class="btn-sm btn-info" onClick="agregarClasif()">Nueva Clasificación</a>
+					</div>
+					<div class="form-group text-center">
+							<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-arrow-right"></i> Actualizar Cambios</button>
 					</div>			
 				</form>
 			</div>
@@ -159,9 +196,9 @@
 var i=$('#numero_clas').val();
 function agregarClasif ()
 {
-	x=	'<div class="form-group">'+
-			'<label class="col-sm-2 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
-			'<div class="col-sm-4">'+
+	x=	'<div class="form-group" id="grupo'+i+'">'+
+			'<label class="col-sm-1 control-label"  for="clasificacion'+i+'">Clasificación '+i+'</label>'+
+			'<div class="col-sm-3">'+
 				'<div class="input-group">'+
 					'<select id="clasificacion'+i+'" name="clasificacion'+i+'" class="select-chosen form-control clasifi">'+
 						'<option value="0">Seleccione una Clasificación</option>'+
@@ -170,8 +207,8 @@ function agregarClasif ()
 					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
 				'</div>'+
 			'</div>'+
-			'<label class="col-sm-2 control-label"  for="prioridad'+i+'">Prioridad '+i+'</label>'+
-			'<div class="col-sm-4">'+
+			'<label class="col-sm-1 control-label"  for="prioridad'+i+'">Prioridad '+i+'</label>'+
+			'<div class="col-sm-3">'+
 				'<div class="input-group">'+
 					'<select id="prioridad'+i+'" name="prioridad'+i+'" class="select-chosen form-control prioridades">'+
 						'<option value="">Seleccione una Prioridad</option>'+
@@ -179,17 +216,52 @@ function agregarClasif ()
 						'<option value="2">Prioridad 2</option>'+
 						'<option value="3">Prioridad 3</option>'+
 						'<option value="4">Prioridad 4</option>'+
+						'<option value="5">Prioridad 5</option>'+
+						'<option value="6">Prioridad 6</option>'+
 					'</select>'+
 					'<span class="input-group-addon"><i class="gi gi-user"></i></span>'+
 				'</div>'+
 			'</div>'+
+			'<label class="col-sm-1 control-label"  for="observaciones'+i+'">Observaciones'+i+'</label>'+
+			'<div class="col-sm-2">'+
+					'<input type="text" id="observaciones'+i+'" name="observaciones'+i+'"  class="form-control" />'+
+			'</div>'+
+			'<input type="checkbox" id="maquinas'+i+'" name="maquinas'+i+'" value="0"> <b>Máquinas</b>'+
+			'<div class="col-sm-1"  Style="padding-top:10px">'+
+				'<label onClick="quitarClasif ('+i+')" class="btn-sm btn-danger">Eliminar</label>'+
+			'</div><br><br>'+
 		'</div>';
 	$("#new_clasif").append( x );
 	$('.select-chosen').chosen();
 	$('#div_nueva_clasificacion'+i).hide();
 	$('#numero_clas').val(i);
+	$('#maquinas'+i).on('click', function () {
+		    $(this).val(this.checked ? 1 : 0);  
+		});
 	i++;
 }
+
+function quitarClasif (num)
+{
+		$('#grupo'+num).remove();
+}
+</script>
+
+<script>
+$( document ).ready(function() {
+    $( "#nombre" ).focus();
+});
+</script>
+<script type="text/javascript">
+	function checar (maquina) {
+		var a = $("#"+maquina).val();
+		if (a==1){
+			$("#"+maquina).attr('value','0');
+		}else{
+			$("#"+maquina).attr('value','1');
+		}
+		
+	}
 </script>
 
 <script src="<?= asset_url('js/pages/nuevocliente.js') ?>"></script>

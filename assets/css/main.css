@@ -907,6 +907,8 @@ a.sidebar-title:focus {
 
 .header-section {
     padding: 30px 10px;
+	margin-bottom: -50px;
+	margin-top: -30px;
 }
 
 .content-header,
@@ -3516,7 +3518,7 @@ code {
 
 /* Bottom Margin */
 p, .table, .alert, .carousel {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Removing shadows and radius */
@@ -4139,4 +4141,47 @@ only screen and (min-device-pixel-ratio: 1.5) {
     #main-container {margin: 0 !important;}
     .block, .block.full {border: none !important; padding: 0 !important;}
     .block-title {margin: 0 0 20px !important;}
+}
+
+hr.style-four {
+    height: 6px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(187, 187, 187, 0.81);
+}
+
+.imagen_fondo
+{
+-webkit-background-size: contain; 
+-moz-background-size: contain; 
+-o-background-size: contain; 
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+tfoot input {
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+	color: #394263;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+thead input {
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+	color: #394263;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 13px;
+}
+
+.label_oculto{
+color: transparent;
+font-size: 1px;
+padding: 0px;
+height: 0px;
+width: 0px;
 }

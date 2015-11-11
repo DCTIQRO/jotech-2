@@ -9,13 +9,11 @@
  */
 
 var App = function() {
-
     /* Helper variables - set in uiInit() */
     var page, pageContent, header, footer, sidebar, sScroll, sidebarAlt, sScrollAlt;
 
     /* Initialization UI Code */
     var uiInit = function() {
-
         // Set variables - Cache some often used Jquery objects in variables */
         page            = $('#page-container');
         pageContent     = $('#page-content');
@@ -144,7 +142,6 @@ var App = function() {
 
     /* Sidebar Navigation functionality */
     var handleNav = function() {
-
         // Animation Speed, change the values for different results
         var upSpeed     = 250;
         var downSpeed   = 250;
@@ -186,6 +183,8 @@ var App = function() {
                 }
             }
 
+            link.blur();
+
             return false;
         });
 
@@ -212,6 +211,8 @@ var App = function() {
                     setTimeout(resizePageContent, ((upSpeed > downSpeed) ? upSpeed : downSpeed));
                 }
             }
+
+            link.blur();
 
             return false;
         });
@@ -343,7 +344,7 @@ var App = function() {
                     page.removeClass('sidebar-alt-visible-xs');
                 }
             }
-            else if (mode == 'sidebar-scroll') { // Handle main sidebar scrolling
+            else if (mode === 'sidebar-scroll') { // Handle main sidebar scrolling
                 if (page.hasClass('sidebar-mini') && page.hasClass('sidebar-visible-lg-mini') && (windowW > 991)) { // Destroy main sidebar scrolling when in mini sidebar mode
                     if (sScroll.length && sScroll.parent('.slimScrollDiv').length) {
                         sScroll
@@ -382,7 +383,7 @@ var App = function() {
                     }
                 }
             }
-            else if (mode == 'sidebar-alt-scroll') { // Init alternative sidebar scrolling
+            else if (mode === 'sidebar-alt-scroll') { // Init alternative sidebar scrolling
                 if ((page.hasClass('header-fixed-top') || page.hasClass('header-fixed-bottom'))) {
                     var sHeightAlt = $(window).height();
 
@@ -563,7 +564,7 @@ var App = function() {
 
         // If cookies have been enabled
         if (cookies) {
-            themeColorCke = $.cookie('optionThemeColor') ? $.cookie('optionThemeColor') : false;
+            themeColorCke = Cookies.get('optionThemeColor') ? Cookies.get('optionThemeColor') : false;
 
             // Update color theme
             if (themeColorCke) {
@@ -616,7 +617,7 @@ var App = function() {
 
             // If cookies have been enabled, save the new options
             if (cookies) {
-                $.cookie('optionThemeColor', themeColor, {expires: 7});
+                Cookies.set('optionThemeColor', themeColor, {expires: 7});
             }
         });
 

@@ -31,26 +31,12 @@ var FormsValidation = function() {
                 rules: {
                     nombre: {
                         required: true,
-                    },
-                    correo: {
-                        required: true,
-                        email: true
-                    },
-                    telefono: {
-                        required: true,
                     }
                 },
                 messages: {
                     nombre: {
                         required: 'Por favor ingresa el nombre del cliente',
-                    },
-                    correo: {
-                        required: 'Por favor ingresa el teléfono del cliente',
-						email: 'Ingresa un correo valido',
-                    },
-                    telefono: {
-                        required: 'Por favor ingresa el teléfono del cliente',
-                    },
+                    }
                 }
             });
         }

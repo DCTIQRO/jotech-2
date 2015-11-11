@@ -13,9 +13,23 @@ var TablesDatatables = function() {
 
             /* Initialize Datatables */
             $('#tabla_contacto').dataTable({
-                columnDefs: [ { orderable: false, targets: [5,6,7] } ],
-                pageLength: 10,
-                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'All']],
+                columnDefs: [ { orderable: false, targets: [6] } ],
+                pageLength: -1,
+				order: [[ 5, "desc" ]],
+                lengthMenu: [[10, 20, 30, -1], [10, 20, 30, 'Todos']],
+				stateSave: true,
+				buttons: [
+					'copyHtml5',
+					'excelHtml5',
+					'csvHtml5',
+					'pdfHtml5',
+					'print',
+					{
+						extend: 'colvis',
+						columns: ':not(:first-child)'
+					}
+				],
+
 				language:{
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",
