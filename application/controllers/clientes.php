@@ -63,7 +63,14 @@ class Clientes extends CI_Controller {
 					'clasificacion' => $clasi,
 					'prioridad' 	=> $this->input->post('prioridad'),
 					'observaciones' 	=> $this->input->post('observaciones'),
+<<<<<<< HEAD
 					'maquinas' => $this->input->post('maquinas'),
+=======
+<<<<<<< HEAD
+					'maquinas' => $this->input->post('maquinas'),
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 					'id_cliente_fk' => $id_cliente,
 				);
 				$this->clientes_model->guardar_clasificacion($form_clasificacion);
@@ -79,7 +86,14 @@ class Clientes extends CI_Controller {
 						'clasificacion' => $clasi,
 						'prioridad' 	=> $this->input->post('prioridad'.$i),
 						'observaciones' 	=> $this->input->post('observaciones'.$i),
+<<<<<<< HEAD
 						'maquinas' => $this->input->post('maquinas'.$i),
+=======
+<<<<<<< HEAD
+						'maquinas' => $this->input->post('maquinas'.$i),
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 						'id_cliente_fk' => $id_cliente,
 					);
 					$this->clientes_model->guardar_clasificacion($form_clasificacion);
@@ -148,7 +162,14 @@ class Clientes extends CI_Controller {
 						'clasificacion' => $clasi,
 						'prioridad' 	=> $this->input->post('prioridad'.$i),
 						'observaciones' 	=> $this->input->post('observaciones'.$i),
+<<<<<<< HEAD
 						'maquinas' => $this->input->post('maquinas'.$i),
+=======
+<<<<<<< HEAD
+						'maquinas' => $this->input->post('maquinas'.$i),
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 						'id_cliente_fk' => $id,
 					);
 					$this->clientes_model->guardar_clasificacion($form_clasificacion);
