@@ -49,15 +49,7 @@
 									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
-<<<<<<< HEAD
 								<td class="text-center"><p class="texto_desc"><?= $tarea_general->descripcion ?></p></td>
-=======
-<<<<<<< HEAD
-								<td class="text-center"><p class="texto_desc"><?= $tarea_general->descripcion ?></p></td>
-=======
-								<td class="text-center"><?= $tarea_general->descripcion ?></td>
->>>>>>> origin/master
->>>>>>> origin/master
 								<td class="text-center">Sin vinculos</td>
 								<td class="text-center">Sin vinculos</td>
 							</tr>
@@ -79,15 +71,7 @@
 									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
-<<<<<<< HEAD
 								<td class="text-center"><p class="texto_desc"><?= $tarea_proyecto->descripcion ?></p></td>
-=======
-<<<<<<< HEAD
-								<td class="text-center"><p class="texto_desc"><?= $tarea_proyecto->descripcion ?></p></td>
-=======
-								<td class="text-center"><?= $tarea_proyecto->descripcion ?></td>
->>>>>>> origin/master
->>>>>>> origin/master
 								<td class="text-center"><a href="<?= site_url('proyectos/ver_proyecto/'.$tarea_proyecto->id_proyecto_fk) ?>"><?= $tarea_proyecto->proyecto ?></a></td>
 								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$tarea_proyecto->id_cliente) ?>"><?= $tarea_proyecto->cliente ?></a></td>
 							</tr>
@@ -109,15 +93,7 @@
 									else{ echo "<a haref='javascript:void(0)' class='btn-sm btn-danger'>Cerrado</a> ";}
 								?>
 								</td>
-<<<<<<< HEAD
 								<td class="text-center"><p class="texto_desc"><?= $tarea_cliente->descripcion ?></p></td>
-=======
-<<<<<<< HEAD
-								<td class="text-center"><p class="texto_desc"><?= $tarea_cliente->descripcion ?></p></td>
-=======
-								<td class="text-center"><?= $tarea_cliente->descripcion ?></td>
->>>>>>> origin/master
->>>>>>> origin/master
 								<td class="text-center">Sin vinculos</td>
 								<td class="text-center"><a href="<?= site_url('clientes/ver/'.$tarea_cliente->id_cliente_fk) ?>"><?= $tarea_cliente->cliente ?></a></td>
 							</tr>
@@ -213,10 +189,6 @@ function cambiar_fin_cliente(id)
     });
 }
 </script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 <script>
 $( window ).load(function() {
 	$('.texto_desc').readmore({
@@ -232,10 +204,5 @@ $( window ).load(function() {
     $('article').readmore({speed: 500});
 });
 </script>
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/master
->>>>>>> origin/master
 
 <script src="<?= asset_url('js/pages/tablamistareas.js') ?>"></script>
