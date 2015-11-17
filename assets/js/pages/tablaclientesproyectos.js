@@ -50,19 +50,7 @@ var TablesDatatables = function() {
 				dom: "<'row'<'col-sm-4 col-xs-12 text-center'l><'col-sm-4 col-xs-12 text-center'B><'col-sm-4 col-xs-12 text-center'f>>" +'tr' +"<'row'<'col-sm-5'i><'col-sm-7'p>>",
 				stateSave: true,
 				buttons: [
-<<<<<<< HEAD
 					
-=======
-<<<<<<< HEAD
-					
-=======
-					'copyHtml5',
-					'excelHtml5',
-					'csvHtml5',
-					'pdfHtml5',
-					'print',
->>>>>>> origin/master
->>>>>>> origin/master
 					{
 						extend: 'colvis',
 						columns: ':not(:first-child)'
@@ -97,27 +85,10 @@ var TablesDatatables = function() {
 			$('#tabla_tareas').dataTable({
                 columnDefs: [ { orderable: false, targets: [ 4] } ],
                 pageLength: 10,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 				order: [[ 4, "asc" ]],
 				stateSave: true,
 				buttons: [
 					
-<<<<<<< HEAD
-=======
-=======
-				order: [[ 2, 'desc' ], [ 0, 'desc' ]],
-				stateSave: true,
-				buttons: [
-					'copyHtml5',
-					'excelHtml5',
-					'csvHtml5',
-					'pdfHtml5',
-					'print',
->>>>>>> origin/master
->>>>>>> origin/master
 					{
 						extend: 'colvis',
 						columns: ':not(:first-child)'

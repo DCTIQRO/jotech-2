@@ -19,15 +19,7 @@
 									<th class="text-center">Inicio</th>
 									<th class="text-center">Entrega</th>
 									<th class="text-center">Progreso</th>
-<<<<<<< HEAD
 									<th class="text-center">Acciones</th>
-=======
-<<<<<<< HEAD
-									<th class="text-center">Acciones</th>
-=======
-									<th class="text-center">Accioness</th>
->>>>>>> origin/master
->>>>>>> origin/master
 								</tr>
 							</thead>
 							<tbody>
@@ -95,20 +87,11 @@ function cambiar_fin(id)
        console.log(result);
     });
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 // $(document).ready(function() {
 //     $('#tabla_tareas').DataTable( {
 //         "order": [[ 4, "asc" ]]
 //     } );
 // } );
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/master
->>>>>>> origin/master
 </script>
 
 <script src="<?= asset_url('js/pages/tablaclientesproyectos.js') ?>"></script>

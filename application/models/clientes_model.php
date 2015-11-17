@@ -53,15 +53,7 @@ class Clientes_model extends CI_Model {
 	
 	function info_clasificacion($id)
 	{
-<<<<<<< HEAD
 		$this->db->select('cc.clasificacion,cc.prioridad,cc.observaciones,cc.maquinas');
-=======
-<<<<<<< HEAD
-		$this->db->select('cc.clasificacion,cc.prioridad,cc.observaciones,cc.maquinas');
-=======
-		$this->db->select('cc.clasificacion,cc.prioridad,cc.observaciones');
->>>>>>> origin/master
->>>>>>> origin/master
 		$this->db->where('clas.status','1');
 		$this->db->where('cc.id_cliente_fk',$id);
 		$this->db->join('clasificacion_clientes clas','clas.id=cc.clasificacion');
